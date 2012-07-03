@@ -1,9 +1,12 @@
 
+if [[ -r "$HOME/.colors" ]]; then
+  source "$HOME/.colors"
+fi
+
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-. /etc/colors.sh
 function rewrite_PS1 {
   if [[ -n "$(parse_git_branch)" ]]; then
     GITBRANCH="$BYellow$(parse_git_branch)$Color_Off"

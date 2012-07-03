@@ -1,0 +1,21 @@
+[user]
+	name = Alexander
+	email = alxndr+github@gmail.com
+[core]
+	editor = /usr/bin/vim
+	excludesfile = /Users/aquine/.gitignore
+
+[alias]
+	co = checkout
+	cm = commit
+	b = branch
+	unadd = reset HEAD
+	st = status
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	pull = auto
+	push = auto

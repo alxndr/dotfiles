@@ -1,7 +1,5 @@
 
-if [[ -r "$HOME/.colors" ]]; then
-  source "$HOME/.colors"
-fi
+[[ -r "$HOME/.colors" ]] && source "$HOME/.colors"
 
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'

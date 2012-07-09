@@ -1,9 +1,9 @@
 [user]
 	name = Alexander
 	email = alxndr+github@gmail.com
+
 [core]
 	editor = /usr/bin/vim
-	excludesfile = /Users/aquine/.gitignore
 
 [alias]
 	co = checkout

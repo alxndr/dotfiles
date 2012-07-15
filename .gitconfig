@@ -4,6 +4,7 @@
 
 [core]
 	editor = /usr/bin/vim
+	excludesfile = ~/.gitignore
 
 [alias]
 	co = checkout
@@ -13,12 +14,13 @@
 	st = status
 
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
-	pull = auto
-	push = auto
+	ui = true
+#	branch = auto
+#	diff = auto
+#	interactive = auto
+#	status = auto
+#	pull = auto
+#	push = auto
 
 [color "branch"]
 	current = yellow reverse

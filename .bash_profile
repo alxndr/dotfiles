@@ -4,6 +4,7 @@ alias top="top -o cpu -O vsize"
 
 alias rs="rails server"
 alias rc="rails console"
+alias rr="if [[ -e tmp/restart.txt ]]; then touch tmp/restart.txt; else echo Where?; fi"
 
 alias rT="rake -T"
 alias rdm="rake db:migrate db:test:prepare parallel:prepare"

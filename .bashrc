@@ -27,3 +27,5 @@ export GREP_OPTIONS="-I --exclude=\*.svn\*"
 
 export LSCOLORS='Gxgxfxfxcxdxdxhbadbxbx'
 
+set -o vi
+

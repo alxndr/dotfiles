@@ -7,20 +7,16 @@
 	excludesfile = ~/.gitignore
 
 [alias]
-	co = checkout
-	cm = commit
 	b = branch
+	ci = commit
+	cm = commit
+	co = checkout
+	di = diff
 	unadd = reset HEAD
 	st = status
 
 [color]
 	ui = true
-#	branch = auto
-#	diff = auto
-#	interactive = auto
-#	status = auto
-#	pull = auto
-#	push = auto
 
 [color "branch"]
 	current = yellow reverse

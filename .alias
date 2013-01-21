@@ -1,17 +1,24 @@
+# unixy
 alias ll="ls -AFGl"
 alias l="ls -AFl"
+alias ln="ln -v"
+alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 
+# rails
 alias rs="rails server"
 alias rc="rails console"
-alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted Pow! server; else echo No ./tmp/restart.txt?; fi"
+alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted Pow! server; else echo No ./tmp/restart.txt?; fi" # restart pow
+alias migrate="rake db:migrate db:migrate:redo rake db:test:prepare"
 
+# rake
 alias rT="rake -T"
 alias rdm="rake db:migrate db:test:prepare parallel:prepare"
 alias rj="rake jasmine"
 alias rjc="rake jasmine:ci"
 alias rps="rake parallel:spec"
 
+# git
 alias gb="git branch --color"
 alias gbc="git branch --no-color | sed -e '/^[^*]/d' -e 's/^* //'" # git branch current
 alias gc="git checkout"
@@ -26,7 +33,9 @@ alias gq="git push"
 alias gs="git status"
 alias guf="git checkout upstream && git pull && git checkout master && git rebase upstream" # git update fork
 
+# bundle
 alias bindle="bundle install"
 
+# rspec
 alias rspec="rspec -c"
 

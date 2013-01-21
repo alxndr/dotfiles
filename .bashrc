@@ -23,7 +23,8 @@ $USER\w $ "
 export PROMPT_COMMAND="rewrite_PS1"
 
 export EDITOR="/usr/bin/vim"
-export GREP_OPTIONS="-I --exclude=\*.svn\*"
+export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
+export PATH="$PATH:/Applications/MAMP/Library/bin/:/Users/alxndr/.gem/ruby/1.8/bin"
 
 export LSCOLORS='Gxgxfxfxcxdxdxhbadbxbx'
 

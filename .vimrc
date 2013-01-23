@@ -9,6 +9,7 @@ set history=500
 set ruler
 set showcmd
 set incsearch
+set list listchars=tab:»·,trail:·
 
 map Q gq
 
@@ -19,4 +20,3 @@ endif
 
 filetype plugin indent on
 autocmd FileType text setlocal textwidth=78
-

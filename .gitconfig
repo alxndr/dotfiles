@@ -15,6 +15,9 @@
 	unadd = reset HEAD
 	st = status
 
+[branch]
+  autosetupmerge = true
+
 [color]
 	ui = true
 
@@ -33,4 +36,13 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+
+[merge]
+  keepBackup = false;
+  tool = p4merge
+[mergetool "p4merge"]
+  cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false
 

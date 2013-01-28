@@ -1,7 +1,10 @@
+execute pathogen#infect()
+
 set nocompatible
 set backspace=indent,eol,start
 set expandtab
-set tabstop=8
+set tabstop=2
+set shiftwidth=2
 set softtabstop=2
 set autoindent
 set bg=dark
@@ -10,8 +13,6 @@ set ruler
 set showcmd
 set incsearch
 set list listchars=tab:»·,trail:·
-
-map Q gq
 
 if &t_Co > 2 || has("gui_running")
   syntax on

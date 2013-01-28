@@ -21,3 +21,6 @@ endif
 
 filetype plugin indent on
 autocmd FileType text setlocal textwidth=78
+
+execute pathogen#infect()
+

@@ -5,6 +5,9 @@ alias ln="ln -v"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 
+# mac-y
+alias vim="/usr/local/bin/mvim -v"
+
 # rails
 alias rs="rails server"
 alias rc="rails console"

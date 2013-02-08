@@ -3,7 +3,7 @@
   email = alxndr+github@gmail.com
 
 [core]
-  editor = /usr/bin/vim
+  editor = /usr/local/bin/mvim -v
   excludesfile = ~/.gitignore
 
 [alias]

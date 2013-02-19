@@ -1,4 +1,4 @@
-execute pathogen#infect()
+call pathogen#infect()
 
 set nocompatible
 set backspace=indent,eol,start
@@ -13,6 +13,7 @@ set ruler
 set showcmd
 set incsearch
 set list listchars=tab:»·,trail:·
+set whichwrap+=<,>,h,l,[,]
 
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -22,6 +23,5 @@ endif
 filetype plugin indent on
 autocmd FileType text setlocal textwidth=78
 
-# make macvim copy text on selection
 set go+=a
 

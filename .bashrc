@@ -6,12 +6,12 @@ function parse_git_branch {
 }
 
 function rewrite_PS1 {
-  if [[ -n "$(parse_git_branch)" ]]; then
-    GITBRANCH="$BYellow$(parse_git_branch)$Color_Off"
-  else
-    GITBRANCH=""
+  GITBRANCH="$(parse_git_branch)"
+  if [[ -n "$GITBRANCH" ]]; then
+    GITBRANCH="$BYellow$GITBRANCH$Color_Off"
   fi
-  if [[ "$(whoami)" == "aquine" ]]; then
+  WHOAMI="$(whoami)"
+  if [[ "$WHOAMI" == "aquine" || "$WHOAMI" == "alxndr" ]]; then
     USER=""
   else
     USER="\u "
@@ -30,5 +30,5 @@ export LSCOLORS='Gxgxfxfxcxdxdxhbadbxbx'
 
 set -o vi
 
-
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+

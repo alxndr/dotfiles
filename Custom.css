@@ -1,0 +1,17 @@
+pre,
+textarea,
+tt,
+code,
+kbd,
+xmp,
+plaintext,
+listing,
+.file_code,
+.file_diff {
+  font-family: 'Anonymous Pro' !important;
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  -webkit-tab-size: 2;
+  tab-size: 2;
+}
+

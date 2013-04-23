@@ -11,12 +11,12 @@ alias vim="/usr/local/bin/mvim -v"
 # rails
 alias rs="rails server"
 alias rc="rails console"
-alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted Pow! server; else echo No ./tmp/restart.txt?; fi" # restart pow
-alias migrate="rake db:migrate db:migrate:redo rake db:test:prepare"
+alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted server; else echo No ./tmp/restart.txt?; fi" # restart pow
 
 # rake
 alias rT="rake -T"
-alias rdm="rake db:migrate db:test:prepare parallel:prepare"
+alias rdm="rake db:migrate db:test:prepare"
+alias rdmp="rake db:migrate db:test:prepare parallel:prepare"
 alias rj="rake jasmine"
 alias rjc="rake jasmine:ci"
 alias rps="rake parallel:spec"

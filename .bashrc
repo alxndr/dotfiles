@@ -1,4 +1,3 @@
-
 [[ -r "$HOME/.colors" ]] && source "$HOME/.colors"
 
 function parse_git_branch {
@@ -29,6 +28,7 @@ export PATH="/usr/local/bin:$PATH:/Users/alxndr/.gem/ruby/1.8/bin"
 export LSCOLORS='Gxgxfxfxcxdxdxhbadbxbx'
 
 set -o vi
+bind -m vi-insert 'Control-l: clear-screen'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 

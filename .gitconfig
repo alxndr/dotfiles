@@ -8,12 +8,13 @@
 
 [alias]
   b = branch
+  br = branch
   ci = commit
   cm = commit
   co = checkout
   di = diff
-  unadd = reset HEAD
   st = status
+  unadd = reset HEAD
 
 [branch]
   autosetupmerge = true
@@ -40,17 +41,21 @@
 
 [merge]
   keepBackup = false;
-	tool = p4mergetool
+  tool = p4mergetool
 [mergetool "p4merge"]
   cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
   keepTemporaries = false
   trustExitCode = false
   keepBackup = false
+[mergetool "p4mergetool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+  trustExitCode = false
+[mergetool]
+  keepBackup = false
 
 [log]
-	stat = true
-[mergetool "p4mergetool"]
-	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
-	trustExitCode = false
-[mergetool]
-	keepBackup = false
+  stat = true
+
+[push]
+  default = simple
+

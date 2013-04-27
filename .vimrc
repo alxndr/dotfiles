@@ -14,6 +14,8 @@ set showcmd
 set incsearch
 set list listchars=tab:»·,trail:·
 set whichwrap+=<,>,h,l,[,]
+set nowrap
+set textwidth=0 wrapmargin=0
 
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -21,7 +23,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 filetype plugin indent on
-autocmd FileType text setlocal textwidth=78
+"autocmd FileType text setlocal textwidth=78
 
 set go+=a
 
@@ -34,4 +36,7 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+" ctrl-j: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
+nnoremap <C-J> a<CR><Esc>k$
 

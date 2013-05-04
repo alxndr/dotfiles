@@ -37,6 +37,10 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" very-magic regexes by default
+nnoremap / /\v
+vnoremap / /\v
+
 " ctrl-j: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap <C-J> a<CR><Esc>k$
 

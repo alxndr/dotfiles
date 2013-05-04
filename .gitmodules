@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/bundle/slimv.vim"]
+	path = .vim/bundle/slimv.vim
+	url = git://github.com/vim-scripts/slimv.vim.git

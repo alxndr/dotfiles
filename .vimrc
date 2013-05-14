@@ -3,7 +3,7 @@ call pathogen#infect()
 set nocompatible
 set backspace=indent,eol,start
 set expandtab
-set tabstop=8
+set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set autoindent
@@ -16,6 +16,9 @@ set list listchars=tab:»·,trail:·
 set whichwrap+=<,>,h,l,[,]
 set nowrap
 set textwidth=0 wrapmargin=0
+set ignorecase
+set smartcase
+set laststatus=2 " always show status line
 
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -43,4 +46,5 @@ vnoremap / /\v
 
 " ctrl-j: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap <C-J> a<CR><Esc>k$
+nnoremap K     a<CR><Esc>k$
 

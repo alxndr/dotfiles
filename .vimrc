@@ -23,6 +23,9 @@ set laststatus=2 " always show status line
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
+  let g:solarized_termtrans=1
+  let g:solarized_termcolors=256
+  colorscheme solarized
 endif
 
 filetype plugin indent on

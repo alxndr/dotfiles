@@ -30,25 +30,6 @@ export LSCOLORS='Gxgxfxfxcxdxdxhbadbxbx'
 set -o vi
 bind -m vi-insert 'Control-l: clear-screen'
 
-# git-cycle helper function
-# `gco ticket-number` will check out a branch that includes "ticket-number"
-gco() {
-  if [[ -z "$(which gitc)" ]]; then
-    echo "Can't find gitc?"
-    return
-  fi
-  if [[ -z "$1" ]]; then
-    echo "Need a parameter to search for..."
-    return
-  fi
-  BRANCH=$(git branch | grep $1 | head -1 | sed -e 's/^..//')
-  echo $BRANCH
-  if [[ -z "$BRANCH" ]]; then
-    echo "No branch found with '$1' in the name."
-    return
-  fi
-  gitc checkout "$BRANCH"
-}
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 

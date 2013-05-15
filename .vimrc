@@ -19,6 +19,7 @@ set textwidth=0 wrapmargin=0
 set ignorecase
 set smartcase
 set laststatus=2 " always show status line
+set scroll=15
 
 if &t_Co > 2 || has("gui_running")
   syntax on

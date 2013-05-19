@@ -22,6 +22,10 @@ set tabstop=4
 set textwidth=0 wrapmargin=0
 set whichwrap+=<,>,h,l,[,]
 
+" modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
+execute "set scroll=" . &lines / 3
+au VimResized * execute "set scroll=" . &lines / 3
+
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch

@@ -20,6 +20,6 @@ gco() {
   gitc checkout "$BRANCH"
 }
 
-alias update_homepage="ruby vendor/plugins/cmservice_plugin/bin/cmservice"
+alias update_homepage="if [[ -e ./vendor/plugins/cmservice_plugin/bin/cmservice ]]; then ruby vendor/plugins/cmservice_plugin/bin/cmservice; fi"
 alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted server; else echo No ./tmp/restart.txt?; fi; update_homepage"
 

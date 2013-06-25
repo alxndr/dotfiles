@@ -1,6 +1,6 @@
 # unixy
-alias ll="ls -AFGl"
 alias l="ls -AFl"
+alias ll="ls -AFGl"
 alias ln="ln -v"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
@@ -34,6 +34,7 @@ alias gpr="git pull --rebase"
 alias gpx="gp && gitx"
 alias gq="git push"
 alias gs="git status"
+alias gtree="git log --oneline --decorate --graph"
 alias guf="git checkout upstream && git pull && git checkout master && git rebase upstream" # git update fork
 
 # bundle
@@ -41,4 +42,8 @@ alias bindle="bundle install"
 
 # rspec
 alias rspec="rspec -c"
+
+# dev-y
+alias ack="ack --ignore-dir=pkg"
+alias deploy_heroku="rspec && git push heroku master"
 

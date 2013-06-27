@@ -4,6 +4,7 @@ set autoindent
 set backspace=indent,eol,start
 set bg=dark
 set expandtab
+set foldmethod=syntax
 set history=500
 set ignorecase
 set incsearch

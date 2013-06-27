@@ -1,25 +1,25 @@
 call pathogen#infect()
 
-set nocompatible
-set backspace=indent,eol,start
-set expandtab
-set tabstop=4
-set shiftwidth=2
-set softtabstop=2
 set autoindent
+set backspace=indent,eol,start
 set bg=dark
+set expandtab
 set history=500
-set ruler
-set showcmd
-set incsearch
-set list listchars=tab:»·,trail:·
-set whichwrap+=<,>,h,l,[,]
-set nowrap
-set textwidth=0 wrapmargin=0
 set ignorecase
-set smartcase
+set incsearch
 set laststatus=2 " always show status line
+set list listchars=tab:»·,trail:·
+set nocompatible
+set nowrap
+set ruler
+set shiftwidth=2
 set scroll=15
+set showcmd
+set smartcase
+set softtabstop=2
+set tabstop=4
+set textwidth=0 wrapmargin=0
+set whichwrap+=<,>,h,l,[,]
 
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -48,9 +48,8 @@ inoremap <right> <nop>
 nnoremap / /\v
 vnoremap / /\v
 
-" ctrl-j: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
-nnoremap <C-J> a<CR><Esc>k$
-nnoremap K     a<CR><Esc>k$
+" shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
+nnoremap K a<CR><Esc>k$
 
 " fix numpad mappings, http://swannie.net/index.php?title=Numeric+keypad+in+iTerm+with+vi&function=viewpage&pageid=24
 if &term=~"xterm" || &term=="xterm-color"

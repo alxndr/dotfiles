@@ -11,7 +11,7 @@ gco() {
     echo "Need a parameter to search for..."
     return
   fi
-  BRANCH=$(git branch | grep $1 | head -1 | sed -e 's/^..//')
+  BRANCH=$(git branch | grep -m 1 "$1" | sed -e 's/^..//')
   echo $BRANCH
   if [[ -z "$BRANCH" ]]; then
     echo "No branch found with '$1' in the name."

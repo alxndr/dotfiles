@@ -2,8 +2,10 @@
 alias l="ls -AFl"
 alias ll="ls -AFGl"
 alias ln="ln -v"
+alias tjf="tar -jxvf"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
+alias tzf="tar -zxvf"
 
 # mac-y
 alias vim="/usr/local/bin/mvim -v"

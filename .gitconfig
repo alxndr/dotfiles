@@ -13,6 +13,7 @@
   cm = commit
   co = checkout
   di = diff
+  lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   st = status
   unadd = reset HEAD
 

@@ -76,3 +76,6 @@ if &term=~"xterm" || &term=="xterm-color"
   "imap ?????? =
 endif
 
+" \q for vim-bbye's :Bdelete
+nnoremap <Leader>q :Bdelete<CR>
+

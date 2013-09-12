@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/vim-bbyE"]
 	path = .vim/bundle/vim-bbyE
 	url = https://github.com/moll/vim-bbye.git
+[submodule ".vim/bundle/vim-bracketed-paste"]
+	path = .vim/bundle/vim-bracketed-paste
+	url = https://github.com/ConradIrwin/vim-bracketed-paste.git

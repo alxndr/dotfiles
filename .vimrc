@@ -15,12 +15,16 @@ set nowrap
 set ruler
 set shiftwidth=2
 set scroll=15
+set scrolloff=3 " scroll 3 lines before end
 set showcmd
 set smartcase
 set softtabstop=2
 set tabstop=4
 set textwidth=0 wrapmargin=0
 set whichwrap+=<,>,h,l,[,]
+
+" Make Y behave like other capitals
+map Y y$
 
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
 execute "set scroll=" . &lines / 3

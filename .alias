@@ -36,7 +36,7 @@ alias gpx="gp && gitx"
 alias gq="git push"
 alias gs="git status"
 alias gtree="git log --oneline --decorate --graph"
-alias guf="git checkout upstream && git pull && git checkout master && git rebase upstream" # git update fork
+alias guf="git fetch upstream && git pull && git checkout master && git rebase upstream/master" # git update fork
 
 # bundle
 alias bindle="bundle install"
@@ -47,4 +47,4 @@ alias rspec="rspec -c"
 # dev-y
 alias ack="ack --ignore-dir=pkg"
 alias deploy_heroku="rspec && git push heroku master"
-
+alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"

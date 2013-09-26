@@ -5,6 +5,7 @@ set backspace=indent,eol,start
 set bg=dark
 set expandtab
 set foldmethod=syntax
+set guioptions+=a " autoselect
 set history=500
 set ignorecase
 set incsearch
@@ -23,7 +24,7 @@ set tabstop=4
 set textwidth=0 wrapmargin=0
 set whichwrap+=<,>,h,l,[,]
 
-" Make Y behave like other capitals
+" make Y behave like other capitals
 map Y y$
 
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
@@ -33,15 +34,18 @@ au VimResized * execute "set scroll=" . &lines / 3
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
+
+  let g:airline_powerline_fonts = 1
+
   let g:solarized_termtrans=1
-  let g:solarized_termcolors=128
+  let g:solarized_termcolors=256
   colorscheme solarized
+
+  highlight clear SignColumn
+  autocmd ColorScheme * highlight clear SignColumn
 endif
 
 filetype plugin indent on
-"autocmd FileType text setlocal textwidth=78
-
-set go+=a
 
 " no more arrow keys
 noremap <up> <nop>

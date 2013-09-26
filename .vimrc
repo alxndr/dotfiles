@@ -13,6 +13,7 @@ set laststatus=2 " always show status line
 set list listchars=tab:»·,trail:·
 set nocompatible
 set nowrap
+set number
 set ruler
 set shiftwidth=2
 set scroll=15
@@ -23,9 +24,14 @@ set softtabstop=2
 set tabstop=4
 set textwidth=0 wrapmargin=0
 set whichwrap+=<,>,h,l,[,]
-
 " make Y behave like other capitals
 map Y y$
+
+" jump to next/prev edited area
+map gk :GitGutterPrevHunk<CR>
+map gj :GitGutterNextHunk<CR>
+map <Leader>k :GitGutterPrevHunk<CR>
+map <Leader>j :GitGutterNextHunk<CR>
 
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
 execute "set scroll=" . &lines / 3
@@ -86,4 +92,9 @@ endif
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
+
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '∼'
+let g:gitgutter_sign_removed = '_'
+let g:gitgutter_sign_modified_removed = '⋍'
 

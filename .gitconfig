@@ -42,6 +42,7 @@
   untracked = cyan
 
 [merge]
+  conflictstyle = diff3
   keepBackup = false;
   tool = p4mergetool
 [mergetool "p4merge"]

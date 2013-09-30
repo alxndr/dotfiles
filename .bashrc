@@ -11,7 +11,7 @@ gdc() { # git diff of commit
     echo 'Pass a git commit hash as a parameter to see the diff for that commit.'
     return
   fi
-  gd $1^1 $1
+  git diff $1^1 $1
 }
 
 set -o vi

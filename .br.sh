@@ -23,4 +23,5 @@ gco() {
 alias update_homepage="if [[ -e ./vendor/plugins/cmservice_plugin/bin/cmservice ]]; then ruby vendor/plugins/cmservice_plugin/bin/cmservice && echo Reloaded homepage; fi"
 alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted server; else echo No ./tmp/restart.txt?; fi; update_homepage"
 alias cukes="ENV=local cucumber features/ -t @complete -t @write -r features/"
+alias jack="ack --js --ignore-dir=public/pkg/ --ignore-dir=public/javascripts/vendor/"
 

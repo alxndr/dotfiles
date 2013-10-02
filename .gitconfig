@@ -10,6 +10,7 @@
   amend = !git add . && git commit --amend -aCHEAD
   b = branch
   br = branch
+  branch-name = rev-parse --abbrev-ref HEAD
   ci = commit
   cm = commit
   co = checkout

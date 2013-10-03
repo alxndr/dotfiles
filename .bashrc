@@ -37,6 +37,7 @@ rewrite_PS1() {
 \[\D{%T}\] $GITBRANCH
 $USER\w $ "
 }
+rewrite_PS1
 export PROMPT_COMMAND="rewrite_PS1"
 
 ### Added by the Heroku Toolbelt

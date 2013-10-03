@@ -8,6 +8,7 @@ alias top="top -o cpu -O vsize"
 alias tzf="tar -zxvf"
 
 # mac-y
+alias e="vim"
 alias vim="/usr/local/bin/mvim -v"
 
 # rails

@@ -1,4 +1,5 @@
 # unixy
+alias fname="find / -name $1 2>/dev/null"
 alias l="ls -AFl"
 alias ll="ls -AFGl"
 alias ln="ln -v"

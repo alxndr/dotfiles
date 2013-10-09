@@ -5,6 +5,7 @@ set backspace=indent,eol,start
 set bg=dark
 set expandtab
 set foldmethod=syntax
+set foldlevelstart=1
 set guioptions+=a " autoselect
 set history=500
 set ignorecase
@@ -50,6 +51,8 @@ if &t_Co > 2 || has("gui_running")
   highlight clear SignColumn
   autocmd ColorScheme * highlight clear SignColumn
 endif
+
+let g:ctrlp_show_hidden = 1
 
 filetype plugin indent on
 

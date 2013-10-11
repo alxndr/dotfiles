@@ -6,14 +6,6 @@ export PATH="/usr/local/bin:$PATH:/Users/alxndr/.gem/ruby/1.8/bin"
 
 export LSCOLORS='Gxgxfxfxcxdxdxhbadbxbx'
 
-gdc() { # git diff of commit
-  if [[ -z "$1" ]]; then
-    echo 'Pass a git commit hash as a parameter to see the diff for that commit.'
-    return
-  fi
-  git diff $1^1 $1
-}
-
 set -o vi
 bind -m vi-insert 'Control-l: clear-screen'
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -20,6 +20,7 @@ gco() {
   gitc checkout "$BRANCH"
 }
 
+alias brr="bundle && rdm && rr"
 alias cukes="ENV=local cucumber features/ -t @complete -t @write -r features/"
 alias generate_tags="ctags -R -f ./.git/tags --exclude=jscoverage --exclude=.jhw-cache --exclude=.sass-cache --exclude=pkg ."
 alias jack="ack --js --ignore-dir=pkg --ignore-dir=vendor --ignore-dir=jscoverage --ignore-dir=ext"

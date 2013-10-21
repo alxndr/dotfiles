@@ -1,0 +1,14 @@
+--smart-case
+
+--ignore-dir=coverage
+--ignore-dir=jscoverage
+--ignore-dir=tmp
+--ignore-dir=pkg
+
+--type-set=haml=.haml
+--type-set=sass=.sass
+--type-set=scss=.scss
+--type-set=erb=.erb
+--type-set=puppet=.pp
+--type-set=coffee=.coffee
+

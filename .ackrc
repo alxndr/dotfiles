@@ -1,9 +1,11 @@
 --smart-case
 
 --ignore-dir=coverage
+--ignore-dir=fixtures
 --ignore-dir=jscoverage
---ignore-dir=tmp
+--ignore-dir=log
 --ignore-dir=pkg
+--ignore-dir=tmp
 
 --type-set=haml=.haml
 --type-set=sass=.sass

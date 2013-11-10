@@ -49,4 +49,5 @@ alias rspec="rspec -c"
 # dev-y
 alias ack="ack --ignore-dir=pkg"
 alias deploy_heroku="rspec && git push heroku master"
+alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted server; else echo No ./tmp/restart.txt?; fi"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"

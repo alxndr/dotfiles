@@ -72,7 +72,6 @@ vnoremap / /\v
 
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$
-
 " fix numpad mappings, http://swannie.net/index.php?title=Numeric+keypad+in+iTerm+with+vi&function=viewpage&pageid=24
 if &term=~"xterm" || &term=="xterm-color"
   imap <Esc>Oq 1
@@ -100,4 +99,12 @@ let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '∼'
 let g:gitgutter_sign_removed = '_'
 let g:gitgutter_sign_modified_removed = '⋍'
+
+" comment macros
+" @3 for # before, @l for // before
+" @4 for # after, @s for // after
+let @3='I#'
+let @4='A # '
+let @l='I//'
+let @s='A // '
 

@@ -54,6 +54,8 @@ endif
 
 let g:ctrlp_show_hidden = 1
 
+"let g:js_context_colors_enabled = 0 " default disable js context coloring, :JSContextColorToggle
+
 filetype plugin indent on
 
 " no more arrow keys

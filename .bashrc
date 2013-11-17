@@ -2,7 +2,7 @@
 
 export EDITOR="/usr/bin/vim"
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
-export PATH="/usr/local/bin:$PATH:/Users/alxndr/.gem/ruby/1.8/bin"
+export PATH="/usr/local/bin:$PATH:/Users/alxndr/.gem/ruby/1.8/bin:/usr/local/share/npm/bin"
 
 export LSCOLORS='Gxgxfxfxcxdxdxhbadbxbx'
 

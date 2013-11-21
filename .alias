@@ -8,6 +8,7 @@ alias tjf="tar -jxvf"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 alias tzf="tar -zxvf"
+# todo: alias wtf= look for something like /filename:## in last output and edit it
 
 # mac-y
 alias e="vim"

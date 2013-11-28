@@ -84,7 +84,7 @@
 	url = https://github.com/kien/ctrlp.vim.git
 [submodule ".vim/bundle/vim-js-context-coloring"]
 	path = .vim/bundle/vim-js-context-coloring
-	url = git@github.com:bigfish/vim-js-context-coloring.git
+	url = https://github.com/bigfish/vim-js-context-coloring.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git

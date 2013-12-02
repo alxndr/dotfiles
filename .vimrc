@@ -28,6 +28,10 @@ set whichwrap+=<,>,h,l,[,]
 " make Y behave like other capitals
 map Y y$
 
+" view last diff
+command GitLastDiff !git diff HEAD
+map gld :GitLastDiff<CR>
+
 " jump to next/prev edited area
 map gk :GitGutterPrevHunk<CR>
 map gj :GitGutterNextHunk<CR>
@@ -54,7 +58,25 @@ endif
 
 let g:ctrlp_show_hidden = 1
 
-"let g:js_context_colors_enabled = 0 " default disable js context coloring, :JSContextColorToggle
+let g:syntastic_javascript_checkers=['jslint']
+
+" silver searcher tweaks
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor                  " use ag for grep
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " use ag in CtrlP for listing files
+  let g:ctrlp_use_caching = 0                           " ag is fast enough that CtrlP doesn't need to cache
+endif
+nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR> " :grep for word under cursor
+
+nnoremap ,b :ls!<CR>
+
+" tabs ... tab text customization @ bottom
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap \n :tabnew
+nnoremap \x :tabclose<CR>
+nnoremap \1 1gt
+nnoremap \2 2gt
 
 filetype plugin indent on
 
@@ -110,3 +132,39 @@ let @4='A # '
 let @l='I//'
 let @s='A // '
 
+
+
+" http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
+set showtabline=2 " always show tabs in gvim, but not vim
+" set up tab labels with tab number, buffer name, number of windows
+function! GuiTabLabel()
+  let label = ''
+  let bufnrlist = tabpagebuflist(v:lnum)
+  " Add '+' if one of the buffers in the tab page is modified
+  for bufnr in bufnrlist
+    if getbufvar(bufnr, "&modified")
+      let label = '+'
+      break
+    endif
+  endfor
+  " Append the tab number
+  let label .= v:lnum.': '
+  " Append the buffer name
+  let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
+  if name == ''
+    " give a name to no-name documents
+    if &buftype=='quickfix'
+      let name = '[Quickfix List]'
+    else
+      let name = '[No Name]'
+    endif
+  else
+    " get only the file name
+    let name = fnamemodify(name,":t")
+  endif
+  let label .= name
+  " Append the number of windows in the tab page
+  let wincount = tabpagewinnr(v:lnum, '$')
+  return label . '  [' . wincount . ']'
+endfunction
+set guitablabel=%{GuiTabLabel()}

@@ -78,6 +78,11 @@ nnoremap \x :tabclose<CR>
 nnoremap \1 1gt
 nnoremap \2 2gt
 
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+let g:syntastic_check_on_open=1
+
 filetype plugin indent on
 
 " no more arrow keys

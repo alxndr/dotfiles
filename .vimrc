@@ -17,6 +17,7 @@ set nowrap
 set number
 set ruler
 set shiftwidth=2
+set showtabline=2 " always show tabs in gvim, but not vim http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
 set scroll=15
 set scrolloff=3 " scroll 3 lines before end
 set showcmd
@@ -28,24 +29,47 @@ set tabstop=4
 set textwidth=0 wrapmargin=0
 set whichwrap+=<,>,h,l,[,]
 
-
 " make Y behave like other capitals
 map Y y$
 
-" view last diff
-command GitLastDiff !git diff HEAD
-map gld :GitLastDiff<CR>
+" buffer list
+nnoremap ,b :ls!<CR>
 
-" jump to next/prev edited area
-map gk :GitGutterPrevHunk<CR>
-map gj :GitGutterNextHunk<CR>
-map <Leader>k :GitGutterPrevHunk<CR>
-map <Leader>j :GitGutterNextHunk<CR>
+" :grep for word under cursor
+nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
+nnoremap K a<CR><Esc>k$
 
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
 execute "set scroll=" . &lines / 3
 au VimResized * execute "set scroll=" . &lines / 3
 
+" Git
+" view last diff
+command GitLastDiff !git diff HEAD
+map gld :GitLastDiff<CR>
+
+" jump to next/prev edited area
+map <Leader>k :GitGutterPrevHunk<CR>
+map <Leader>j :GitGutterNextHunk<CR>
+
+" index ctags from any project
+map <Leader>ct :!ctags -R .<CR>
+
+" tabs ... tab text customization @ bottom
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap \n :tabnew
+nnoremap \x :tabclose<CR>
+nnoremap \1 1gt
+nnoremap \2 2gt
+
+
+" GUI stuff
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
@@ -60,8 +84,16 @@ if &t_Co > 2 || has("gui_running")
   autocmd ColorScheme * highlight clear SignColumn
 endif
 
+
+"
+" plugin configuration
+"
+
+" CtrlP
 let g:ctrlp_show_hidden = 1
 
+" synatstic
+let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers=['jslint']
 
 " silver searcher tweaks
@@ -70,24 +102,11 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " use ag in CtrlP for listing files
   let g:ctrlp_use_caching = 0                           " ag is fast enough that CtrlP doesn't need to cache
 endif
-nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR> " :grep for word under cursor
 
-nnoremap ,b :ls!<CR>
-
-map <Leader>ct :!ctags -R .<CR> " index ctags from any project
-
-" tabs ... tab text customization @ bottom
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap \n :tabnew
-nnoremap \x :tabclose<CR>
-nnoremap \1 1gt
-nnoremap \2 2gt
-
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
-let g:syntastic_check_on_open=1
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '∼'
+let g:gitgutter_sign_removed = '_'
+let g:gitgutter_sign_modified_removed = '⋍'
 
 filetype plugin indent on
 
@@ -105,8 +124,6 @@ inoremap <right> <nop>
 nnoremap / /\v
 vnoremap / /\v
 
-" shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
-nnoremap K a<CR><Esc>k$
 " fix numpad mappings, http://swannie.net/index.php?title=Numeric+keypad+in+iTerm+with+vi&function=viewpage&pageid=24
 if &term=~"xterm" || &term=="xterm-color"
   imap <Esc>Oq 1
@@ -130,11 +147,6 @@ endif
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
 
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '∼'
-let g:gitgutter_sign_removed = '_'
-let g:gitgutter_sign_modified_removed = '⋍'
-
 " comment macros
 " @3 for # before, @l for // before
 " @4 for # after, @s for // after
@@ -145,8 +157,6 @@ let @s='A // '
 
 
 
-" http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
-set showtabline=2 " always show tabs in gvim, but not vim
 " set up tab labels with tab number, buffer name, number of windows
 function! GuiTabLabel()
   let label = ''

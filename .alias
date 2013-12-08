@@ -1,4 +1,7 @@
 # unixy
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 alias fname="find / -name $1 2>/dev/null"
 alias l="ls -Al"
 alias ll="ls -AGl"

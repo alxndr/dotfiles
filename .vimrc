@@ -70,6 +70,8 @@ nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR> " :grep for word under cursor
 
 nnoremap ,b :ls!<CR>
 
+map <Leader>ct :!ctags -R .<CR> " index ctags from any project
+
 " tabs ... tab text customization @ bottom
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>

@@ -7,3 +7,4 @@ UserInterfaceState.xcuserstate
 .jhw-cache
 jscoverage
 coverage
+.lein/self-installs

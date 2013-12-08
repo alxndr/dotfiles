@@ -91,6 +91,7 @@ endif
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_map = '<c-l>' " because dvorak
 
 " synatstic
 let g:syntastic_check_on_open=1

@@ -22,9 +22,13 @@ set scrolloff=3 " scroll 3 lines before end
 set showcmd
 set smartcase
 set softtabstop=2
+set splitbelow
+set splitright
 set tabstop=4
 set textwidth=0 wrapmargin=0
 set whichwrap+=<,>,h,l,[,]
+
+
 " make Y behave like other capitals
 map Y y$
 

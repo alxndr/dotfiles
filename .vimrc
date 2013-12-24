@@ -89,6 +89,8 @@ endif
 " plugin configuration
 "
 
+filetype plugin indent on
+
 " CtrlP
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_map = '<c-l>' " because dvorak
@@ -104,12 +106,15 @@ if executable('ag')
   let g:ctrlp_use_caching = 0                           " ag is fast enough that CtrlP doesn't need to cache
 endif
 
+" GitGutter
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '∼'
 let g:gitgutter_sign_removed = '_'
 let g:gitgutter_sign_modified_removed = '⋍'
 
-filetype plugin indent on
+" vim-airline
+let g:airline_section_x = ''
+let g:airline_section_y = "%{&fileformat=='unix'?'':&fileformat}%{&fileencoding!='utf-8'?&fileformat!='unix'?', ':'':''}%{&fileencoding=='utf-8'?'':&fileencoding}"
 
 " no more arrow keys
 noremap <up> <nop>

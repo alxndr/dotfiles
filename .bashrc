@@ -1,6 +1,7 @@
 [[ -r "$HOME/.colors" ]] && source "$HOME/.colors"
 
-export EDITOR="/usr/bin/vim"
+export EDITOR="vim"
+export VISUAL="vim"
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 export PATH="/usr/local/bin:$PATH:/Users/alxndr/.gem/ruby/1.8/bin:/usr/local/share/npm/bin"
 

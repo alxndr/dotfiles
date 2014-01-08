@@ -14,6 +14,7 @@
   ci = commit
   cm = commit
   co = checkout
+  delete-merged-branches = !git branch --merged master | grep -v " master" | xargs -n 1 git branch -d # http://stevenharman.net/git-clean-delete-already-merged-branches
   di = diff
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   st = status

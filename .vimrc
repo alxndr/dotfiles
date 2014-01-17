@@ -43,6 +43,7 @@ nnoremap <leader><leader> <c-^>
 
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$
+" TODO swap shift-k & shift-j cause it just makes more sense
 
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
 execute "set scroll=" . &lines / 3
@@ -68,6 +69,8 @@ nnoremap \x :tabclose<CR>
 nnoremap \1 1gt
 nnoremap \2 2gt
 
+" json filetype
+au BufRead,BufNewFile *.json set filetype=json
 
 " GUI stuff
 if &t_Co > 2 || has("gui_running")
@@ -97,7 +100,10 @@ let g:ctrlp_map = '<c-l>' " because dvorak
 
 " synatstic
 let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers=['jslint']
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_json_checkers=['jsonlint']
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='!'
 
 " silver searcher tweaks
 if executable('ag')

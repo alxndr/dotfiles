@@ -7,7 +7,7 @@
   excludesfile = ~/.gitignore
 
 [alias]
-  amend = !git add . && git commit --amend -aCHEAD
+  amend = commit --amend --no-edit
   b = branch
   br = branch
   branch-name = rev-parse --abbrev-ref HEAD
@@ -16,6 +16,8 @@
   co = checkout
   delete-merged-branches = !git branch --merged master | grep -v " master" | xargs -n 1 git branch -d # http://stevenharman.net/git-clean-delete-already-merged-branches
   di = diff
+  diff-rc = show-branch --current br/rc
+  find-last-mention-of = log -1 -u -S # expects search string
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   reset-fork = !git fetch upstream && git checkout master && git reset --hard upstream/master
   st = status

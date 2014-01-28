@@ -17,7 +17,6 @@ set nowrap
 set number
 set ruler
 set shiftwidth=2
-set showtabline=2 " always show tabs in gvim, but not vim http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
 set scroll=15
 set scrolloff=3 " scroll 3 lines before end
 set showcmd
@@ -31,6 +30,14 @@ set whichwrap+=<,>,h,l,[,]
 
 " make Y behave like other capitals
 map Y y$
+
+" system clipboard paste
+nnoremap ,v "*p
+
+" space to toggle fold
+" shift-space to close fold
+nnoremap <Space> za
+nnoremap <S-Space> zc
 
 " buffer list
 nnoremap ,b :ls!<CR>
@@ -66,8 +73,16 @@ nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 nnoremap \n :tabnew
 nnoremap \x :tabclose<CR>
-nnoremap \1 1gt
-nnoremap \2 2gt
+
+nnoremap \1 :b1<CR>
+nnoremap \2 :b2<CR>
+nnoremap \3 :b3<CR>
+nnoremap \4 :b4<CR>
+nnoremap \5 :b5<CR>
+nnoremap \6 :b6<CR>
+nnoremap \7 :b7<CR>
+nnoremap \8 :b8<CR>
+nnoremap \9 :b9<CR>
 
 " json filetype
 au BufRead,BufNewFile *.json set filetype=json
@@ -82,6 +97,7 @@ if &t_Co > 2 || has("gui_running")
   let g:solarized_termtrans=1
   let g:solarized_termcolors=256
   colorscheme solarized
+  highlight MatchParen cterm=bold ctermfg=white ctermbg=none
 
   highlight clear SignColumn
   autocmd ColorScheme * highlight clear SignColumn

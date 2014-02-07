@@ -4,8 +4,8 @@ set autoindent
 set backspace=indent,eol,start
 set bg=dark
 set expandtab
-set foldmethod=syntax
-set foldlevelstart=1
+set foldmethod=indent
+set foldlevelstart=99
 set guioptions+=a " autoselect
 set history=500
 set ignorecase

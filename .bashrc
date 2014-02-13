@@ -13,12 +13,12 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # put git branch into prompt if we're in a repo
 parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/branch:\1/'
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 rewrite_PS1() {
   GITBRANCH="$(parse_git_branch)"
   if [[ -n "$GITBRANCH" ]]; then
-    GITBRANCH="$BYellow$GITBRANCH$Color_Off"
+    GITBRANCH="branch:$BYellow$GITBRANCH$Color_Off"
   fi
   WHOAMI="$(whoami)"
   if [[ "${WHOAMI:(-5)}" == "quine" || "$WHOAMI" == "alxndr" ]]; then

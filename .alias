@@ -19,8 +19,26 @@ alias v="$VISUAL"
 alias vim="/usr/local/bin/mvim -v"
 
 # rails
-alias rs="rails server"
-alias rc="rails console"
+function rc {
+  if [ -e script/rails ]; then
+    script/rails console $@
+  elif [ -e bin/rails ]; then
+    bin/rails console $@
+  else
+    script/console $@
+  fi
+}
+function rs {
+  if [ -e script/rails ]; then
+    script/rails server $@
+  elif [ -e bin/rails ]; then
+    bin/rails server $@
+  else
+    script/server $@
+  fi
+}
+
+
 
 # rake
 alias brake="bundle exec rake"

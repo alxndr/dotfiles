@@ -15,6 +15,7 @@ set list listchars=tab:»·,trail:·
 set nocompatible
 set nowrap
 set number
+set relativenumber " tweaked below
 set ruler
 set shiftwidth=2
 set scroll=15
@@ -28,6 +29,10 @@ set tabstop=4
 set textwidth=0 wrapmargin=0
 set whichwrap+=<,>,h,l,[,]
 
+" relative numbering on focus, normal on blur
+autocmd BufEnter * set relativenumber
+autocmd BufLeave * set number
+
 " make Y behave like other capitals
 map Y y$
 
@@ -40,13 +45,10 @@ nnoremap <Space> za
 nnoremap <S-Space> zc
 
 " buffer list
-nnoremap ,b :ls!<CR>
+nnoremap <leader><leader> :buffers<CR>:buffer<Space>
 
 " :grep for word under cursor
 nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
 
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$

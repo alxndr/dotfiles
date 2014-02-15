@@ -23,6 +23,7 @@
   st = status
   unadd = reset HEAD
   untracked = !git status | grep -A999999999 'Untracked files' | cut -sf 2
+  update-fork = !git fetch upstream && git pull && git checkout master && git rebase upstream/master
 
 [branch]
   autosetupmerge = true

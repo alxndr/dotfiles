@@ -21,8 +21,6 @@
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   reset-fork = !git fetch upstream && git checkout master && git reset --hard upstream/master
   st = status
-  unadd = reset HEAD
-  untracked = !git status | grep -A999999999 'Untracked files' | cut -sf 2
   update-fork = !git fetch upstream && git pull && git checkout master && git rebase upstream/master
 
 [branch]

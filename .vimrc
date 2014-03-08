@@ -67,15 +67,10 @@ map gld :GitLastDiff<CR>
 map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
-" index ctags from any project
+" create tags file
 map <Leader>ct :!ctags -R .<CR>
 
-" tabs ... tab text customization @ bottom
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap \n :tabnew
-nnoremap \x :tabclose<CR>
-
+" buffer shortcuts
 nnoremap \1 :b1<CR>
 nnoremap \2 :b2<CR>
 nnoremap \3 :b3<CR>

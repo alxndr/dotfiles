@@ -20,11 +20,11 @@ alias vim="/usr/local/bin/mvim -v"
 # rails
 function rc {
   if [ -e script/rails ]; then
-    script/rails console $@
+    script/rails console --irb=$(which pry) $@
   elif [ -e bin/rails ]; then
-    bin/rails console $@
+    bin/rails console --irb=$(which pry) $@
   else
-    script/console $@
+    script/console --irb=$(which pry) $@
   fi
 }
 function rs {

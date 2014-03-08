@@ -2,6 +2,10 @@ class String
   def to_clipboard
     IO::popen(%w(pbcopy), 'w') { |io| io.write self.shellescape } && self
   end
+
+  def count_regex(regex)
+    scan(regex).count
+  end
 end
 
 class Object

@@ -36,8 +36,12 @@ autocmd BufLeave * set number
 " make Y behave like other capitals
 map Y y$
 
+" convert ruby 1.8 hash style to 1.9 style
+nnoremap \: :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
+
 " system clipboard paste
 nnoremap ,v "*p
+nnoremap ,V "*P
 
 " space to toggle fold
 " shift-space to close fold

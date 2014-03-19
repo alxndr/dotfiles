@@ -52,7 +52,7 @@ alias rps="rake parallel:spec"
 alias gb="git branch --color"
 alias gbc="git branch --no-color | sed -e '/^[^*]/d' -e 's/^* //'" # git branch current
 alias gc="git checkout"
-alias gd="git diff --color -w"
+alias gd="git diff --word-diff=color -w"
 alias gds="gd --staged"
 alias gl="git lg"
 alias gm="git mergetool"
@@ -60,7 +60,7 @@ alias gp="git pull"
 alias gpr="git pull --rebase"
 alias gpx="gp && gitx"
 alias gq="git push"
-alias gs="git status"
+alias gs="git status --short"
 alias gtree="git log --oneline --decorate --graph"
 
 # bundle

@@ -3,7 +3,7 @@ class String
     IO::popen(%w(pbcopy), 'w') { |io| io.write self.shellescape } && self
   end
 
-  def count_regex(regex)
+  def count_instances(regex)
     scan(regex).count
   end
 end

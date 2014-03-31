@@ -11,12 +11,8 @@ set -o vi
 bind -m vi-insert 'Control-l: clear-screen'
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# put git branch into prompt if we're in a repo
-parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
 rewrite_PS1() {
-  GITBRANCH="$(parse_git_branch)"
+  GITBRANCH="$(git rev-parse --abbrev-ref HEAD)"
   if [[ -n "$GITBRANCH" ]]; then
     GITBRANCH="branch:$BYellow$GITBRANCH$Color_Off"
   fi

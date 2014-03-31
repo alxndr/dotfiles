@@ -72,7 +72,7 @@ map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
 " create tags file
-map <Leader>ct :!ctags -R .<CR>
+map <Leader>ct :!ctags --recurse -f .git/tags --exclude=pkg .<CR>
 
 " buffer shortcuts
 nnoremap \1 :b1<CR>

@@ -38,8 +38,6 @@ function rs {
   fi
 }
 
-
-
 # rake
 alias brake="bundle exec rake"
 alias rT="rake -T"

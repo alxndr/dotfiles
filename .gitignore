@@ -10,3 +10,4 @@ coverage
 .lein/self-installs
 .lein/repl-history
 secrets.sh
+config/database.yml.readonly

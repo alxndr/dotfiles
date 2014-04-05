@@ -16,6 +16,7 @@ alias v="$VISUAL"
 # todo: alias wtf= look for something like /filename:## in last output and edit it
 
 # mac-y
+alias tac="tail -r"
 alias vim="/usr/local/bin/mvim -v"
 
 # rails

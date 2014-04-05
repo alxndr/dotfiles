@@ -1,6 +1,7 @@
 class String
   def to_clipboard
-    IO::popen(%w(pbcopy), 'w') { |io| io.write self.shellescape } && self
+    popen_first_arg = RUBY_VERSION > '2' ? ['pbcopy'] : 'pbcopy'
+    IO::popen(popen_first_arg, 'w') { |io| io.write self.shellescape } && self
   end
 
   def count_instances(regex)

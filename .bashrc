@@ -12,7 +12,7 @@ bind -m vi-insert 'Control-l: clear-screen'
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 rewrite_PS1() {
-  GITBRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  GITBRANCH="$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD)"
   if [[ -n "$GITBRANCH" ]]; then
     GITBRANCH="branch:$BYellow$GITBRANCH$Color_Off"
   fi

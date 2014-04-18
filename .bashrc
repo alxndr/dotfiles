@@ -32,3 +32,4 @@ export PROMPT_COMMAND="rewrite_PS1"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+export GOPATH="$HOME/workspace/go"

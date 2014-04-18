@@ -21,10 +21,15 @@ alias vim="/usr/local/bin/mvim -v"
 
 # rails
 function rc {
+  FLAGS=""
+  if [[ -z "$(gem list pry | grep pry-rails)" ]]; then
+    FLAGS="--irb=$(which pry)"
+  fi
+
   if [ -e script/rails ]; then
-    script/rails console --irb=$(which pry) $@
+    script/rails console $FLAGS $@
   elif [ -e bin/rails ]; then
-    bin/rails console --irb=$(which pry) $@
+    bin/rails console $FLAGS $@
   else
     script/console --irb=$(which pry) $@
   fi
@@ -57,7 +62,7 @@ alias gds="gd --staged"
 alias gl="git lg"
 alias gm="git mergetool"
 alias gp="git pull"
-alias gpr="git show-branch $(parse_git_branch) origin/$(parse_git_branch) && git pull --rebase"
+alias gpr="git show-branch $([[ -e .git ]] && git rev-parse --abbrev-ref HEAD) origin/$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD) && git pull --rebase"
 alias gpx="gp && gitx"
 alias gq="git push"
 alias gs="git status --short"

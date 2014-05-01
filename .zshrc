@@ -7,6 +7,8 @@ ZSH_THEME="alxndr"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+CASE_SENSITIVE="true"
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
@@ -29,20 +31,27 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+bindkey -v
+
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# make sure we can see psql
+export PATH="/usr/local/opt/postgresql/bin:$PATH"
+
 # use github's hub as git
 #eval "$(hub alias -s)"
+
+# use rbenv instead of rvm
+eval "$(rbenv init -)"
 
 export EDITOR="vim"
 export VISUAL="vim"
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 
-for FILE ("$HOME/.alias" "$HOME/.rvm/scripts/rvm" "/usr/local/bin/virtualenvwrapper.sh") do
+for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do
   [[ -r "$FILE" ]] && source "$FILE"
 done
-
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then

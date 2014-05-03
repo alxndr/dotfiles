@@ -56,11 +56,18 @@ nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$
-" TODO swap shift-k & shift-j cause it just makes more sense
+
+" TODO fix. resize splits
+nnoremap <C-+> <C-W>+
+nnoremap <C--> <C-W>-
+nnoremap <C-<> <C-W><
+nnoremap <C->> <C-W>>
+
 
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
 execute "set scroll=" . &lines / 3
 au VimResized * execute "set scroll=" . &lines / 3
+
 
 " Git
 " view last diff

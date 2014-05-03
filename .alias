@@ -43,6 +43,7 @@ function rs {
     script/server $@
   fi
 }
+alias rss="rescue rails server"
 
 # rake
 alias brake="bundle exec rake"

@@ -42,8 +42,12 @@ export PATH="/usr/local/opt/postgresql/bin:$PATH"
 # use github's hub as git
 #eval "$(hub alias -s)"
 
-# use rbenv instead of rvm
-eval "$(rbenv init -)"
+# use rbenv or rvm
+if [[ -x $(which rbenv) ]]; then
+  eval "$(rbenv init -)"
+else
+  source $HOME/.rvm/scripts/rvm
+fi
 
 export EDITOR="vim"
 export VISUAL="vim"

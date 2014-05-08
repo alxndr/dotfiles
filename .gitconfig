@@ -21,7 +21,7 @@
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   reset-fork = !git fetch upstream && git checkout master && git reset --hard upstream/master
   st = status
-  update-fork = !git fetch upstream && git pull && git checkout master && git rebase upstream/master
+  reset-master = !git fetch upstream && git co master && git reset --hard origin/master
 
 [branch]
   autosetupmerge = true

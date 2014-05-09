@@ -20,9 +20,9 @@
   diff-rc = show-branch --current br/rc
   find-last-mention-of = log -1 -u -S # expects search string
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
-  reset-fork = !git fetch upstream && git checkout master && git reset --hard upstream/master
+  reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
+  reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master
   st = status
-  reset-master = !git fetch upstream && git co master && git reset --hard origin/master
 
 [branch]
   autosetupmerge = true

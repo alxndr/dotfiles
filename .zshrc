@@ -51,6 +51,10 @@ fi
 
 export EDITOR="vim"
 export VISUAL="vim"
+
+export PAGER="less"
+export LESS="-FRSX"
+
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 
 for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do

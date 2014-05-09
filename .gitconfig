@@ -5,6 +5,7 @@
 [core]
   editor = /usr/local/bin/mvim -v
   excludesfile = ~/.gitignore
+  pager = less -FRSX
 
 [alias]
   amend = commit --amend --no-edit

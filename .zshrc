@@ -34,13 +34,14 @@ source $ZSH/oh-my-zsh.sh
 bindkey -v
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # make sure we can see psql
 export PATH="/usr/local/opt/postgresql/bin:$PATH"
 
 # use github's hub as git
-#eval "$(hub alias -s)"
+if [[ -x "$(which hub)" ]]; then
+  eval "$(hub alias -s)"
+fi
 
 # use rbenv or rvm
 if [[ -x $(which rbenv) ]]; then

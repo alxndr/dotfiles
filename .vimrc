@@ -120,7 +120,7 @@ filetype plugin indent on
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_map = '<c-l>' " because dvorak
+nnoremap <C-l> :CtrlP<CR>
 
 " synatstic
 let g:syntastic_check_on_open=1

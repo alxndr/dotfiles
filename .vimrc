@@ -40,8 +40,8 @@ map Y y$
 nnoremap \: :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 
 " system clipboard paste
-nnoremap ,v "*p
-nnoremap ,V "*P
+nnoremap ,v :r !pbpaste
+nnoremap ,V ,v
 
 " space to toggle fold
 " shift-space to close fold

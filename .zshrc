@@ -38,6 +38,9 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # make sure we can see psql
 export PATH="/usr/local/opt/postgresql/bin:$PATH"
 
+# npm
+export PATH="/usr/local/share/npm/bin:$PATH"
+
 # use github's hub as git
 if [[ -x "$(which hub)" ]]; then
   eval "$(hub alias -s)"

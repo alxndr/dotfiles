@@ -55,6 +55,7 @@ alias rjc="rake jasmine:ci"
 alias rps="rake parallel:spec"
 
 # git
+alias gap="git add -p"
 alias gb="git branch --color"
 alias gbc="git branch --no-color | sed -e '/^[^*]/d' -e 's/^* //'" # git branch current
 alias gc="git checkout"

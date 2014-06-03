@@ -3,6 +3,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias e="$EDITOR"
+alias tophistory="history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head" # https://coderwall.com/p/o5qijw
 alias l="ls -Al"
 alias ll="ls -AGl"
 alias ln="ln -v"
@@ -14,6 +15,7 @@ alias top="top -o cpu -O vsize"
 alias tzf="tar -zxvf"
 alias v="$VISUAL"
 # todo: alias wtf= look for something like /filename:## in last output and edit it
+# $ screencapture -o - | ocr? and try to find "wtf" and then look around what's above and to the right? for a filename(:#|"line")
 
 # mac-y
 alias tac="tail -r"

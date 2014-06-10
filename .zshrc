@@ -32,6 +32,9 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 bindkey -v
+# restore Ctrl-r for history search
+bindkey -M vicmd '^R' history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-backward
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 

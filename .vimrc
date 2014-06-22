@@ -54,6 +54,9 @@ nnoremap <leader><leader> :buffers<CR>:buffer<Space>
 " :grep for word under cursor
 nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" slash-slash to search for visual selection, h/t http://vim.wikia.com/wiki/Search_for_visually_selected_text
+vnorem // y/<c-r>"<cr>
+
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$
 

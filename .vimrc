@@ -112,6 +112,11 @@ if &t_Co > 2 || has("gui_running")
 
   highlight clear SignColumn
   autocmd ColorScheme * highlight clear SignColumn
+
+  "let g:indentLine_color_term=239
+  let g:indentLine_color_gui='#00FF00'
+  let g:indentLine_char='┊'
+
 endif
 
 

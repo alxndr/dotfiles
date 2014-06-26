@@ -9,6 +9,7 @@
 
 [alias]
   amend = commit --amend --no-edit
+  assume-unchanged = update-index --assume-unchanged
   b = branch
   br = branch
   branch-name = rev-parse --abbrev-ref HEAD
@@ -18,6 +19,7 @@
   delete-merged-branches = !git branch --merged master | grep -v " master" | xargs -n 1 git branch -d # http://stevenharman.net/git-clean-delete-already-merged-branches
   di = diff
   diff-rc = show-branch --current br/rc
+  family-tree = log --graph --oneline --branches --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   find-last-mention-of = log -1 -u -S # expects search string
   find-untracked-files = !git ls-files -v $(git get-root-dir) | grep -e "^[a-z]"
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'

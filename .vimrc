@@ -77,12 +77,16 @@ au VimResized * execute "set scroll=" . &lines / 3
 command GitLastDiff !git diff HEAD
 map gld :GitLastDiff<CR>
 
+" read last commit message
+command GitLastMessage :r !git log -1u
+map glm :GitLastMessage<CR>
+
 " jump to next/prev edited area
 map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
 " create tags file
-map <Leader>ct :!ctags --recurse -f .git/tags --exclude=pkg .<CR>
+map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
 
 " buffer shortcuts
 nnoremap \1 :b1<CR>

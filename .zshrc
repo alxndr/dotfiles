@@ -31,6 +31,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# enable autoswitching rubies based on .ruby-version
+source /usr/local/opt/chruby/share/chruby/auto.sh
+
 bindkey -v
 # restore control-r to search history in vi mode
 bindkey -M viins '^r' history-incremental-search-backward
@@ -52,9 +55,10 @@ fi
 # use rbenv or rvm
 if [[ -x $(which rbenv) ]]; then
   eval "$(rbenv init -)"
-else
-  source $HOME/.rvm/scripts/rvm
 fi
+#if [[ -x $(which rvm) ]]; then
+  #source $HOME/.rvm/scripts/rvm
+#fi
 
 export EDITOR="vim"
 export VISUAL="vim"

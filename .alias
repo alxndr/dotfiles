@@ -80,6 +80,7 @@ alias rspec="rspec -c"
 
 # dev-y
 alias ack="echo don\'t you mean $ ag"
+alias b="bundle"
 alias clj="java -cp ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar clojure.main"
 alias deploy_heroku="rspec && git push heroku master"
 alias irb="echo how about pry"
@@ -89,5 +90,7 @@ alias jn="jasmine-node"
 alias jnc="jn --coffee"
 alias local_node="heroku ps:scale web=0 && npm start; heroku ps:scale web=1"
 alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
+alias r="rake"
 alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted server; else echo No ./tmp/restart.txt?; fi"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+

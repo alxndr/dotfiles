@@ -49,6 +49,7 @@ alias rss="rescue rails server"
 
 # rake
 alias brake="bundle exec rake"
+alias r="rake" # overrides zsh's builtin shortcut but who cares
 alias rT="rake -T"
 alias rdm="rake db:migrate db:test:prepare"
 alias rdmp="rake db:migrate db:test:prepare parallel:prepare"
@@ -90,7 +91,6 @@ alias jn="jasmine-node"
 alias jnc="jn --coffee"
 alias local_node="heroku ps:scale web=0 && npm start; heroku ps:scale web=1"
 alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
-alias r="rake"
 alias rr="if [[ -e ./tmp/restart.txt ]]; then touch ./tmp/restart.txt && echo Restarted server; else echo No ./tmp/restart.txt?; fi"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 

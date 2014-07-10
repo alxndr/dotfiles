@@ -81,6 +81,9 @@ map gld :GitLastDiff<CR>
 command GitLastMessage :r !git log -1u
 map glm :GitLastMessage<CR>
 
+" toggle comment of paragraph, uses NERDCommenter's \ci
+map ,cp {jV}k\ci
+
 " jump to next/prev edited area
 map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>

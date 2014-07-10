@@ -41,7 +41,7 @@ bindkey -v
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
 
 # make sure we can see psql
 export PATH="/usr/local/opt/postgresql/bin:$PATH"
@@ -80,3 +80,5 @@ done
 # else
 #   export EDITOR='mvim'
 # fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

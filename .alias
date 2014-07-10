@@ -83,6 +83,7 @@ alias rspec="rspec -c"
 
 # dev-y
 alias ack="echo don\'t you mean $ ag"
+alias again="~ && -" # so rvm reloads your .ruby-version file
 alias b="bundle"
       branch() { SEARCHTERM=$1; git branch | grep $SEARCHTERM | sed -e 's/^\* //' | awk '{ if (NR==1 || $1 == searchterm) result = $1 } END{ if (result) { print result } else { exit 1 } }' searchterm=$SEARCHTERM }
 alias clj="java -cp ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar clojure.main"

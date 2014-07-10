@@ -33,7 +33,8 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # enable autoswitching rubies based on .ruby-version
-source /usr/local/opt/chruby/share/chruby/auto.sh
+[[ -x "/usr/local/opt/chruby/share/chruby/auto.sh" ]] && source /usr/local/opt/chruby/share/chruby/auto.sh
+[[ -x "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
 
 bindkey -v
 # restore control-r to search history in vi mode

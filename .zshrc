@@ -65,7 +65,7 @@ fi
 export EDITOR="vim"
 export VISUAL="vim"
 
-export PAGER="less"
+export PAGER="most"
 export LESS="-FRSX"
 
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"

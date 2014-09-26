@@ -3,7 +3,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias e="$EDITOR"
-alias tophistory="history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head" # https://coderwall.com/p/o5qijw
+alias tophistory="history | awk '{a[$2]++}END{for(i in a){print a[i] \' \' i}}' | sort -rn | head" # https://coderwall.com/p/o5qijw
 alias l="ls -Al"
 alias ll="ls -AGl"
 alias ln="ln -v"
@@ -18,6 +18,7 @@ alias v="$VISUAL"
 # $ screencapture -o - | ocr? and try to find "wtf" and then look around what's above and to the right? for a filename(:#|"line")
 
 # mac-y
+      battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
 alias tac="tail -r"
 alias vim="/usr/local/bin/mvim -v"
 
@@ -58,6 +59,7 @@ alias rjc="rake jasmine:ci"
 alias rps="rake parallel:spec"
 
 # git
+alias gA="git add -A"
 alias gap="git add -p"
 alias gb="git branch --color"
 alias gbc="git branch --no-color | sed -e '/^[^*]/d' -e 's/^* //'" # git branch current

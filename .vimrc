@@ -36,12 +36,19 @@ autocmd BufLeave * set number
 " make Y behave like other capitals
 map Y y$
 
+" switching buffers w/o a modifier
+nnoremap gb <C-w><C-w>
+nnoremap gj <C-w>j
+nnoremap gk <C-w>k
+nnoremap gh <C-w>h
+nnoremap gl <C-w>l
+
 " convert ruby 1.8 hash style to 1.9 style
 nnoremap \: :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 
-" system clipboard paste
-nnoremap ,v :r !pbpaste
-nnoremap ,V ,v
+"" system clipboard paste
+"nnoremap ,v :r !pbpaste
+"nnoremap ,V ,v
 
 " space to toggle fold
 " shift-space to close fold
@@ -74,7 +81,7 @@ au VimResized * execute "set scroll=" . &lines / 3
 
 " Git
 " view last diff
-command GitLastDiff !git diff HEAD
+command GitLastDiff !git log -1 -u
 map gld :GitLastDiff<CR>
 
 " read last commit message

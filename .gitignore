@@ -11,3 +11,4 @@ coverage
 .lein/repl-history
 secrets.sh
 config/database.yml.readonly
+node_modules/

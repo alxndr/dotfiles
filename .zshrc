@@ -41,7 +41,7 @@ bindkey -v
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
+export PATH="/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
 
 # make sure we can see psql
 export PATH="/usr/local/opt/postgresql/bin:$PATH"
@@ -74,11 +74,6 @@ for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do
   [[ -r "$FILE" ]] && source "$FILE"
 done
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+[[ -x "$HOME/.br.sh" ]] && source $HOME/.br.sh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

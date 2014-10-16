@@ -109,8 +109,8 @@ nnoremap \7 :b7<CR>
 nnoremap \8 :b8<CR>
 nnoremap \9 :b9<CR>
 
-" json filetype
-au BufRead,BufNewFile *.json set filetype=json
+" json files use js highlighting
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " GUI stuff
 if &t_Co > 2 || has("gui_running")

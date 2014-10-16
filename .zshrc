@@ -74,6 +74,7 @@ for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do
   [[ -r "$FILE" ]] && source "$FILE"
 done
 
-[[ -x "$HOME/.br.sh" ]] && source $HOME/.br.sh
+[[ -f "$HOME/.br.sh" ]] && source $HOME/.br.sh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin"

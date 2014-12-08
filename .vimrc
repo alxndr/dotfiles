@@ -113,6 +113,9 @@ if &t_Co > 2 || has("gui_running")
   let g:indentLine_color_gui='#00FF00'
   let g:indentLine_char='┊'
 
+  " use custom coffeelint configuration
+  let g:coffee_lint_options='/Users/alexanderquine/coffeelint.json'
+
 endif
 
 

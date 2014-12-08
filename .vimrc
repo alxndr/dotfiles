@@ -46,10 +46,6 @@ nnoremap gl <C-w>l
 " convert ruby 1.8 hash style to 1.9 style
 nnoremap \: :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 
-"" system clipboard paste
-"nnoremap ,v :r !pbpaste
-"nnoremap ,V ,v
-
 " space to toggle fold
 " shift-space to close fold
 nnoremap <Space> za
@@ -60,9 +56,6 @@ nnoremap <leader><leader> :buffers<CR>:buffer<Space>
 
 " :grep for word under cursor
 nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" slash-slash to search for visual selection, h/t http://vim.wikia.com/wiki/Search_for_visually_selected_text
-vnorem // y/<c-r>"<cr>
 
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$
@@ -97,17 +90,6 @@ map <Leader>j :GitGutterNextHunk<CR>
 
 " create tags file
 map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
-
-" buffer shortcuts
-nnoremap \1 :b1<CR>
-nnoremap \2 :b2<CR>
-nnoremap \3 :b3<CR>
-nnoremap \4 :b4<CR>
-nnoremap \5 :b5<CR>
-nnoremap \6 :b6<CR>
-nnoremap \7 :b7<CR>
-nnoremap \8 :b8<CR>
-nnoremap \9 :b9<CR>
 
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript
@@ -204,16 +186,6 @@ endif
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
-
-" comment macros
-" @3 for # before, @l for // before
-" @4 for # after, @s for // after
-let @3='I#'
-let @4='A # '
-let @l='I//'
-let @s='A // '
-
-
 
 " set up tab labels with tab number, buffer name, number of windows
 function! GuiTabLabel()

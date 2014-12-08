@@ -16,9 +16,11 @@
   ci = commit
   cm = commit
   co = checkout
+  conflicting = !git ls-files -u | awk '{print $3\" \"$4}'
   delete-merged-branches = !git branch --merged master | grep -v " master" | xargs -n 1 git branch -d # http://stevenharman.net/git-clean-delete-already-merged-branches
   di = diff
-  diff-rc = show-branch --current br/rc
+  diff-master = show-branch --current upstream/master # n.b. fetch upstream before running
+  diff-rc = show-branch --current upstream/rc
   family-tree = log --graph --oneline --branches --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   find-last-mention-of = log -1 -u -S # expects search string
   find-untracked-files = !git ls-files -v $(git get-root-dir) | grep -e "^[a-z]"

@@ -41,7 +41,7 @@ bindkey -v
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
-export PATH="/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 # make sure we can see psql
 export PATH="/usr/local/opt/postgresql/bin:$PATH"

@@ -1,33 +1,33 @@
 call pathogen#infect()
 
-set autoindent
-set backspace=indent,eol,start
-set bg=dark
-set expandtab
-set foldmethod=indent
-set foldlevelstart=99
-set guioptions+=a " autoselect
-set history=500
-set ignorecase
-set incsearch
-set laststatus=2 " always show status line
-set list listchars=tab:»·,trail:·
+set   autoindent
+set   backspace=indent,eol,start
+set   bg=dark
 set nocompatible
+set   expandtab
+set   foldmethod=indent
+set   foldlevelstart=99
+set   guioptions+=a " autoselect
+set   history=500
+set   ignorecase
+set   incsearch
+set   laststatus=2 " always show status line
+set   list listchars=tab:»·,trail:·
+set   number
+set   relativenumber " tweaked below
+set   ruler
+set   shiftwidth=2
+set   scroll=15
+set   scrolloff=3 " scroll 3 lines before end
+set   showcmd
+set   smartcase
+set   softtabstop=2
+set   splitbelow
+set   splitright
+set   tabstop=4
+set   textwidth=0 wrapmargin=0
+set   whichwrap+=<,>,h,l,[,]
 set nowrap
-set number
-set relativenumber " tweaked below
-set ruler
-set shiftwidth=2
-set scroll=15
-set scrolloff=3 " scroll 3 lines before end
-set showcmd
-set smartcase
-set softtabstop=2
-set splitbelow
-set splitright
-set tabstop=4
-set textwidth=0 wrapmargin=0
-set whichwrap+=<,>,h,l,[,]
 
 " relative numbering on focus, normal on blur
 autocmd BufEnter * set relativenumber

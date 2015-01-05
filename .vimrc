@@ -1,6 +1,7 @@
 call pathogen#infect()
 
 set   autoindent
+set noautochdir
 set   backspace=indent,eol,start
 set   bg=dark
 set nocompatible

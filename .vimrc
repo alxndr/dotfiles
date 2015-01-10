@@ -53,10 +53,7 @@ nnoremap <Space> za
 nnoremap <S-Space> zc
 
 " buffer list
-nnoremap <leader><leader> :buffers<CR>:buffer<Space>
-
-" :grep for word under cursor
-nnoremap ,g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <Leader><Leader> :buffers<CR>:buffer<Space>
 
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$
@@ -64,6 +61,15 @@ nnoremap K a<CR><Esc>k$
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
 execute "set scroll=" . &lines / 3
 au VimResized * execute "set scroll=" . &lines / 3
+
+" toggle comment of paragraph, uses NERDCommenter
+map <Leader>cp {jV}k\ci
+
+" create tags file
+map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
+
+" json files use js highlighting
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " Git
 " view last diff
@@ -74,18 +80,9 @@ map gld :GitLastDiff<CR>
 command GitLastMessage :r !git log -1u
 map glm :GitLastMessage<CR>
 
-" toggle comment of paragraph, uses NERDCommenter's \ci
-map ,cp {jV}k\ci
-
 " jump to next/prev edited area
 map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
-
-" create tags file
-map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
-
-" json files use js highlighting
-autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " GUI stuff
 if &t_Co > 2 || has("gui_running")

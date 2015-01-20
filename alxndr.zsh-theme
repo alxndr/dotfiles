@@ -1,5 +1,7 @@
 autoload -U colors && colors
 
+NEWLINE=$'\n'
+
 PROMPT='${NEWLINE}%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)%{$reset_color%}${NEWLINE}%{$fg[magenta]%}$%{$reset_color%} '
 RPROMPT="%{$fg_bold[black]%}[%*]%{$reset_color%}"
 

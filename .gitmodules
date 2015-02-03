@@ -118,3 +118,6 @@
 [submodule ".vim/bundle/vim-yardoc"]
 	path = .vim/bundle/vim-yardoc
 	url = https://github.com/noprompt/vim-yardoc.git
+[submodule ".vim/bundle/numbers.vim"]
+	path = .vim/bundle/numbers.vim
+	url = https://github.com/myusuf3/numbers.vim.git

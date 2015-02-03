@@ -15,7 +15,6 @@ set   incsearch
 set   laststatus=2 " always show status line
 set   list listchars=tab:»·,trail:·
 set   number
-set   relativenumber " tweaked below
 set   ruler
 set   shiftwidth=2
 set   scroll=15
@@ -29,10 +28,6 @@ set   tabstop=4
 set   textwidth=0 wrapmargin=0
 set   whichwrap+=<,>,h,l,[,]
 set nowrap
-
-" relative numbering on focus, normal on blur
-autocmd BufEnter * set relativenumber
-autocmd BufLeave * set number
 
 " make Y behave like other capitals
 map Y y$

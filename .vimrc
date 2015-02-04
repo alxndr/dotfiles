@@ -32,13 +32,6 @@ set nowrap
 " make Y behave like other capitals
 map Y y$
 
-" switching buffers w/o a modifier
-nnoremap gb <C-w><C-w>
-nnoremap gj <C-w>j
-nnoremap gk <C-w>k
-nnoremap gh <C-w>h
-nnoremap gl <C-w>l
-
 " convert ruby 1.8 hash style to 1.9 style
 nnoremap \: :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 

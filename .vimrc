@@ -46,6 +46,21 @@ nnoremap <Leader><Leader> :buffers<CR>:buffer<Space>
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$
 
+" gj, gk: vertical movement through whitespace
+" thanks, WChargin! http://vi.stackexchange.com/a/156/67
+function FloatUp()
+  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
+    norm k
+  endwhile
+endfunction
+function FloatDown()
+  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
+    norm j
+  endwhile
+endfunction
+nnoremap gk :call FloatUp()<CR>
+nnoremap gj :call FloatDown()<CR>
+
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
 execute "set scroll=" . &lines / 3
 au VimResized * execute "set scroll=" . &lines / 3

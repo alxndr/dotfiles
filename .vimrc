@@ -115,6 +115,13 @@ endif
 
 
 "
+" macros!
+"
+
+let @c="\cij" " comment or uncomment (uses NERDCommenter plugin)
+
+
+"
 " plugin configuration
 "
 

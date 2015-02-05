@@ -1,5 +1,9 @@
 call pathogen#infect()
 
+"
+" settings
+"
+
 set   autoindent
 set noautochdir
 set   backspace=indent,eol,start
@@ -28,6 +32,44 @@ set   tabstop=4
 set   textwidth=0 wrapmargin=0
 set   whichwrap+=<,>,h,l,[,]
 set nowrap
+
+" modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
+execute "set scroll=" . &lines / 3
+au VimResized * execute "set scroll=" . &lines / 3
+
+" json files use js highlighting
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
+" GUI stuff
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+
+  let g:airline_theme='simple'
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#branch#displayed_head_limit = 12
+
+  let g:solarized_termtrans=1
+  let g:solarized_termcolors=256
+  colorscheme solarized
+  highlight MatchParen cterm=bold ctermfg=white ctermbg=none
+
+  highlight clear SignColumn
+  autocmd ColorScheme * highlight clear SignColumn
+
+  "let g:indentLine_color_term=239
+  let g:indentLine_color_gui='#00FF00'
+  let g:indentLine_char='┊'
+
+  " use custom coffeelint configuration
+  let g:coffee_lint_options='/Users/alexanderquine/coffeelint.json'
+
+endif
+
+
+"
+" mappings
+"
 
 " make Y behave like other capitals
 map Y y$
@@ -61,18 +103,12 @@ endfunction
 nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
 
-" modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
-execute "set scroll=" . &lines / 3
-au VimResized * execute "set scroll=" . &lines / 3
-
 " toggle comment of paragraph, uses NERDCommenter
 map <Leader>cp {jV}k\ci
 
 " create tags file
 map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
 
-" json files use js highlighting
-autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " Git
 " view last diff
@@ -86,32 +122,6 @@ map glm :GitLastMessage<CR>
 " jump to next/prev edited area
 map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
-
-" GUI stuff
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-
-  let g:airline_theme='simple'
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#branch#displayed_head_limit = 12
-
-  let g:solarized_termtrans=1
-  let g:solarized_termcolors=256
-  colorscheme solarized
-  highlight MatchParen cterm=bold ctermfg=white ctermbg=none
-
-  highlight clear SignColumn
-  autocmd ColorScheme * highlight clear SignColumn
-
-  "let g:indentLine_color_term=239
-  let g:indentLine_color_gui='#00FF00'
-  let g:indentLine_char='┊'
-
-  " use custom coffeelint configuration
-  let g:coffee_lint_options='/Users/alexanderquine/coffeelint.json'
-
-endif
 
 
 "

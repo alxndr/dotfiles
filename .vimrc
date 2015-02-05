@@ -74,9 +74,6 @@ endif
 " make Y behave like other capitals
 map Y y$
 
-" convert ruby 1.8 hash style to 1.9 style
-nnoremap \: :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
-
 " space to toggle fold
 " shift-space to close fold
 nnoremap <Space> za
@@ -109,6 +106,10 @@ map <Leader>cp {jV}k\ci
 " create tags file
 map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
 
+" 'home-row' shortcut for escape
+" thanks, Doorknob! http://vi.stackexchange.com/a/309/67
+inoremap jk <esc>
+inoremap kj <esc>
 
 " Git
 " view last diff

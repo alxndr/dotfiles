@@ -124,6 +124,23 @@ map glm :GitLastMessage<CR>
 map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
+" no more arrow keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" very-magic regexes by default
+nnoremap / /\v
+vnoremap / /\v
+
+" \q for vim-bbye's :Bdelete
+nnoremap <Leader>q :Bdelete<CR>
+
 
 "
 " macros!
@@ -165,20 +182,6 @@ let g:gitgutter_sign_modified_removed = '⋍'
 " vim-airline
 let g:airline_section_x = ''
 let g:airline_section_y = "%{&fileformat=='unix'?'':&fileformat}%{&fileencoding!='utf-8'?&fileformat!='unix'?', ':'':''}%{&fileencoding=='utf-8'?'':&fileencoding}"
-
-" no more arrow keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-" very-magic regexes by default
-nnoremap / /\v
-vnoremap / /\v
 
 " fix numpad mappings, http://swannie.net/index.php?title=Numeric+keypad+in+iTerm+with+vi&function=viewpage&pageid=24
 if &term=~"xterm" || &term=="xterm-color"

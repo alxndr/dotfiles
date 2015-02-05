@@ -34,13 +34,13 @@ set   whichwrap+=<,>,h,l,[,]
 set nowrap
 
 " modify scroll value: ^d / ^u move by 1/3 of buffer height instead of 1/2
+" TODO why errors when 16 or fewer lines high? E49: Invalid scroll size: scroll=15
 execute "set scroll=" . &lines / 3
 au VimResized * execute "set scroll=" . &lines / 3
 
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
-" GUI stuff
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
@@ -183,7 +183,8 @@ let g:gitgutter_sign_modified_removed = '⋍'
 let g:airline_section_x = ''
 let g:airline_section_y = "%{&fileformat=='unix'?'':&fileformat}%{&fileencoding!='utf-8'?&fileformat!='unix'?', ':'':''}%{&fileencoding=='utf-8'?'':&fileencoding}"
 
-" fix numpad mappings, http://swannie.net/index.php?title=Numeric+keypad+in+iTerm+with+vi&function=viewpage&pageid=24
+" fix numpad mappings
+" http://swannie.net/index.php?title=Numeric+keypad+in+iTerm+with+vi&function=viewpage&pageid=24
 if &term=~"xterm" || &term=="xterm-color"
   imap <Esc>Oq 1
   imap <Esc>Or 2
@@ -203,10 +204,8 @@ if &term=~"xterm" || &term=="xterm-color"
   "imap ?????? =
 endif
 
-" \q for vim-bbye's :Bdelete
-nnoremap <Leader>q :Bdelete<CR>
-
 " set up tab labels with tab number, buffer name, number of windows
+" http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
 function! GuiTabLabel()
   let label = ''
   let bufnrlist = tabpagebuflist(v:lnum)

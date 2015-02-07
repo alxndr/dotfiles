@@ -45,6 +45,8 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 
+  let g:netrw_liststyle=3 " NerdTree style
+
   let g:airline_theme='simple'
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#branch#displayed_head_limit = 12

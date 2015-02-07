@@ -149,13 +149,6 @@ nnoremap <Leader>q :Bdelete<CR>
 
 
 "
-" macros!
-"
-
-let @c="\cij" " comment or uncomment (uses NERDCommenter plugin)
-
-
-"
 " plugin configuration
 "
 
@@ -243,3 +236,10 @@ function! GuiTabLabel()
   return label . '  [' . wincount . ']'
 endfunction
 set guitablabel=%{GuiTabLabel()}
+
+
+"
+" macros!
+"
+
+let @c='\cij' " comment or uncomment (uses NERDCommenter plugin)

@@ -105,6 +105,10 @@ nnoremap gj :call FloatDown()<CR>
 " toggle comment of paragraph, uses NERDCommenter
 map <Leader>cp {jV}k\ci
 
+" make splits bigger
+map ,w <C-w>10>
+map ,W <C-w>5+
+
 " create tags file
 map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
 

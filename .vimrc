@@ -64,7 +64,7 @@ if &t_Co > 2 || has("gui_running")
   let g:indentLine_char='┊'
 
   " use custom coffeelint configuration
-  let g:coffee_lint_options='/Users/alexanderquine/coffeelint.json'
+  let g:coffee_lint_options='~/coffeelint.json'
 
 endif
 

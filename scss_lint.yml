@@ -1,0 +1,45 @@
+linters:
+
+  BorderZero:
+    enabled: false
+    convention: none # doesn't work?
+
+  DeclarationOrder:
+    enabled: false
+
+  EmptyLineBetweenBlocks:
+    enabled: false
+
+  HexNotation:
+    enabled: true
+    style: uppercase
+
+  IdSelector:
+    enabled: false
+
+  LeadingZero:
+    style: include_zero
+
+  NameFormat:
+    allow_leading_underscore: true
+    convention: \w+
+
+  NestingDepth:
+    max_depth: 6
+
+  PropertySortOrder:
+    enabled: false
+
+  QualifyingElement:
+    allow_element_with_attribute: true
+    allow_element_with_class: true
+    allow_element_with_id: false
+
+  SelectorDepth:
+    max_depth: 5
+
+  SelectorFormat:
+    enabled: false
+
+  StringQuotes:
+    enabled: false

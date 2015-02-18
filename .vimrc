@@ -17,7 +17,7 @@ set   history=500
 set   ignorecase
 set   incsearch
 set   laststatus=2 " always show status line
-set   list listchars=tab:»·,trail:·,nbsp:⎵,extends:…
+set   list listchars=tab:»\ ,trail:·,nbsp:⎵,extends:…
 set   number
 set   ruler
 set   shiftwidth=2

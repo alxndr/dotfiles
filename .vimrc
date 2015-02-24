@@ -76,6 +76,12 @@ endif
 " make Y behave like other capitals
 map Y y$
 
+" splits navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
 " space to toggle fold
 " shift-space to close fold
 nnoremap <Space> za

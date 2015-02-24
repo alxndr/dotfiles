@@ -108,6 +108,10 @@ endfunction
 nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
 
+" re-highlight
+" by Steve Losh (slj) https://bitbucket.org/sjl/dotfiles/src/603bb1ae/vim/vimrc?at=default#cl-445
+nnoremap U :syntax sync fromstart<CR>:redraw!<CR>
+
 " toggle comment of paragraph, uses NERDCommenter
 map <Leader>cp {jV}k\ci
 

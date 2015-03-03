@@ -127,6 +127,10 @@ map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exc
 inoremap jk <esc>
 inoremap kj <esc>
 
+" remove all trailing whitespace
+" http://vi.stackexchange.com/a/2285/67
+nnoremap <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <CR>
+
 " Git
 " view last diff
 command GitLastDiff !git log -1 -u

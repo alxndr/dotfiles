@@ -170,7 +170,6 @@ filetype plugin indent on
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
-nnoremap <C-l> :CtrlP<CR>
 
 " synatstic
 let g:syntastic_check_on_open=1

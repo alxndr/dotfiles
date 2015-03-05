@@ -51,6 +51,8 @@ if &t_Co > 2 || has("gui_running")
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#branch#displayed_head_limit = 12
 
+  let g:ctrlp_show_hidden = 1
+
   let g:solarized_termtrans=1
   let g:solarized_termcolors=256
   colorscheme solarized

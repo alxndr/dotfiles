@@ -62,8 +62,8 @@ fi
   #source $HOME/.rvm/scripts/rvm
 #fi
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 export PAGER="most"
 export LESS="-FRSX"

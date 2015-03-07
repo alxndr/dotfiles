@@ -3,7 +3,7 @@ set   expandtab
 set   foldmethod=indent
 set   foldlevelstart=99
 set   laststatus=2
-set   list listchars=tab:»\ ,trail:·,nbsp:⎵,extends:…
+set   list listchars=tab:┉\ ,trail:·,nbsp:⎵,extends:…
 set   scrolloff=2
 set   shiftwidth=2
 set   splitbelow

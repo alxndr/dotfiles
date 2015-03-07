@@ -17,7 +17,7 @@ set nowrap
 " TODO use plug
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
-call vundle#begin("~/.nvim/bundle/Vundle.vim")
+call vundle#begin("~/.nvim/bundle/Vundle.vim") " TODO should be just bundle/
 Plugin       'bling/vim-airline'          " status line
 Plugin       'townk/vim-autoclose'        " insert closer of matched pair
 Plugin        'moll/vim-bbye'             " smart buffer deleter

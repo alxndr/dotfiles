@@ -1,5 +1,7 @@
 set   background=dark
 set   expandtab
+set   foldmethod=indent
+set   foldlevelstart=99
 set   laststatus=2
 set   list listchars=tab:»\ ,trail:·,nbsp:⎵,extends:…
 set   scrolloff=2
@@ -64,9 +66,14 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" space to toggle fold
+" shift-space to close fold
+nnoremap <Space> za
+nnoremap <S-Space> zc
+
 " make splits bigger
-map ,w <C-w>10>
-map ,W <C-w>5+
+nnoremap ,w <C-w>10>
+nnoremap ,W <C-w>5+
 
 " create tags file
 map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>

@@ -1,3 +1,4 @@
+set   background=dark
 set   expandtab
 set   laststatus=2
 set   list listchars=tab:»\ ,trail:·,nbsp:⎵,extends:…
@@ -24,6 +25,8 @@ call vundle#end()
 filetype plugin indent on
 
 syntax on
+let g:solarized_termcolors = 256
+colorscheme solarized
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn

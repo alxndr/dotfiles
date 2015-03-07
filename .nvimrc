@@ -10,19 +10,21 @@ set   tabstop=2
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin("~/.nvim/bundle/Vundle.vim")
-Plugin        'kien/ctrlp.vim' " TODO not working?
+Plugin        'kien/ctrlp.vim'
 Plugin    'Yggdroot/indentLine'
-Plugin  'benekastah/neomake' " TODO not working?
-Plugin  'scrooloose/syntastic' " TODO not working?
+Plugin  'benekastah/neomake'
+Plugin  'scrooloose/syntastic'
 Plugin        'moll/vim-bbye'
 Plugin 'altercation/vim-colors-solarized'
 Plugin       'bling/vim-airline'
+Plugin       'tpope/vim-fugitive'
 Plugin    'airblade/vim-gitgutter'
 Plugin      'gmarik/Vundle.vim'
 call vundle#end()
 filetype plugin indent on
 
 syntax on
+
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
@@ -47,8 +49,11 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-nnoremap K a<CR><Esc>k$ " opposite of J: inserts line after next char
-" TODO why causing bell
+" make Y behave like other capitals
+map Y y$
+
+" opposite of J: inserts line after next char
+nnoremap K a<CR><Esc>k$
 
 " splits navigation
 nnoremap <C-h> <C-w>h
@@ -69,5 +74,3 @@ map <Leader>j :GitGutterNextHunk<CR>
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
-
-

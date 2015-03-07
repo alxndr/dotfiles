@@ -14,6 +14,7 @@ set   splitright
 set   tabstop=2
 set nowrap
 
+" TODO use plug
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin("~/.nvim/bundle/Vundle.vim")
@@ -35,6 +36,8 @@ Plugin  'scrooloose/nerdcommenter'        " language-agnostic comments
 Plugin       'mhinz/vim-startify'         " show recent files on start
 Plugin       'tpope/vim-surround'         " modify enclosing matched pairs
 Plugin  'scrooloose/syntastic'            " syntax checker
+Plugin        'kana/vim-textobj-user'     " custom text objs
+Plugin 'whatyouhide/vim-textobj-xmlattr'  " text objs for xml element attrs
 Plugin       'tpope/vim-vinegar'          " netrw enhancer
 Plugin      'gmarik/Vundle.vim'           " manage plugins
 Plugin    'noprompt/vim-yardoc'           " syntax hl: yard (in ruby)
@@ -100,3 +103,13 @@ map <Leader>j :GitGutterNextHunk<CR>
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
+
+" Git
+" view last diff
+command GitLastDiff !git log -1 -u
+map gld :GitLastDiff<CR>
+
+" read last commit message
+command GitLastMessage :r !git log -1u
+map glm :GitLastMessage<CR>
+

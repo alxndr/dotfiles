@@ -11,15 +11,15 @@ set   tabstop=2
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin("~/.nvim/bundle/Vundle.vim")
+Plugin       'bling/vim-airline'
+Plugin        'moll/vim-bbye'
+Plugin 'altercation/vim-colors-solarized'
 Plugin        'kien/ctrlp.vim'
+Plugin       'tpope/vim-fugitive'
+Plugin    'airblade/vim-gitgutter'
 Plugin    'Yggdroot/indentLine'
 Plugin  'benekastah/neomake'
 Plugin  'scrooloose/syntastic'
-Plugin        'moll/vim-bbye'
-Plugin 'altercation/vim-colors-solarized'
-Plugin       'bling/vim-airline'
-Plugin       'tpope/vim-fugitive'
-Plugin    'airblade/vim-gitgutter'
 Plugin      'gmarik/Vundle.vim'
 call vundle#end()
 filetype plugin indent on

@@ -17,6 +17,7 @@ call vundle#begin("~/.nvim/bundle/Vundle.vim")
 Plugin       'bling/vim-airline'          " status line
 Plugin       'townk/vim-autoclose'        " insert closer of matched pair
 Plugin        'moll/vim-bbye'             " smart buffer deleter
+Plugin      'kchmck/vim-coffee-script'    " syntax highlighting: coffeescript
 Plugin 'altercation/vim-colors-solarized' " color scheme
 Plugin        'kien/ctrlp.vim'            " file finder; ctags navigator
 Plugin       'tpope/vim-endwise'          " insert `end` in Ruby
@@ -26,6 +27,7 @@ Plugin    'Yggdroot/indentLine'           " show indent levels
 "lugin  'benekastah/neomake'              " job runner
 Plugin  'scrooloose/syntastic'            " syntax checker
 Plugin      'gmarik/Vundle.vim'           " manage plugins
+"lugin    'Valloric/YouCompleteMe'        " smart autocompleter
 call vundle#end()
 filetype plugin indent on
 

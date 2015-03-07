@@ -90,7 +90,7 @@ nnoremap <Space> za
 nnoremap <S-Space> zc
 
 " buffer list
-nnoremap <Leader><Leader> :buffers<CR>:buffer<Space>
+nnoremap <Leader><Leader> :buffers<CR>:b
 
 " shift-k: opposite of shift-j, h/t http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap K a<CR><Esc>k$

@@ -1,16 +1,19 @@
+set   expandtab
 set   laststatus=2
 set   list listchars=tab:»\ ,trail:·,nbsp:⎵,extends:…
 set   scrolloff=2
+set   shiftwidth=2
 set   splitbelow
 set   splitright
+set   tabstop=2
 
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin()
-"lugin        'kien/ctrlp.vim' " TODO not working
+Plugin        'kien/ctrlp.vim' " TODO not working?
 Plugin    'Yggdroot/indentLine'
-"lugin  'benekastah/neomake' " TODO not working
-"lugin  'scrooloose/syntastic' " TODO not working
+Plugin  'benekastah/neomake' " TODO not working?
+Plugin  'scrooloose/syntastic' " TODO not working?
 Plugin        'moll/vim-bbye'
 Plugin 'altercation/vim-colors-solarized'
 Plugin       'bling/vim-airline'

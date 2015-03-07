@@ -17,16 +17,23 @@ call vundle#begin("~/.nvim/bundle/Vundle.vim")
 Plugin       'bling/vim-airline'          " status line
 Plugin       'townk/vim-autoclose'        " insert closer of matched pair
 Plugin        'moll/vim-bbye'             " smart buffer deleter
-Plugin      'kchmck/vim-coffee-script'    " syntax highlighting: coffeescript
+Plugin      'kchmck/vim-coffee-script'    " syntax hl: coffeescript
 Plugin 'altercation/vim-colors-solarized' " color scheme
 Plugin        'kien/ctrlp.vim'            " file finder; ctags navigator
+Plugin 'elixir-lang/vim-elixir'           " syntax hl: elixir
 Plugin       'tpope/vim-endwise'          " insert `end` in Ruby
 Plugin       'tpope/vim-fugitive'         " git wrapper
 Plugin    'airblade/vim-gitgutter'        " mark diff status in gutter
 Plugin    'Yggdroot/indentLine'           " show indent levels
+Plugin    'pangloss/vim-javascript'       " syntax hl: javascript (& more)
+Plugin  'plasticboy/vim-markdown'         " syntax hl
 "lugin  'benekastah/neomake'              " job runner
+Plugin       'mhinz/vim-startify'         " show recent files on start
+Plugin       'tpope/vim-surround'         " modify enclosing matched pairs
 Plugin  'scrooloose/syntastic'            " syntax checker
+Plugin       'tpope/vim-vinegar'          " netrw enhancer
 Plugin      'gmarik/Vundle.vim'           " manage plugins
+Plugin    'noprompt/vim-yardoc'           " syntax hl: yard (in ruby)
 "lugin    'Valloric/YouCompleteMe'        " smart autocompleter
 call vundle#end()
 filetype plugin indent on

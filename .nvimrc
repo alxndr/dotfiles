@@ -2,10 +2,13 @@ set   background=dark
 set   expandtab
 set   foldmethod=indent
 set   foldlevelstart=99
+set   hlsearch
+set   incsearch
 set   laststatus=2
 set   list listchars=tab:┉\ ,trail:·,nbsp:⎵,extends:…
 set   scrolloff=2
 set   shiftwidth=2
+set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
@@ -24,7 +27,7 @@ Plugin 'elixir-lang/vim-elixir'           " syntax hl: elixir
 Plugin       'tpope/vim-endwise'          " insert `end` in Ruby
 Plugin       'tpope/vim-fugitive'         " git wrapper
 Plugin    'airblade/vim-gitgutter'        " mark diff status in gutter
-Plugin    'Yggdroot/indentLine'           " show indent levels
+"lugin    'Yggdroot/indentLine'           " show indent levels
 Plugin    'pangloss/vim-javascript'       " syntax hl: javascript (& more)
 Plugin  'plasticboy/vim-markdown'         " syntax hl
 Plugin  'scrooloose/nerdcommenter'        " language-agnostic comments
@@ -52,8 +55,8 @@ let g:airline#extensions#branch#displayed_head_limit = 12
 
 let g:ctrlp_show_hidden=1
 
-let g:indentLine_color_gui='#00FF00'
-let g:indentLine_char='┊'
+"let g:indentLine_color_gui='#00FF00'
+"let g:indentLine_char='┊'
 
 "autocmd BufWrite * :Neomake
 

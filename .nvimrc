@@ -9,7 +9,7 @@ set   tabstop=2
 
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin("~/.nvim/bundle/Vundle.vim")
 Plugin        'kien/ctrlp.vim' " TODO not working?
 Plugin    'Yggdroot/indentLine'
 Plugin  'benekastah/neomake' " TODO not working?

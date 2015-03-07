@@ -9,20 +9,23 @@ set   shiftwidth=2
 set   splitbelow
 set   splitright
 set   tabstop=2
+set nowrap
 
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin("~/.nvim/bundle/Vundle.vim")
-Plugin       'bling/vim-airline'
-Plugin        'moll/vim-bbye'
-Plugin 'altercation/vim-colors-solarized'
-Plugin        'kien/ctrlp.vim'
-Plugin       'tpope/vim-fugitive'
-Plugin    'airblade/vim-gitgutter'
-Plugin    'Yggdroot/indentLine'
-Plugin  'benekastah/neomake'
-Plugin  'scrooloose/syntastic'
-Plugin      'gmarik/Vundle.vim'
+Plugin       'bling/vim-airline'          " status line
+Plugin       'townk/vim-autoclose'        " insert closer of matched pair
+Plugin        'moll/vim-bbye'             " smart buffer deleter
+Plugin 'altercation/vim-colors-solarized' " color scheme
+Plugin        'kien/ctrlp.vim'            " file finder; ctags navigator
+Plugin       'tpope/vim-endwise'          " insert `end` in Ruby
+Plugin       'tpope/vim-fugitive'         " git wrapper
+Plugin    'airblade/vim-gitgutter'        " mark diff status in gutter
+Plugin    'Yggdroot/indentLine'           " show indent levels
+"lugin  'benekastah/neomake'              " job runner
+Plugin  'scrooloose/syntastic'            " syntax checker
+Plugin      'gmarik/Vundle.vim'           " manage plugins
 call vundle#end()
 filetype plugin indent on
 

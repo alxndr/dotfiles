@@ -81,6 +81,21 @@ map Y y$
 " opposite of J: inserts line after next char
 nnoremap K a<CR><Esc>k$
 
+" gj, gk: vertical movement through whitespace
+" thanks, WChargin! http://vi.stackexchange.com/a/156/67
+function FloatUp()
+  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
+    norm k
+  endwhile
+endfunction
+function FloatDown()
+  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
+    norm j
+  endwhile
+endfunction
+nnoremap gk :call FloatUp()<CR>
+nnoremap gj :call FloatDown()<CR>
+
 " splits navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j

@@ -32,6 +32,7 @@ Plugin    'airblade/vim-gitgutter'        " mark diff status in gutter
 Plugin    'pangloss/vim-javascript'       " syntax hl: javascript (& more)
 Plugin  'plasticboy/vim-markdown'         " syntax hl
 Plugin  'scrooloose/nerdcommenter'        " language-agnostic comments
+Plugin     'myusuf3/numbers.vim'          " smart line numbers
 "lugin  'benekastah/neomake'              " job runner
 Plugin       'mhinz/vim-startify'         " show recent files on start
 Plugin       'tpope/vim-surround'         " modify enclosing matched pairs

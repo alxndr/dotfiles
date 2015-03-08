@@ -112,6 +112,9 @@ nnoremap <S-Space> zc
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
 
+" buffer list
+nnoremap <Leader><Leader> :buffers<CR>:b
+
 " create tags file
 map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
 

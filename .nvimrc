@@ -1,3 +1,4 @@
+set noautochdir
 set   background=dark
 set   expandtab
 set   foldmethod=indent

@@ -14,35 +14,32 @@ set   splitright
 set   tabstop=2
 set nowrap
 
-filetype off
-set rtp+=~/.nvim/bundle/Vundle.vim
-call vundle#begin("~/.nvim/bundle/Vundle.vim") " TODO should be just bundle/
-Plugin       'bling/vim-airline'          " status line
-Plugin       'townk/vim-autoclose'        " insert closer of matched pair
-Plugin        'moll/vim-bbye'             " smart buffer deleter
-Plugin      'kchmck/vim-coffee-script'    " syntax hl: coffeescript
-Plugin 'altercation/vim-colors-solarized' " color scheme
-Plugin        'kien/ctrlp.vim'            " file finder; ctags navigator
-Plugin 'elixir-lang/vim-elixir'           " syntax hl: elixir
-Plugin       'tpope/vim-endwise'          " insert `end` in Ruby
-Plugin       'tpope/vim-fugitive'         " git wrapper
-Plugin    'airblade/vim-gitgutter'        " mark diff status in gutter
-"lugin    'Yggdroot/indentLine'           " show indent levels
-Plugin    'pangloss/vim-javascript'       " syntax hl: javascript (& more)
-Plugin  'plasticboy/vim-markdown'         " syntax hl
-Plugin  'scrooloose/nerdcommenter'        " language-agnostic comments
-Plugin     'myusuf3/numbers.vim'          " smart line numbers
-"lugin  'benekastah/neomake'              " job runner
-Plugin       'mhinz/vim-startify'         " show recent files on start
-Plugin       'tpope/vim-surround'         " modify enclosing matched pairs
-Plugin  'scrooloose/syntastic'            " syntax checker
-Plugin        'kana/vim-textobj-user'     " custom text objs
-Plugin 'whatyouhide/vim-textobj-xmlattr'  " text objs for xml element attrs
-Plugin       'tpope/vim-vinegar'          " netrw enhancer
-Plugin    'noprompt/vim-yardoc'           " syntax hl: yard (in ruby)
-"lugin    'Valloric/YouCompleteMe'        " smart autocompleter
-call vundle#end()
-filetype plugin indent on
+call plug#begin("~/.nvim/plugged")
+Plug       'bling/vim-airline'          " status line
+Plug       'townk/vim-autoclose'        " insert closer of matched pair
+Plug        'moll/vim-bbye'             " smart buffer deleter
+Plug      'kchmck/vim-coffee-script'    " syntax hl: coffeescript
+Plug 'altercation/vim-colors-solarized' " color scheme
+Plug        'kien/ctrlp.vim'            " file finder; ctags navigator
+Plug 'elixir-lang/vim-elixir'           " syntax hl: elixir
+Plug       'tpope/vim-endwise'          " insert `end` in Ruby
+Plug       'tpope/vim-fugitive'         " git wrapper
+Plug    'airblade/vim-gitgutter'        " mark diff status in gutter
+"lug    'Yggdroot/indentLine'           " show indent levels
+Plug    'pangloss/vim-javascript'       " syntax hl: javascript (& more)
+Plug  'plasticboy/vim-markdown'         " syntax hl
+Plug  'scrooloose/nerdcommenter'        " language-agnostic comments
+Plug     'myusuf3/numbers.vim'          " smart line numbers
+"lug  'benekastah/neomake'              " job runner
+Plug       'mhinz/vim-startify'         " show recent files on start
+Plug       'tpope/vim-surround'         " modify enclosing matched pairs
+Plug  'scrooloose/syntastic'            " syntax checker
+Plug        'kana/vim-textobj-user'     " custom text objs
+Plug 'whatyouhide/vim-textobj-xmlattr'  " text objs for xml element attrs
+Plug       'tpope/vim-vinegar'          " netrw enhancer
+Plug    'noprompt/vim-yardoc'           " syntax hl: yard (in ruby)
+"lug    'Valloric/YouCompleteMe'        " smart autocompleter
+call plug#end()
 
 syntax on
 let g:solarized_termcolors = 256

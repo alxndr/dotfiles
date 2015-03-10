@@ -41,7 +41,6 @@ Plug    'noprompt/vim-yardoc'           " syntax hl: yard (in ruby)
 "lug    'Valloric/YouCompleteMe'        " smart autocompleter
 call plug#end()
 
-syntax on
 let g:solarized_termcolors = 256
 colorscheme solarized
 

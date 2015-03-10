@@ -14,7 +14,6 @@ set   splitright
 set   tabstop=2
 set nowrap
 
-" TODO use plug
 filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin("~/.nvim/bundle/Vundle.vim") " TODO should be just bundle/

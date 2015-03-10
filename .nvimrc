@@ -39,7 +39,6 @@ Plugin  'scrooloose/syntastic'            " syntax checker
 Plugin        'kana/vim-textobj-user'     " custom text objs
 Plugin 'whatyouhide/vim-textobj-xmlattr'  " text objs for xml element attrs
 Plugin       'tpope/vim-vinegar'          " netrw enhancer
-Plugin      'gmarik/Vundle.vim'           " manage plugins
 Plugin    'noprompt/vim-yardoc'           " syntax hl: yard (in ruby)
 "lugin    'Valloric/YouCompleteMe'        " smart autocompleter
 call vundle#end()

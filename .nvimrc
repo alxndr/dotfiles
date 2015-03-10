@@ -79,8 +79,8 @@ inoremap kj <Esc>
 " make Y behave like other capitals
 map Y y$
 
-" opposite of J: inserts line after next char
-nnoremap K a<CR><Esc>k$
+" opposite of J: inserts newline below current line
+nnoremap K m`"="\n"<CR>p``
 
 " gj, gk: vertical movement through whitespace
 " thanks, WChargin! http://vi.stackexchange.com/a/156/67
@@ -133,4 +133,3 @@ map gld :GitLastDiff<CR>
 " read last commit message
 command GitLastMessage :r !git log -1u
 map glm :GitLastMessage<CR>
-

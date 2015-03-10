@@ -76,7 +76,7 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-" make Y behave like other capitals
+" make Y behave like C and D
 map Y y$
 
 " opposite of J: inserts newline below current line
@@ -98,7 +98,7 @@ nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
 
 " splits navigation
-nnoremap <C-h> <C-w>h
+nnoremap <C-h> <C-w>h " TODO not working?
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l

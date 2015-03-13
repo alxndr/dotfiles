@@ -23,6 +23,9 @@
   family-tree = log --graph --oneline --branches --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   find-last-mention-of = log -1 -u -S # expects search string
   find-untracked-files = !git ls-files -v $(git get-root-dir) | grep -e "^[a-z]"
+  fq = !git bflow feature qa
+  fr = !git bflow feature review
+  fs = !git bflow feature start
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
   reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
   reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master

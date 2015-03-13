@@ -8,6 +8,7 @@ set   incsearch
 set   laststatus=2
 set   list listchars=tab:┉\ ,trail:·,nbsp:⎵,extends:…
 set   scrolloff=2
+set   shell=/bin/sh " otherwise wants to use ruby 1.8.7
 set   shiftwidth=2
 set   smartcase
 set   splitbelow

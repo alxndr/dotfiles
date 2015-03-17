@@ -32,7 +32,7 @@ Plug    'pangloss/vim-javascript'       " syntax hl: javascript (& more)
 Plug  'plasticboy/vim-markdown'         " syntax hl
 Plug  'scrooloose/nerdcommenter'        " language-agnostic comments
 Plug     'myusuf3/numbers.vim'          " smart line numbers
-"lug  'benekastah/neomake'              " job runner
+Plug  'benekastah/neomake'              " job runner
 Plug       'mhinz/vim-startify'         " show recent files on start
 Plug       'tpope/vim-surround'         " modify enclosing matched pairs
 Plug  'scrooloose/syntastic'            " syntax checker
@@ -60,7 +60,7 @@ let g:ctrlp_show_hidden=1
 "let g:indentLine_color_gui='#00FF00'
 "let g:indentLine_char='┊'
 
-"autocmd BufWrite * :Neomake
+autocmd BufWrite * :Neomake
 
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript

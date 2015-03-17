@@ -128,5 +128,5 @@ command GitLastDiff !git log -1 -u
 map gld :GitLastDiff<CR>
 
 " read last commit message
-command GitLastMessage :r !git log -1u
+command GitLastMessage :read !git log -1
 map glm :GitLastMessage<CR>

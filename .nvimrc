@@ -30,7 +30,8 @@ Plug       'tpope/vim-fugitive'         " git wrapper
 Plug    'airblade/vim-gitgutter'        " mark diff status in gutter
 "lug    'Yggdroot/indentLine'           " show indent levels
 Plug    'pangloss/vim-javascript'       " syntax hl: javascript (& more)
-Plug  'plasticboy/vim-markdown'         " syntax hl
+Plug  'plasticboy/vim-markdown'         " syntax hl: markdown
+Plug    'mustache/vim-mustache-handlebars' " syntax hl: handlebars
 Plug  'scrooloose/nerdcommenter'        " language-agnostic comments
 Plug     'myusuf3/numbers.vim'          " smart line numbers
 Plug  'benekastah/neomake'              " job runner

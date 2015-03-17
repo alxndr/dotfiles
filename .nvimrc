@@ -4,6 +4,7 @@ set   expandtab
 set   foldmethod=indent
 set   foldlevelstart=99
 set   hlsearch
+set   ignorecase
 set   incsearch
 set   laststatus=2
 set   list listchars=tab:┉\ ,trail:·,nbsp:⎵,extends:…

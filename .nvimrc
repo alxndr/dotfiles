@@ -61,7 +61,7 @@ let g:ctrlp_show_hidden=1
 "let g:indentLine_color_gui='#00FF00'
 "let g:indentLine_char='┊'
 
-autocmd BufWrite * :Neomake
+"autocmd BufWrite * :Neomake
 
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript

@@ -28,7 +28,6 @@ Plug 'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug       'tpope/vim-endwise'             " insert `end` in Ruby
 Plug       'tpope/vim-fugitive'            " git wrapper
 Plug    'airblade/vim-gitgutter'           " mark diff status in gutter
-"lug    'Yggdroot/indentLine'              " show indent levels
 Plug    'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug  'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug    'mustache/vim-mustache-handlebars' " syntax hl: handlebars

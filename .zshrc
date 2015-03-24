@@ -64,6 +64,7 @@ fi
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1 # https://github.com/neovim/neovim/issues/2017#issuecomment-75242046
 
 export PAGER="most"
 export LESS="-FRSX"

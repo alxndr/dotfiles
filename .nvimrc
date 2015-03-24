@@ -39,6 +39,7 @@ Plug       'tpope/vim-surround'            " modify enclosing matched pairs
 Plug  'scrooloose/syntastic'               " syntax checker
 Plug        'kana/vim-textobj-user'        " custom text objs
 Plug 'whatyouhide/vim-textobj-xmlattr'     " text objs for xml element attrs
+Plug 'jszakmeister/vim-togglecursor'        " change cursor in insert mode
 Plug       'tpope/vim-vinegar'             " netrw enhancer
 Plug    'noprompt/vim-yardoc'              " syntax hl: yard (in ruby)
 "lug    'Valloric/YouCompleteMe'           " smart autocompleter

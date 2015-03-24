@@ -80,6 +80,10 @@ map Y y$
 " opposite of J: inserts newline below current line
 nnoremap K m`"="\n"<CR>p``
 
+" shift lines vertically
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
+
 " gj, gk: vertical movement through whitespace
 " thanks, WChargin! http://vi.stackexchange.com/a/156/67
 function FloatUp()

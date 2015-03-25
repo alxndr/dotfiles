@@ -71,8 +71,12 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 " mappings
 "
 
+" don't go all the way to the Escape key
 inoremap jk <Esc>
 inoremap kj <Esc>
+
+" shortcut for removing search highlight
+nnoremap <Esc> :nohl<Cr>
 
 " make Y behave like C and D
 map Y y$

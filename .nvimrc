@@ -16,6 +16,7 @@ set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
+set   wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set nowrap
 
 call plug#begin("~/.nvim/plugged")

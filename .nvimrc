@@ -28,6 +28,7 @@ Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
+Plug      'terryma/vim-expand-region'       " grow visual selections
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)

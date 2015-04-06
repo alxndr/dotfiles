@@ -16,7 +16,7 @@ set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
-set   wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set   wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
 set nowrap
 
 call plug#begin("~/.nvim/plugged")
@@ -45,7 +45,6 @@ Plug  'whatyouhide/vim-textobj-xmlattr'     " text objs for xml element attrs
 Plug 'jszakmeister/vim-togglecursor'        " change cursor in insert mode
 Plug        'tpope/vim-vinegar'             " netrw enhancer
 Plug     'noprompt/vim-yardoc'              " syntax hl: yard (in ruby)
-"lug     'Valloric/YouCompleteMe'           " smart autocompleter
 call plug#end()
 
 let g:solarized_termcolors = 256
@@ -61,9 +60,6 @@ let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section
 let g:airline_section_y = 0 " hide fileencoding, fileformat section
 
 let g:ctrlp_show_hidden=1
-
-"let g:indentLine_color_gui='#00FF00'
-"let g:indentLine_char='┊'
 
 "autocmd BufWrite * :Neomake
 

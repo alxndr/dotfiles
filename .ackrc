@@ -6,11 +6,12 @@
 --ignore-dir=log
 --ignore-dir=pkg
 --ignore-dir=tmp
+--ignore-dir=vcr
 
+--type-set=coffee=.coffee
+--type-set=erb=.erb
 --type-set=haml=.haml
+--type-set=puppet=.pp
 --type-set=sass=.sass
 --type-set=scss=.scss
---type-set=erb=.erb
---type-set=puppet=.pp
---type-set=coffee=.coffee
 

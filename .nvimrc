@@ -55,6 +55,9 @@ autocmd ColorScheme * highlight clear SignColumn
 
 autocmd BufWrite * :Neomake
 
+" json files use js highlighting
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
 let g:airline_theme='simple'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 0 " hide git change summary
@@ -62,9 +65,6 @@ let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section
 let g:airline_section_y = 0 " hide fileencoding, fileformat section
 
 let g:ctrlp_show_hidden=1
-
-" json files use js highlighting
-autocmd BufNewFile,BufRead *.json set ft=javascript
 
 "
 " mappings

@@ -27,7 +27,7 @@ Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
 Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
-Plug     'junegunn/vim-emoji'               " 😸
+Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug      'terryma/vim-expand-region'       " grow visual selections
 Plug        'tpope/vim-fugitive'            " git wrapper

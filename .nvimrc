@@ -141,4 +141,4 @@ command GitLastMessage :read !git log -1
 map glm :GitLastMessage<CR>
 
 " \e to convert :smiley_cat: to 😸
-nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>:nohl<CR>
+nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>

@@ -28,6 +28,7 @@ Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
+Plug     'junegunn/vim-emoji'               " 😸
 Plug      'terryma/vim-expand-region'       " grow visual selections
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
@@ -138,3 +139,6 @@ map gld :GitLastDiff<CR>
 " read last commit message
 command GitLastMessage :read !git log -1
 map glm :GitLastMessage<CR>
+
+" \e to convert :smiley_cat: to 😸
+nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>:nohl<CR>

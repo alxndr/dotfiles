@@ -27,17 +27,17 @@ Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
 Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
-Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug     'junegunn/vim-emoji'               " 😸
+Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug      'terryma/vim-expand-region'       " grow visual selections
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars
+Plug   'benekastah/neomake'                 " job runner
 Plug   'scrooloose/nerdcommenter'           " language-agnostic comments
 Plug      'myusuf3/numbers.vim'             " smart line numbers
-Plug   'benekastah/neomake'                 " job runner
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
 Plug   'scrooloose/syntastic'               " syntax checker

@@ -32,6 +32,7 @@ Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug      'terryma/vim-expand-region'       " grow visual selections
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
+Plug 'ludovicchabant/vim-gutentags'           " fancy tags manager
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars

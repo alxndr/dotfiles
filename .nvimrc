@@ -104,7 +104,7 @@ nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
 
 " splits navigation
-nnoremap <C-h> <C-w>h " TODO not working?
+nnoremap <C-h> <C-w>h " TODO this is broken https://github.com/neovim/neovim/issues/2048
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l

@@ -131,6 +131,10 @@ map <Leader>j :GitGutterNextHunk<CR>
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
 
+" save a protected file. thanks to mattikus https://news.ycombinator.com/item?id=9397891
+cmap w!! w !sudo tee % >/dev/null
+
+
 " Git
 " view last diff
 command GitLastDiff !git log -1 -u

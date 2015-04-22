@@ -20,6 +20,7 @@ set   wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
 set nowrap
 
 call plug#begin("~/.nvim/plugged")
+Plug       'Numkil/ag.vim'                  " asynchronous :grep-like searching
 Plug        'bling/vim-airline'             " status line
 Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter

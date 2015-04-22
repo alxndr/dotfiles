@@ -60,6 +60,9 @@ autocmd BufWrite * :Neomake
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
+" jbuilder files use ruby highlighting
+au BufNewFile,BufRead *.jbuilder set ft=ruby
+
 let g:airline_theme='simple'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 0 " hide git change summary

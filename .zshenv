@@ -14,7 +14,7 @@ export PATH="/usr/local/opt/postgresql/bin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 # exenv
-export PATH="~/.exenv/bin:$PATH"
+export PATH="$HOME/.exenv/bin:$PATH"
 
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"

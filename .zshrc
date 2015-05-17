@@ -28,13 +28,16 @@ if [[ -x "$(which hub)" ]]; then
   eval "$(hub alias -s)"
 fi
 
-# use rbenv or rvm
+# use rbenv||rvm, exenv if available
 if [[ -x $(which rbenv) ]]; then
   eval "$(rbenv init -)"
 fi
 #if [[ -x $(which rvm) ]]; then
   #source $HOME/.rvm/scripts/rvm
 #fi
+if [[ -x $(which exenv) ]]; then
+  eval "$(exenv init -)"
+fi
 
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1 # https://github.com/neovim/neovim/issues/2017#issuecomment-75242046
 

@@ -23,14 +23,6 @@ bindkey -v
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-
-# make sure we can see psql
-export PATH="/usr/local/opt/postgresql/bin:$PATH"
-
-# npm
-export PATH="/usr/local/share/npm/bin:$PATH"
-
 # use github's hub as git
 if [[ -x "$(which hub)" ]]; then
   eval "$(hub alias -s)"
@@ -44,14 +36,7 @@ fi
   #source $HOME/.rvm/scripts/rvm
 #fi
 
-export EDITOR="nvim"
-export VISUAL="nvim"
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1 # https://github.com/neovim/neovim/issues/2017#issuecomment-75242046
-
-export PAGER="most"
-export LESS="-FRSX"
-
-export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 
 for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do
   [[ -r "$FILE" ]] && source "$FILE"
@@ -59,6 +44,3 @@ done
 
 [[ -x "$HOME/workspace/dotfiles/fix-neovim.sh" ]] && $HOME/workspace/dotfiles/fix-neovim.sh
 [[ -f "$HOME/.br.sh" ]] && source $HOME/.br.sh
-
-# Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"

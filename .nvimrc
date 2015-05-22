@@ -57,7 +57,12 @@ colorscheme solarized
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
-autocmd BufWrite * :Neomake
+augroup neomake
+  autocmd BufRead,BufWrite *.coffee,*.js :Neomake
+  autocmd BufRead,BufWrite *.erb,*.rb    :Neomake
+  autocmd BufRead,BufWrite *.ex,*.exs    :Neomake
+  autocmd BufRead,BufWrite *.css,*.scss  :Neomake
+augroup END
 
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript

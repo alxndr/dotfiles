@@ -142,6 +142,9 @@ map <Leader>j :GitGutterNextHunk<CR>
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
 
+" reformat, keeping cursor position
+map <F7> m`gg=G``
+
 " save a protected file. thanks to mattikus https://news.ycombinator.com/item?id=9397891
 cmap w!! w !sudo tee % >/dev/null
 

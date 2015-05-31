@@ -10,10 +10,8 @@
   amend = commit --amend --no-edit
   assume-unchanged = update-index --assume-unchanged
   b = branch
-  br = branch
-  branch-name = rev-parse --abbrev-ref HEAD
+  bn = name-rev --name-only HEAD
   ci = commit
-  cm = commit
   co = checkout
   conflicting = !git ls-files -u | awk '{print $3\" \"$4}'
   delete-merged-branches = !git branch --merged master | grep -v " master" | xargs -n 1 git branch -d # http://stevenharman.net/git-clean-delete-already-merged-branches

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# save as .git/hooks/prepare-commit-message
+
+if [[ "$2" -eq "commit" ]]; then
+  # prepend default commit message with current git branch name
+  # if branch name has forward slash (/) in it, only use last fragment following slash
+  GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+  GIT_BRANCH_NAME_LAST_SEGMENT=$(echo $GIT_BRANCH_NAME | sed -e "s/.*\///")
+  sed -i .bak "1s/^/$GIT_BRANCH_NAME_LAST_SEGMENT /" $1
+fi

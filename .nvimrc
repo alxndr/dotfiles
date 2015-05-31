@@ -148,6 +148,9 @@ map <F7> m`gg=G``
 " save a protected file. thanks to mattikus https://news.ycombinator.com/item?id=9397891
 cmap w!! w !sudo tee % >/dev/null
 
+" \\ to exit insert mode of terminal buffer
+tnoremap <Leader><Leader> <C-\><C-n>
+
 
 " Git
 " view last diff

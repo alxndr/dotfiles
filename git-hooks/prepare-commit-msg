@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# save as .git/hooks/prepare-commit-message
+# save as .git/hooks/prepare-commit-msg
 
 if [[ "$2" -eq "commit" ]]; then
   # prepend default commit message with current git branch name

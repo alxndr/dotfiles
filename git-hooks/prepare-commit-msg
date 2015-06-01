@@ -1,11 +1,21 @@
 #!/bin/sh
 
-# save as .git/hooks/prepare-commit-msg
+# save as .git/hooks/prepare-commit-msg and make it executable
 
-if [[ "$2" -eq "commit" ]]; then
+prepend_branch_name() {
+  COMMIT_MSG_FILE=$1
   # prepend default commit message with current git branch name
-  # if branch name has forward slash (/) in it, only use last fragment following slash
   GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+  # if branch name has forward slash (/) in it, only use last fragment following slash
   GIT_BRANCH_NAME_LAST_SEGMENT=$(echo $GIT_BRANCH_NAME | sed -e "s/.*\///")
-  sed -i .bak "1s/^/$GIT_BRANCH_NAME_LAST_SEGMENT /" $1
-fi
+  # prepend to file containing commit message
+  sed -i .bak "1s/^/$GIT_BRANCH_NAME_LAST_SEGMENT /" $COMMIT_MSG_FILE
+}
+
+case "$2,$3" in # ugh
+  ,|template,) # only normal or template commits (not e.g. merges)
+    prepend_branch_name $1
+    ;;
+  *)
+    ;;
+esac

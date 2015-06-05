@@ -11,7 +11,7 @@ set   laststatus=2
 set   list listchars=tab:┉\ ,trail:·,nbsp:⎵,extends:…
 set   number
 set   scrolloff=2
-set   shell=/bin/sh " otherwise wants to use ruby 1.8.7
+set   shell=zsh
 set   shiftwidth=2
 set   smartcase
 set   splitbelow
@@ -35,7 +35,6 @@ Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug      'terryma/vim-expand-region'       " grow visual selections
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
-"Plug 'ludovicchabant/vim-gutentags'         " fancy tags manager
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars

@@ -70,6 +70,9 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 " jbuilder files use ruby highlighting
 au BufNewFile,BufRead *.jbuilder set ft=ruby
 
+" netrw: tree display
+let g:netrw_liststyle=3
+
 let g:airline_theme='simple'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 0 " hide git change summary

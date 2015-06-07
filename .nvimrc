@@ -28,6 +28,7 @@ Plug         'moll/vim-bbye'                " smart buffer deleter
 Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
 Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
+Plug       'Shougo/deoplete.nvim'           " smart autocompleter
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
@@ -69,6 +70,8 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " jbuilder files use ruby highlighting
 au BufNewFile,BufRead *.jbuilder set ft=ruby
+
+let g:deoplete#enable_at_startup=1
 
 " netrw: tree display
 let g:netrw_liststyle=3

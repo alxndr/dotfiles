@@ -13,6 +13,7 @@ set   number
 set   scrolloff=2
 set   shell=zsh
 set   shiftwidth=2
+set   showcmd
 set   smartcase
 set   splitbelow
 set   splitright

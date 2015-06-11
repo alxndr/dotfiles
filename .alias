@@ -73,18 +73,18 @@ alias gcv="git commit -v"
 alias gcav="git commit -av"
 alias gcAv="git commit -Av"
 alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
+      gdiff() {
+        $FIRST=$1
+        $SECOND=$2
+        $FILE=$3
+        diff <(git show :$FIRST:$FILE) <(git show :$SECOND:$FILE)
+      }
 alias gds="gd --staged"
 alias gl="git lg"
 alias gm="git mergetool"
 alias gp="git pull"
 alias gpr="gcompare && git pull --rebase"
 alias gs="git status --short"
-function gdiff {
-  $FIRST=$1
-  $SECOND=$2
-  $FILE=$3
-  diff <(git show :$FIRST:$FILE) <(git show :$SECOND:$FILE)
-}
 
 # bundle
 alias bindle="bundle install"

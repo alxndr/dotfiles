@@ -149,7 +149,7 @@ map <Leader>j :GitGutterNextHunk<CR>
 nnoremap <Leader>q :Bdelete<CR>
 
 " \q in terminal buffer to exit insert mode
-tnoremap <Leader>q <C-\><C-n>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " reformat, keeping cursor position
 map <F7> m`gg=G``

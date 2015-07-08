@@ -1,5 +1,6 @@
 set noautochdir
 set   background=dark
+set   showcmd
 set   diffopt+=vertical
 set   expandtab
 set   foldmethod=indent

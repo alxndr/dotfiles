@@ -53,6 +53,7 @@ alias rss="rescue rails server"
 
 # rake
 alias brake="bundle exec rake"
+alias bx="bundle exec"
 alias r="rake" # overrides zsh's builtin shortcut but who cares
 alias rT="rake -T"
 alias rdm="rake db:migrate db:test:prepare"

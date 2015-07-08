@@ -7,6 +7,7 @@ set   foldlevelstart=99
 set   hlsearch
 set   ignorecase
 set   incsearch
+set   iskeyword-=.
 set   laststatus=2
 set   list listchars=tab:┉\ ,trail:·,nbsp:⎵,extends:…
 set   number

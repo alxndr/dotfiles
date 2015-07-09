@@ -8,15 +8,13 @@ CASE_SENSITIVE="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git mix rails ruby)
+plugins=(git git-flow-completion mix rails ruby)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# enable autoswitching rubies based on .ruby-version
-[[ -x "/usr/local/opt/chruby/share/chruby/auto.sh" ]] && source /usr/local/opt/chruby/share/chruby/auto.sh
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
+[[ -s "$HOME/.zshenv" ]] && source $HOME/.zshenv
 
 bindkey -v
 # restore control-r to search history in vi mode
@@ -28,13 +26,14 @@ if [[ -x "$(which hub)" ]]; then
   eval "$(hub alias -s)"
 fi
 
+# enable autoswitching rubies based on .ruby-version
+[[ -x "/usr/local/opt/chruby/share/chruby/auto.sh" ]] && source /usr/local/opt/chruby/share/chruby/auto.sh
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
+
 # use rbenv||rvm, exenv if available
 if [[ -x $(which rbenv) ]]; then
   eval "$(rbenv init -)"
 fi
-#if [[ -x $(which rvm) ]]; then
-  #source $HOME/.rvm/scripts/rvm
-#fi
 if [[ -x $(which exenv) ]]; then
   eval "$(exenv init -)"
 fi

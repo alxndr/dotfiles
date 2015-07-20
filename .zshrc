@@ -44,5 +44,4 @@ for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do
   [[ -r "$FILE" ]] && source "$FILE"
 done
 
-[[ -x "$HOME/workspace/dotfiles/fix-neovim.sh" ]] && $HOME/workspace/dotfiles/fix-neovim.sh
 [[ -f "$HOME/.br.sh" ]] && source $HOME/.br.sh

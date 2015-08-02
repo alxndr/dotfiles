@@ -12,22 +12,26 @@
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
+     colors
      emacs-lisp
+     fancy-battery
      git
      github
-     linum-relative
+     html
+     javascript
+     linum-relative ;; I guess?
      markdown
+     neotree
      ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     osx
+     ruby
+     (shell :variables
+      shell-default-height 30
+      shell-default-position 'bottom
+      shell-default-shell 'term
+      shell-default-term-shell "/bin/zsh")
      syntax-checking
      version-control
      )
@@ -69,7 +73,7 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-dark)
+   dotspacemacs-themes '(solarized-dark solarized-light)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -113,10 +117,10 @@ before layers configuration."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX."
-   dotspacemacs-fullscreen-use-non-native nil
+   dotspacemacs-fullscreen-use-non-native t
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (Emacs 24.4+ only)
@@ -128,7 +132,7 @@ before layers configuration."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'.
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 50
    ;; If non nil unicode symbols are displayed in the mode line.
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -150,7 +154,14 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
    )
-  ;; User initialization goes here
+
+
+    ;; User initialization goes here
+
+    ;(setq shell-file-name "zsh")
+    ;(setq explicit-zsh.exe-args '("--noediting" "--login" "-i"))
+    ;(setenv "SHELL" shell-file-name)
+
   )
 
 (defun dotspacemacs/config ()

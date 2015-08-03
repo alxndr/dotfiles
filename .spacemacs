@@ -21,7 +21,7 @@
      github
      html
      javascript
-     linum-relative ;; I guess?
+     linum-relative
      markdown
      neotree
      ;; org
@@ -168,6 +168,8 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (global-linum-mode)
+  (linum-relative-toggle)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

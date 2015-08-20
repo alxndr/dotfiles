@@ -9,7 +9,7 @@ prepend_branch_name() {
   # if branch name has forward slash (/) in it, only use last fragment following slash
   GIT_BRANCH_NAME_LAST_SEGMENT=$(echo $GIT_BRANCH_NAME | sed -e "s/.*\///")
   # create temp file with new message followed by default message, then move to original filename
-  echo "$GIT_BRANCH_NAME_LAST_SEGMENT \n" | cat - $COMMIT_MSG_FILE > $COMMIT_MSG_FILE.bak && mv $COMMIT_MSG_FILE{.bak,}
+  echo "\n\n$GIT_BRANCH_NAME_LAST_SEGMENT" | cat - $COMMIT_MSG_FILE > $COMMIT_MSG_FILE.bak && mv $COMMIT_MSG_FILE{.bak,}
 }
 
 case "$2,$3" in # ugh

@@ -153,14 +153,22 @@ before layers configuration."
    ;; specified with an installed package.
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
+
+   ruby-version-manager 'rvm
    )
 
 
-    ;; User initialization goes here
-
-    ;(setq shell-file-name "zsh")
-    ;(setq explicit-zsh.exe-args '("--noediting" "--login" "-i"))
-    ;(setenv "SHELL" shell-file-name)
+    (defun comment-dwim-line (&optional arg)
+      "Replacement for the comment-dwim command.
+        If no region is selected and current line is not blank and we are not at the end of the line, then comment current line.
+        Replaces default behaviour of comment-dwim, when it inserts comment at the end of the line.
+        http://www.emacswiki.org/emacs/CommentingCode"
+      (interactive "*P")
+      (comment-normalize-vars)
+      (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
+        (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+        (comment-dwim arg)))
+    (global-set-key (kbd "C-\\") 'comment-dwim-line)
 
   )
 

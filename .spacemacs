@@ -155,6 +155,7 @@ before layers configuration."
    dotspacemacs-default-package-repository nil
 
    ruby-version-manager 'rvm
+   require-final-newline t
    )
 
 

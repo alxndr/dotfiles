@@ -15,7 +15,9 @@
      auto-completion
      better-defaults
      colors
+     elixir
      emacs-lisp
+     erlang
      fancy-battery
      git
      github
@@ -183,6 +185,7 @@ before layers configuration."
 layers configuration."
   (global-linum-mode)
   (linum-relative-toggle)
+  (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

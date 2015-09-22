@@ -45,7 +45,10 @@
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages t
+   ruby-insert-encoding-magic-comment nil
+   )
+  )
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -154,10 +157,11 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
 
-   ruby-version-manager 'rvm
-   require-final-newline t
    )
 
+  (setq require-final-newline t)
+  (setq ruby-insert-encoding-magic-comment nil)
+  (setq ruby-version-manager 'rvm)
 
     (defun comment-dwim-line (&optional arg)
       "Replacement for the comment-dwim command.

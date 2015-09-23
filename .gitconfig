@@ -3,7 +3,7 @@
   email = alxndr+github@gmail.com
 
 [core]
-  editor = nvim
+  editor = vim
   excludesfile = ~/.gitignore
   pager = less -FRSX
 

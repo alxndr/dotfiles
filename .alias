@@ -3,7 +3,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="cat"
-alias e="$EDITOR"
 alias gr="grep"
 alias ls="ls -F"
 alias lsd="find . -type d -depth 1"
@@ -17,7 +16,6 @@ alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[$2]++}END{for(i in a){print a[i] \' \' i}}' | sort -rn | head" # https://coderwall.com/p/o5qijw
 alias tzf="tar -zxvf"
       until_fail() { while [ "$(echo $?)" -eq "0" ]; do $@; done }
-alias v="$VISUAL"
 # todo: alias wtf= look for something like /filename:## in last output and edit it
 # $ screencapture -o - | ocr? and try to find "wtf" and then look around what's above and to the right? for a filename(:#|"line")
 

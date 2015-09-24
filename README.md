@@ -43,6 +43,8 @@ If trying to use vim, also have to:
 
 ### tools
 
+* htop
+  * `brew install htop`
 * [iTerm 2][iterm2]
   * Settings > General
     * uncheck "Use Lion-style fullscreen windows"

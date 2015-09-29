@@ -49,7 +49,9 @@
    ;; the list `dotspacemacs-configuration-layers'
    dotspacemacs-delete-orphan-packages t
    ruby-insert-encoding-magic-comment nil
-   evil-escape-key-sequence "jk" ;; TODO how to have "kj" work as well
+
+   evil-escape-key-sequence "jk"
+   evil-escape-unordered-key-sequence t
    )
   )
 

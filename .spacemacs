@@ -28,6 +28,7 @@
      neotree
      ;; org
      osx
+     perspectives
      ruby
      (shell :variables
       shell-default-height 30

@@ -150,7 +150,7 @@ map <Leader>j :GitGutterNextHunk<CR>
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
 
-" \q in terminal buffer to exit insert mode
+" Esc-Esc in terminal buffer to exit insert mode
 tnoremap <Esc><Esc> <C-\><C-n>
 
 " reformat, keeping cursor position

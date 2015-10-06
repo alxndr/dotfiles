@@ -191,6 +191,12 @@ layers configuration."
   (linum-relative-toggle)
   (setq-default truncate-lines t)
 
+  ;; TODO
+  ;; - nnoremap <CR>     insert newline below current line
+  ;; - nnoremap <S-CR>   insert newline above current line
+  ;; - nnoremap <S-Down> shift current line down
+  ;; - nnoremap <S-Up>   shift current line up
+
   (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
 )
 

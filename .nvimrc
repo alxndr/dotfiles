@@ -31,7 +31,7 @@ Plug         'moll/vim-bbye'                " smart buffer deleter
 Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
 Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
-Plug       'Shougo/deoplete.nvim'           " smart autocompleter
+"Plug       'Shougo/deoplete.nvim'           " smart autocompleter
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby

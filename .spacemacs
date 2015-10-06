@@ -189,6 +189,8 @@ before layers configuration."
 layers configuration."
   (global-linum-mode)
   (linum-relative-toggle)
+  (setq-default truncate-lines t)
+
   (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
 )
 

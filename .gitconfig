@@ -27,8 +27,8 @@
   fs = !git bflow feature start
   ft = !git bflow feature track
   lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
-  reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
-  reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master
+  reset-origin = !_ABQ_CURRENT_GIT_BRANCH_NAME="$(git bn)" git fetch origin && git checkout $_ABQ_GIT_CURRENT_BRANCH_NAME && git reset --hard origin/$_ABQ_GIT_CURRENT_BRANCH_NAME
+  reset-upstream = !_ABQ_CURRENT_GIT_BRANCH_NAME="$(git bn)" git fetch upstream && git checkout $_ABQ_GIT_CURRENT_BRANCH_NAME && git reset --hard upstream/$_ABQ_GIT_CURRENT_BRANCH_NAME
   get-root-dir = !git rev-parse --show-toplevel
   show-unchanged = !git ls-files -v | grep "^[a-z]"
   st = status

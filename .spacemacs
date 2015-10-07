@@ -18,14 +18,14 @@
      elixir
      emacs-lisp
      erlang
-     fancy-battery
+     ;; fancy-battery
      git
      github
      html
      javascript
-     linum-relative
+     ;; linum-relative
      markdown
-     neotree
+     ;; neotree
      ;; org
      osx
      perspectives

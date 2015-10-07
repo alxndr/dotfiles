@@ -29,6 +29,7 @@
      ;; org
      osx
      perspectives
+     react
      ruby
      (shell :variables
       shell-default-height 30

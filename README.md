@@ -9,7 +9,7 @@ If trying to use vim, also have to:
     cd dotfiles/ \
     && git submodule update --init --recursive
     && cd .vim/bundle/YouCompleteMe/ \
-    && ./install.sh  --clang-completer \
+    && ./install.py --clang-completer \
     && cd -
 
 

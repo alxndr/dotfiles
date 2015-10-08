@@ -15,8 +15,10 @@
      auto-completion
      better-defaults
      colors
+     dash
      elixir
      emacs-lisp
+     emoji
      erlang
      ;; fancy-battery
      git

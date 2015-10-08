@@ -33,6 +33,7 @@
      perspectives
      react
      ruby
+     ruby-on-rails
      (shell :variables
       shell-default-height 30
       shell-default-position 'bottom

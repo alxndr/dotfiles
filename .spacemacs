@@ -201,7 +201,18 @@ layers configuration."
   ;; - nnoremap <S-Down> shift current line down
   ;; - nnoremap <S-Up>   shift current line up
 
+  ;; css
+  (setq css-indent-offset 2)
+
+  ;; elixir
   (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
+
+  ;; html, js
+  (setq web-mode-attr-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -84,6 +84,7 @@ alias gl="git lg"
 alias gm="git mergetool"
 alias gp="git pull"
 alias gpr="gcompare && git pull --rebase"
+alias grhH="git reset --hard HEAD"
 alias gs="git status --short"
 
 # bundle

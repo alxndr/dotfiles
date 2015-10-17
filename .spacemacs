@@ -29,7 +29,7 @@
      markdown
      ;; neotree
      ;; org
-     osx
+     (osx :variables osx-use-option-as-meta nil)
      perspectives
      react
      ruby

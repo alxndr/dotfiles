@@ -80,6 +80,7 @@ alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
         diff <(git show :$FIRST:$FILE) <(git show :$SECOND:$FILE)
       }
 alias gds="gd --staged"
+alias gh="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//' | xargs open"
 alias gl="git lg"
 alias gm="git mergetool"
 alias gp="git pull"

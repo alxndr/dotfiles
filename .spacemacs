@@ -53,10 +53,11 @@
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
    dotspacemacs-delete-orphan-packages t
-   ruby-insert-encoding-magic-comment nil
 
    evil-escape-key-sequence "jk"
    evil-escape-unordered-key-sequence t
+
+   ruby-insert-encoding-magic-comment nil
    )
   )
 

@@ -170,6 +170,8 @@ before layers configuration."
 
    )
 
+  (setq dotspacemacs-auto-save-file-location nil)
+
   (setq require-final-newline t)
   (setq ruby-insert-encoding-magic-comment nil)
   (setq ruby-version-manager 'rvm)
@@ -228,6 +230,7 @@ layers configuration."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
+ '(auto-save-default nil)
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))

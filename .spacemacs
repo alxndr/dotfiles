@@ -204,17 +204,22 @@ layers configuration."
   ;; - nnoremap <S-Down> shift current line down
   ;; - nnoremap <S-Up>   shift current line up
 
+  (setq standard-indent 2)
+
   ;; css
   (setq css-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
 
   ;; elixir
   (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
 
-  ;; html, js
+  ;; html
   (setq web-mode-attr-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
   (setq web-mode-markup-indent-offset 2)
+
+  ;; js
+  (setq web-mode-code-indent-offset 2)
+  (setq-default js2-basic-offset 2)
 
 )
 

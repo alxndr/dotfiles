@@ -198,9 +198,11 @@ layers configuration."
   (linum-relative-toggle)
   (setq-default truncate-lines t)
 
+  (define-key evil-normal-state-map (kbd "RET") 'spacemacs/insert-line-below-no-indent)
+  (define-key evil-normal-state-map (kbd "C-RET") 'spacemacs/insert-line-above-no-indent)
+  (define-key evil-normal-state-map (kbd "S-RET") 'spacemacs/insert-line-above-no-indent)
+
   ;; TODO
-  ;; - nnoremap <CR>     insert newline below current line
-  ;; - nnoremap <S-CR>   insert newline above current line
   ;; - nnoremap <S-Down> shift current line down
   ;; - nnoremap <S-Up>   shift current line up
 

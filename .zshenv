@@ -1,5 +1,4 @@
 export EDITOR="nvim"
-export VISUAL="emacs -nw"
 export PAGER="most -cs"
 export LESS="-FS"
 

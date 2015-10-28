@@ -28,7 +28,6 @@
      ;; linum-relative
      markdown
      ;; neotree
-     ;; org
      (osx :variables osx-use-option-as-meta nil)
      perspectives
      react
@@ -256,6 +255,7 @@ layers configuration."
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-temp-prefix ".flycheck")
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces

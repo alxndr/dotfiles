@@ -223,6 +223,16 @@ layers configuration."
   (setq web-mode-code-indent-offset 2)
   (setq-default js2-basic-offset 2)
 
+  ;; check when opening large files
+  ;; https://github.com/syl20bnr/spacemacs/issues/3491#issuecomment-150478925
+  (defun spacemacs/check-large-file ()
+    (when (> (buffer-size) (* 1024 1024))
+      (when (y-or-n-p "Open file literally?")
+        (setq buffer-read-only t)
+        (buffer-disable-undo)
+        (fundamental-mode))))
+  (add-hook 'find-file-hook 'spacemacs/check-large-file)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

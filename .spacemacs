@@ -206,22 +206,27 @@ layers configuration."
   ;; - nnoremap <S-Down> shift current line down
   ;; - nnoremap <S-Up>   shift current line up
 
-  (setq standard-indent 2)
+  (setq-default standard-indent 2)
 
   ;; css
-  (setq css-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
+  (setq-default css-indent-offset 2)
+  (setq-default web-mode-css-indent-offset 2)
 
   ;; elixir
   (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
 
   ;; html
-  (setq web-mode-attr-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2)
+  (setq-default web-mode-attr-indent-offset 2)
+  (setq-default web-mode-markup-indent-offset 2)
 
   ;; js
-  (setq web-mode-code-indent-offset 2)
   (setq-default js2-basic-offset 2)
+  (setq-default web-mode-code-indent-offset 2)
+  ;; https://github.com/syl20bnr/spacemacs/tree/15de481a803b00983d6771309f8f99c1d1e464b8/layers/%2Bframeworks/react#optional-configuration
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
 
   ;; check when opening large files
   ;; https://github.com/syl20bnr/spacemacs/issues/3491#issuecomment-150478925

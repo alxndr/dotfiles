@@ -217,6 +217,7 @@ layers configuration."
 
   ;; elixir
   (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
+  (setq-default elixir-basic-offset 2)
 
   ;; html
   (setq-default web-mode-attr-indent-offset 2)
@@ -259,6 +260,7 @@ layers configuration."
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(evil-shift-width 2)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-temp-prefix ".flycheck")
  '(ring-bell-function (quote ignore) t))

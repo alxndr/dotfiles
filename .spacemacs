@@ -20,6 +20,7 @@
      emacs-lisp
      emoji
      erlang
+     eyebrowse
      ;; fancy-battery
      git
      github
@@ -29,7 +30,6 @@
      markdown
      ;; neotree
      (osx :variables osx-use-option-as-meta nil)
-     perspectives
      react
      ruby
      ruby-on-rails

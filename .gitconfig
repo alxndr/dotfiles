@@ -11,6 +11,7 @@
   amend = commit --amend --no-edit
   assume-unchanged = update-index --assume-unchanged
   b = branch
+  bl = blame -C -C -C
   bn = name-rev --name-only HEAD
   ci = commit
   co = checkout

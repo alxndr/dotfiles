@@ -36,11 +36,10 @@
      react
      ruby
      ruby-on-rails
-     (shell :variables
-      shell-default-height 30
-      shell-default-position 'bottom
-      shell-default-shell 'term
-      shell-default-term-shell "/bin/zsh")
+     (shell :variables shell-default-height 30
+                       shell-default-position 'bottom
+                       shell-default-shell 'term
+                       shell-default-term-shell "/bin/zsh")
      syntax-checking
      version-control
      )

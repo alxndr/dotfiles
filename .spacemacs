@@ -220,9 +220,9 @@ layers configuration."
   ;; elixir
   (add-hook 'alchemist-mode-hook 'company-mode) ;; http://zohaib.me/spacemacs-and-alchemist-to-make-elixir-of-immortality/
   (setq-default elixir-basic-offset 2)
-  (with-eval-after-load 'elixir
-    (modify-syntax-entry ?_ "w" elixir-mode-syntax-table)
-  )
+  ;; (with-eval-after-load 'elixir
+  ;;   (modify-syntax-entry ?_ "w" elixir-mode-syntax-table) ;; "symbol's value is void: elixir-mode-syntax-table"
+  ;; )
 
   ;; html
   (setq-default web-mode-attr-indent-offset 2)

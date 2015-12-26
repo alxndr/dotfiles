@@ -17,3 +17,7 @@ export PATH="$HOME/.exenv/bin:$PATH"
 
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
+
+if [[ -x $(which exenv) ]]; then
+  eval "$(exenv init -)"
+fi

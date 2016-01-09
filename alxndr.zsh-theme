@@ -2,7 +2,7 @@ autoload -U colors && colors
 
 NEWLINE=$'\n'
 
-if [[ $(which docker) && $(docker ps) ]]; then
+if [[ -n "$(docker ps 2>/dev/null)" ]]; then
   DOCKER_THING="🐳 "
 else
   DOCKER_THING=""

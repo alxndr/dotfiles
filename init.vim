@@ -142,6 +142,9 @@ nnoremap ,W <C-w>5+
 " buffer list
 nnoremap <Leader><Leader> :buffers<CR>:b
 
+" comment stuff
+nnoremap <C-\> :TComment<CR>
+
 " create tags file
 map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
 

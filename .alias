@@ -21,7 +21,6 @@ alias tzf="tar -zxvf"
 
 # mac-y
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
-alias b="brew"
 alias nv="nvim"
 alias tac="tail -r"
 
@@ -52,8 +51,6 @@ function rs {
 alias rss="rescue rails server"
 
 # rake
-alias brake="bundle exec rake"
-alias bx="bundle exec"
 alias r="rake" # overrides zsh's builtin shortcut but who cares
 alias rT="rake -T"
 alias rdm="rake db:migrate db:test:prepare"
@@ -88,7 +85,9 @@ alias gpr="gcompare && git pull --rebase"
 alias gs="git status --short"
 
 # bundle
-alias bindle="bundle install"
+alias b="bundle"
+alias brake="bundle exec rake"
+alias bx="bundle exec"
 
 # rspec
 alias rspec="rspec -c"

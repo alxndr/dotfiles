@@ -46,6 +46,10 @@ done
 
 [[ -f "$HOME/.br.sh" ]] && source $HOME/.br.sh
 
+if [[ -x $(which npm) ]]; then
+  npm set progress=false # https://github.com/npm/npm/issues/11283
+fi
+
 export NVM_DIR="/Users/alexanderquine/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 

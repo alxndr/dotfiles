@@ -52,6 +52,9 @@ fi
 
 export NVM_DIR="/Users/alexanderquine/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+if [[ -x $(which npm) ]]; then
+  npm set progress=false
+fi
 
 export PATH="$HOME/.exenv/bin:$PATH"
 

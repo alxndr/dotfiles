@@ -13,3 +13,4 @@ secrets.sh
 config/database.yml.readonly
 node_modules/
 .tern-port
+.#*

@@ -25,6 +25,8 @@ If trying to use vim, also have to:
   * System Preferences > Keyboard > Text, uncheck "Correct spelling automatically"
 * rip out a bunch of keyboard shortcuts:
   * System Preferences > Keyboard > Shortcuts, uncheck pretty much everything excepyt for the Screen Shots
+* turn off hold-letter-for-accent-marks:
+  * `defaults write -g ApplePressAndHoldEnabled -bool false`
 * enable using Tab to move keyboard focus between all sorts of GUI controls
   * System Preferences > Keyboard > Shortcuts, under "Full Keyboard Access […]" select the "All controls" radio button
 * make the trackpad make sense:

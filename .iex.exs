@@ -1,4 +1,5 @@
-defmodule A do
+if Ecto do
+  import Ecto.Query, only: [limit: 2, select: 3, where: 3]
 end
 
 IEx.configure(

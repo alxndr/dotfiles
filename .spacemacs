@@ -270,7 +270,9 @@ layers configuration."
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-temp-prefix ".flycheck")
  '(ring-bell-function (quote ignore) t)
- '(split-width-threshold 60))
+ '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
+ '(split-width-threshold 60)
+ '(x-stretch-cursor t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

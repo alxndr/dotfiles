@@ -2,10 +2,12 @@ autoload -U colors && colors
 
 NEWLINE=$'\n'
 
-if [[ -n "$(docker ps 2>/dev/null)" ]]; then
-  DOCKER_THING="🐳 "
-else
+DEFAULT_DOCKER_IMAGE_STATUS="$(docker-machine ls | grep default | awk '{print $4}')"
+
+if [[ "$DEFAULT_DOCKER_IMAGE_STATUS" -eq "Stopped" ]]; then
   DOCKER_THING=""
+else
+  DOCKER_THING="🐳 "
 fi
 
 PROMPT='${NEWLINE}%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)%{$reset_color%}${NEWLINE}${DOCKER_THING}%{$fg[magenta]%}$%{$reset_color%} '

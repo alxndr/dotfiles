@@ -81,6 +81,17 @@ alias gh="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -
 alias gl="git lg"
 alias gm="git mergetool"
 alias gp="git pull"
+      gphb() { # git push heroku branch
+        if [[ -z "$1" ]]; then
+          echo "need to specify what git remote is the heroku target... exiting..."
+          return 2
+        fi
+        GIT_BRANCH=$(git name-rev --name-only HEAD)
+        if [[ -z "$GIT_BRANCH" ]]; then
+          return 1
+        fi
+        git push $1 $GIT_BRANCH:master
+      }
 alias gpr="gcompare && git pull --rebase"
 alias gs="git status --short"
 

@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export PAGER="most -cs"
+export PAGER="less"
 export LESS="-FS"
 
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"

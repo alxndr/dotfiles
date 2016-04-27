@@ -272,6 +272,8 @@ layers configuration."
  '(flycheck-temp-prefix ".flycheck")
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
+ '(show-trailing-whitespace t)
+ '(sp-navigate-close-if-unbalanced t)
  '(split-width-threshold 60)
  '(x-stretch-cursor t))
 (custom-set-faces

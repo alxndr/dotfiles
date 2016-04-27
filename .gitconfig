@@ -8,6 +8,7 @@
   pager = less -FRSX
 
 [alias]
+  aliases = config --get-regexp alias
   amend = commit --amend --no-edit
   assume-unchanged = update-index --assume-unchanged
   b = branch

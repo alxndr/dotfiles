@@ -5,6 +5,3 @@ IEx.configure(
   inspect: [limit: -1],
 )
 
-if Ecto.Query do
-  import Ecto.Query, only: [limit: 2, select: 3, where: 3]
-end

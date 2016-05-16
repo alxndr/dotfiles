@@ -270,6 +270,7 @@ layers configuration."
  '(evil-shift-width 2)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-temp-prefix ".flycheck")
+ '(json-reformat:indent-width 2)
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
  '(show-trailing-whitespace t)

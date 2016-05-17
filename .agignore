@@ -1,0 +1,9 @@
+coverage/
+fixtures/
+node_modules/
+pkg/
+vendor/
+*.min.*
+*/*.min.*
+*/*/*.min.*
+*/*/*/*.min.*

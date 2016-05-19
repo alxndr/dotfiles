@@ -2,7 +2,7 @@ autoload -U colors && colors
 
 NEWLINE=$'\n'
 
-DEFAULT_DOCKER_IMAGE_STATUS="$(docker-machine ls | grep default | awk '{print $4}')"
+DEFAULT_DOCKER_IMAGE_STATUS="$(docker-machine ls 2>/dev/null | grep default | awk '{print $4}')"
 
 if [[ "$DEFAULT_DOCKER_IMAGE_STATUS" -eq "Stopped" ]]; then
   DOCKER_THING=""

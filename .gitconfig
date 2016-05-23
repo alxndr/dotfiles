@@ -13,7 +13,8 @@
   assume-unchanged = update-index --assume-unchanged
   b = branch
   bl = blame -C -C -C
-  bn = rev-parse --abbrev-ref HEAD
+  bn = branch-name
+  branch-name = rev-parse --abbrev-ref HEAD
   ci = commit
   co = checkout
   conflicting = !git ls-files -u | awk '{print $3\" \"$4}'

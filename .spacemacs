@@ -41,6 +41,7 @@
                        shell-default-shell 'term
                        shell-default-term-shell "/bin/zsh")
      syntax-checking
+     yaml
      version-control
      )
    ;; List of additional packages that will be installed without being
@@ -189,6 +190,8 @@ before layers configuration."
         (comment-dwim arg)))
     (global-set-key (kbd "C-\\") 'comment-dwim-line)
 
+    ;(add-to-list 'auto-mode-alist '("\\.jsx$" . react-mode))
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -263,8 +266,8 @@ layers configuration."
  '(ahs-inhibit-face-list nil)
  '(auto-save-default nil)
  '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+	 (quote
+		("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(diff-hl-side (quote left))
  '(even-window-heights nil)
  '(evil-shift-width 2)
@@ -272,6 +275,9 @@ layers configuration."
  '(flycheck-temp-prefix ".flycheck")
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
+ '(projectile-globally-ignored-directories
+	 (quote
+		(".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "docs")))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
  '(show-trailing-whitespace t)

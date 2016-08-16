@@ -18,6 +18,7 @@
   ci = commit
   co = checkout
   conflicting = !git ls-files -u | awk '{print $3\" \"$4}'
+  cp = cherry-pick
   delete-merged-branches = !git branch --merged master | grep -v " master" | xargs -n 1 git branch -d # http://stevenharman.net/git-clean-delete-already-merged-branches
   di = diff
   diff-master = show-branch --current upstream/master # n.b. fetch upstream before running

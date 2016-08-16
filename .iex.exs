@@ -2,13 +2,13 @@ IEx.configure(
   alive_prompt: "%prefix(%node):%counter>",
   colors: [eval_result: [:green]],
   default_prompt: "%prefix:%counter>",
-  inspect: [limit: -1],
+  inspect: [pretty: true, char_lists: :as_lists],
 )
 
 defmodule EctoHelpers do
   defmacro __using__(_) do
     quote do
-      IO.puts "importing Ecto.Query.{limit, select, where} and Ecto.Query.API.fragment"
+      IO.puts "\nimporting:\n  Ecto.Query.{ limit, select, where }\n  Ecto.Query.API.{ fragment }\n"
       import Ecto.Query, only: [limit: 2, select: 3, where: 3]
       import Ecto.Query.API, only: [fragment: 1]
       :ok

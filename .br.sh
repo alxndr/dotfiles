@@ -12,7 +12,7 @@ alias   jack="ack --js --ignore-dir=pkg --ignore-dir=vendor --ignore-dir=jscover
           if [[ -n "$1" ]]; then
             IDENTIFIER=$1
           else
-            GITBRANCH=$(git name-rev --name-only HEAD)
+            GITBRANCH=$(git rev-parse --abbrev-ref HEAD)
             IDENTIFIER=${GITBRANCH##*/}
           fi
           open https://statmilk.atlassian.net/browse/$IDENTIFIER

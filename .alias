@@ -105,6 +105,13 @@ alias bx="bundle exec"
 # rspec
 alias rspec="rspec -c"
 
+# docker
+alias dr="docker"
+alias drc="docker-compose"
+alias drm="docker-machine"
+alias drmenv="eval \"\$(docker-machine env default)\""
+alias drr="npm run docker:rsync && npm run docker:puma:start"
+
 # dev-y
 alias ack="echo don\'t you mean $ ag"
 alias again="~ && -" # so rvm reloads your .ruby-version file
@@ -112,11 +119,6 @@ alias again="~ && -" # so rvm reloads your .ruby-version file
       catenv() { [ -r .env ] && env $(cat .env | xargs) $@ }
 alias clj="java -cp ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar clojure.main"
 alias deploy_heroku="rspec && git push heroku master"
-alias dr="docker"
-alias drc="docker-compose"
-alias drm="docker-machine"
-alias drmenv="eval \"\$(docker-machine env default)\""
-alias drr="npm run docker:rsync && npm run docker:puma:start"
 alias eau="eautotest"
 alias eautotest="ls {lib,web}/**.ex test/**/*.exs | entr mix test"
 alias h="heroku"

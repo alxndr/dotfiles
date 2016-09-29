@@ -106,11 +106,11 @@ alias bx="bundle exec"
 alias rspec="rspec -c"
 
 # docker
-alias dr="docker"
-alias drc="docker-compose"
-alias drm="docker-machine"
-alias drmenv="eval \"\$(docker-machine env default)\""
-alias drr="npm run docker:rsync && npm run docker:puma:start"
+alias d="docker"
+alias dc="docker-compose"
+alias dm="docker-machine"
+alias dmenv="eval \"\$(docker-machine env default)\""
+alias dr="npm run docker:rsync && npm run docker:puma:start"
 
 # dev-y
 alias ack="echo don\'t you mean $ ag"

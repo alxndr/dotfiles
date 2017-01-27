@@ -113,7 +113,8 @@ alias dmenv="eval \"\$(docker-machine env default)\""
 alias dr="npm run docker:rsync && npm run docker:puma:start"
 
 # dev-y
-alias ack="echo don\'t you mean $ ag"
+alias ack="echo don\'t you mean $ rg"
+alias ag="echo don\'t you mean $ rg"
 alias again="~ && -" # so rvm reloads your .ruby-version file
       branch() { SEARCHTERM=$1; git branch | grep $SEARCHTERM | sed -e 's/^\* //' | awk '{ if (NR==1 || $1 == searchterm) result = $1 } END{ if (result) { print result } else { exit 1 } }' searchterm=$SEARCHTERM }
       catenv() { [ -r .env ] && env $(cat .env | xargs) $@ }

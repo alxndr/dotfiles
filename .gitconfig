@@ -31,12 +31,15 @@
   fr = !git bflow feature review
   fs = !git bflow feature start
   ft = !git bflow feature track
-  lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
+  lg = log --color --graph --abbrev-commit --abbrev=8 --pretty=sha-branch-message-author-date
   reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
   reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master
   get-root-dir = !git rev-parse --show-toplevel
   show-unchanged = !git ls-files -v | grep "^[a-z]"
   st = status
+
+[pretty]
+  sha-branch-message-author-date = format:%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset
 
 [branch]
   autosetupmerge = true

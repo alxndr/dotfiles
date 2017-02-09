@@ -28,6 +28,7 @@ set nowrap
 call plug#begin("~/.nvim/plugged")
 Plug       'Numkil/ag.vim'                  " asynchronous :grep-like searching
 Plug        'bling/vim-airline'             " status line
+Plug  'vim-airline/vim-airline-themes'      " themes
 Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter
 Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
@@ -57,7 +58,7 @@ Plug     'noprompt/vim-yardoc'              " syntax hl: yard (in ruby)
 call plug#end()
 
 let g:solarized_termcolors = 256
-colorscheme solarized
+"colorscheme solarized
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn

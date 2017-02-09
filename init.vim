@@ -106,6 +106,11 @@ map Y y$
 " opposite of J: inserts newline below current line
 nnoremap K m`"="\n"<CR>p``
 
+" insert newline below with Enter
+nnoremap <CR> :<C-U>call append('.',         repeat([''],v:count1))<CR>
+"nnoremap <S-CR> :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
+"nnoremap  :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
+
 " shift lines vertically
 nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>

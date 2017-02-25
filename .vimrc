@@ -75,6 +75,10 @@ endif
 " mappings
 "
 
+" Enter inserts newline below cursor
+" http://vi.stackexchange.com/a/9720/67
+nnoremap <buffer> <cr> :<C-U>call append('.', repeat([''],v:count1))<cr>
+
 " make Y behave like other capitals
 map Y y$
 

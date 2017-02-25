@@ -130,6 +130,8 @@ alias jn="jasmine-node"
 alias jnc="jn --coffee"
 alias jsw="jekyll serve --watch"
 alias local_node="heroku ps:scale web=0 && npm start; heroku ps:scale web=1"
+unalias m
+alias m="mix"
 alias meb="mix escript.build"
 alias n="npm"
 alias nd="node"

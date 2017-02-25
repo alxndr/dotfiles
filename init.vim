@@ -25,7 +25,7 @@ set   tabstop=2
 set   wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
 set nowrap
 
-call plug#begin("~/.nvim/plugged")
+call plug#begin("~/.config/nvim/plugged")
 Plug       'Numkil/ag.vim'                  " asynchronous :grep-like searching
 Plug        'bling/vim-airline'             " status line
 Plug  'vim-airline/vim-airline-themes'      " themes

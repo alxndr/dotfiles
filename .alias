@@ -115,6 +115,7 @@ alias dr="npm run docker:rsync && npm run docker:puma:start"
 # dev-y
 unalias rg # rails regenerate
 alias ack="echo don\'t you mean $ rg"
+alias actl="apachectl"
 alias ag="echo don\'t you mean $ rg"
 alias again="~ && -" # so rvm reloads your .ruby-version file
       branch() { SEARCHTERM=$1; git branch | grep $SEARCHTERM | sed -e 's/^\* //' | awk '{ if (NR==1 || $1 == searchterm) result = $1 } END{ if (result) { print result } else { exit 1 } }' searchterm=$SEARCHTERM }
@@ -144,5 +145,6 @@ alias nr="npm run -s"
 alias nt="find . -name \"*.js\" -not -path \"./node_modules/*\" -not -name \".#*\" | entr sh -c 'echo detected file change\; running tests... && npm run -s test:js'"
 alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
       report() { $@ && say "done" || say "error" }
+alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias us="bundle exec unicorn -c tmp/unicorn.rb"

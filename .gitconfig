@@ -24,7 +24,7 @@
   diff-master = show-branch --current upstream/master # n.b. fetch upstream before running
   diff-rc = show-branch --current upstream/rc
   family-tree = log --graph --oneline --branches --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %C(bold blue)%an %Cgreen%cr%Creset'
-  find-last-mention-of = log -1 -u -S # expects search string
+  find = log -u -G # searchRegex [path]
   find-untracked-files = !git ls-files -v $(git get-root-dir) | grep -e "^[a-z]"
   first-commit = rev-list --max-parents=0 HEAD
   fq = !git bflow feature qa

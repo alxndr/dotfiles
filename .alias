@@ -78,7 +78,14 @@ alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
         diff <(git show :$FIRST:$FILE) <(git show :$SECOND:$FILE)
       }
 alias gds="gd --staged"
-alias gh="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//' | xargs open"
+alias gh="giturl | xargs open"
+unalias ghb
+      ghb() {
+        BASE=$(giturl)
+        BRANCH=$(git branch-name)
+        open ${BASE}/compare/develop...${BRANCH}
+      }
+alias giturl="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//'"
 unalias gl
       gl() { if [[ -z "$1" ]]; then git lg; else git lg HEAD...HEAD@{$1}; fi }
 alias gm="git mergetool"

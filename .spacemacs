@@ -273,13 +273,29 @@ layers configuration."
  '(evil-shift-width 2)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-temp-prefix ".flycheck")
+ '(helm-grep-ag-command "rg --smart-case --no-heading --line-numbers %s %s %s")
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(projectile-globally-ignored-directories
 	 (quote
 		(".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "docs")))
  '(ring-bell-function (quote ignore) t)
- '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
+ '(safe-local-variable-values
+	 (quote
+		((eval setq flycheck-checkers
+					 (quote
+						(javascript-eslint)))
+		 (eval setq flycheck-disabled-checkers
+					 (quote
+						(javascript-jshint)))
+		 (eval flycheck-add-mode
+					 (quote javascript-eslint)
+					 (quote web-mode))
+		 (eval add-to-list
+					 (quote auto-mode-alist)
+					 (quote
+						("\\.js$" . web-mode)))
+		 (eval highlight-regexp "^ *"))))
  '(show-trailing-whitespace t)
  '(sp-navigate-close-if-unbalanced t)
  '(split-width-threshold 60)

@@ -23,16 +23,14 @@
      emacs-lisp
      emoji
      erlang
-     eyebrowse
-     ;; fancy-battery
      git
      github
+     gtags
      html
      javascript
-     ;; linum-relative
      markdown
-     ;; neotree
      (osx :variables osx-use-option-as-meta nil)
+     php
      react
      ruby
      ruby-on-rails

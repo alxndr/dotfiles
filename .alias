@@ -71,6 +71,7 @@ alias gcv="git commit -v"
 alias gcav="git commit -av"
 alias gcAv="git commit -Av"
 alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
+alias gdd="git diff"
       gdiff() {
         $FIRST=$1
         $SECOND=$2
@@ -142,6 +143,7 @@ alias local_node="heroku ps:scale web=0 && npm start; heroku ps:scale web=1"
 unalias m
 alias m="mix"
 alias meb="mix escript.build"
+alias mt="mix test"
 alias n="npm"
 alias nd="node"
 alias ndd="NODE_ENV=dev nodemon"
@@ -154,4 +156,5 @@ alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
       report() { $@ && say "done" || say "error" }
 alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+      t() { if [[ -f package.json ]] then; npm test; fi }
 alias us="bundle exec unicorn -c tmp/unicorn.rb"

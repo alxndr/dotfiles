@@ -285,6 +285,7 @@ layers configuration."
  '(even-window-heights nil)
  '(evil-shift-width 2)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
+ '(flycheck-javascript-eslint-executable "./node_modules/.bin/eslint")
  '(flycheck-temp-prefix ".flycheck")
  '(helm-grep-ag-command "rg --smart-case --no-heading --line-numbers %s %s %s")
  '(indent-tabs-mode nil)

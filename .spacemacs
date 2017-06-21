@@ -194,6 +194,20 @@ before layers configuration."
 
   )
 
+(defun dotspacemacs/user-init ()
+  "User init function."
+
+  (message (system-name))
+  (if (string= "bigmac.gateway.sonic.net" (system-name))
+      (setq-default dotspacemacs-default-font
+                    '("Inconsolata for Powerline"
+                      :size 24
+                      :weight normal
+                      :width normal
+                      :powerline-scale 1.1)))
+
+)
+
 (defun dotspacemacs/user-config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after

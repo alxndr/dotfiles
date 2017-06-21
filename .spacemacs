@@ -277,20 +277,22 @@ layers configuration."
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
  '(auto-save-default nil)
+ '(c-basic-offset 2)
  '(custom-safe-themes
-	 (quote
-		("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+   (quote
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(diff-hl-side (quote left))
  '(even-window-heights nil)
  '(evil-shift-width 2)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-temp-prefix ".flycheck")
  '(helm-grep-ag-command "rg --smart-case --no-heading --line-numbers %s %s %s")
+ '(indent-tabs-mode nil)
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(projectile-globally-ignored-directories
-	 (quote
-		(".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "docs")))
+   (quote
+    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "docs")))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
 	 (quote
@@ -311,6 +313,7 @@ layers configuration."
  '(show-trailing-whitespace t)
  '(sp-navigate-close-if-unbalanced t)
  '(split-width-threshold 60)
+ '(tab-width 2)
  '(x-stretch-cursor t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

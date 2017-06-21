@@ -19,6 +19,7 @@
      better-defaults
      colors
      dash
+     docker
      elixir
      emacs-lisp
      emoji

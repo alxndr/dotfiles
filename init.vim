@@ -98,7 +98,7 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 " shortcut for removing search highlight
-nnoremap <Esc> :nohl<Cr>
+"nnoremap <Esc> :nohl<Cr>
 
 " make Y behave like C and D
 map Y y$

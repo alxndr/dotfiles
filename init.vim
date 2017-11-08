@@ -11,7 +11,7 @@ set   incsearch
 set   iskeyword-=.
 set   laststatus=2
 set   lazyredraw
-set   list listchars=tab:⇁\ ,trail:·,nbsp:⎵,extends:…
+set   list listchars=tab:⋮\ ,trail:·,nbsp:⎵,extends:⋯
 set   mouse=
 set   number
 set   scrolloff=2

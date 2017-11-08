@@ -26,21 +26,20 @@ set   wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
 set nowrap
 
 call plug#begin("~/.config/nvim/plugged")
-Plug       'Numkil/ag.vim'                  " asynchronous :grep-like searching
 Plug        'bling/vim-airline'             " status line
 Plug  'vim-airline/vim-airline-themes'      " themes
 Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter
 Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
 Plug  'altercation/vim-colors-solarized'    " color scheme
-Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
-"Plug       'Shougo/deoplete.nvim'           " smart autocompleter
+Plug     'ctrlpvim/ctrlp.vim'               " file finder; ctags navigator
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug      'terryma/vim-expand-region'       " grow visual selections
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
+Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars
@@ -48,7 +47,6 @@ Plug   'benekastah/neomake'                 " job runner
 Plug      'myusuf3/numbers.vim'             " smart line numbers
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
-" Plug   'scrooloose/syntastic'               " syntax checker
 Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
 Plug         'kana/vim-textobj-user'        " custom text objs
 Plug  'whatyouhide/vim-textobj-xmlattr'     " text objs for xml element attrs
@@ -62,6 +60,11 @@ let g:solarized_termcolors = 256
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
+
+" vim-grepper config...
+" gs is a verb to open Grepper for the selection (e.g. gsi"):
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
 
 augroup neomake
   autocmd BufRead,BufWrite *.coffee,*.js :Neomake

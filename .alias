@@ -122,6 +122,7 @@ alias dmenv="eval \"\$(docker-machine env default)\""
 alias dr="npm run docker:rsync && npm run docker:puma:start"
 
 # dev-y
+unalias gr # grep
 unalias rg # rails regenerate
 alias ack="echo don\'t you mean $ rg"
 alias actl="apachectl"
@@ -144,6 +145,7 @@ alias local_node="heroku ps:scale web=0 && npm start; heroku ps:scale web=1"
 unalias m
 alias m="mix"
 alias meb="mix escript.build"
+alias mps="mix phoenix.server"
 alias mt="mix test"
 alias n="npm"
 alias nd="node"

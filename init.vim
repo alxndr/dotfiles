@@ -25,6 +25,11 @@ set   tabstop=2
 set   wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
 set nowrap
 
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 call plug#begin("~/.config/nvim/plugged")
 Plug        'bling/vim-airline'             " status line
 Plug  'vim-airline/vim-airline-themes'      " themes

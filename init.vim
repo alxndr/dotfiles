@@ -96,6 +96,9 @@ let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section
 let g:airline_section_y = 0 " hide fileencoding, fileformat section
 
 let g:ctrlp_show_hidden=1
+let g:ctrlp_custom_ignore = {
+      \ 'dir': '\v[\/](coverage|docs|node_modules|lib|vendor|\.git)$'
+      \ }
 
 "
 " mappings

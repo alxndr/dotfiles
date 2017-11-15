@@ -8,7 +8,7 @@ CASE_SENSITIVE="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git git-flow-completion mix rails ruby)
+plugins=(git git-flow-completion mix ruby)
 
 source $ZSH/oh-my-zsh.sh
 

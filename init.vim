@@ -83,7 +83,7 @@ augroup END
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " jbuilder files use ruby highlighting
-au BufNewFile,BufRead *.jbuilder set ft=ruby
+autocmd BufNewFile,BufRead *.jbuilder set ft=ruby
 
 let g:deoplete#enable_at_startup=1
 

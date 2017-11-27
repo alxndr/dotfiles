@@ -15,7 +15,10 @@
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-private-snippets-directory nil)
      better-defaults
      colors
      dash
@@ -294,7 +297,7 @@ layers configuration."
  '(json-reformat:indent-width 2)
  '(projectile-globally-ignored-directories
    (quote
-    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "docs")))
+    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "docs" "public/vendor/")))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
 	 (quote

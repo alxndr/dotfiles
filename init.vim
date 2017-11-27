@@ -61,7 +61,8 @@ Plug     'noprompt/vim-yardoc'              " syntax hl: yard (in ruby)
 call plug#end()
 
 let g:solarized_termcolors = 256
-"colorscheme solarized
+set background=dark
+colorscheme solarized
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
@@ -89,7 +90,7 @@ let g:deoplete#enable_at_startup=1
 " netrw: tree display
 let g:netrw_liststyle=3
 
-let g:airline_theme='simple'
+let g:airline_theme='distinguished'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 0 " hide git change summary
 let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section

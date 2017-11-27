@@ -197,3 +197,24 @@ nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:n
 " Enter inserts newline below cursor
 " http://vi.stackexchange.com/a/9720/67
 nnoremap <buffer> <cr> :<C-U>call append('.', repeat([''],v:count1))<cr>
+
+
+"
+" per-directory settings...
+"
+
+function! SetupEnvironment()
+  let l:path = expand('%:p')
+  " nr: set noexpandtab shiftwidth=2 tabstop=2; unset softtabstop
+  if l:path =~ '/Users/alexanderquine/workspace/br/nodereport'
+    setlocal noexpandtab shiftwidth=2 tabstop=2
+    if findfile('.eslintrc', '.;') ==# ''
+      let g:neomake_javascript_enabled_makers = ['eslint']
+      "let g:neomake_jsx_enabled_makers = ['eslint']
+    endif
+    " ...and set .js files to be React mode, & linted by ESLint
+  "else
+  "  setlocal expandtab smarttab textwidth=0
+  endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()

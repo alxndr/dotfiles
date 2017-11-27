@@ -67,6 +67,11 @@ colorscheme solarized
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
+" hide line numbers in Terminal mode...
+" TODO this is broken https://github.com/myusuf3/numbers.vim/issues/70
+"autocmd TermOpen * setlocal norelativenumber
+"autocmd TermOpen * setlocal nonumber
+
 " vim-grepper config...
 " gs is a verb to open Grepper for the selection (e.g. gsi"):
 nmap gs <plug>(GrepperOperator)

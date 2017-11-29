@@ -203,17 +203,6 @@ nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:n
 " http://vi.stackexchange.com/a/9720/67
 nnoremap <buffer> <cr> :<C-U>call append('.', repeat([''],v:count1))<cr>
 
-" highlight git merge conflict markers as TODOs
-" h/t https://vimrcfu.com/snippet/177
-autocmd! BufReadPost,BufNewFile * match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
-" https://stackoverflow.com/a/30552423/303896
-"augroup vimrc_todo
-"  au!
-"  au Syntax * syn match MyTodo /\v<(FIXME|NOTE|TODO|OPTIMIZE|XXX):/
-"     \ containedin=.*Comment,vimCommentTitle
-"augroup END
-"hi def link MyTodo Todo
-
 
 "
 " per-directory settings...
@@ -232,5 +221,8 @@ function! SetupEnvironment()
   "else
   "  setlocal expandtab smarttab textwidth=0
   endif
+  " highlight git merge conflict markers as TODOs
+  " h/t https://vimrcfu.com/snippet/177
+  match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()

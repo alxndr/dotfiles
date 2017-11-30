@@ -67,6 +67,24 @@ alias gb="git branch --color"
 alias gbb="git bisect bad"
 alias gbg="git bisect good"
 alias gcm="git commit -m"
+unalias gco # oh-my-zsh aliases this
+      gco() {
+        if [[ "$1" = "." ]]; then
+          echo "\t*************"
+          echo "\t** Danger! **"
+          echo "\t*************"
+          echo -n "REALLY \`git checkout .\` ?? that's sorta like \`git reset --hard HEAD\`... [N/y]: "
+          read BOOL_CONTINUE
+          if echo "$BOOL_CONTINUE" | grep -iq "^y"; then
+            git checkout "$1"
+          else
+            echo "Cancelling..."
+            return 1
+          fi
+        else
+          git checkout "$1"
+        fi
+      }
 alias gcompare="git show-branch \$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD) origin/\$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD)"
 alias gcv="git commit -v"
 alias gcav="git commit -av"

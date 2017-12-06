@@ -37,7 +37,8 @@ Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter
 Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
 Plug  'altercation/vim-colors-solarized'    " color scheme
-Plug     'ctrlpvim/ctrlp.vim'               " file finder; ctags navigator
+Plug       'hail2u/vim-css3-syntax'         " syntax hl: css
+Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
@@ -93,6 +94,14 @@ augroup neomake
   autocmd BufRead,BufWrite *.css,*.scss  :Neomake
 augroup END
 
+" css files need hyphen to be a word char
+" h/t hail2u/vim-css3-syntax
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+autocmd BufNewFile,BufRead *.scss set ft=css
+
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
@@ -109,7 +118,7 @@ let g:deoplete#enable_at_startup=1
 " netrw: tree display
 let g:netrw_liststyle=3
 
-let g:airline_theme='distinguished'
+let g:airline_theme='simple'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 0 " hide git change summary
 let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section
@@ -119,6 +128,18 @@ let g:ctrlp_show_hidden=1
 let g:ctrlp_custom_ignore = {
       \ 'dir': '\v[\/](coverage|docs|node_modules|lib|vendor|\.git)$'
       \ }
+
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+else
+  " ignore files in .gitignore
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+endif
+
+set wildignore+=*/.git/*,*/tmp/*,*.swp
+
 
 "
 " mappings
@@ -177,7 +198,8 @@ nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
 
 " buffer list
-nnoremap <Leader><Leader> :buffers<CR>:b 
+nnoremap <Leader><Leader> :buffers<CR>:buffer 
+nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " comment stuff
 nnoremap <C-\> :TComment<CR>
@@ -191,6 +213,8 @@ map <Leader>j :GitGutterNextHunk<CR>
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>d :Bdelete<CR>
+" let's see which one I use more...
 
 " Esc-Esc in terminal buffer to exit insert mode
 tnoremap <Esc><Esc> <C-\><C-n>

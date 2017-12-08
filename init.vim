@@ -55,6 +55,7 @@ Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
 Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
 Plug         'kana/vim-textobj-user'        " custom text objs
+Plug       'reedes/vim-textobj-quote'       " text objs for quotation marks, plus transformations
 Plug  'whatyouhide/vim-textobj-xmlattr'     " text objs for xml element attrs
 Plug 'jszakmeister/vim-togglecursor'        " change cursor in insert mode
 Plug        'tpope/vim-vinegar'             " netrw enhancer
@@ -67,6 +68,13 @@ colorscheme solarized
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
+
+augroup textobj_quote
+  autocmd FileType * call textobj#quote#init({'educate': 0})
+augroup END
+vmap <silent> <leader>qc <Plug>ReplaceWithCurly
+vmap <silent> <leader>qs <Plug>ReplaceWithStraight
+
 
 " hide line numbers in Terminal mode...
 " TODO this is broken https://github.com/myusuf3/numbers.vim/issues/70

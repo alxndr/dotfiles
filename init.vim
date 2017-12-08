@@ -46,6 +46,7 @@ Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
 Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } " file contents searcher
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
+Plug          'mxw/vim-jsx'                 " syntax hl: JSX
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars
 Plug   'benekastah/neomake'                 " job runner
@@ -86,6 +87,11 @@ augroup END
 
 " json files use js highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript
+
+" tweak how JS template literals are highlighted (...?)
+" h/t @jeromecovington https://github.com/pangloss/vim-javascript/issues/242#issuecomment-343561923
+let g:jsx_ext_required = 0
+
 
 " jbuilder files use ruby highlighting
 autocmd BufNewFile,BufRead *.jbuilder set ft=ruby
@@ -222,7 +228,7 @@ function! SetupEnvironment()
     setlocal noexpandtab shiftwidth=2 tabstop=2
     if findfile('.eslintrc', '.;') ==# ''
       let g:neomake_javascript_enabled_makers = ['eslint']
-      "let g:neomake_jsx_enabled_makers = ['eslint']
+      let g:neomake_jsx_enabled_makers = ['eslint']
     endif
     " ...and set .js files to be React mode, & linted by ESLint
   "else

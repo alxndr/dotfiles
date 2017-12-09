@@ -66,6 +66,7 @@ call plug#end()
 let g:solarized_termcolors = 256
 set background=dark
 colorscheme solarized
+highlight Folded ctermbg=black ctermfg=white
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn

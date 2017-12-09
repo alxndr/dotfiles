@@ -51,6 +51,7 @@ Plug          'mxw/vim-jsx'                 " syntax hl: JSX
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars
 Plug   'benekastah/neomake'                 " job runner
+Plug      'ipod825/vim-netranger', { 'do': ':UpdateRemotePlugins' } " file navigator
 Plug      'myusuf3/numbers.vim'             " smart line numbers
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
@@ -212,6 +213,9 @@ map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exc
 map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
+" revert current hunk to git HEAD
+map <Leader>u :GitGutterUndoHunk
+
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>d :Bdelete<CR>
@@ -267,5 +271,8 @@ function! SetupEnvironment()
   "else
   "  setlocal expandtab smarttab textwidth=0
   endif
+  " highlight git merge conflict markers as TODOs
+  " h/t https://vimrcfu.com/snippet/177
+  match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()

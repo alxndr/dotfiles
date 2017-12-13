@@ -4,6 +4,8 @@ Nothin' to see here but some invisible files.
 
 Check out the repo, then either `ln -s workspace/dotfiles/[...]` into `~` or see if `./link_dotfiles.sh` still works...
 
+Also `brew install neovim` and `ln -s workkspace/dotfiles/init.vim` into `~/.config/nvim/`.
+
 If trying to use vim, also have to:
 
     cd dotfiles/ \
@@ -15,7 +17,13 @@ If trying to use vim, also have to:
 
 ## os x settings
 
-(as of OS X 10.10.5)
+### for OS X 10.12
+
+* Dvorak keyboard
+* Karabiner
+* ...
+
+### for OS X 10.10.5
 
 * Dvorak keyboard:
   * System Preferences > Keyboard > Input Sources, `+` button, English > Dvorak

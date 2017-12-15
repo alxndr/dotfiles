@@ -53,7 +53,7 @@ alias rss="rescue rails server"
 
 # rake
 alias r="rake" # overrides zsh's builtin shortcut but who cares
-alias rT="rake -T"
+alias rT="rake --tasks"
 alias rdm="rake db:migrate db:test:prepare"
 alias rdmp="rake db:migrate db:test:prepare parallel:prepare"
 alias rj="rake jasmine"
@@ -61,8 +61,8 @@ alias rjc="rake jasmine:ci"
 alias rps="rake parallel:spec"
 
 # git
-alias gA="git add -A"
-alias gap="git add -p"
+alias gA="git add --all"
+alias gap="git add --patch"
 alias gb="git branch --color"
 alias gbb="git bisect bad"
 alias gbg="git bisect good"

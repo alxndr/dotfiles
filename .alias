@@ -62,6 +62,7 @@ alias rps="rake parallel:spec"
 
 # git
 alias gA="git add --all"
+alias gae="git add --edit"
 alias gap="git add --patch"
 alias gb="git branch --color"
 alias gbb="git bisect bad"

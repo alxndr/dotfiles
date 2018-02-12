@@ -67,7 +67,10 @@ call plug#end()
 let g:solarized_termcolors = 256
 set background=dark
 colorscheme solarized
-highlight Folded ctermbg=black ctermfg=white
+"highlight Folded ctermbg=black ctermfg=white " this only works on bigmac
+
+" tweak how folds look
+set fillchars=fold:\ 
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
@@ -161,7 +164,7 @@ map Y y$
 nnoremap K m`"="\n"<CR>p``
 
 " insert newline below with Enter
-"nnoremap <CR> :<C-U>call append('.',         repeat([''],v:count1))<CR>
+nnoremap <CR> :<C-U>call append('.',         repeat([''],v:count1))<CR>
 "nnoremap <S-CR> :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
 "nnoremap  :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
 
@@ -214,7 +217,7 @@ map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
 " revert current hunk to git HEAD
-map <Leader>u :GitGutterUndoHunk
+map <Leader>u :GitGutterRevertHunk
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
@@ -249,10 +252,15 @@ nnoremap <buffer> <cr> :<C-U>call append('.', repeat([''],v:count1))<cr>
 " highlight git merge conflict markers as TODOs
 " h/t https://vimrcfu.com/snippet/177
 match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
+
 " jump to next/previous merge conflict marker
 " h/t https://vimrcfu.com/snippet/177
 "nnoremap <silent> ]c /\v^(\<\|\\\|\|\=\|\>){7}([^=].+)?$<CR>
 "nnoremap <silent> [c ?\v^(\<\|\\|\|\=\|\>){7}([^=].+)\?$<CR>
+
+" highlight pending tests as TODOs
+match Todo '\<xdescribe\>\|\<xit\>'
+
 
 "
 " per-directory settings...

@@ -203,7 +203,7 @@ nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
 
 " buffer list
-nnoremap <Leader><Leader> :buffers<CR>:buffer 
+nnoremap <Leader><Leader> :buffers<CR>:b
 nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " comment stuff
@@ -221,8 +221,9 @@ map <Leader>u :GitGutterRevertHunk
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>
-nnoremap <Leader>d :Bdelete<CR>
-" let's see which one I use more...
+
+" \t to split open a terminal buffer
+nnoremap <Leader>t :sp term://zsh<CR>A
 
 " Esc-Esc in terminal buffer to exit insert mode
 tnoremap <Esc><Esc> <C-\><C-n>

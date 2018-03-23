@@ -52,7 +52,6 @@ Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars
 Plug   'benekastah/neomake'                 " job runner
 Plug      'ipod825/vim-netranger', { 'do': ':UpdateRemotePlugins' } " file navigator
-Plug      'myusuf3/numbers.vim'             " smart line numbers
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
 Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
@@ -83,9 +82,12 @@ vmap <silent> <leader>qs <Plug>ReplaceWithStraight
 
 
 " hide line numbers in Terminal mode...
-" TODO this is broken https://github.com/myusuf3/numbers.vim/issues/70
-"autocmd TermOpen * setlocal norelativenumber
-"autocmd TermOpen * setlocal nonumber
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " vim-grepper config...
 " gs is a verb to open Grepper for the selection (e.g. gsi"):

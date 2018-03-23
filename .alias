@@ -104,8 +104,7 @@ alias gp="git pull"
         fi
         git push $1 $GIT_BRANCH:master
       }
-alias gpr="gcompare && git pull --rebase"
-alias grevert="git revert --hard HEAD"
+alias greset="git reset --hard HEAD"
 alias gs="git status --short"
 
 # bundle

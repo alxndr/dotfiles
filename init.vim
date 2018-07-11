@@ -216,8 +216,8 @@ nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
 
 " buffer list
-nnoremap <Leader><Leader> :buffers<CR>:b
-nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader><Leader> :CtrlPBuffer<CR>
+nnoremap <Leader>b :buffers<CR>:b
 
 " comment stuff
 nnoremap <C-\> :TComment<CR>

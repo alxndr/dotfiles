@@ -13,7 +13,6 @@ set   laststatus=2
 set   lazyredraw
 set   list listchars=tab:⋮\ ,trail:·,nbsp:⎵,extends:⋯
 set   mouse=
-set   number
 set   scrolloff=2
 set   shell=zsh
 set   shiftwidth=2
@@ -171,7 +170,7 @@ map Y y$
 " opposite of J: inserts newline below current line
 nnoremap K m`"="\n"<CR>p``
 
-" insert newline below with Enter
+" Enter inserts newline below current line
 nnoremap <CR> :<C-U>call append('.',         repeat([''],v:count1))<CR>
 "nnoremap <S-CR> :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
 "nnoremap  :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
@@ -196,7 +195,7 @@ nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
 
 " splits navigation
-nnoremap <C-h> <C-w>h " TODO this is broken https://github.com/neovim/neovim/issues/2048
+nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
@@ -217,8 +216,6 @@ nnoremap <Leader>b :CtrlPBuffer<CR>
 " comment stuff
 nnoremap <C-\> :TComment<CR>
 
-" create tags file
-map <Leader>ct :!/usr/local/bin/ctags --recurse -f .git/tags --exclude=pkg --exclude=.git --exclude=coverage --exclude=jscoverage .<CR>
 
 " jump to next/prev edited area
 map <Leader>k :GitGutterPrevHunk<CR>
@@ -239,24 +236,12 @@ tnoremap <Esc><Esc> <C-\><C-n>
 " reformat, keeping cursor position
 map <F7> m`gg=G``
 
-" save a protected file. thanks to mattikus https://news.ycombinator.com/item?id=9397891
+" save a protected file.
+" h/t mattikus https://news.ycombinator.com/item?id=9397891
 cmap w!! w !sudo tee % >/dev/null
-
-" Git
-" view last diff
-command GitLastDiff !git log -1 -u
-map gld :GitLastDiff<CR>
-
-" read last commit message
-command GitLastMessage :read !git log -1
-map glm :GitLastMessage<CR>
 
 " \e to convert :smiley_cat: to 😸
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
-
-" Enter inserts newline below cursor
-" http://vi.stackexchange.com/a/9720/67
-nnoremap <buffer> <cr> :<C-U>call append('.', repeat([''],v:count1))<cr>
 
 " highlight git merge conflict markers as TODOs
 " h/t https://vimrcfu.com/snippet/177

@@ -222,6 +222,9 @@ nnoremap <Leader>b :buffers<CR>:b
 " comment stuff
 nnoremap <C-\> :TComment<CR>
 
+" Ctrl-/ searches for word under cursor
+" https://robots.thoughtbot.com/faster-grepping-in-vim
+nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " jump to next/prev edited area
 map <Leader>k :GitGutterPrevHunk<CR>

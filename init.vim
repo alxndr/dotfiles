@@ -80,12 +80,18 @@ vmap <silent> <leader>qc <Plug>ReplaceWithCurly
 vmap <silent> <leader>qs <Plug>ReplaceWithStraight
 
 
-" hide line numbers in Terminal mode...
-set number relativenumber
+" line numbers: relative & absolute; hidden in terminals
+set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  " autocmd TermOpen * setlocal norelativenumber
+  " autocmd TermOpen * setlocal nonumber
+augroup END
+augroup TerminalStuff " https://github.com/onivim/oni/issues/962
+  " autocmd! " Clear old autocommands
+  autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
 " vim-grepper config...

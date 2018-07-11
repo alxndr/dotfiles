@@ -9,7 +9,6 @@ alias lsd="find . -type d -depth 1"
 alias l="ls -Al"
 alias ll="ls -AGl"
 alias ln="ln -v"
-alias m="mail -f /var/mail/$(whoami)"
 alias tjf="tar -jxvf"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
@@ -108,7 +107,6 @@ alias greset="git reset --hard HEAD"
 alias gs="git status --short"
 
 # bundle
-alias b="bundle"
 alias brake="bundle exec rake"
 alias bx="bundle exec"
 
@@ -123,7 +121,6 @@ alias dmenv="eval \"\$(docker-machine env default)\""
 alias dr="npm run docker:rsync && npm run docker:puma:start"
 
 # dev-y
-unalias gr # grep
 unalias rg # rails regenerate
 alias ack="echo don\'t you mean $ rg"
 alias actl="apachectl"
@@ -146,7 +143,6 @@ alias jn="jasmine-node"
 alias jnc="jn --coffee"
 alias jsw="jekyll serve --watch"
 alias local_node="heroku ps:scale web=0 && npm start; heroku ps:scale web=1"
-unalias m
 alias m="mix"
 alias meb="mix escript.build"
 alias mps="mix phoenix.server"

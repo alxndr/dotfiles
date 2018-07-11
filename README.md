@@ -21,6 +21,7 @@ If trying to use vim, also have to:
 
 * Dvorak keyboard
 * Karabiner
+* Chrome: Warn Before Quitting
 * ...
 
 ### for OS X 10.10.5

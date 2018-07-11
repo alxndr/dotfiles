@@ -126,6 +126,7 @@ alias ack="echo don\'t you mean $ rg"
 alias actl="apachectl"
 alias ag="echo don\'t you mean $ rg"
 alias again="~ && -" # so rvm reloads your .ruby-version file
+alias b="brew"
       branch() { SEARCHTERM=$1; git branch | grep $SEARCHTERM | sed -e 's/^\* //' | awk '{ if (NR==1 || $1 == searchterm) result = $1 } END{ if (result) { print result } else { exit 1 } }' searchterm=$SEARCHTERM }
       catenv() {
         [ -r .env ] && env $(grep -E "^(export )?[A-Z]" .env | xargs) $@
@@ -149,7 +150,7 @@ alias mps="mix phoenix.server"
 alias mt="mix test"
 alias n="npm"
 alias nd="node"
-alias ndd="NODE_ENV=dev nodemon"
+alias ndd="nodemon"
 alias ni="npm install"
 alias niD="npm install --save-dev"
 alias niS="npm install --save"

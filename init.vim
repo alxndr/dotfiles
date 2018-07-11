@@ -22,7 +22,7 @@ set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
-set   wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
+set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*
 set nowrap
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -131,18 +131,24 @@ let g:airline#extensions#hunks#enabled = 0 " hide git change summary
 let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section
 let g:airline_section_y = 0 " hide fileencoding, fileformat section
 
-let g:ctrlp_show_hidden=1
 let g:ctrlp_custom_ignore = {
-      \ 'dir': '\v[\/](coverage|docs|node_modules|lib|vendor|\.git)$'
-      \ }
+\ 'dir': '\v[\/](\.git|\.hg|\.svn|coverage|bower_components|dist|docs|log|node_modules|project_files|vendor)$',
+\ 'file': '\v[\/](\.exe\|\.so\|\.dll\|\.pyc)$'
+\ }
 
 if executable('rg')
   set grepprg=rg\ --color=never
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 else
-  " ignore files in .gitignore
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+  " use Git to list files, so that the .gitignore is used to filter out things
+  let g:ctrlp_user_command = {
+  \ 'types': {
+  \   1: ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+  \   },
+  \ 'fallback': 'find %s -type f'
+  \ }
+  let g:ctrlp_clear_cache_on_exit = 0
 endif
 
 set wildignore+=*/.git/*,*/tmp/*,*.swp

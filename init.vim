@@ -42,7 +42,7 @@ Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug      'terryma/vim-expand-region'       " grow visual selections
-Plug        'tpope/vim-fugitive'            " git wrapper
+"Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
 Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } " file contents searcher
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
@@ -50,7 +50,7 @@ Plug          'mxw/vim-jsx'                 " syntax hl: JSX
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
 Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars
 Plug   'benekastah/neomake'                 " job runner
-Plug      'ipod825/vim-netranger', { 'do': ':UpdateRemotePlugins' } " file navigator
+Plug         'vifm/neovim-vifm',            " file navigator
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
 Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
@@ -65,7 +65,6 @@ call plug#end()
 let g:solarized_termcolors = 256
 set background=dark
 colorscheme solarized
-"highlight Folded ctermbg=black ctermfg=white " this only works on bigmac
 
 " tweak how folds look
 set fillchars=fold:\ 
@@ -78,7 +77,6 @@ augroup textobj_quote
 augroup END
 vmap <silent> <leader>qc <Plug>ReplaceWithCurly
 vmap <silent> <leader>qs <Plug>ReplaceWithStraight
-
 
 " line numbers: relative & absolute; hidden in terminals
 set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
@@ -105,6 +103,8 @@ augroup neomake
   autocmd BufRead,BufWrite *.ex,*.exs    :Neomake
   autocmd BufRead,BufWrite *.css,*.scss  :Neomake
 augroup END
+
+autocmd StdinReadPre * let s:std_in=1
 
 " css files need hyphen to be a word char
 " h/t hail2u/vim-css3-syntax

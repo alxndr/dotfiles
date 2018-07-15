@@ -2,7 +2,7 @@ IEx.configure(
   alive_prompt: "%prefix(%node):%counter>",
   colors: [eval_result: [:green]],
   default_prompt: "%prefix:%counter>",
-  inspect: [pretty: true, char_lists: :as_lists],
+  inspect: [pretty: true, charlists: :as_lists],
 )
 
 defmodule EctoHelpers do

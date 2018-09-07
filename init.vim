@@ -32,6 +32,7 @@ endif
 call plug#begin("~/.config/nvim/plugged")
 Plug        'bling/vim-airline'             " status line
 Plug  'vim-airline/vim-airline-themes'      " themes
+Plug         'w0rp/ale'                     " linting engine
 Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter
 Plug  'altercation/vim-colors-solarized'    " color scheme
@@ -46,7 +47,6 @@ Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] 
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug          'mxw/vim-jsx'                 " syntax hl: JSX
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
-Plug   'benekastah/neomake'                 " job runner
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
 Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
@@ -68,6 +68,22 @@ set fillchars=fold:\
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
+" linting config
+let g:ale_fixers = {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\} " Do not lint or fix minified files.
+let g:ale_pattern_options_enabled = 1 " If you configure g:ale_pattern_options outside of vimrc, you need this.
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '☛'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_column_always = 1
+
 " line numbers: relative & absolute; hidden in terminals
 set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
 augroup numbertoggle
@@ -87,12 +103,6 @@ augroup END
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
-augroup neomake
-  autocmd BufRead,BufWrite *.coffee,*.js :Neomake
-  autocmd BufRead,BufWrite *.erb,*.rb    :Neomake
-  autocmd BufRead,BufWrite *.ex,*.exs    :Neomake
-  autocmd BufRead,BufWrite *.css,*.scss  :Neomake
-augroup END
 
 autocmd StdinReadPre * let s:std_in=1
 
@@ -263,11 +273,6 @@ function! SetupEnvironment()
   let l:path = expand('%:p')
   if l:path =~ '/Users/alexanderquine/workspace/br/nodereport'
     setlocal noexpandtab shiftwidth=2 tabstop=2
-    if findfile('.eslintrc', '.;') ==# ''
-      let g:neomake_javascript_enabled_makers = ['eslint']
-      let g:neomake_jsx_enabled_makers = ['eslint']
-    endif
-    " ...and set .js files to be React mode, & linted by ESLint
   "else
   "  setlocal expandtab smarttab textwidth=0
   endif

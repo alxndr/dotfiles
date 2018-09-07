@@ -34,23 +34,19 @@ Plug        'bling/vim-airline'             " status line
 Plug  'vim-airline/vim-airline-themes'      " themes
 Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter
-Plug       'kchmck/vim-coffee-script'       " syntax hl: coffeescript
 Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug       'hail2u/vim-css3-syntax'         " syntax hl: css
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
 Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
 Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
-Plug      'terryma/vim-expand-region'       " grow visual selections
-"Plug        'tpope/vim-fugitive'            " git wrapper
+Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
 Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } " file contents searcher
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug          'mxw/vim-jsx'                 " syntax hl: JSX
 Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
-Plug     'mustache/vim-mustache-handlebars' " syntax hl: handlebars
 Plug   'benekastah/neomake'                 " job runner
-Plug         'vifm/neovim-vifm',            " file navigator
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
 Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
@@ -71,12 +67,6 @@ set fillchars=fold:\
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
-
-augroup textobj_quote
-  autocmd FileType * call textobj#quote#init({'educate': 0})
-augroup END
-vmap <silent> <leader>qc <Plug>ReplaceWithCurly
-vmap <silent> <leader>qs <Plug>ReplaceWithStraight
 
 " line numbers: relative & absolute; hidden in terminals
 set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
@@ -271,7 +261,6 @@ match Todo '\<xdescribe\>\|\<xit\>'
 
 function! SetupEnvironment()
   let l:path = expand('%:p')
-  " nr: set noexpandtab shiftwidth=2 tabstop=2; unset softtabstop
   if l:path =~ '/Users/alexanderquine/workspace/br/nodereport'
     setlocal noexpandtab shiftwidth=2 tabstop=2
     if findfile('.eslintrc', '.;') ==# ''

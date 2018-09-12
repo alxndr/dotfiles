@@ -131,6 +131,19 @@ alias b="brew"
       catenv() {
         [ -r .env ] && env $(grep -E "^(export )?[A-Z]" .env | xargs) $@
       }
+      decode_jwt() {
+        if [[ -n "$1" ]]; then
+          JWT=$1
+        else
+          read JWT
+        fi
+        JWT_SPLIT=(${(s:.:)JWT}) # split on periods
+        for JWT_PIECE in $JWT_SPLIT; do
+          echo
+          echo $JWT_PIECE | base64 -D
+          echo
+        done
+      }
 alias eau="mix test && eautotest"
 alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{config,test}.exs | entr -d mix test"
 alias gx="gigalixir"

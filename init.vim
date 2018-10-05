@@ -72,11 +72,16 @@ autocmd ColorScheme * highlight clear SignColumn
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'json': ['jsonlint'],
+\}
 let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \} " Do not lint or fix minified files.
 let g:ale_pattern_options_enabled = 1 " If you configure g:ale_pattern_options outside of vimrc, you need this.
+let g:ale_linters_explicit = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '☛'
 let g:ale_lint_on_enter = 0
@@ -115,7 +120,7 @@ augroup END
 autocmd BufNewFile,BufRead *.scss set ft=css
 
 " json files use js highlighting
-autocmd BufNewFile,BufRead *.json set ft=javascript
+" autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " tweak how JS template literals are highlighted (...?)
 " h/t @jeromecovington https://github.com/pangloss/vim-javascript/issues/242#issuecomment-343561923

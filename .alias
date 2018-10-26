@@ -61,12 +61,10 @@ alias rps="rake parallel:spec"
 
 # git
 alias gA="git add --all"
-alias gae="git add --edit"
 alias gap="git add --patch"
 alias gb="git branch --color"
 alias gbb="git bisect bad"
 alias gbg="git bisect good"
-alias gcm="git commit -m"
 alias gcompare="git show-branch \$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD) origin/\$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD)"
 alias gcv="git commit -v"
 alias gcav="git commit -av"
@@ -81,7 +79,6 @@ alias gdd="git diff"
       }
 alias gds="gd --staged"
 alias gh="giturl | xargs open"
-unalias ghb
       ghb() {
         BASE=$(giturl)
         BRANCH=$(git branch-name)
@@ -103,25 +100,17 @@ alias gp="git pull"
         fi
         git push $1 $GIT_BRANCH:master
       }
-alias greset="git reset --hard HEAD"
-alias gs="git status --short"
-
-# bundle
-alias brake="bundle exec rake"
-alias bx="bundle exec"
-
-# rspec
-alias rspec="rspec -c"
+alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
+      gri() { git rebase --interactive "HEAD~$1" }
+alias s="git status --short"
 
 # docker
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
 alias dmenv="eval \"\$(docker-machine env default)\""
-alias dr="npm run docker:rsync && npm run docker:puma:start"
 
 # dev-y
-unalias rg # rails regenerate
 alias ack="echo don\'t you mean $ rg"
 alias actl="apachectl"
 alias ag="echo don\'t you mean $ rg"
@@ -172,5 +161,4 @@ alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
       report() { $@ && say "done" || say "error" }
 alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-      t() { if [[ -f package.json ]] then; npm test; fi }
 alias us="bundle exec unicorn -c tmp/unicorn.rb"

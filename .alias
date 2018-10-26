@@ -87,6 +87,7 @@ alias gh="giturl | xargs open"
 alias giturl="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//'"
 unalias gl
       gl() { if [[ -z "$1" ]]; then git lg; else git lg HEAD...HEAD@{$1}; fi }
+alias glu="git log -u"
 alias gm="git mergetool"
 alias gp="git pull"
       gphb() { # git push heroku branch
@@ -135,6 +136,14 @@ alias b="brew"
       }
 alias eau="mix test && eautotest"
 alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{config,test}.exs | entr -d mix test"
+      extract_urls() {
+        [[ -z "$1" ]] && echo "Usage: spider url [depth=5]" && return 1
+        lynx \
+          -dump \
+          -listonly \
+          $1 \
+        | awk '/^ *[0-9]/ {print $2}'
+      }
 alias gx="gigalixir"
 alias h="heroku"
 alias hdn="heroku ps:scale web=0"
@@ -156,9 +165,11 @@ alias ni="npm install"
 alias niD="npm install --save-dev"
 alias niS="npm install --save"
 alias nr="npm run -s"
-alias nt="find . -name \"*.js\" -not -path \"./node_modules/*\" -not -name \".#*\" | entr -d sh -c 'echo detected file change\; running tests... && npm run -s test:js'"
+alias nt="find . -name \"*.js\" -not -path \"./node_modules/*\" -not -name \".#*\" | entr -d sh -c 'echo detected file change\; running tests... && npm run -s test'"
 alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
+alias pryrails="pry -r ./config/environment"
       report() { $@ && say "done" || say "error" }
 alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias us="bundle exec unicorn -c tmp/unicorn.rb"
+alias y="yarn"

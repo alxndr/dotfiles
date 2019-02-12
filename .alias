@@ -15,11 +15,13 @@ alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[$2]++}END{for(i in a){print a[i] \' \' i}}' | sort -rn | head" # https://coderwall.com/p/o5qijw
 alias tzf="tar -zxvf"
       until_fail() { while [ "$(echo $?)" -eq "0" ]; do $@; done }
+alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 # todo: alias wtf= look for something like /filename:## in last output and edit it
 # $ screencapture -o - | ocr? and try to find "wtf" and then look around what's above and to the right? for a filename(:#|"line")
 
 # mac-y
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
+alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant" # h/t @GregMefford
       notify() { osascript -e "display notification \"$2\" with title \"$1\"" }
 alias nv="nvim"
 alias tac="tail -r"
@@ -101,6 +103,13 @@ alias gp="git pull"
         fi
         git push $1 $GIT_BRANCH:master
       }
+      gpop() {
+        if [[ -z "$1" ]]; then
+          git stash pop
+        else
+          git stash pop stash@{$1}
+        fi
+      }
 alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
 alias s="git status --short"
@@ -110,6 +119,14 @@ alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
 alias dmenv="eval \"\$(docker-machine env default)\""
+      docker-scrub() {
+        docker rm $(docker ps -q -f 'status=exited')
+        docker rmi $(docker images -f "dangling=true" -q)
+        docker volume rm $(docker volume ls -qf dangling=true)
+        docker image prune
+        docker container prune
+        docker volume prune
+      }
 
 # dev-y
 alias ack="echo don\'t you mean $ rg"

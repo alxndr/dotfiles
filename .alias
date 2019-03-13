@@ -3,19 +3,20 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="cat"
+alias f="find"
 alias gr="grep"
 alias ls="ls -F"
 alias lsd="find . -type d -depth 1"
 alias l="ls -Al"
 alias ll="ls -AGl"
 alias ln="ln -v"
-alias tjf="tar -jxvf"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
-alias tophistory="history | awk '{a[$2]++}END{for(i in a){print a[i] \' \' i}}' | sort -rn | head" # https://coderwall.com/p/o5qijw
+alias tophistory="history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
 alias tzf="tar -zxvf"
-      until_fail() { while [ "$(echo $?)" -eq "0" ]; do $@; done }
+      until_fail() { while [ "$(echo $?)" -eq "0" ]; do $@; done } # TODO This is broken
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
+alias wh="which"
 # todo: alias wtf= look for something like /filename:## in last output and edit it
 # $ screencapture -o - | ocr? and try to find "wtf" and then look around what's above and to the right? for a filename(:#|"line")
 

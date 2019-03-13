@@ -1,5 +1,5 @@
-export EDITOR="nvim"
-export PAGER="less"
+export EDITOR="nvim -u ~/workspace/dotfiles/init.vim"
+export PAGER="more"
 export LESS="-F -R -S -W"
 
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"

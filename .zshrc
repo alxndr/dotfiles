@@ -38,8 +38,6 @@ if [[ -x $(which exenv) ]]; then
   eval "$(exenv init -)"
 fi
 
-export NVIM_TUI_ENABLE_CURSOR_SHAPE=1 # https://github.com/neovim/neovim/issues/2017#issuecomment-75242046
-
 for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do
   [[ -r "$FILE" ]] && source "$FILE"
 done
@@ -50,8 +48,11 @@ if [[ -x $(which npm) ]]; then
   npm set progress=false # https://github.com/npm/npm/issues/11283
 fi
 
-export NVM_DIR="/Users/alexanderquine/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+# TODO replace nvm with fnm https://github.com/Schniz/fnm
+# eval $(fnm env)
+
 if [[ -x $(which npm) ]]; then
   npm set progress=false
 fi

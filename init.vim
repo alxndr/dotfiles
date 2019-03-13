@@ -1,10 +1,9 @@
 set noautochdir
 set   background=dark
-set   showcmd
 set   diffopt+=vertical
 set   expandtab
-set   foldmethod=indent
 set   foldlevelstart=99
+set   foldmethod=indent
 set   hlsearch
 set   ignorecase
 set   incsearch
@@ -27,7 +26,7 @@ set nowrap
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * PlugInstall --sync | source '~/.config/nvim/init.vim'
 endif
 call plug#begin("~/.config/nvim/plugged")
 Plug        'bling/vim-airline'             " status line
@@ -62,6 +61,8 @@ let g:solarized_termcolors = 256
 set background=dark
 colorscheme solarized
 
+let g:ctrlp_show_hidden = 1
+
 " tweak how folds look
 set fillchars=fold:\ 
 
@@ -83,7 +84,7 @@ let g:ale_pattern_options = {
 let g:ale_pattern_options_enabled = 1 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_linters_explicit = 1
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '☛'
+let g:ale_sign_warning = '✦'  " ➜
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -108,7 +109,6 @@ augroup END
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
-
 autocmd StdinReadPre * let s:std_in=1
 
 " css files need hyphen to be a word char
@@ -119,7 +119,10 @@ augroup VimCSS3Syntax
 augroup END
 autocmd BufNewFile,BufRead *.scss set ft=css
 
-" json files use js highlighting
+" other file extensions should use js highlighting
+autocmd BufNewFile,BufRead *.snap set ft=javascript
+autocmd BufNewFile,BufRead *.ts set ft=javascript
+autocmd BufNewFile,BufRead *.tsx set ft=javascript
 " autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " tweak how JS template literals are highlighted (...?)
@@ -222,7 +225,6 @@ nnoremap ,W <C-w>5+
 
 " buffer list
 nnoremap <Leader><Leader> :CtrlPBuffer<CR>
-nnoremap <Leader>b :buffers<CR>:b
 
 " comment stuff
 nnoremap <C-\> :TComment<CR>
@@ -236,7 +238,7 @@ map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
 " revert current hunk to git HEAD
-map <Leader>u :GitGutterRevertHunk
+map <Leader>u :GitGutterUndoHunk
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>

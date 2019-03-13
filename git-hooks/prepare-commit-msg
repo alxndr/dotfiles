@@ -1,6 +1,9 @@
 #!/bin/sh
 
-# save as .git/hooks/prepare-commit-msg and make it executable
+# This will add a JIRA ticket identifier to the commit message template if it
+# can be extracted from the Git branch name. Save this file as
+# .git/hooks/prepare-commit-msg within a repository and make it executable, and
+# then `git commit --verbose` when committing to use the template.
 
 prepend_branch_name() {
   COMMIT_MSG_FILE=$1

@@ -20,7 +20,7 @@ set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
-set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*
+set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*,*/.git/*,*/.idea/*,*/node_modules/*
 set nowrap
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -164,7 +164,6 @@ else
   let g:ctrlp_clear_cache_on_exit = 0
 endif
 
-set wildignore+=*/.git/*,*/tmp/*,*.swp
 
 
 "

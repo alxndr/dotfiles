@@ -90,6 +90,8 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 
+let g:javascript_plugin_jsdoc = 1
+
 " line numbers: relative & absolute; hidden in terminals
 set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
 augroup numbertoggle
@@ -184,9 +186,7 @@ map Y y$
 nnoremap K m`"="\n"<CR>p``
 
 " Enter inserts newline below current line
-nnoremap <CR> :<C-U>call append('.',         repeat([''],v:count1))<CR>
-"nnoremap <S-CR> :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
-"nnoremap  :<C-U>call append(line('.')-1, repeat([''],v:count1))<CR>
+nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
 
 " shift lines vertically
 nnoremap <S-Up> :m-2<CR>
@@ -194,12 +194,12 @@ nnoremap <S-Down> :m+<CR>
 
 " gj, gk: vertical movement through whitespace
 " thanks, WChargin! http://vi.stackexchange.com/a/156/67
-function FloatUp()
+function! FloatUp()
   while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
     norm k
   endwhile
 endfunction
-function FloatDown()
+function! FloatDown()
   while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
     norm j
   endwhile

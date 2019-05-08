@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# git-parents
+# show the parent commints of a merge commit
+
+git show $1 | awk '/Merge:/ { $1 = ""; print; }'

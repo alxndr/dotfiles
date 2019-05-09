@@ -42,6 +42,7 @@ Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
+Plug        'rhysd/git-messenger.vim'       " git commit browser
 Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } " file contents searcher
 Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
 Plug          'mxw/vim-jsx'                 " syntax hl: JSX
@@ -166,6 +167,9 @@ else
   let g:ctrlp_clear_cache_on_exit = 0
 endif
 
+" git-messenger at \m
+let g:git_messenger_no_default_mappings=v:true
+nmap <Leader>m <Plug>(git-messenger)
 
 
 "

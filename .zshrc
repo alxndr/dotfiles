@@ -53,6 +53,10 @@ export NVM_DIR="$HOME/.nvm"
 # TODO replace nvm with fnm https://github.com/Schniz/fnm
 # eval $(fnm env)
 
+if [[ -x $(which ncal) ]]; then
+  ncal
+fi
+
 if [[ -x $(which npm) ]]; then
   npm set progress=false
 fi

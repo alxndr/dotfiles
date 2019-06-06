@@ -1,3 +1,7 @@
+" edit vimrc
+" h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+
 set noautochdir
 set   background=dark
 set   diffopt+=vertical
@@ -191,6 +195,11 @@ nnoremap K m`"="\n"<CR>p``
 
 " Enter inserts newline below current line
 nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
+
+" use + and - to increment/decrement numbers
+" h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
+nnoremap + <C-x>
+nnoremap - <C-a>
 
 " shift lines vertically
 nnoremap <S-Up> :m-2<CR>

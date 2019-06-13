@@ -1,5 +1,4 @@
-" edit vimrc
-" h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+" edit vimrc ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 
 set noautochdir
@@ -10,6 +9,7 @@ set   foldlevelstart=99
 set   foldmethod=indent
 set   hlsearch
 set   ignorecase
+set   inccommand=nosplit
 set   incsearch
 set   iskeyword-=.
 set   laststatus=2
@@ -38,19 +38,17 @@ Plug  'vim-airline/vim-airline-themes'      " themes
 Plug         'w0rp/ale'                     " linting engine
 Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter
+Plug     'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " code completion
 Plug  'altercation/vim-colors-solarized'    " color scheme
-Plug       'hail2u/vim-css3-syntax'         " syntax hl: css
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
-Plug  'elixir-lang/vim-elixir'              " syntax hl: elixir
+Plug 'editorconfig/editorconfig-vim'        " coding style documentor
 Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
 Plug        'rhysd/git-messenger.vim'       " git commit browser
 Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } " file contents searcher
-Plug     'pangloss/vim-javascript'          " syntax hl: javascript (& more)
-Plug          'mxw/vim-jsx'                 " syntax hl: JSX
-Plug   'plasticboy/vim-markdown'            " syntax hl: markdown
+Plug      'sheerun/vim-polyglot'            " syntax highlighting for a bunch of languages
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
 Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
@@ -59,7 +57,6 @@ Plug       'reedes/vim-textobj-quote'       " text objs for quotation marks, plu
 Plug  'whatyouhide/vim-textobj-xmlattr'     " text objs for xml element attrs
 Plug 'jszakmeister/vim-togglecursor'        " change cursor in insert mode
 Plug        'tpope/vim-vinegar'             " netrw enhancer
-Plug     'noprompt/vim-yardoc'              " syntax hl: yard (in ruby)
 call plug#end()
 
 let g:solarized_termcolors = 256
@@ -78,14 +75,14 @@ autocmd ColorScheme * highlight clear SignColumn
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
-let g:ale_linters = {
-\  'javascript': ['eslint'],
-\  'json': ['jsonlint'],
-\}
-let g:ale_pattern_options = {
-\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-\} " Do not lint or fix minified files.
+" let g:ale_linters = {
+" \  'javascript': ['eslint'],
+" \  'json': ['jsonlint'],
+" \}
+" let g:ale_pattern_options = {
+" \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+" \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+" \} " Do not lint or fix minified files.
 let g:ale_pattern_options_enabled = 1 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_linters_explicit = 1
 let g:ale_sign_error = '✗'
@@ -95,7 +92,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 
-let g:javascript_plugin_jsdoc = 1
+" let g:javascript_plugin_jsdoc = 1
 
 " line numbers: relative & absolute; hidden in terminals
 set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
@@ -117,6 +114,7 @@ nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
 autocmd StdinReadPre * let s:std_in=1
+" ...what was that for?
 
 " css files need hyphen to be a word char
 " h/t hail2u/vim-css3-syntax
@@ -124,21 +122,10 @@ augroup VimCSS3Syntax
   autocmd!
   autocmd FileType css setlocal iskeyword+=-
 augroup END
-autocmd BufNewFile,BufRead *.scss set ft=css
-
-" other file extensions should use js highlighting
-autocmd BufNewFile,BufRead *.snap set ft=javascript
-autocmd BufNewFile,BufRead *.ts set ft=javascript
-autocmd BufNewFile,BufRead *.tsx set ft=javascript
-" autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " tweak how JS template literals are highlighted (...?)
 " h/t @jeromecovington https://github.com/pangloss/vim-javascript/issues/242#issuecomment-343561923
 let g:jsx_ext_required = 0
-
-
-" jbuilder files use ruby highlighting
-autocmd BufNewFile,BufRead *.jbuilder set ft=ruby
 
 let g:deoplete#enable_at_startup=1
 
@@ -180,6 +167,9 @@ nmap <Leader>m <Plug>(git-messenger)
 " mappings
 "
 
+" open file with system opener
+nnoremap <Leader>o :!open %<CR><CR>
+
 " don't go all the way to the Escape key
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -202,7 +192,7 @@ nnoremap + <C-x>
 nnoremap - <C-a>
 
 " shift lines vertically
-nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Up> :m-2<CR> " doesn't work...
 nnoremap <S-Down> :m+<CR>
 
 " gj, gk: vertical movement through whitespace
@@ -262,7 +252,7 @@ nnoremap <Leader>t :sp term://zsh<CR>A
 tnoremap <Esc><Esc> <C-\><C-n>
 
 " reformat, keeping cursor position
-map <F7> m`gg=G``
+" map <F7> m`gg=G``
 
 " save a protected file.
 " h/t mattikus https://news.ycombinator.com/item?id=9397891
@@ -275,26 +265,24 @@ nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:n
 " h/t https://vimrcfu.com/snippet/177
 match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 
-" jump to next/previous merge conflict marker
-" h/t https://vimrcfu.com/snippet/177
-"nnoremap <silent> ]c /\v^(\<\|\\\|\|\=\|\>){7}([^=].+)?$<CR>
-"nnoremap <silent> [c ?\v^(\<\|\\|\|\=\|\>){7}([^=].+)\?$<CR>
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" highlight pending tests as TODOs
-match Todo '\<xdescribe\>\|\<xit\>'
-
+" if unprefixed by a count, j/k will respect wrapped lines
+" h/t https://www.hillelwayne.com/post/intermediate-vim/
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
 "
 " per-directory settings...
 "
 
 function! SetupEnvironment()
-  let l:path = expand('%:p')
-  if l:path =~ '/Users/alexanderquine/workspace/br/nodereport'
-    setlocal noexpandtab shiftwidth=2 tabstop=2
-  "else
-  "  setlocal expandtab smarttab textwidth=0
-  endif
   " highlight git merge conflict markers as TODOs
   " h/t https://vimrcfu.com/snippet/177
   match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'

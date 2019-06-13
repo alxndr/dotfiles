@@ -14,6 +14,10 @@ If trying to use vim, also have to:
     && ./install.py --clang-completer \
     && cd -
 
+### specific tools
+
+JavaScripty...
+* [Schniz/fnm]
 
 ## os x settings
 
@@ -78,3 +82,4 @@ If trying to use vim, also have to:
 [iterm2]: https://www.iterm2.com/
 [little-snitch]: https://www.obdev.at/products/littlesnitch/index.html
 [sizeup]: http://www.irradiatedsoftware.com/sizeup/
+[Schniz/fnm]: https://github.com/Schniz/fnm

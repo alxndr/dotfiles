@@ -3,12 +3,14 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="cat"
-alias f="find"
+alias e="exa"
+alias el="exa -aFl"
+alias f="rg --files"
 alias gr="grep"
 alias ls="ls -F"
-alias lsd="find . -type d -depth 1"
-alias l="ls -Al"
-alias ll="ls -AGl"
+alias l="exa -aFl"
+alias ll="exa -aFl"
+alias lsd="exa --list-dirs"
 alias ln="ln -v"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
@@ -17,8 +19,6 @@ alias tzf="tar -zxvf"
       until_fail() { eval "$@"; while [ "$(echo $?)" -eq "0" ]; do eval "$@"; done }
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 alias wh="which"
-# todo: alias wtf= look for something like /filename:## in last output and edit it
-# $ screencapture -o - | ocr? and try to find "wtf" and then look around what's above and to the right? for a filename(:#|"line")
 
 # mac-y
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
@@ -27,40 +27,9 @@ alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant"
 alias nv="nvim"
 alias tac="tail -r"
 
-# rails
-function rc {
-  FLAGS=""
-  if [[ -z "$(gem list pry | grep pry-rails)" ]]; then
-    FLAGS="--irb=$(which pry)"
-  fi
-
-  if [ -e script/rails ]; then
-    script/rails console $FLAGS $@
-  elif [ -e bin/rails ]; then
-    bin/rails console $FLAGS $@
-  else
-    script/console --irb=$(which pry) $@
-  fi
-}
-function rs {
-  if [ -e script/rails ]; then
-    script/rails server $@
-  elif [ -e bin/rails ]; then
-    bin/rails server $@
-  else
-    script/server $@
-  fi
-}
-alias rss="rescue rails server"
-
 # rake
 alias r="rake" # overrides zsh's builtin shortcut but who cares
 alias rT="rake --tasks"
-alias rdm="rake db:migrate db:test:prepare"
-alias rdmp="rake db:migrate db:test:prepare parallel:prepare"
-alias rj="rake jasmine"
-alias rjc="rake jasmine:ci"
-alias rps="rake parallel:spec"
 
 # git
 alias gA="git add --all"
@@ -70,8 +39,6 @@ alias gbb="git bisect bad"
 alias gbg="git bisect good"
 alias gcompare="git show-branch \$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD) origin/\$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD)"
 alias gcv="git commit --verbose --no-verify"
-alias gcav="git commit --all --verbose"
-alias gcAv="git commit -A --verbose"
 alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
 alias gdd="git diff"
       gdiff() {
@@ -135,6 +102,7 @@ alias actl="apachectl"
 alias ag="echo don\'t you mean $ rg"
 alias again="~ && -" # so rvm reloads your .ruby-version file
 alias b="brew"
+alias bl="bundle"
       branch() { SEARCHTERM=$1; git branch | grep $SEARCHTERM | sed -e 's/^\* //' | awk '{ if (NR==1 || $1 == searchterm) result = $1 } END{ if (result) { print result } else { exit 1 } }' searchterm=$SEARCHTERM }
       catenv() {
         [ -r .env ] && env $(grep -E "^(export )?[A-Z]" .env | xargs) $@
@@ -164,14 +132,8 @@ alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{con
       }
 alias gx="gigalixir"
 alias h="heroku"
-alias hdn="heroku ps:scale web=0"
-alias hup="heroku ps:scale web=1"
 alias ism="iex -S mix"
 alias ismp="iex -S mix phx.server"
-alias jn="jasmine-node"
-alias jnc="jn --coffee"
-alias jsw="jekyll serve --watch"
-alias local_node="heroku ps:scale web=0 && npm start; heroku ps:scale web=1"
 alias m="mix"
 alias meb="mix escript.build"
 alias mps="mix phx.server"
@@ -182,9 +144,10 @@ alias ndd="nodemon"
 alias ni="npm install"
 alias niD="npm install --save-dev"
 alias niS="npm install --save"
-alias nr="npm run -s"
-alias nt="find . -name \"*.js\" -not -path \"./node_modules/*\" -not -name \".#*\" | entr -d sh -c 'echo detected file change\; running tests... && npm run -s test'"
+alias nr="npm run --silent"
+alias nt="rg --type js --files . | entr -d sh -c 'echo detected file change\; running tests... && npm run --silent test'"
 alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
+alias nx="npx"
 alias pryrails="pry -r ./config/environment"
       report() { $@ && say "done" || say "error" }
 alias sactl="sudo apachectl"

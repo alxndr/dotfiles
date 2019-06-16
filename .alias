@@ -154,3 +154,16 @@ alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias us="bundle exec unicorn -c tmp/unicorn.rb"
 alias y="yarn"
+
+mine-solo() {
+  cgminer \
+    --url=stratum+tcp://solo.ckpool.org:3333 \
+    --user=1PEkTX4iZXmpsKGRJTJMn8FThaHkrhaJb7 \
+    --pass x \
+    --gekko-2pac-freq 130 \
+    --suggest-diff 10000
+}
+
+webm2mp3() {
+  ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
+}

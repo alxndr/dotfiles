@@ -73,6 +73,11 @@ set fillchars=fold:\
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
+" fix saving crontab on OS X
+" h/t https://superuser.com/a/907889/112856
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+
 " linting config
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],

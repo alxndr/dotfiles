@@ -7,7 +7,7 @@ CASE_SENSITIVE="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git git-flow-completion mix)
+plugins=(git mix)
 
 source $ZSH/oh-my-zsh.sh
 

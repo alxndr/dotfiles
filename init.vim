@@ -24,6 +24,7 @@ set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
+set   wildcharm=<C-z> " need this before we can remap <Tab>
 set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*,*/.git/*,*/.idea/*,*/node_modules/*
 set nowrap
 
@@ -49,7 +50,6 @@ Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
 Plug         'ptzz/lf.vim'                  " file browser UI
 Plug        'rhysd/git-messenger.vim'       " git commit browser
-Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } " file contents searcher
 Plug      'sheerun/vim-polyglot'            " syntax highlighting for a bunch of languages
 Plug        'mhinz/vim-startify'            " show recent files on start
 Plug        'tpope/vim-surround'            " modify enclosing matched pairs
@@ -94,8 +94,6 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 
-" let g:javascript_plugin_jsdoc = 1
-
 " line numbers: relative & absolute; hidden in terminals
 set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
 augroup numbertoggle
@@ -114,24 +112,9 @@ let g:lf_replace_netrw = 1 " use lf when opening a directory
 let g:lf_map_keys = 0 " turn off default lf mapping
 nnoremap <Leader><Tab> :Lf<CR>
 
-" vim-grepper config...
-" gs is a verb to open Grepper for the selection (e.g. gsi"):
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
-
 autocmd StdinReadPre * let s:std_in=1
 " ...what was that for?
 
-" css files need hyphen to be a word char
-" h/t hail2u/vim-css3-syntax
-augroup VimCSS3Syntax
-  autocmd!
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
-
-" tweak how JS template literals are highlighted (...?)
-" h/t @jeromecovington https://github.com/pangloss/vim-javascript/issues/242#issuecomment-343561923
-let g:jsx_ext_required = 0
 
 
 
@@ -253,9 +236,6 @@ nnoremap <Leader>t :sp term://zsh<CR>A
 
 " Esc-Esc in terminal buffer to exit insert mode
 tnoremap <Esc><Esc> <C-\><C-n>
-
-" reformat, keeping cursor position
-" map <F7> m`gg=G``
 
 " save a protected file.
 " h/t mattikus https://news.ycombinator.com/item?id=9397891

@@ -38,6 +38,7 @@ Plug  'vim-airline/vim-airline-themes'      " themes
 Plug         'w0rp/ale'                     " linting engine
 Plug        'townk/vim-autoclose'           " insert closer of matched pair
 Plug         'moll/vim-bbye'                " smart buffer deleter
+Plug   'rbgrouleff/bclose.vim'              " dependency of ptzz/lf.vim
 Plug     'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " code completion
 Plug  'altercation/vim-colors-solarized'    " color scheme
 Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
@@ -46,6 +47,7 @@ Plug     'junegunn/vim-emoji'               " 🌚
 Plug        'tpope/vim-endwise'             " insert `end` in Ruby
 Plug        'tpope/vim-fugitive'            " git wrapper
 Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
+Plug         'ptzz/lf.vim'                  " file browser UI
 Plug        'rhysd/git-messenger.vim'       " git commit browser
 Plug        'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } " file contents searcher
 Plug      'sheerun/vim-polyglot'            " syntax highlighting for a bunch of languages
@@ -108,6 +110,10 @@ augroup TerminalStuff " https://github.com/onivim/oni/issues/962
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
+let g:lf_replace_netrw = 1 " use lf when opening a directory
+let g:lf_map_keys = 0 " turn off default lf mapping
+nnoremap <Leader><Tab> :Lf<CR>
+
 " vim-grepper config...
 " gs is a verb to open Grepper for the selection (e.g. gsi"):
 nmap gs <plug>(GrepperOperator)
@@ -127,10 +133,7 @@ augroup END
 " h/t @jeromecovington https://github.com/pangloss/vim-javascript/issues/242#issuecomment-343561923
 let g:jsx_ext_required = 0
 
-let g:deoplete#enable_at_startup=1
 
-" netrw: tree display
-let g:netrw_liststyle=3
 
 let g:airline_theme='simple'
 let g:airline_powerline_fonts = 1

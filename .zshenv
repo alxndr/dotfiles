@@ -1,4 +1,4 @@
-export EDITOR="nvim -u ~/workspace/dotfiles/init.vim"
+export EDITOR="nvim"
 export PAGER="more"
 export LESS="-F -R -S -W"
 

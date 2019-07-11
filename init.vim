@@ -115,6 +115,14 @@ augroup TerminalStuff " https://github.com/onivim/oni/issues/962
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
+" GitGutter config
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = 'δ'
+let g:gitgutter_sign_removed = '✂︎'
+" let g:gitgutter_sign_removed_first_line = '^^'
+let g:gitgutter_sign_modified_removed = '✁'
+let g:gitgutter_diff_args = '-w'
+
 let g:lf_replace_netrw = 1 " use lf when opening a directory
 let g:lf_map_keys = 0 " turn off default lf mapping
 nnoremap <Leader><Tab> :Lf<CR>

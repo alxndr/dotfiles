@@ -181,19 +181,16 @@ nnoremap <Leader>n :nohl<CR>
 " make Y behave like C and D
 map Y y$
 
-" opposite of J: inserts newline below current line
-nnoremap K m`"="\n"<CR>p``
-
 " Enter inserts newline below current line
 nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
 
 " use + and - to increment/decrement numbers
 " h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
-nnoremap + <C-x>
-nnoremap - <C-a>
+nnoremap - <C-x>
+nnoremap + <C-a>
 
 " shift lines vertically
-nnoremap <S-Up> :m-2<CR> " doesn't work...
+nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 
 " gj, gk: vertical movement through whitespace
@@ -232,7 +229,7 @@ nnoremap <Leader><Leader> :CtrlPBuffer<CR>
 " comment stuff
 nnoremap <C-\> :TComment<CR>
 
-" Ctrl-/ searches for word under cursor
+" Ctrl-s searches for word under cursor
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
@@ -241,7 +238,7 @@ map <Leader>k :GitGutterPrevHunk<CR>
 map <Leader>j :GitGutterNextHunk<CR>
 
 " revert current hunk to git HEAD
-map <Leader>u :GitGutterUndoHunk
+map <Leader>u :GitGutterUndoHunk<CR>
 
 " \q for vim-bbye's :Bdelete
 nnoremap <Leader>q :Bdelete<CR>

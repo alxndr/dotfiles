@@ -81,23 +81,25 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 " linting config
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
 \}
-" let g:ale_linters = {
-" \  'javascript': ['eslint'],
-" \  'json': ['jsonlint'],
-" \}
-" let g:ale_pattern_options = {
-" \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-" \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-" \} " Do not lint or fix minified files.
-let g:ale_pattern_options_enabled = 1 " If you configure g:ale_pattern_options outside of vimrc, you need this.
-let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'json': ['jsonlint'],
+\}
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\} " Do not lint or fix minified files.
+" let g:ale_pattern_options_enabled = 1 " If you configure g:ale_pattern_options outside of vimrc, you need this.
+" let g:ale_linters_explicit = 1
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '✦'  " ➜
+let g:ale_sign_warning = '⚠️'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
+let g:ale_lint_delay = 600
 
 " line numbers: relative & absolute; hidden in terminals
 set number relativenumber " https://jeffkreeftmeijer.com/vim-number/

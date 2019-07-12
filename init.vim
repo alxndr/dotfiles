@@ -1,6 +1,3 @@
-" edit vimrc ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
-
 set noautochdir
 set   background=dark
 set   diffopt+=vertical
@@ -125,7 +122,6 @@ let g:gitgutter_diff_args = '-w'
 
 let g:lf_replace_netrw = 1 " use lf when opening a directory
 let g:lf_map_keys = 0 " turn off default lf mapping
-nnoremap <Leader><Tab> :Lf<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 " ...what was that for?
@@ -159,41 +155,7 @@ else
   let g:ctrlp_clear_cache_on_exit = 0
 endif
 
-" git-messenger at \m
-let g:git_messenger_no_default_mappings=v:true
-nmap <Leader>m <Plug>(git-messenger)
-
-
-"
-" mappings
-"
-
-" open file with system opener
-nnoremap <Leader>o :!open %<CR><CR>
-
-" don't go all the way to the Escape key
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-" shortcut for removing search highlight
-nnoremap <Leader>n :nohl<CR>
-
-" make Y behave like C and D
-map Y y$
-
-" Enter inserts newline below current line
-nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
-
-" use + and - to increment/decrement numbers
-" h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
-nnoremap - <C-x>
-nnoremap + <C-a>
-
-" shift lines vertically
-nnoremap <S-Up> :m-2<CR>
-nnoremap <S-Down> :m+<CR>
-
-" gj, gk: vertical movement through whitespace
+" vertical movement through whitespace
 " thanks, WChargin! http://vi.stackexchange.com/a/156/67
 function! FloatUp()
   while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
@@ -205,8 +167,58 @@ function! FloatDown()
     norm j
   endwhile
 endfunction
+
+" highlight git merge conflict markers as TODOs ...h/t https://vimrcfu.com/snippet/177
+match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
+
+
+
+"
+" mappings
+"
+
+" gk/gj : vertical movement through whitespace
 nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
+
+" j/k: respect wrapped lines when unprefixed by a count ...h/t https://www.hillelwayne.com/post/intermediate-vim/
+" doesn't interfere with above jk/kj remapping
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" jk/kj : Escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" Q : close buffer but preserve split
+nnoremap Q :Bdelete<CR>
+
+" w!! : save a protected file ...h/t mattikus https://news.ycombinator.com/item?id=9397891
+cmap w!! w !sudo tee % >/dev/null
+
+" make Y behave like C and D
+nnoremap Y y$
+
+" ,w/,W : make horizontal/vertical splits bigger
+nnoremap ,w <C-w>10>
+nnoremap ,W <C-w>5+
+
+" +/- : increment/decrement numbers ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
+nnoremap - <C-x>
+nnoremap + <C-a>
+
+" Enter : insert newline below current line
+nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
+
+" Space : toggle/close fold
+nnoremap <Space> za
+
+" Shift-Space : enter command-line  mode
+nnoremap <S-Space> :
+
+" shift lines vertically
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
 
 " splits navigation
 nnoremap <C-h> <C-w>h
@@ -214,51 +226,49 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" space to toggle fold
-" shift-space to close fold
-nnoremap <Space> za
-nnoremap <S-Space> zc
-
-" make splits bigger
-nnoremap ,w <C-w>10>
-nnoremap ,W <C-w>5+
-
-" buffer list
-nnoremap <Leader><Leader> :CtrlPBuffer<CR>
+" Ctrl-s : search for word under cursor ...h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " comment stuff
 nnoremap <C-\> :TComment<CR>
 
-" Ctrl-s searches for word under cursor
-" https://robots.thoughtbot.com/faster-grepping-in-vim
-nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" Leader Leader : list buffers
+nnoremap <Leader><Leader> :CtrlPBuffer<CR>
 
-" jump to next/prev edited area
-map <Leader>k :GitGutterPrevHunk<CR>
-map <Leader>j :GitGutterNextHunk<CR>
+" Leader Tab : open file browser
+nnoremap <Leader><Tab> :Lf<CR>
 
-" revert current hunk to git HEAD
-map <Leader>u :GitGutterUndoHunk<CR>
-
-" \q for vim-bbye's :Bdelete
-nnoremap <Leader>q :Bdelete<CR>
-
-" \t to split open a terminal buffer
-nnoremap <Leader>t :sp term://zsh<CR>A
-
-" Esc-Esc in terminal buffer to exit insert mode
-tnoremap <Esc><Esc> <C-\><C-n>
-
-" save a protected file.
-" h/t mattikus https://news.ycombinator.com/item?id=9397891
-cmap w!! w !sudo tee % >/dev/null
-
-" \e to convert :smiley_cat: to 😸
+" Leader e : convert colon-delimited emoji name to emoji character
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
 
-" highlight git merge conflict markers as TODOs
-" h/t https://vimrcfu.com/snippet/177
-match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
+" Leader j/k : jump to next/prev edited area
+map <Leader>j :GitGutterNextHunk<CR>
+map <Leader>k :GitGutterPrevHunk<CR>
+
+" Leader m : view most recent git message for current line
+let g:git_messenger_no_default_mappings=v:true
+nmap <Leader>m <Plug>(git-messenger)
+
+" Leader n : remove search highlight
+nnoremap <Leader>n :nohl<CR>
+
+" Leader o : open file with system opener
+nnoremap <Leader>o :!open %<CR><CR>
+
+" Leader s : change spaces to tabs
+nnoremap <Leader>s :s/  /\t/g<CR>:noh<CR>
+
+" Leader t : split open a terminal buffer
+nnoremap <Leader>t :sp term://zsh<CR>A
+
+" Leader u : revert current hunk to git HEAD
+nnoremap <Leader>u :GitGutterUndoHunk<CR>
+
+" edit vimrc ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+nnoremap <Leader>v :edit $MYVIMRC<CR>
+
+" Esc-Esc : exit insert mode from terminal buffer
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -267,11 +277,6 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" if unprefixed by a count, j/k will respect wrapped lines
-" h/t https://www.hillelwayne.com/post/intermediate-vim/
-nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
-nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
 "
 " per-directory settings...

@@ -25,37 +25,90 @@ set   wildcharm=<C-z> " need this before we can remap <Tab>
 set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*,*/.git/*,*/.idea/*,*/node_modules/*
 set nowrap
 
+" set up vim-plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source '~/.config/nvim/init.vim'
 endif
+
 call plug#begin("~/.config/nvim/plugged")
-Plug        'bling/vim-airline'             " status line
-Plug  'vim-airline/vim-airline-themes'      " themes
-Plug         'w0rp/ale'                     " linting engine
-Plug        'townk/vim-autoclose'           " insert closer of matched pair
-Plug         'moll/vim-bbye'                " smart buffer deleter
-Plug   'rbgrouleff/bclose.vim'              " dependency of ptzz/lf.vim
-Plug     'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " code completion
-Plug  'altercation/vim-colors-solarized'    " color scheme
-Plug         'kien/ctrlp.vim'               " file finder; ctags navigator
-Plug 'editorconfig/editorconfig-vim'        " coding style documentor
-Plug     'junegunn/vim-emoji'               " 🌚
-Plug        'tpope/vim-endwise'             " insert `end` in Ruby
-Plug        'tpope/vim-fugitive'            " git wrapper
-Plug     'airblade/vim-gitgutter'           " mark diff status in gutter
-Plug         'ptzz/lf.vim'                  " file browser UI
-Plug        'rhysd/git-messenger.vim'       " git commit browser
-Plug      'sheerun/vim-polyglot'            " syntax highlighting for a bunch of languages
-Plug        'mhinz/vim-startify'            " show recent files on start
-Plug        'tpope/vim-surround'            " modify enclosing matched pairs
-Plug       'tomtom/tcomment_vim'            " smart comment-related shortcuts
-Plug         'kana/vim-textobj-user'        " custom text objs
-Plug       'reedes/vim-textobj-quote'       " text objs for quotation marks, plus transformations
-Plug  'whatyouhide/vim-textobj-xmlattr'     " text objs for xml element attrs
-Plug 'jszakmeister/vim-togglecursor'        " change cursor in insert mode
-Plug        'tpope/vim-vinegar'             " netrw enhancer
+
+  " Airline : status line
+  Plug 'bling/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+
+  " linting engine
+  Plug 'w0rp/ale'
+
+  " insert closer of matched pair
+  Plug 'townk/vim-autoclose'
+
+  " smart buffer deleter
+  Plug 'moll/vim-bbye'
+
+  " dependency of ptzz/lf.vim
+  Plug 'rbgrouleff/bclose.vim'
+
+  " code completion
+  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+
+  " color scheme
+  Plug 'altercation/vim-colors-solarized'
+
+  " file finder; ctags navigator
+  Plug 'kien/ctrlp.vim'
+
+  " coding style documentor
+  Plug 'editorconfig/editorconfig-vim'
+
+  " emoji 🌚
+  Plug 'junegunn/vim-emoji'
+
+  " insert `end` in Ruby
+  Plug 'tpope/vim-endwise'
+
+  " git wrapper
+  Plug 'tpope/vim-fugitive'
+
+  " 'fuzzy' text finder
+  "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' } " to install via plug
+  "Plug '/usr/local/opt/fzf' " if installed via Homebrew
+  "Plug 'junegunn/fzf.vim' " helpers
+
+  " mark diff status in gutter
+  Plug 'airblade/vim-gitgutter'
+
+  " file browser UI
+  Plug 'ptzz/lf.vim'
+
+  " git commit browser
+  Plug 'rhysd/git-messenger.vim'
+
+  " syntax highlighting for a bunch of languages
+  Plug 'sheerun/vim-polyglot'
+
+  " show recent files on start
+  Plug 'mhinz/vim-startify'
+
+  " modify enclosing matched pairs
+  Plug 'tpope/vim-surround'
+
+  " smart comment-related shortcuts
+  Plug 'tomtom/tcomment_vim'
+
+  " custom text objs
+  Plug 'kana/vim-textobj-user'
+
+  " text objs for quotation marks, plus transformations
+  Plug 'reedes/vim-textobj-quote'
+
+  " text objs for xml element attrs
+  Plug 'whatyouhide/vim-textobj-xmlattr'
+
+  " change cursor in insert mode
+  Plug 'jszakmeister/vim-togglecursor'
+
 call plug#end()
 
 let g:solarized_termcolors = 256

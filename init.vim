@@ -2,6 +2,7 @@ set noautochdir
 set   background=dark
 set   diffopt+=vertical
 set   expandtab
+set   fillchars=fold:\ 
 set   foldlevelstart=99
 set   foldmethod=indent
 set   hlsearch
@@ -13,6 +14,8 @@ set   laststatus=2
 set   lazyredraw
 set   list listchars=tab:⋮\ ,trail:·,nbsp:⎵,extends:⋯
 set   mouse=
+set   number
+set   relativenumber
 set   scrolloff=2
 set   shell=zsh
 set   shiftwidth=2
@@ -24,6 +27,10 @@ set   tabstop=2
 set   wildcharm=<C-z> " need this before we can remap <Tab>
 set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*,*/.git/*,*/.idea/*,*/node_modules/*
 set nowrap
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+endif
 
 " set up vim-plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -112,13 +119,11 @@ call plug#begin("~/.config/nvim/plugged")
 call plug#end()
 
 let g:solarized_termcolors = 256
-set background=dark
 colorscheme solarized
 
 let g:ctrlp_show_hidden = 1
 
 " tweak how folds look
-set fillchars=fold:\ 
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
@@ -152,7 +157,7 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 600
 
 " line numbers: relative & absolute; hidden in terminals
-set number relativenumber " https://jeffkreeftmeijer.com/vim-number/
+" https://jeffkreeftmeijer.com/vim-number/
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -194,7 +199,6 @@ let g:ctrlp_custom_ignore = {
 \ }
 
 if executable('rg')
-  set grepprg=rg\ --vimgrep
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 else
@@ -263,17 +267,14 @@ nnoremap + <C-a>
 " Enter : insert newline below current line
 nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
 
-" Space : toggle/close fold
+" Space : toggle fold open or closed
 nnoremap <Space> za
 
-" Shift-Space : enter command-line  mode
-nnoremap <S-Space> :
-
-" shift lines vertically
+" Shift-↑/↓ : move lines vertically
 nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 
-" splits navigation
+" Ctrl-h/j/k/l : move focus to split
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -282,7 +283,10 @@ nnoremap <C-l> <C-w>l
 " Ctrl-s : search for word under cursor ...h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" comment stuff
+" Ctrl-Space : enter command-line  mode
+nnoremap <C-Space> :
+
+" Ctrl-\ : comment or uncomment line/selection
 nnoremap <C-\> :TComment<CR>
 
 " Leader Leader : list buffers
@@ -335,9 +339,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " per-directory settings...
 "
 
-function! SetupEnvironment()
-  " highlight git merge conflict markers as TODOs
-  " h/t https://vimrcfu.com/snippet/177
-  match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
-endfunction
-autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
+"function! SetupEnvironment()
+"  " highlight git merge conflict markers as TODOs
+"  " h/t https://vimrcfu.com/snippet/177
+"  match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
+"endfunction
+"autocmd! BufReadPost,BufNewFile * call SetupEnvironment()

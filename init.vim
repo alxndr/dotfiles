@@ -41,7 +41,7 @@ endif
 
 call plug#begin("~/.config/nvim/plugged")
 
-  " fancy status line
+  " Airline: fancy status line
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
     let g:airline_theme = 'bubblegum'
@@ -51,7 +51,7 @@ call plug#begin("~/.config/nvim/plugged")
     let g:airline_section_y = 0 " hide fileencoding, fileformat section
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-  " linting engine
+  " ALE: linting engine
   Plug 'w0rp/ale'
     let g:ale_fixers = {
     \  '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -72,20 +72,20 @@ call plug#begin("~/.config/nvim/plugged")
     let g:ale_sign_column_always = 1
     let g:ale_lint_delay = 600
 
-  " auto-insert closer of matched pair
+  " Autoclose: auto-insert closer of matched pair
   Plug 'townk/vim-autoclose'
 
-  " smart buffer deleter
+  " BBye: smart buffer deleter
   Plug 'moll/vim-bbye'
 
-  " code completion
+  " COC: code completion
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
-  " color scheme
+  " ColorsSolarized: color scheme
   Plug 'altercation/vim-colors-solarized'
     let g:solarized_termcolors = 256
 
-  " file finder; ctags navigator
+  " CtrlP: file finder; ctags navigator
   Plug 'kien/ctrlp.vim'
     let g:ctrlp_show_hidden = 1
     let g:ctrlp_custom_ignore = {
@@ -106,24 +106,18 @@ call plug#begin("~/.config/nvim/plugged")
       let g:ctrlp_clear_cache_on_exit = 0
     endif
 
-  " coding style documentor
+  " EditorConfig: coding style documentor
   Plug 'editorconfig/editorconfig-vim'
 
-  " emoji 🌚
+  " Emoji: 🌚
   Plug 'junegunn/vim-emoji'
 
-  " insert `end` in Ruby
-  Plug 'tpope/vim-endwise'
-
-  " git wrapper
-  Plug 'tpope/vim-fugitive'
-
-  " 'fuzzy' text finder
+  " FZF: 'fuzzy' text finder
   "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' } " to install via plug
   "Plug '/usr/local/opt/fzf' " if installed via Homebrew
   "Plug 'junegunn/fzf.vim' " helpers
 
-  " mark diff status in gutter
+  " GitGutter: mark diff status in gutter
   Plug 'airblade/vim-gitgutter'
     let g:gitgutter_sign_added = '+'
     let g:gitgutter_sign_modified = 'δ'
@@ -132,38 +126,38 @@ call plug#begin("~/.config/nvim/plugged")
     let g:gitgutter_sign_modified_removed = '✁'
     let g:gitgutter_diff_args = '-w'
 
-  " file browser UI
+  " LF: file browser UI
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim' " dependency of lf.vim
     let g:lf_replace_netrw = 1 " use lf when opening a directory
     let g:lf_map_keys = 0 " turn off default lf mapping
 
-  " git commit browser
+  " GitMessenger: git commit browser
   Plug 'rhysd/git-messenger.vim'
     let g:git_messenger_no_default_mappings=v:true " need this to create our own mapping
 
-  " syntax highlighting for a bunch of languages
+  " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
 
-  " show recent files on start
+  " Startify: show recent files on start
   Plug 'mhinz/vim-startify'
 
-  " modify enclosing matched pairs
+  " Surround: modify enclosing matched pairs
   Plug 'tpope/vim-surround'
 
-  " smart comment-related shortcuts
+  " TComment: smart comment-related shortcuts
   Plug 'tomtom/tcomment_vim'
 
-  " custom text objs
+  " TextObjUser: custom text objs
   Plug 'kana/vim-textobj-user'
 
-  " text objs for quotation marks, plus transformations
+  " TextObjQuote: text objs for quotation marks, plus transformations
   Plug 'reedes/vim-textobj-quote'
 
-  " text objs for xml element attrs
+  " TextObjXMLAttr: text objs for xml element attrs
   Plug 'whatyouhide/vim-textobj-xmlattr'
 
-  " change cursor in insert mode
+  " ToggleCursor: change cursor in insert mode
   Plug 'jszakmeister/vim-togglecursor'
 
 call plug#end()

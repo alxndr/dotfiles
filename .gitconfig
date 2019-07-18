@@ -33,12 +33,13 @@
   ft = !git bflow feature track
   l = log --no-merges --abbrev-commit --abbrev=8 --pretty=sha-date-message-author
   lg = log --graph --abbrev-commit --abbrev=8 --pretty=sha-branch-message-author-date
+  get-root-dir = !git rev-parse --show-toplevel
   gol = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message
   reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
   reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master
-  get-root-dir = !git rev-parse --show-toplevel
   show-unchanged = !git ls-files -v | grep "^[a-z]"
   st = status
+  tagv = tag --message=$2 $2 $1 # create tag: $ git tg SHA vX.X.X
 
 [pretty]
   sha-branch-message-author-date = format:%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(blue)%an %C(green)%cr%C(reset)

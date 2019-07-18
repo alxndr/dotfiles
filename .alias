@@ -80,6 +80,8 @@ alias gp="git pull"
       }
 alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
+unalias gss
+alias gss="git stash show --patch -1"
 alias s="git status --short"
 
 # docker

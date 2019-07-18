@@ -139,6 +139,10 @@ call plug#begin("~/.config/nvim/plugged")
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
 
+  " Rooter: change vim working dir
+  Plug 'airblade/vim-rooter'
+    let g:rooter_patterns = ['.git', '.git/']
+
   " Startify: show recent files on start
   Plug 'mhinz/vim-startify'
 
@@ -235,7 +239,9 @@ nnoremap - <C-x>
 nnoremap + <C-a>
 
 " Enter : insert newline below current line
-nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
+" buftype check h/t Rich https://vi.stackexchange.com/a/3129/67
+" TODO extract to plugin??
+nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":<C-U>call append('.', repeat([''],v:count1))<CR>"
 
 " Space : enter command-line mode
 nnoremap <Space> :

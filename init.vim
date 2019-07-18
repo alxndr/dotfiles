@@ -44,11 +44,12 @@ call plug#begin("~/.config/nvim/plugged")
   " fancy status line
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-    let g:airline_theme = 'simple'
+    let g:airline_theme = 'bubblegum'
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#hunks#enabled = 0 " hide git change summary
     let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section
     let g:airline_section_y = 0 " hide fileencoding, fileformat section
+    let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
   " linting engine
   Plug 'w0rp/ale'
@@ -242,8 +243,8 @@ nnoremap + <C-a>
 " Enter : insert newline below current line
 nnoremap <CR> :<C-U>call append('.', repeat([''],v:count1))<CR>
 
-" Space : toggle fold open or closed
-nnoremap <Space> za
+" Space : enter command-line mode
+nnoremap <Space> :
 
 " Shift-↑/↓ : move lines vertically
 nnoremap <S-Up> :m-2<CR>
@@ -258,8 +259,8 @@ nnoremap <C-l> <C-w>l
 " Ctrl-s : search for word under cursor ...h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Ctrl-Space : enter command-line  mode
-nnoremap <C-Space> :
+" Ctrl-Space : toggle folds
+nnoremap <C-Space> za
 
 " Ctrl-\ : comment or uncomment line/selection
 nnoremap <C-\> :TComment<CR>
@@ -285,9 +286,6 @@ nnoremap <Leader>n :nohl<CR>
 
 " Leader o : open file with system opener
 nnoremap <Leader>o :!open %<CR><CR>
-
-" Leader s : change spaces to tabs
-nnoremap <Leader>s :s/  /\t/g<CR>:noh<CR>
 
 " Leader t : split open a terminal buffer
 nnoremap <Leader>t :sp term://zsh<CR>A

@@ -9,6 +9,7 @@
 .lein/self-installs
 .netrwhist
 .tern-port
+.vim/autoload/plug.vim
 UserInterfaceState.xcuserstate
 config/database.yml.readonly
 coverage

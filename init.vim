@@ -293,8 +293,11 @@ nnoremap <Leader>t :sp term://zsh<CR>A
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>
 
-" edit vimrc ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+" Leader v : edit vimrc ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 nnoremap <Leader>v :edit $MYVIMRC<CR>
+
+" Leader w : reveal/hide whitespace markers
+nnoremap <Leader>w :set list!<CR>
 
 " Esc-Esc : exit insert mode from terminal buffer
 tnoremap <Esc><Esc> <C-\><C-n>

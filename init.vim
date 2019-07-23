@@ -44,7 +44,7 @@ call plug#begin("~/.config/nvim/plugged")
   " Airline: fancy status line
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-    let g:airline_theme = 'bubblegum'
+    let g:airline_theme = 'ouo'
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#hunks#enabled = 0 " hide git change summary
     let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section

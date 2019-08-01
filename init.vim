@@ -235,6 +235,10 @@ cmap w!! w !sudo tee % >/dev/null
 " make Y behave like C and D
 nnoremap Y y$
 
+" ,s : in NPM package.json, highlight related scripts (i.e. any pre/post hooks
+"      of the script name under the cursor). TODO highlight the other way around
+nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
+
 " ,w/,W : make horizontal/vertical splits bigger
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+

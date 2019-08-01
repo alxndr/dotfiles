@@ -30,6 +30,8 @@ set nowrap
 
 if executable('rg')
   set grepprg=rg\ --vimgrep
+elseif isdirectory('.git') && executable('git')
+  set grepprg=git\ grep\ -nI
 endif
 
 " set up vim-plug
@@ -131,6 +133,9 @@ call plug#begin("~/.config/nvim/plugged")
   Plug 'rbgrouleff/bclose.vim' " dependency of lf.vim
     let g:lf_replace_netrw = 1 " use lf when opening a directory
     let g:lf_map_keys = 0 " turn off default lf mapping
+
+  " ViMagit: git helper
+  Plug 'jreybert/vimagit'
 
   " GitMessenger: git commit browser
   Plug 'rhysd/git-messenger.vim'
@@ -273,6 +278,9 @@ nnoremap <Leader><Tab> :Lf<CR>
 
 " Leader e : convert colon-delimited emoji name to emoji character
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
+
+" Leader g : Vimagit
+nnoremap <Leader>g :Magit<CR>
 
 " Leader j/k : jump to next/prev edited area
 map <Leader>j :GitGutterNextHunk<CR>

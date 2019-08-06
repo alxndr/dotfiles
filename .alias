@@ -157,6 +157,14 @@ alias pryrails="pry -r ./config/environment"
 alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias us="bundle exec unicorn -c tmp/unicorn.rb"
+      upyet() {
+        URL=$1
+        until [[ $(curl -Is $URL | grep "HTTP\S* 200 OK") ]]; do
+          echo -n .
+        done
+        echo $URL
+        date
+      }
 alias y="yarn"
 
 mine-solo() {

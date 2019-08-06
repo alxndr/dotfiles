@@ -57,6 +57,8 @@ alias gh="giturl | xargs open"
 alias giturl="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//'"
 unalias gl
 alias gl="git l"
+unalias glg
+alias glg="git lg"
 alias glu="git log -u"
 alias gm="git mergetool"
 alias gp="git pull"

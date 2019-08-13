@@ -296,11 +296,14 @@ nmap <Leader>m <Plug>(git-messenger)
 " Leader n : remove search highlight
 nnoremap <Leader>n :nohl<CR>
 
-" Leader o : open file with system opener
-nnoremap <Leader>o :!open %<CR><CR>
+" Leader o : shortcut for :only
+nnoremap <Leader>o :only<CR>
 
-" Leader t : split open a terminal buffer
-nnoremap <Leader>t :sp term://zsh<CR>A
+" Leader r : jump to next erorr
+nnoremap <Leader>r :ALENext<CR>
+
+" Leader t : open terminal in current buffer
+nnoremap <Leader>t :terminal<CR>A
 
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>

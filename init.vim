@@ -2,7 +2,7 @@ set noautochdir
 set   background=dark
 set   diffopt+=vertical
 set   expandtab
-set   fillchars=fold:\ 
+" set   fillchars=fold:\
 set   foldlevelstart=99
 set   foldmethod=indent
 set   hlsearch
@@ -18,7 +18,7 @@ set   number
 set   relativenumber
 set   scrolloff=2
 set   shell=zsh
-set   shiftwidth=2
+set   shiftwidth=0
 set   showcmd
 set   smartcase
 set   splitbelow

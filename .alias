@@ -161,6 +161,7 @@ alias us="bundle exec unicorn -c tmp/unicorn.rb"
         URL=$1
         until [[ $(curl -Is $URL | grep "HTTP\S* 200 OK") ]]; do
           echo -n .
+          sleep 5
         done
         echo $URL
         date

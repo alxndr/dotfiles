@@ -10,7 +10,14 @@ alias gr="grep"
 alias ls="ls -F"
 alias l="exa -aFl"
 alias ll="exa -aFl"
-alias lsd="exa --list-dirs"
+      lsd() {
+        if [[ -n "$1" ]]; then
+          ls -d $1/*(D/)
+        else
+          # h/t Stéphane https://unix.stackexchange.com/a/502028/48320
+          ls -d -- *(D/)
+        fi
+      }
 alias ln="ln -v"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"

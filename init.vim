@@ -226,7 +226,7 @@ nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-" Q : close buffer but preserve split
+" Q : close buffer but preserve split, using vim-bbye
 nnoremap Q :Bdelete<CR>
 
 " w!! : save a protected file ...h/t mattikus https://news.ycombinator.com/item?id=9397891
@@ -277,7 +277,7 @@ nnoremap <C-\> :TComment<CR>
 " Leader Leader : list buffers
 nnoremap <Leader><Leader> :CtrlPBuffer<CR>
 
-" Leader Tab : open file browser
+" Leader Tab : open lf file browser
 nnoremap <Leader><Tab> :Lf<CR>
 
 " Leader e : convert colon-delimited emoji name to emoji character
@@ -313,6 +313,9 @@ nnoremap <Leader>v :edit $MYVIMRC<CR>
 
 " Leader w : reveal/hide whitespace markers
 nnoremap <Leader>w :set list!<CR>
+
+" Leader x : trim trailing whitespace
+nnoremap <Leader>x :s/\s\+$//<CR>:nohl<CR>
 
 " Esc-Esc : exit insert mode from terminal buffer
 tnoremap <Esc><Esc> <C-\><C-n>

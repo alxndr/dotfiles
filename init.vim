@@ -87,27 +87,6 @@ call plug#begin("~/.config/nvim/plugged")
   Plug 'altercation/vim-colors-solarized'
     let g:solarized_termcolors = 256
 
-  " CtrlP: file finder; ctags navigator
-  Plug 'kien/ctrlp.vim'
-    let g:ctrlp_show_hidden = 1
-    let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.git|\.hg|\.svn|coverage|bower_components|dist|docs|log|node_modules|project_files|vendor)$',
-    \ 'file': '\v[\/](\.exe\|\.so\|\.dll\|\.pyc)$'
-    \ }
-    if executable('rg')
-      let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-      let g:ctrlp_use_caching = 0
-    else
-      " use Git to list files, so that the .gitignore is used to filter out things
-      let g:ctrlp_user_command = {
-      \ 'types': {
-      \   1: ['.git', 'cd %s && git ls-files . -co --exclude-standard']
-      \   },
-      \ 'fallback': 'find %s -type f'
-      \ }
-      let g:ctrlp_clear_cache_on_exit = 0
-    endif
-
   " EditorConfig: coding style documentor
   Plug 'editorconfig/editorconfig-vim'
 
@@ -115,9 +94,23 @@ call plug#begin("~/.config/nvim/plugged")
   Plug 'junegunn/vim-emoji'
 
   " FZF: 'fuzzy' text finder
-  "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' } " to install via plug
-  "Plug '/usr/local/opt/fzf' " if installed via Homebrew
-  "Plug 'junegunn/fzf.vim' " helpers
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
+  Plug 'junegunn/fzf.vim' " helpers to use FZF as file finder
+	" Customize fzf colors to match your color scheme … https://github.com/junegunn/fzf/blob/ab11b74/README-VIM.md#examples
+	let g:fzf_colors =
+	\ { 'fg':      ['fg', 'Normal'],
+		\ 'bg':      ['bg', 'Normal'],
+		\ 'hl':      ['fg', 'Comment'],
+		\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+		\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+		\ 'hl+':     ['fg', 'Statement'],
+		\ 'info':    ['fg', 'PreProc'],
+		\ 'border':  ['fg', 'Ignore'],
+		\ 'prompt':  ['fg', 'Conditional'],
+		\ 'pointer': ['fg', 'Exception'],
+		\ 'marker':  ['fg', 'Keyword'],
+		\ 'spinner': ['fg', 'Label'],
+		\ 'header':  ['fg', 'Comment'] }
 
   " GitGutter: mark diff status in gutter
   Plug 'airblade/vim-gitgutter'
@@ -266,6 +259,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Ctrl-p : fuzzy-find files (within the current Git repository; with FZF)
+nnoremap <C-p> :GFiles<CR>
+
 " Ctrl-s : search for word under cursor ...h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
@@ -275,8 +271,8 @@ nnoremap <C-Space> za
 " Ctrl-\ : comment or uncomment line/selection
 nnoremap <C-\> :TComment<CR>
 
-" Leader Leader : list buffers
-nnoremap <Leader><Leader> :CtrlPBuffer<CR>
+" Leader Leader : list buffers (with FZF)
+nnoremap <Leader><Leader> :Buffers<CR>
 
 " Leader Tab : open lf file browser
 nnoremap <Leader><Tab> :Lf<CR>

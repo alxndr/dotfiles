@@ -31,10 +31,10 @@
   fr = !git bflow feature review
   fs = !git bflow feature start
   ft = !git bflow feature track
-  l = log --no-merges --abbrev-commit --abbrev=8 --pretty=sha-date-message-author
+  l = log --no-merges --abbrev-commit --abbrev=8 --pretty=sha-date-message-author-branch
   lg = log --graph --abbrev-commit --abbrev=8 --pretty=sha-branch-message-author-date
   get-root-dir = !git rev-parse --show-toplevel
-  gol = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message
+  gol = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message-branch
   reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
   reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master
   show-unchanged = !git ls-files -v | grep "^[a-z]"
@@ -43,8 +43,8 @@
 
 [pretty]
   sha-branch-message-author-date = format:%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(blue)%an %C(green)%cr%C(reset)
-  sha-date-author-message = format:%C(red)%h%C(reset) %C(green)%ar%C(reset) %C(yellow)(%an)%C(reset) %s
-  sha-date-message-author = format:%C(red)%h%C(reset) %C(green)%ar%C(reset) %s %C(yellow)(%an)%C(reset)
+  sha-date-author-message-branch = format:%C(red)%h%C(reset) %C(green)%ar%C(reset) %C(bold blue)%an%C(reset) %s%C(yellow)%d%C(reset)
+  sha-date-message-author-branch = format:%C(red)%h%C(reset) %C(green)%ar%C(reset) %s %C(bold blue)%an%C(reset)%C(yellow)%d%C(reset)
   sha-family-tree = format:%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(bold blue)%an %C(green)%cr%C(reset)
 
 

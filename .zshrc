@@ -18,6 +18,12 @@ bindkey -v
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
+# tweaks for fzf / ripgrep
+if [[ -x "$(which rg)" && -x "$(which fzf)" ]]; then
+  export FZF_DEFAULT_COMMAND="rg"
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
 # use github's hub as git
 if [[ -x "$(which hub)" ]]; then
   eval "$(hub alias -s)"

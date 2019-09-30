@@ -254,6 +254,7 @@ nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":<C-U>call append('.',
 
 " Space : enter command-line mode
 nnoremap <Space> :
+vnoremap <Space> :
 
 " Shift-↑/↓ : move lines vertically
 nnoremap <S-Up> :m-2<CR>
@@ -301,6 +302,7 @@ nnoremap <Leader>o :only<CR>
 
 " Leader r : jump to next erorr
 nnoremap <Leader>r :ALENext<CR>
+nnoremap <Leader>R :ALEPrevious<CR>
 
 " Leader t : open terminal in current buffer
 nnoremap <Leader>t :terminal<CR>A

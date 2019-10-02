@@ -121,6 +121,20 @@ call plug#begin("~/.config/nvim/plugged")
     let g:gitgutter_sign_modified_removed = '✁'
     let g:gitgutter_diff_args = '-w'
 
+  " GitLink : generate URL for the current file / line / SHA / GitHub repo
+  Plug 'iautom8things/gitlink-vim'
+    function! CopyGitLink(...) range
+      redir @+
+      silent echo gitlink#GitLink(get(a:, 1, 0))
+      redir END
+    endfunction
+
+  " Vim-JSDoc : shortcuts for JSDoc
+  Plug 'heavenshell/vim-jsdoc'
+    let g:jsdoc_allow_input_prompt = 1
+    let g:jsdoc_input_description = 1
+    " let g:jsdoc_additional_descriptions = 1
+
   " LF: file browser UI
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim' " dependency of lf.vim
@@ -277,11 +291,18 @@ nnoremap <Leader><Leader> :Buffers<CR>
 " Leader Tab : open lf file browser
 nnoremap <Leader><Tab> :Lf<CR>
 
+" Leader d : JsDoc
+nnoremap <Leader>d :JsDoc<CR>
+
 " Leader e : convert colon-delimited emoji name to emoji character
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
 
-" Leader g : Vimagit
-nnoremap <Leader>g :Magit<CR>
+" Leader gg : Vimagit
+nnoremap <Leader>gg :Magit<CR>
+
+" Leader gl : GitLink
+nmap <leader>gl :call CopyGitLink()<CR>
+vmap <leader>gl :call CopyGitLink(1)<CR>
 
 " Leader j/k : jump to next/prev edited area
 map <Leader>j :GitGutterNextHunk<CR>

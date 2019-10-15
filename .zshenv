@@ -13,3 +13,5 @@ export PATH="/usr/local/opt/postgresql/bin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 export IPFS_PATH=~/.ipfs-2
+
+export RIPGREP_CONFIG_PATH=~/workspace/dotfiles/ripgrep.cfg

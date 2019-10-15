@@ -12,10 +12,10 @@ alias l="exa -aFl"
 alias ll="exa -aFl"
       lsd() {
         if [[ -n "$1" ]]; then
-          ls -d $1/*(D/)
+          ls -G -d $1/*(D/)
         else
           # h/t Stéphane https://unix.stackexchange.com/a/502028/48320
-          ls -d -- *(D/)
+          ls -G -d -- *(D/)
         fi
       }
 alias ln="ln -v"
@@ -142,7 +142,7 @@ alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{con
         | awk '/^ *[0-9]/ {print $2}'
       }
 alias gx="gigalixir"
-alias h="heroku"
+alias h="hex"
 alias ism="iex -S mix"
 alias ismp="iex -S mix phx.server"
 alias m="mix"
@@ -158,6 +158,7 @@ alias niS="npm install --save"
 alias nr="npm run --silent"
 alias nt="rg --type js --files . | entr -d sh -c 'echo detected file change\; running tests... && npm run --silent test'"
 alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
+alias nvm="echo \"You probably want fnm, not nvm...\""
 alias nx="npx"
 alias pryrails="pry -r ./config/environment"
       report() { $@ && say "done" || say "error" }

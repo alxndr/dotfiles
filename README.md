@@ -1,25 +1,29 @@
 Nothin' to see here but some invisible files.
 
+## prereqs
+
+    brew install \
+      neovim \
+      ripgrep \
+      Schniz/fnm \
+      fzf
+    # ...probably a bunch more
+    # oh-my-zsh ?
+
 ## setting em up
 
 Check out the repo, then either `ln -s workspace/dotfiles/[...]` into `~` or see if `./link_dotfiles.sh` still works...
 
-Also `brew install neovim` and `ln -s workkspace/dotfiles/init.vim` into `~/.config/nvim/`.
-
-If trying to use vim, also have to:
-
-    cd dotfiles/ \
-    && git submodule update --init --recursive
-    && cd .vim/bundle/YouCompleteMe/ \
-    && ./install.py --clang-completer \
-    && cd -
-
-### specific tools
-
-JavaScripty...
-* [Schniz/fnm]
+    ln -s workspace/dotfiles/init.vim ~/.config/nvim/
+    ln -s ~/workspace/dotfiles/alxndr.zsh-theme ~/.oh-my-zsh/themes
 
 ## os x settings
+
+### high sierra
+
+* dvorak keyboard
+* karabiner needs permissions
+* restore from Time Machine works pretty pretty pretty well
 
 ### for OS X 10.12
 
@@ -40,7 +44,7 @@ JavaScripty...
   * System Preferences > Keyboard > Shortcuts, uncheck pretty much everything excepyt for the Screen Shots
 * turn off hold-letter-for-accent-marks:
   * `defaults write -g ApplePressAndHoldEnabled -bool false`
-* enable using Tab to move keyboard focus between all sorts of GUI controls
+ enable using Tab to move keyboard focus between all sorts of GUI controls
   * System Preferences > Keyboard > Shortcuts, under "Full Keyboard Access […]" select the "All controls" radio button
 * make the trackpad make sense:
   * System Preferences > Trackpad > Point & Click > check only "Tap to click", "Secondary click", "Three finger drag"
@@ -56,10 +60,8 @@ JavaScripty...
 
 * [Inconsolata for Powerline][inconsolata]
 
-### tools
+### gui tools
 
-* htop
-  * `brew install htop`
 * [iTerm 2][iterm2]
   * Settings > General
     * uncheck "Use Lion-style fullscreen windows"

@@ -56,8 +56,5 @@ done
 
 [[ -f "$HOME/.br.sh" ]] && source $HOME/.br.sh
 
-if [[ -x $(which ncal) ]]; then
-  ncal
-fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

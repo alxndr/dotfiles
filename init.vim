@@ -2,9 +2,9 @@ set noautochdir
 set   background=dark
 set   diffopt+=vertical
 set   expandtab
-" set   fillchars=fold:\
+set   fillchars="fold:"
 set   foldlevelstart=99
-set   foldmethod=indent
+set   foldmethod=syntax
 set   hlsearch
 set   ignorecase
 set   inccommand=nosplit

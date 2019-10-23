@@ -62,6 +62,7 @@ call plug#begin("~/.config/nvim/plugged")
     let g:ale_linters = {
     \  'javascript': ['eslint'],
     \  'json': ['jsonlint'],
+    \  'sass': ['sass-lint', 'scss-lint'],
     \}
     let g:ale_pattern_options = {
     \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},

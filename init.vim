@@ -97,21 +97,21 @@ call plug#begin("~/.config/nvim/plugged")
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
   Plug 'junegunn/fzf.vim' " helpers to use FZF as file finder
-	" Customize fzf colors to match your color scheme … https://github.com/junegunn/fzf/blob/ab11b74/README-VIM.md#examples
-	let g:fzf_colors =
-	\ { 'fg':      ['fg', 'Normal'],
-		\ 'bg':      ['bg', 'Normal'],
-		\ 'hl':      ['fg', 'Comment'],
-		\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-		\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-		\ 'hl+':     ['fg', 'Statement'],
-		\ 'info':    ['fg', 'PreProc'],
-		\ 'border':  ['fg', 'Ignore'],
-		\ 'prompt':  ['fg', 'Conditional'],
-		\ 'pointer': ['fg', 'Exception'],
-		\ 'marker':  ['fg', 'Keyword'],
-		\ 'spinner': ['fg', 'Label'],
-		\ 'header':  ['fg', 'Comment'] }
+  " Customize fzf colors to match your color scheme … https://github.com/junegunn/fzf/blob/ab11b74/README-VIM.md#examples
+    let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
   " GitGutter: mark diff status in gutter
   Plug 'airblade/vim-gitgutter'
@@ -219,7 +219,7 @@ match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 
 """"""""""""
 " Mappings "
-"…………………………"
+"„„„„„„„„„„"
 
 " gk/gj : vertical movement through whitespace
 nnoremap gk :call FloatUp()<CR>

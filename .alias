@@ -90,7 +90,13 @@ alias gp="git pull"
 alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
 unalias gss
-alias gss="git stash show --patch -1"
+      gss() {
+        if [[ -z "$1" ]]; then
+          git stash show --patch stash@{0}
+        else
+          git stash show --patch stash@{$1}
+        fi
+      }
 alias s="git status --short"
 
 # docker

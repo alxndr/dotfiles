@@ -81,7 +81,7 @@ call plug#begin("~/.config/nvim/plugged")
   Plug 'moll/vim-bbye'
 
   " COC: code completion
-  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " ColorsSolarized: color scheme
   Plug 'altercation/vim-colors-solarized'

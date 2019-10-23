@@ -245,6 +245,11 @@ cmap w!! w !sudo tee % >/dev/null
 " make Y behave like C and D
 nnoremap Y y$
 
+" ,c ,o ,t : Close or Open or Toggle fold
+nnoremap ,c zc
+nnoremap ,o zo
+nnoremap ,t za
+
 " ,s : in NPM package.json, highlight related scripts (i.e. any pre/post hooks
 "      of the script name under the cursor). TODO highlight the other way around
 nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>

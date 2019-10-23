@@ -228,13 +228,8 @@ nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
 
 " j/k: respect wrapped lines when unprefixed by a count ...h/t https://www.hillelwayne.com/post/intermediate-vim/
-" doesn't interfere with above jk/kj remapping
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
-
-" jk/kj : Escape
-inoremap jk <Esc>
-inoremap kj <Esc>
 
 " Q : close buffer but preserve split, using vim-bbye
 nnoremap Q :Bdelete<CR>
@@ -257,6 +252,9 @@ nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
 " ,w/,W : make horizontal/vertical splits bigger
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
+
+" ,, : Escape
+inoremap ,, <Esc>
 
 " +/- : increment/decrement numbers ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
 nnoremap - <C-x>
@@ -343,9 +341,6 @@ nnoremap <Leader>w :set list!<CR>
 
 " Leader x : trim trailing whitespace
 nnoremap <Leader>x :s/\s\+$//<CR>:nohl<CR>
-
-" Esc-Esc : exit insert mode from terminal buffer
-tnoremap <Esc><Esc> <C-\><C-n>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.

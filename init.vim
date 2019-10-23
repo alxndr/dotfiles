@@ -181,6 +181,8 @@ call plug#end()
 
 colorscheme solarized " needs to be after the plug section... 🤔
 
+highlight Folded cterm=NONE
+
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 

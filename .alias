@@ -124,6 +124,7 @@ alias bl="bundle"
       catenv() {
         [ -r .env ] && env $(grep -E "^(export )?[A-Z]" .env | xargs) $@
       }
+alias ci=circleci
       decode_jwt() {
         if [[ -n "$1" ]]; then
           JWT=$1

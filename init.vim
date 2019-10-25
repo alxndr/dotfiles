@@ -24,6 +24,7 @@ set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
+set   termguicolors
 set   wildcharm=<C-z> " need this before we can remap <Tab>
 set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*,*/.git/*,*/.idea/*,*/node_modules/*
 set nowrap
@@ -83,6 +84,11 @@ call plug#begin("~/.config/nvim/plugged")
 
   " COC: code completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  " Colorizer.lua: color the backgrounds of CSS colors
+  " ...requires termguicolors to be on 😞
+  Plug 'norcalli/nvim-colorizer.lua', {'branch': 'sass-variable-matcher'}
+    " additional settings are outside plug#end()
 
   " ColorsSolarized: color scheme
   Plug 'altercation/vim-colors-solarized'
@@ -185,6 +191,17 @@ highlight Folded cterm=NONE
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
+
+" ...specifics for colorizer.lua
+lua << EOL
+  require'colorizer'.setup({
+    '*';
+    'lua';
+    scss = { custom_matcher = require'colorizer/sass'.variable_matcher };
+    css = { css = true; };
+  }, { mode = 'background'; })
+EOL
+autocmd FileType scss lua require'colorizer/sass'.attach_to_buffer()
 
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856

@@ -185,9 +185,9 @@ call plug#begin("~/.config/nvim/plugged")
 
 call plug#end()
 
-colorscheme solarized " needs to be after the plug section... 🤔
+colorscheme solarized
 
-highlight Folded cterm=NONE
+highlight Folded cterm=NONE guibg=NONE
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn

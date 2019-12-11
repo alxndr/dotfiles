@@ -238,10 +238,12 @@ call plug#begin("~/.config/nvim/plugged")
 
 call plug#end()
 
+
 """
 " post-Plug configuration
 """
 
+" Solarized
 colorscheme solarized
 
 highlight Folded cterm=NONE "guibg=NONE

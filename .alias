@@ -135,7 +135,16 @@ alias b="brew"
 alias bl="bundle"
       branch() { SEARCHTERM=$1; git branch | grep $SEARCHTERM | sed -e 's/^\* //' | awk '{ if (NR==1 || $1 == searchterm) result = $1 } END{ if (result) { print result } else { exit 1 } }' searchterm=$SEARCHTERM }
       catenv() {
-        [ -r .env ] && env $(grep -E "^(export )?[A-Z]" .env | xargs) $@
+        # Usage: `catenv command [args...]`
+        # If there's an .env file in the current directory, it will run the
+        # given command (with optional args) after adding the name=value
+        # options specified in the .env file to the command's environment.
+        if ([[ -r .env ]]); then
+          env $(grep -E "^(export )?\w+=" .env | xargs) $@
+        else
+          echo "ERROR: No .env file in current directory; exiting..."
+          return 1
+        fi
       }
 alias ci=circleci
       decode_jwt() {

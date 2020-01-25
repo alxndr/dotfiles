@@ -58,7 +58,7 @@ alias gap="git add --patch"
 alias gb="git branch --color"
 alias gbb="git bisect bad"
 alias gbg="git bisect good"
-alias gcompare="git show-branch \$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD) origin/\$([[ -e .git ]] && git rev-parse --abbrev-ref HEAD)"
+alias gcompare="git show-branch \$(git rev-parse --abbrev-ref HEAD) origin/\$(git rev-parse --abbrev-ref HEAD)"
 alias gcv="git commit --verbose --no-verify"
 alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
 alias gdd="git diff"
@@ -93,13 +93,6 @@ alias gp="git pull"
           return 1
         fi
         git push $1 $GIT_BRANCH:master
-      }
-      gpop() {
-        if [[ -z "$1" ]]; then
-          git stash pop
-        else
-          git stash pop stash@{$1}
-        fi
       }
 alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
@@ -201,6 +194,9 @@ alias us="bundle exec unicorn -c tmp/unicorn.rb"
         echo $URL
         date
       }
+      webm2mp3() {
+        ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
+      }
 alias y="yarn"
 
 mine-solo() {
@@ -210,8 +206,4 @@ mine-solo() {
     --pass x \
     --gekko-2pac-freq 130 \
     --suggest-diff 10000
-}
-
-webm2mp3() {
-  ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
 }

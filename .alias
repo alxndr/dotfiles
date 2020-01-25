@@ -1,4 +1,7 @@
-# unixy
+#########
+# unixy #
+#########
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -27,7 +30,10 @@ alias tzf="tar -zxvf"
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 alias wh="which"
 
-# mac-y
+#########
+# mac-y #
+#########
+
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
 alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant" # h/t @GregMefford
       notify() { osascript -e "display notification \"$2\" with title \"$1\"" }
@@ -38,7 +44,10 @@ alias tac="tail -r"
 alias r="rake" # overrides zsh's builtin shortcut but who cares
 alias rT="rake --tasks"
 
-# git
+#######
+# git #
+#######
+
 alias gA="git add --all"
 alias gap="git add --patch"
 alias gb="git branch --color"
@@ -99,7 +108,10 @@ unalias gss
       }
 alias s="git status --short"
 
-# docker
+##########
+# docker #
+##########
+
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
@@ -113,7 +125,10 @@ alias dmenv="eval \"\$(docker-machine env default)\""
         docker volume prune
       }
 
-# dev-y
+###########
+# general #
+###########
+
 alias ack="echo don\'t you mean $ rg"
 alias actl="apachectl"
 alias ag="echo don\'t you mean $ rg"

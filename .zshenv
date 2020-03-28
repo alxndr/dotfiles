@@ -208,3 +208,15 @@ gfs() { git checkout develop && git pull && git checkout -b "feature/$1" }
 export AWS_DEFAULT_REGION=us-east-1
 export AWS_PAGER=""
 # [[ ! -x $(which saml2aws) ]] && brew tap versent/homebrew-taps && brew install saml2aws
+
+back_up_media() {
+  rsync \
+    --verbose \
+    --itemize-changes \
+    --progress \
+    --archive \
+    --delete \
+    --extended-attributes \
+    /Volumes/MEDIA/* \
+    /Volumes/Media2
+}

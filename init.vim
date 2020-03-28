@@ -92,7 +92,7 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Colorizer.lua: color the backgrounds of CSS colors
   " ...requires termguicolors to be on 😞
-  Plug 'norcalli/nvim-colorizer.lua', {'branch': 'sass-variable-matcher'}
+  "Plug 'norcalli/nvim-colorizer.lua', {'branch': 'sass-variable-matcher'}
     " additional settings are outside plug#end()
 
   " ColorsSolarized: color scheme

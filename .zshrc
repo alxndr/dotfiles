@@ -56,5 +56,12 @@ done
 
 [[ -f "$HOME/.br.sh" ]] && source $HOME/.br.sh
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# h/t https://nicksays.co.uk/iterm-tool-versions-status-bar/
+# also https://www.iterm2.com/3.3/documentation-scripting-fundamentals.html
+iterm2_print_user_vars() {
+	iterm2_set_user_var versionNode $(node -v)
+	iterm2_set_user_var versionElixir $(elixir -v | awk '/Elixir/{print $2}')
+}
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

@@ -2,7 +2,6 @@ set noautochdir
 set   background=dark
 set   diffopt+=vertical
 set   expandtab
-set   fillchars="fold:"
 set   foldlevelstart=99
 set   foldmethod=syntax
 set   hlsearch
@@ -24,7 +23,7 @@ set   smartcase
 set   splitbelow
 set   splitright
 set   tabstop=2
-set   termguicolors
+set notermguicolors
 set   wildcharm=<C-z> " need this before we can remap <Tab>
 set   wildignore+=*/tmp/*,*.dump,*.pyc,*.so,*.swp,*.zip,*/data.*@*/*,*/log.*@*/*,*/.sass-cache/*,*/.git/*,*/.idea/*,*/node_modules/*
 set nowrap

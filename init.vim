@@ -239,6 +239,10 @@ match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 " Mappings "
 "„„„„„„„„„„"
 
+" jj kk : Escape
+inoremap jj <Esc>
+inoremap kk <Esc>
+
 " gk/gj : vertical movement through whitespace
 nnoremap gk :call FloatUp()<CR>
 nnoremap gj :call FloatDown()<CR>
@@ -261,6 +265,16 @@ nnoremap ,c zc
 nnoremap ,o zo
 nnoremap ,t za
 
+" ,f : reformat with npm
+nnoremap ,f :!npx prettier --write %<CR>
+
+" ,n : remove search highlight
+nnoremap ,n :nohl<CR>
+
+" ,r : jump to next erorr
+nnoremap ,r :ALENext<CR>
+nnoremap ,R :ALEPrevious<CR>
+
 " ,s : in NPM package.json, highlight related scripts (i.e. any pre/post hooks
 "      of the script name under the cursor). TODO highlight the other way around
 nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
@@ -268,9 +282,6 @@ nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
 " ,w/,W : make horizontal/vertical splits bigger
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
-
-" ,, : Escape
-inoremap ,, <Esc>
 
 " +/- : increment/decrement numbers ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
 nnoremap - <C-x>
@@ -313,6 +324,9 @@ nnoremap <Leader><Leader> :Buffers<CR>
 " Leader Tab : open lf file browser
 nnoremap <Leader><Tab> :Lf<CR>
 
+" Leader 2 : jump to next ToDo
+nnoremap <leader>2 /TODO<CR>:nohl<CR>
+
 " Leader d : JsDoc
 nnoremap <Leader>d :JsDoc<CR>
 
@@ -333,18 +347,9 @@ map <Leader>k :GitGutterPrevHunk<CR>
 " Leader m : view most recent git message for current line
 nmap <Leader>m <Plug>(git-messenger)
 
-" Leader n : remove search highlight
-nnoremap <Leader>n :nohl<CR>
-
 " Leader o : shortcut for :only
 nnoremap <Leader>o :only<CR>
 
-" Leader r : jump to next erorr
-nnoremap <Leader>r :ALENext<CR>
-nnoremap <Leader>R :ALEPrevious<CR>
-
-" Leader t : open terminal in current buffer
-nnoremap <Leader>t :terminal<CR>A
 
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>

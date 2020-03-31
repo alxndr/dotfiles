@@ -45,10 +45,6 @@ alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant"
 alias nv="nvim"
 alias tac="tail -r"
 
-# rake
-alias r="rake" # overrides zsh's builtin shortcut but who cares
-alias rT="rake --tasks"
-
 #######
 # git #
 #######
@@ -96,6 +92,7 @@ alias gp="git pull"
       }
 alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
+alias gs="echo You want just 's'..."
 unalias gss
       gss() {
         if [[ -z "$1" ]]; then
@@ -203,6 +200,7 @@ alias us="bundle exec unicorn -c tmp/unicorn.rb"
         echo $URL
         date
       }
+alias webfiles="rg --type web --files"
       webm2mp3() {
         ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
       }

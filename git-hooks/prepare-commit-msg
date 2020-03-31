@@ -1,23 +1,23 @@
 #!/bin/sh
 
-# This will add a JIRA ticket identifier to the commit message template if it
-# can be extracted from the Git branch name. Save this file as
-# .git/hooks/prepare-commit-msg within a repository and make it executable, and
-# then `git commit --verbose` when committing to use the template.
+# Prepend the default Git commit message template with the name of the current
+# Git branch (which is usually based on a Jira ticket identifier). Make this
+# file executable and save it as ~/.git/hooks/prepare-commit-msg in each repo
+# you are working with. —@alxndr
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+CUSTOM_FLAGS=$3
 
 prepend_branch_name() {
-  COMMIT_MSG_FILE=$1
-  # prepend default commit message with current git branch name
-  GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-  # if branch name has forward slash (/) in it, only use last fragment following slash
-  GIT_BRANCH_NAME_LAST_SEGMENT=$(echo $GIT_BRANCH_NAME | sed -e "s/.*\///")
+  # prepend default commit message with branch name (portion following an optional slash)
+  GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e "s/.*\///")
   # create temp file with new message followed by default message, then move to original filename
-  echo "\n$GIT_BRANCH_NAME_LAST_SEGMENT" | cat - $COMMIT_MSG_FILE > $COMMIT_MSG_FILE.bak && mv $COMMIT_MSG_FILE{.bak,}
+  echo "$GIT_BRANCH_NAME " | cat - $COMMIT_MSG_FILE > $COMMIT_MSG_FILE.bak && mv $COMMIT_MSG_FILE{.bak,}
 }
 
-case "$2,$3" in # ugh
-  ,|template,)
-    # only normal or template commits (not e.g. merges)
+case "$COMMIT_SOURCE,$CUSTOM_FLAGS" in # ugh
+  ,|template,) # only normal or template commits (not e.g. merges)
     prepend_branch_name $1
     ;;
   *)

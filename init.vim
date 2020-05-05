@@ -9,9 +9,10 @@ set   ignorecase
 set   inccommand=nosplit
 set   incsearch
 set   iskeyword-=.
+set   iskeyword+=-
 set   laststatus=2
 set   lazyredraw
-set nolist listchars=tab:␉\ ,trail:␠,nbsp:⎵,extends:⋯
+set   list listchars=tab:␉\ ,trail:␠,nbsp:⎵,extends:⋯
 set   mouse=
 set   number
 set   relativenumber
@@ -68,7 +69,7 @@ call plug#begin("~/.config/nvim/plugged")
     \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
     \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
     \} " Do not lint or fix minified files.
-    let g:ale_sign_error = '✗'
+    let g:ale_sign_error = '🚨'
     let g:ale_sign_warning = '⚠️'
     let g:ale_lint_on_enter = 0
     let g:ale_lint_on_save = 1

@@ -158,6 +158,9 @@ call plug#begin("~/.config/nvim/plugged")
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
 
+  " QuickScope: navigation helpers
+  Plug 'unblevable/quick-scope'
+
   " Rooter: change vim working dir
   Plug 'airblade/vim-rooter'
     let g:rooter_patterns = ['.git', '.git/']

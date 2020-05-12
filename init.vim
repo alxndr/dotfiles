@@ -35,6 +35,10 @@ elseif isdirectory('.git') && executable('git')
   set grepprg=git\ grep\ -nI
 endif
 
+"""""""""""
+" Plugins "
+"""""""""""
+
 " set up vim-plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs

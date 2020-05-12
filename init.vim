@@ -48,6 +48,12 @@ endif
 
 call plug#begin("~/.config/nvim/plugged")
 
+  " Abolish: assorted helpers by @tpope
+  Plug 'tpope/vim-abolish'
+    nnoremap <Leader>cc crc " coerce to camelCase
+    nnoremap <Leader>cs crs " coerce to snake_case
+    nnoremap <Leader>cu cru " coerce to UPPER_SNAKE
+
   " Airline: fancy status line
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -100,6 +106,8 @@ call plug#begin("~/.config/nvim/plugged")
 
   " EditorConfig: coding style documentor
   Plug 'editorconfig/editorconfig-vim'
+    let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+    let g:EditorConfig_indent_style = 'space'
 
   " Emoji: 🌚
   Plug 'junegunn/vim-emoji'
@@ -132,19 +140,23 @@ call plug#begin("~/.config/nvim/plugged")
     let g:gitgutter_sign_modified_removed = '✁'
     let g:gitgutter_diff_args = '-w'
 
-  " GitLink : generate URL for the current file / line / SHA / GitHub repo
+  " GitLink: generate URL for the current file / line / SHA / GitHub repo
   Plug 'iautom8things/gitlink-vim'
     function! CopyGitLink(...) range
       redir @+
       silent echo gitlink#GitLink(get(a:, 1, 0))
       redir END
     endfunction
+    " Leader gl : GitLink
+    nmap <leader>gl :call CopyGitLink()<CR>
+    vmap <leader>gl :call CopyGitLink(1)<CR>
 
-  " Vim-JSDoc : shortcuts for JSDoc
+  " Vim-JSDoc: shortcuts for JSDoc
   Plug 'heavenshell/vim-jsdoc'
     let g:jsdoc_allow_input_prompt = 1
     let g:jsdoc_input_description = 1
-    " let g:jsdoc_additional_descriptions = 1
+    let g:jsdoc_enable_es6 = 1
+    nnoremap <Leader>d :JsDoc<CR>
 
   " LF: file browser UI
   Plug 'ptzz/lf.vim'
@@ -155,9 +167,16 @@ call plug#begin("~/.config/nvim/plugged")
   " ViMagit: git helper
   Plug 'jreybert/vimagit'
 
+  " Markdown Preview: opens a browser tab with hot-preview of .md files
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+    let g:mkdp_page_title = '𝐌𝐃： ${name}'
+
   " GitMessenger: git commit browser
   Plug 'rhysd/git-messenger.vim'
     let g:git_messenger_no_default_mappings=v:true " need this to create our own mapping
+
+  " NeoFormat: code formatting
+  Plug 'sbdchd/neoformat'
 
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
@@ -194,21 +213,10 @@ call plug#end()
 
 colorscheme solarized
 
-highlight Folded cterm=NONE guibg=NONE
+highlight Folded cterm=NONE "guibg=NONE
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
-
-" ...specifics for colorizer.lua
-lua << EOL
-  require'colorizer'.setup({
-    '*';
-    'lua';
-    scss = { custom_matcher = require'colorizer/sass'.variable_matcher };
-    css = { css = true; };
-  }, { mode = 'background'; })
-EOL
-autocmd FileType scss lua require'colorizer/sass'.attach_to_buffer()
 
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856
@@ -259,6 +267,10 @@ nnoremap gj :call FloatDown()<CR>
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 
+" h/t embedded.kyle https://superuser.com/a/540488/112856
+" opens a new buffer with selection and deletes from original buffer
+vnoremap ,<Tab> :'<,'>d<Space>\|<Space>new<Space>\|<Space>0put<Space>\"
+
 " Q : close buffer but preserve split, using vim-bbye
 nnoremap Q :Bdelete<CR>
 
@@ -275,6 +287,9 @@ nnoremap ,t za
 
 " ,f : reformat with npm
 nnoremap ,f :!npx prettier --write %<CR>
+
+" ,md : preview markdown file in browser with MarkdownPreview
+nnoremap ,md :MarkdownPreview<CR>
 
 " ,n : remove search highlight
 nnoremap ,n :nohl<CR>
@@ -335,18 +350,11 @@ nnoremap <Leader><Tab> :Lf<CR>
 " Leader 2 : jump to next ToDo
 nnoremap <leader>2 /TODO<CR>:nohl<CR>
 
-" Leader d : JsDoc
-nnoremap <Leader>d :JsDoc<CR>
-
 " Leader e : convert colon-delimited emoji name to emoji character
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
 
 " Leader gg : Vimagit
 nnoremap <Leader>gg :Magit<CR>
-
-" Leader gl : GitLink
-nmap <leader>gl :call CopyGitLink()<CR>
-vmap <leader>gl :call CopyGitLink(1)<CR>
 
 " Leader j/k : jump to next/prev edited area
 map <Leader>j :GitGutterNextHunk<CR>
@@ -358,6 +366,8 @@ nmap <Leader>m <Plug>(git-messenger)
 " Leader o : shortcut for :only
 nnoremap <Leader>o :only<CR>
 
+" Leader t : open terminal in floating window with vim-floaterm
+" nnoremap <Leader>t :FloatermToggle<CR>i
 
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>

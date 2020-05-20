@@ -183,6 +183,13 @@ alias ndd="nodemon"
 alias ni="npm install --loglevel warn"
 alias niD="npm install --loglevel warn --save-dev"
 alias niS="npm install --loglevel warn --save"
+      node-watcher() {
+        if [[ -z "$1" ]]; then
+          echo "need a command to run whenever a webfile changes..."
+        else
+          webfiles | PWD=$(pwd) entr -rs "echo \"\n\\033[36m➥ \${0##${PWD}/}\\033[00m\n\" && $1"
+        fi
+      }
 alias nr="npm run --silent"
 alias nt="rg --type js --files . | entr -d sh -c 'echo detected file change\; running tests... && npm run --silent test'"
 alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
@@ -207,12 +214,3 @@ alias webfiles="rg --type web --files"
         ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
       }
 alias y="yarn"
-
-mine-solo() {
-  cgminer \
-    --url=stratum+tcp://solo.ckpool.org:3333 \
-    --user=1PEkTX4iZXmpsKGRJTJMn8FThaHkrhaJb7 \
-    --pass x \
-    --gekko-2pac-freq 130 \
-    --suggest-diff 10000
-}

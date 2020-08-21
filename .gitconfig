@@ -10,6 +10,7 @@
   aliases = config --get-regexp alias
   amend = commit --amend --no-edit
   assume-unchanged = update-index --assume-unchanged
+  authors = shortlog --summary --numbered
   b = branch
   bl = blame -C -C -C
   bn = branch-name

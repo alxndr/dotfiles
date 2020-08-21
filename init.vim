@@ -195,6 +195,9 @@ call plug#begin("~/.config/nvim/plugged")
   " Startify: show recent files on start
   Plug 'mhinz/vim-startify'
 
+  " Surround: modify enclosing matched pairs
+  Plug 'tpope/vim-surround'
+
   " TComment: smart comment-related shortcuts
   Plug 'tomtom/tcomment_vim'
 

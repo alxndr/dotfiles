@@ -9,7 +9,6 @@ set   ignorecase
 set   inccommand=nosplit
 set   incsearch
 set   iskeyword-=.
-set   iskeyword+=-
 set   laststatus=2
 set   lazyredraw
 set   list listchars=tab:␉\ ,trail:␠,nbsp:⎵,extends:⋯
@@ -21,8 +20,7 @@ set   shell=zsh
 set   shiftwidth=0
 set   showcmd
 set   smartcase
-set   splitbelow
-set   splitright
+set   splitbelow splitright
 set   tabstop=2
 set notermguicolors
 set   wildcharm=<C-z> " need this before we can remap <Tab>

@@ -84,9 +84,6 @@ call plug#begin("~/.config/nvim/plugged")
     let g:ale_sign_column_always = 1
     let g:ale_lint_delay = 600
 
-  " Autoclose: auto-insert closer of matched pair
-  Plug 'townk/vim-autoclose'
-
   " BBye: smart buffer deleter
   Plug 'moll/vim-bbye'
 
@@ -156,6 +153,9 @@ call plug#begin("~/.config/nvim/plugged")
     let g:jsdoc_enable_es6 = 1
     nnoremap <Leader>d :JsDoc<CR>
 
+  " Lexima: auto-close parentheses/brackets/quotes/oh my
+  Plug 'cohama/lexima.vim'
+
   " LF: file browser UI
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim' " dependency of lf.vim
@@ -182,15 +182,18 @@ call plug#begin("~/.config/nvim/plugged")
   " QuickScope: navigation helpers
   Plug 'unblevable/quick-scope'
 
+  " RainbowParentheses: just like it sounds
+  Plug 'junegunn/rainbow_parentheses.vim'
+
+  " Recover: add Compare to Swapfile actions
+  Plug 'chrisbra/Recover.vim'
+
   " Rooter: change vim working dir
   Plug 'airblade/vim-rooter'
     let g:rooter_patterns = ['.git', '.git/']
 
   " Startify: show recent files on start
   Plug 'mhinz/vim-startify'
-
-  " Surround: modify enclosing matched pairs
-  Plug 'tpope/vim-surround'
 
   " TComment: smart comment-related shortcuts
   Plug 'tomtom/tcomment_vim'
@@ -215,6 +218,8 @@ highlight Folded cterm=NONE "guibg=NONE
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
+
+call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' => ', 'filetype': 'javascript'})
 
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856

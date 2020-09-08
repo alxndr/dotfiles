@@ -165,6 +165,10 @@ call plug#begin("~/.config/nvim/plugged")
   " ViMagit: git helper
   Plug 'jreybert/vimagit'
 
+  " Markdown: highlight & conceal Markdown syntax
+  Plug 'plasticboy/vim-markdown'
+    let g:vim_markdown_new_list_item_indent = 0
+
   " Markdown Preview: opens a browser tab with hot-preview of .md files
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     let g:mkdp_page_title = '𝐌𝐃： ${name}'
@@ -194,6 +198,25 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Startify: show recent files on start
   Plug 'mhinz/vim-startify'
+    let g:startify_custom_header = ''
+    function! s:gitModified()
+      let files = systemlist('git ls-files -m 2>/dev/null')
+      return map(files, "{'line': v:val, 'path': v:val}")
+    endfunction
+    function! s:gitUntracked()
+      let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+      return map(files, "{'line': v:val, 'path': v:val}")
+    endfunction
+    " h/t https://github.com/mhinz/vim-startify/wiki/Example-configurations#show-modified-and-untracked-git-files
+    let g:startify_lists = [
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+      \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+      \ ]
 
   " Surround: modify enclosing matched pairs
   Plug 'tpope/vim-surround'
@@ -215,6 +238,10 @@ call plug#begin("~/.config/nvim/plugged")
 
 call plug#end()
 
+"""
+" post-Plug configuration
+"""
+
 colorscheme solarized
 
 highlight Folded cterm=NONE "guibg=NONE
@@ -227,6 +254,14 @@ call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' => ', 'filetype': 'j
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+" h/t https://ornithocoder.github.io/programming/commit-msg-with-vim/
+augroup gitcommit
+  set complete+=kspell
+  au FileType gitcommit setlocal spell
+  au FileType gitcommit setlocal textwidth=72
+  au FileType gitcommit setlocal colorcolumn=+1
+augroup END
 
 " line numbers: relative & absolute; hidden in terminals ...h/t https://jeffkreeftmeijer.com/vim-number/
 augroup numbertoggle
@@ -254,8 +289,22 @@ function! FloatDown()
   endwhile
 endfunction
 
+" TBD is this working?!?
+highlight EyeGrabbers gui=bold guifg=magenta guibg=black
+syntax match EyeGrabbers /TBD|TODOs/
+
 " highlight git merge conflict markers as TODOs ...h/t https://vimrcfu.com/snippet/177
 match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
+
+augroup MarkdownStuff
+  autocmd!
+  autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown,*.mdwn set concealcursor=n conceallevel=3
+
+  autocmd FileType markdown highlight htmlBold ctermbg=60
+  autocmd FileType markdown highlight EyeGrabbers ctermbg=60
+
+augroup END
+
 
 """"""""""""
 " Mappings "

@@ -339,6 +339,7 @@ nnoremap Y y$
 nnoremap ,c zc
 nnoremap ,o zo
 nnoremap ,t za
+nnoremap <Space><Space> za
 
 " ,f : reformat with npm
 nnoremap ,f :!npx prettier --write %<CR>
@@ -373,6 +374,8 @@ nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":<C-U>call append('.',
 " Space : enter command-line mode
 nnoremap <Space> :
 vnoremap <Space> :
+
+vnoremap <Tab> d:vnew<CR>PGddgg
 
 " Shift-↑/↓ : move lines vertically
 nnoremap <S-Up> :m-2<CR>

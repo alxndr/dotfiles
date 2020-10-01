@@ -11,8 +11,15 @@ plugins=(git mix)
 
 source $ZSH/oh-my-zsh.sh
 
-[[ -s "$HOME/.zshenv" ]] && source $HOME/.zshenv
 
+###
+# regularly-scheduled programming
+###
+
+# [[ -s "$HOME/.alias" ]] && source "$HOME/.alias"
+# ...moving all of that shit right into zshenv so that subshells can get it...
+
+# Vi mode...
 bindkey -v
 # restore control-r to search history in vi mode
 bindkey -M viins '^r' history-incremental-search-backward

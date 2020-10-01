@@ -9,15 +9,3 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}⚕︎"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}𝚫%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-RPROMPT=' %T'
-TMOUT=13
-TRAPDEBUG() {
-  case "$WIDGET" in
-    zle-line-finish)
-      zle reset-prompt
-      ;;
-    *)
-      ;;
-  esac
-}

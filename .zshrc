@@ -1,3 +1,10 @@
+setopt DVORAK
+setopt IGNOREEOF
+
+###
+# oh-my-zsh stuff
+###
+
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 
 DISABLE_UPDATE_PROMPT=true
@@ -7,7 +14,12 @@ CASE_SENSITIVE="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git mix)
+plugins=(
+  # autosuggestions
+  # git
+  mix
+  # zsh-vi-more/vi-increment
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -21,7 +33,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Vi mode...
 bindkey -v
-# restore control-r to search history in vi mode
+export KEYTIMEOUT=10 # cut timeout when switching modes; h/t https://dougblack.io/words/zsh-vi-mode.html
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
@@ -30,11 +42,7 @@ if [[ -x "$(which rg)" && -x "$(which fzf)" ]]; then
   export FZF_DEFAULT_COMMAND="rg"
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
-
-# use github's hub as git
-if [[ -x "$(which hub)" ]]; then
-  eval "$(hub alias -s)"
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # javascript... Schniz/fnm
 if [[ -x $(which fnm) ]]; then
@@ -44,12 +52,6 @@ fi
 # javascript... yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# ruby... rbenv, rvm
-if [[ -x $(which rbenv) ]]; then
-  eval "$(rbenv init -)"
-  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-fi
-
 # elixir... exenv
 if [[ -x $(which exenv) ]]; then
   eval "$(exenv init -)"
@@ -57,18 +59,14 @@ if [[ -x $(which exenv) ]]; then
 fi
 
 # python... virtualenv (?)
-for FILE ("$HOME/.alias" "/usr/local/bin/virtualenvwrapper.sh") do
-  [[ -r "$FILE" ]] && source "$FILE"
-done
-
-[[ -f "$HOME/.br.sh" ]] && source $HOME/.br.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -r "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"
 
 # h/t https://nicksays.co.uk/iterm-tool-versions-status-bar/
 # also https://www.iterm2.com/3.3/documentation-scripting-fundamentals.html
 iterm2_print_user_vars() {
-	iterm2_set_user_var versionNode $(node -v)
-	iterm2_set_user_var versionElixir $(elixir -v | awk '/Elixir/{print $2}')
+  iterm2_set_user_var versionNode $(node -v)
+  iterm2_set_user_var versionElixir $(elixir -v | awk '/Elixir/{print $2}')
 }
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+

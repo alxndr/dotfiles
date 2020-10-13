@@ -81,26 +81,26 @@ alias gco="git checkout"
 # alias gcompare="git show-branch \$(git rev-parse --abbrev-ref HEAD) origin/\$(git rev-parse --abbrev-ref HEAD)"
 alias gcv="git commit --verbose"
 alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
-# alias gdd="git diff"
       gdiff() { diff <(git show :${1:?first}:${3:?filename}) <(git show :${2:?second}:$3) }
 alias gdp="git co develop && git pull"
 alias gds="gd --staged"
+alias gf="git fetch"
 alias gh="giturl | xargs open"
       ghb() { open $(giturl)/compare/develop...$(git branch-name) }
 alias giturl="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//'"
 alias gl="git l"
 alias glg="git lg"
-alias glu="git log -u"
+alias glu="git log --patch"
 alias gmd="git co develop && git pull && git co - && git merge develop"
 alias gp="git pull"
 alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
+alias gsl="git stash list"
+      gsp() {
+        git stash pop stash@{${1:?0}}
+      }
       gss() {
-        if [[ -z "$1" ]]; then
-          git stash show --patch stash@{0}
-        else
-          git stash show --patch stash@{$1}
-        fi
+        git stash show --patch stash@{${1?:0}}
       }
 alias s="git status --short"
 

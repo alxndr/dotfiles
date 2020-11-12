@@ -57,10 +57,12 @@ call plug#begin("~/.config/nvim/plugged")
   Plug 'vim-airline/vim-airline-themes'
     let g:airline_theme = 'ouo'
     let g:airline_powerline_fonts = 1
-    let g:airline#extensions#hunks#enabled = 0 " hide git change summary
     let g:airline_section_x = 0 " hide tagbar, filetype, virtualenv section
     let g:airline_section_y = 0 " hide fileencoding, fileformat section
+    let g:airline_skip_empty_sections = 1
+    let g:airline#extensions#hunks#enabled = 0 " hide git change summary
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+    let g:airline#extensions#whitespace#enabled = 0 " hide [88]trailing
 
   " ALE: linting engine
   Plug 'w0rp/ale'
@@ -106,6 +108,9 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Emoji: 🌚
   Plug 'junegunn/vim-emoji'
+
+  " Fugitive: Git wrapper
+  Plug 'tpope/vim-fugitive'
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug

@@ -7,6 +7,8 @@ export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 # export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # these should already be there...
 
+export PATH="$PATH:/Users/alxndr/Library/Python/3.7/bin"
+
 # make sure we can see psql
 export PATH="/usr/local/opt/postgresql/bin:$PATH"
 
@@ -63,7 +65,8 @@ alias wh="which"
 alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant" # h/t @GregMefford
       notify() { osascript -e "display notification \"$2\" with title \"$1\"" }
 alias nv="nvim"
-alias tac="tail -r"
+      yt() { youtube-dl -f best $1 }
+
 
 #######
 # git #
@@ -81,7 +84,12 @@ alias gco="git checkout"
 # alias gcompare="git show-branch \$(git rev-parse --abbrev-ref HEAD) origin/\$(git rev-parse --abbrev-ref HEAD)"
 alias gcv="git commit --verbose"
 alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
-      gdiff() { diff <(git show :${1:?first}:${3:?filename}) <(git show :${2:?second}:$3) }
+      gdiff() {
+        $FIRST=$1
+        $SECOND=$2
+        $FILE=$3
+        diff <(git show :$FIRST:$FILE) <(git show :$SECOND:$FILE)
+      }
 alias gdp="git co develop && git pull"
 alias gds="gd --staged"
 alias gf="git fetch"
@@ -153,7 +161,14 @@ alias bl="bundle"
       }
 alias eau="mix test && eautotest"
 alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{config,test}.exs | entr -d mix test"
-      extract_urls() { lynx -dump -listonly ${1:?specify address to start looking for more URLs in} | awk '/^ *[0-9]/ {print $2}' }
+      extract_urls() {
+        [[ -z "$1" ]] && echo "Usage: spider url [depth=5]" && return 1
+        lynx \
+          -dump \
+          -listonly \
+          $1 \
+        | awk '/^ *[0-9]/ {print $2}'
+      }
 alias gx="gigalixir"
 alias h="hex"
 alias ism="iex -S mix"
@@ -168,7 +183,13 @@ alias ndd="nodemon"
 alias ni="npm install --loglevel warn"
 alias niD="npm install --loglevel warn --save-dev"
 alias niS="npm install --loglevel warn --save"
-      node-watcher() { rg --type web --files | PWD=$(pwd) entr -rs "echo \"\n\\033[36m➥ \${0##${PWD}/}\\033[00m\n\" && ${1:?specify a command to run whenever a webfile changes}" }
+      node-watcher() {
+        if [[ -z "$1" ]]; then
+          echo "need a command to run whenever a webfile changes..."
+        else
+          webfiles | PWD=$(pwd) entr -rs "echo \"\n\\033[36m➥ \${0##${PWD}/}\\033[00m\n\" && $1"
+        fi
+      }
 alias nr="npm run --silent"
 alias nvm="echo \"You probably want fnm, not nvm...\""
 alias nx="npx"

@@ -7,7 +7,7 @@ setopt IGNOREEOF
 
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 
-DISABLE_UPDATE_PROMPT=true
+# DISABLE_UPDATE_PROMPT=true
 ZSH_THEME="alxndr"
 
 CASE_SENSITIVE="true"
@@ -50,7 +50,7 @@ if [[ -x $(which fnm) ]]; then
 fi
 
 # javascript... yarn
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 # elixir... exenv
 if [[ -x $(which exenv) ]]; then
@@ -68,5 +68,3 @@ iterm2_print_user_vars() {
   iterm2_set_user_var versionElixir $(elixir -v | awk '/Elixir/{print $2}')
 }
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-

@@ -105,10 +105,10 @@ alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
 alias gsl="git stash list"
       gsp() {
-        git stash pop stash@{${1:?0}}
+        git stash pop stash@{${1:-0}}
       }
       gss() {
-        git stash show --patch stash@{${1?:0}}
+        git stash show --patch stash@{${1:-0}}
       }
 alias s="git status --short"
 

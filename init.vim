@@ -103,6 +103,7 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
+    nnoremap ,g :Gstatus<CR>
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
@@ -252,6 +253,7 @@ highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
 call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' => ', 'filetype': 'javascript'})
+call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' => ', 'filetype': 'jasmine.javascript'})
 
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856

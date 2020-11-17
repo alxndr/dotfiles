@@ -92,14 +92,6 @@ call plug#begin("~/.config/nvim/plugged")
   " COC: code completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  " Colorizer.lua: color the backgrounds of CSS colors
-  " ...requires termguicolors to be on 😞
-  "Plug 'norcalli/nvim-colorizer.lua', {'branch': 'sass-variable-matcher'}
-    " additional settings are outside plug#end()
-
-  " ColorsSolarized: color scheme
-  Plug 'altercation/vim-colors-solarized'
-    let g:solarized_termcolors = 256
 
   " EditorConfig: coding style documentor
   Plug 'editorconfig/editorconfig-vim'
@@ -150,6 +142,9 @@ call plug#begin("~/.config/nvim/plugged")
     " Leader gl : GitLink
     nmap <leader>gl :call CopyGitLink()<CR>
     vmap <leader>gl :call CopyGitLink(1)<CR>
+
+  " Halcyon: colorscheme
+  Plug 'NieTiger/halcyon-neovim'
 
   " Vim-JSDoc: shortcuts for JSDoc
   Plug 'heavenshell/vim-jsdoc'
@@ -248,8 +243,8 @@ call plug#end()
 " post-Plug configuration
 """
 
-" Solarized
-colorscheme solarized
+colorscheme halcyon
+set termguicolors
 
 highlight Folded cterm=NONE "guibg=NONE
 

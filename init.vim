@@ -92,7 +92,6 @@ call plug#begin("~/.config/nvim/plugged")
   " COC: code completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-
   " EditorConfig: coding style documentor
   Plug 'editorconfig/editorconfig-vim'
     let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -252,8 +251,9 @@ highlight Folded cterm=NONE "guibg=NONE
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
-call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' => ', 'filetype': 'javascript'})
-call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' => ', 'filetype': 'jasmine.javascript'})
+call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' =>', 'filetype': ['javascript', 'jasmine.javascript']})
+call lexima#add_rule({'char': "'",  'input': "'", 'filetype': ['lisp', 'scheme']})
+call lexima#add_rule({'char': "`",  'input': "`", 'filetype': ['lisp', 'scheme']})
 
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856
@@ -303,10 +303,13 @@ match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 augroup MarkdownStuff
   autocmd!
   autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown,*.mdwn set concealcursor=n conceallevel=3
-
   autocmd FileType markdown highlight htmlBold ctermbg=60
   autocmd FileType markdown highlight EyeGrabbers ctermbg=60
+augroup END
 
+augroup rainbow_parens
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
 
 

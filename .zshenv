@@ -101,7 +101,6 @@ alias glg="git lg"
 alias glu="git log --patch"
 alias gmd="git co develop && git pull && git co - && git merge develop"
 alias gp="git pull"
-alias greset="git reset --hard HEAD" # to get out of the habit of `gco .`
       gri() { git rebase --interactive "HEAD~$1" }
 alias gsl="git stash list"
       gsp() {
@@ -157,6 +156,7 @@ alias bl="bundle"
           echo "ERROR: No .env file in current directory; exiting..."
           return 1
         fi
+        # TODO This breaks if there's a backslash in a value?
         env $(grep -E "^(export )?\w+=" .env | xargs) $@
       }
 alias eau="mix test && eautotest"

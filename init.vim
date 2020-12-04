@@ -391,6 +391,10 @@ nnoremap <C-l> <C-w>l
 " Ctrl-p : fuzzy-find files (within the current Git repository; with FZF)
 nnoremap <C-p> :GFiles<CR>
 
+" Ctrl-/ : expand current split without closing others
+" (combo of Ctrl-| and Ctrl-_)
+nnoremap <C-w>/ <C-w><Bar><C-w>_
+
 " Ctrl-s : search for word under cursor ...h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 

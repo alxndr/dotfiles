@@ -102,7 +102,8 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
-    nnoremap ,g :Gstatus<CR>
+    nnoremap ,gs :Gstatus<CR>
+    nnoremap ,gc :Gcommit<CR>
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
@@ -130,7 +131,6 @@ call plug#begin("~/.config/nvim/plugged")
     let g:gitgutter_sign_removed = '✂︎'
     let g:gitgutter_sign_removed_first_line = '✃'
     let g:gitgutter_sign_modified_removed = '✁'
-    let g:gitgutter_diff_args = '-w'
 
   " GitLink: generate URL for the current file / line / SHA / GitHub repo
   Plug 'iautom8things/gitlink-vim'
@@ -161,9 +161,6 @@ call plug#begin("~/.config/nvim/plugged")
   Plug 'rbgrouleff/bclose.vim' " dependency of lf.vim
     let g:lf_replace_netrw = 1 " use lf when opening a directory
     let g:lf_map_keys = 0 " turn off default lf mapping
-
-  " ViMagit: git helper
-  Plug 'jreybert/vimagit'
 
   " Markdown: highlight & conceal Markdown syntax
   Plug 'plasticboy/vim-markdown'
@@ -336,9 +333,6 @@ vnoremap ,<Tab> :'<,'>d<Space>\|<Space>new<Space>\|<Space>0put<Space>\"
 " Q : close buffer but preserve split, using vim-bbye
 nnoremap Q :Bdelete<CR>
 
-" w!! : save a protected file ...h/t mattikus https://news.ycombinator.com/item?id=9397891
-cmap w!! w !sudo tee % >/dev/null
-
 " make Y behave like C and D
 nnoremap Y y$
 
@@ -417,9 +411,6 @@ nnoremap <leader>2 /TODO<CR>:nohl<CR>
 
 " Leader e : convert colon-delimited emoji name to emoji character
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
-
-" Leader gg : Vimagit
-nnoremap <Leader>gg :Magit<CR>
 
 " Leader j/k : jump to next/prev edited area
 map <Leader>j :GitGutterNextHunk<CR>

@@ -290,9 +290,10 @@ function! FloatDown()
   endwhile
 endfunction
 
-" TBD is this working?!?
 highlight EyeGrabbers gui=bold guifg=magenta guibg=black
 syntax match EyeGrabbers /TBD|TODOs/
+
+highlight MatchParen guifg=magenta guibg=NONE
 
 " highlight git merge conflict markers as TODOs ...h/t https://vimrcfu.com/snippet/177
 match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'

@@ -68,16 +68,27 @@ call plug#begin("~/.config/nvim/plugged")
   Plug 'w0rp/ale'
     let g:ale_fixers = {
     \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'javascript': ['eslint'],
+    \  'jasmine.javascript': ['eslint'],
+    \  'javascript': ['eslint'],
     \}
+    " call ale#linter#Define('gitcommit', {
+    " \   'name': 'husky',
+    " \   'language': 'gitcommit',
+    " \   'lsp': 'stdio',
+    " \   'executable': './.git/hooks/post-commit',
+    " \   'command': '%e',
+    " \})
     let g:ale_linters = {
+    \  'gitcommit': ['gitlint'],
+    \  'jasmine.javascript': ['eslint'],
     \  'javascript': ['eslint'],
     \  'json': ['jsonlint'],
+    \  'scheme': ['raco'],
     \  'sass': ['sass-lint', 'scss-lint'],
     \}
     let g:ale_pattern_options = {
-    \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-    \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+    \  '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+    \  '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
     \} " Do not lint or fix minified files.
     let g:ale_sign_error = '🚨'
     let g:ale_sign_warning = '⚠️'

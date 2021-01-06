@@ -113,8 +113,9 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
-    nnoremap ,gs :Gstatus<CR>
+    nnoremap ,gp :Gpush
     nnoremap ,gc :Gcommit<CR>
+    nnoremap ,gs :Gstatus<CR>
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug

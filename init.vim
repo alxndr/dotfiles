@@ -189,6 +189,11 @@ call plug#begin("~/.config/nvim/plugged")
   " NeoFormat: code formatting
   Plug 'sbdchd/neoformat'
 
+  " NeoTerm: terminal buffer manager
+  Plug 'kassio/neoterm'
+    let g:neoterm_default_mod = 1
+    " nnoremap <Leader>t :Tnew<CR>
+
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
 
@@ -329,6 +334,8 @@ augroup END
 
 " jj kk : Escape
 inoremap jj <Esc>
+inoremap kj <Esc>
+inoremap jk <Esc>
 inoremap kk <Esc>
 
 " gk/gj : vertical movement through whitespace

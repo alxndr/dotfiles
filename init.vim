@@ -415,7 +415,8 @@ nnoremap <C-p> :GFiles<CR>
 " (combo of Ctrl-| and Ctrl-_)
 nnoremap <C-w>/ <C-w><Bar><C-w>_
 
-" Ctrl-s : search for word under cursor ...h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+" Ctrl-s : search for word under cursor
+" h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Ctrl-Space : toggle folds

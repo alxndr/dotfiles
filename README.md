@@ -14,7 +14,7 @@ Nothin' to see here but some invisible files.
 
 Check out the repo, then either `ln -s workspace/dotfiles/[...]` into `~` or see if `./link_dotfiles.sh` still works...
 
-    ln -s workspace/dotfiles/init.vim ~/.config/nvim/
+    ln -s workspace/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
     ln -s ~/workspace/dotfiles/alxndr.zsh-theme ~/.oh-my-zsh/themes
 
 ## os x settings

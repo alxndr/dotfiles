@@ -199,6 +199,7 @@ call plug#begin("~/.config/nvim/plugged")
 
   " QuickScope: navigation helpers
   Plug 'unblevable/quick-scope'
+    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
   " RainbowParentheses: just like it sounds
   Plug 'junegunn/rainbow_parentheses.vim'
@@ -294,19 +295,6 @@ augroup TerminalStuff " https://github.com/onivim/oni/issues/962
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-" vertical movement through whitespace ...h/t WChargin http://vi.stackexchange.com/a/156/67
-" TODO move to plugin
-function! FloatUp()
-  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
-    norm k
-  endwhile
-endfunction
-function! FloatDown()
-  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
-    norm j
-  endwhile
-endfunction
-
 highlight EyeGrabbers gui=bold guifg=magenta guibg=black
 syntax match EyeGrabbers /TBD|TODOs/
 
@@ -339,15 +327,16 @@ inoremap jk <Esc>
 inoremap kk <Esc>
 
 " gk/gj : vertical movement through whitespace
-nnoremap gk :call FloatUp()<CR>
-nnoremap gj :call FloatDown()<CR>
+nnoremap gk :call VerticalSpaceJumpUp()<CR>
+nnoremap gj :call VerticalSpaceJumpDown()<CR>
 
-" j/k: respect wrapped lines when unprefixed by a count ...h/t https://www.hillelwayne.com/post/intermediate-vim/
+" j/k: respect wrapped lines when unprefixed by a count
+" ...h/t https://www.hillelwayne.com/post/intermediate-vim/
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 
-" h/t embedded.kyle https://superuser.com/a/540488/112856
 " opens a new buffer with selection and deletes from original buffer
+" h/t embedded.kyle https://superuser.com/a/540488/112856
 vnoremap ,<Tab> :'<,'>d<Space>\|<Space>new<Space>\|<Space>0put<Space>\"
 
 " Q : close buffer but preserve split, using vim-bbye

@@ -29,13 +29,10 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="curl"
 alias yr="ncal $(date -j +'%Y')"
-alias e="exa"
-alias el="exa -aFl"
-alias f="rg --files"
 alias gr="grep"
 alias ls="ls -F"
-alias l="exa -aFl"
-alias ll="exa -aFl"
+alias l="ls -AFl"
+alias ll="ls -aFl"
       lsd() {
         if [[ -n "$1" ]]; then
           ls -G -d $1/*(D/)
@@ -48,7 +45,6 @@ alias ln="ln -v"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
-alias tzf="tar -zxvf"
       until_fail() {
         eval "$@"
         while [ "$?" -eq "0" ]; do

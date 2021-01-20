@@ -261,7 +261,7 @@ call plug#end()
 colorscheme halcyon
 set termguicolors
 
-highlight Folded cterm=NONE "guibg=NONE
+highlight Folded cterm=NONE
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
@@ -334,6 +334,8 @@ nnoremap gj :call VerticalSpaceJumpDown()<CR>
 " ...h/t https://www.hillelwayne.com/post/intermediate-vim/
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+
+nnoremap <Tab> <C-w>w
 
 " opens a new buffer with selection and deletes from original buffer
 " h/t embedded.kyle https://superuser.com/a/540488/112856

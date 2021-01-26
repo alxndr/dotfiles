@@ -343,6 +343,8 @@ nnoremap Q :Bdelete<CR>
 
 " make Y behave like C and D
 nnoremap Y y$
+" ...except in visual mode; then make it yank to the system clipboard
+vnoremap Y "+y
 
 " ,c ,o ,t : Close or Open or Toggle fold
 nnoremap ,c zc

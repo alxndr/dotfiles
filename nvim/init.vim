@@ -111,6 +111,9 @@ call plug#begin("~/.config/nvim/plugged")
   " Emoji: 🌚
   Plug 'junegunn/vim-emoji'
 
+  " Floaterm: Terminal in floating window
+  Plug 'voldikss/vim-floaterm'
+
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
     nnoremap ,gp :Gpush
@@ -157,13 +160,6 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Halcyon: colorscheme
   Plug 'NieTiger/halcyon-neovim'
-
-  " Vim-JSDoc: shortcuts for JSDoc
-  Plug 'heavenshell/vim-jsdoc'
-    let g:jsdoc_allow_input_prompt = 1
-    let g:jsdoc_input_description = 1
-    let g:jsdoc_enable_es6 = 1
-    nnoremap <Leader>d :JsDoc<CR>
 
   " Lexima: auto-close parentheses/brackets/quotes/oh my
   Plug 'cohama/lexima.vim'
@@ -362,7 +358,7 @@ nnoremap ,md :MarkdownPreview<CR>
 " ,n : remove search highlight
 nnoremap ,n :nohl<CR>
 
-" ,r : jump to next erorr
+" ,r : jump to next ALE error
 nnoremap ,r :ALENext<CR>
 nnoremap ,R :ALEPrevious<CR>
 
@@ -374,7 +370,8 @@ nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
 
-" +/- : increment/decrement numbers ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
+" +/- : increment/decrement numbers
+" ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
 nnoremap - <C-x>
 nnoremap + <C-a>
 
@@ -439,12 +436,13 @@ nmap <Leader>m <Plug>(git-messenger)
 nnoremap <Leader>o :only<CR>
 
 " Leader t : open terminal
-nnoremap <Leader>t :term<CR>A
+nnoremap <Leader>t :FloatermNew<CR>
 
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>
 
-" Leader v : edit vimrc ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+" Leader v : edit vimrc
+" ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 nnoremap <Leader>v :edit $MYVIMRC<CR>
 
 " Leader w : reveal/hide whitespace markers

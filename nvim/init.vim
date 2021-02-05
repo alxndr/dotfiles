@@ -330,7 +330,10 @@ nnoremap gj :call VerticalSpaceJumpDown()<CR>
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 
+" Tab : (normal) change splits
 nnoremap <Tab> <C-w>w
+" Tab : (visual) delete selection, paste into new vertical split buffer
+vnoremap <Tab> d:vnew<CR>PGddgg
 
 " opens a new buffer with selection and deletes from original buffer
 " h/t embedded.kyle https://superuser.com/a/540488/112856
@@ -384,8 +387,6 @@ nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":<C-U>call append('.',
 " Space : enter command-line mode
 nnoremap <Space> :
 vnoremap <Space> :
-
-vnoremap <Tab> d:vnew<CR>PGddgg
 
 " Shift-↑/↓ : move lines vertically
 nnoremap <S-Up> :m-2<CR>

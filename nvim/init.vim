@@ -453,6 +453,9 @@ nnoremap <Leader>w :set list!<CR>
 " Leader x : trim trailing whitespace
 nnoremap <Leader>x :s/\s\+$//<CR>:nohl<CR>
 
+" double-semicolon : append semicolon from insert mode
+inoremap ;;        <Esc>mzA;<Esc>`za
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " ...there's a bug in this somewhere?

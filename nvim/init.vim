@@ -317,11 +317,9 @@ augroup END
 " Mappings "
 "„„„„„„„„„„"
 
-" jj kk : Escape
-inoremap jj <Esc>
+" jk / kj : Escape
 inoremap kj <Esc>
 inoremap jk <Esc>
-inoremap kk <Esc>
 
 " gk/gj : vertical movement through whitespace
 nnoremap gk :call VerticalSpaceJumpUp()<CR>

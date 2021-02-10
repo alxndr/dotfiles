@@ -178,6 +178,12 @@ call plug#begin("~/.config/nvim/plugged")
   " Lexima: auto-close parentheses/brackets/quotes/oh my
   Plug 'cohama/lexima.vim'
 
+  " Lightbulb: add icon to gutter when LSP actions are available (?)
+  " TODO only install this if has(lua) ?
+  Plug 'kosayoda/nvim-lightbulb'
+    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+    " vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+
   " LF: file browser UI
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim' " dependency of lf.vim

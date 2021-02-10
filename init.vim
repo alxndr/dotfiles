@@ -111,6 +111,9 @@ call plug#begin("~/.config/nvim/plugged")
   " Emoji: 🌚
   Plug 'junegunn/vim-emoji'
 
+  " Floaterm: Terminal buffer in floating window
+  Plug 'voldikss/vim-floaterm'
+
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
     nnoremap ,gp :Gpush
@@ -188,11 +191,6 @@ call plug#begin("~/.config/nvim/plugged")
 
   " NeoFormat: code formatting
   Plug 'sbdchd/neoformat'
-
-  " NeoTerm: terminal buffer manager
-  Plug 'kassio/neoterm'
-    let g:neoterm_default_mod = 1
-    " nnoremap <Leader>t :Tnew<CR>
 
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
@@ -447,7 +445,7 @@ nmap <Leader>m <Plug>(git-messenger)
 nnoremap <Leader>o :only<CR>
 
 " Leader t : open terminal
-nnoremap <Leader>t :term<CR>A
+nnoremap <Leader>t :FloatermNew<CR>
 
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>

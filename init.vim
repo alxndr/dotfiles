@@ -168,6 +168,13 @@ call plug#begin("~/.config/nvim/plugged")
     let g:jsdoc_enable_es6 = 1
     nnoremap <Leader>d :JsDoc<CR>
 
+  " Kommentary: code-commenting shortcuts (neovim >= 0.5.0)
+  Plug 'b3nj5m1n/kommentary'
+    " require('kommentary.config').config["ft"] = {"//", {"/*", "*/"}}
+    nnoremap <C-\> gcc<CR> " TODO why no work?
+  " TODO only install this if has(lua) ?
+  " else use TComment
+
   " Lexima: auto-close parentheses/brackets/quotes/oh my
   Plug 'cohama/lexima.vim'
 
@@ -232,9 +239,6 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Surround: modify enclosing matched pairs
   Plug 'tpope/vim-surround'
-
-  " TComment: smart comment-related shortcuts
-  Plug 'tomtom/tcomment_vim'
 
   " TextObjUser: custom text objs
   Plug 'kana/vim-textobj-user'
@@ -418,9 +422,6 @@ nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Ctrl-Space : toggle folds
 nnoremap <C-Space> za
-
-" Ctrl-\ : comment or uncomment line/selection
-nnoremap <C-\> :TComment<CR>
 
 " Leader Leader : list buffers (with FZF)
 nnoremap <Leader><Leader> :Buffers<CR>

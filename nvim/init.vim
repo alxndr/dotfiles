@@ -111,14 +111,15 @@ call plug#begin("~/.config/nvim/plugged")
   " Emoji: 🌚
   Plug 'junegunn/vim-emoji'
 
-  " Floaterm: Terminal buffer in floating window
+  " Floaterm: Terminal in floating window
   Plug 'voldikss/vim-floaterm'
 
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
-    nnoremap ,gp :Gpush
     nnoremap ,gc :Gcommit<CR>
-    nnoremap ,gs :Gstatus<CR>
+    nnoremap ,gp :Gpush
+    nnoremap ,gP :Gpush --force
+    nnoremap ,gs :Gstatus<CR><Leader>o
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
@@ -160,13 +161,6 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Halcyon: colorscheme
   Plug 'NieTiger/halcyon-neovim'
-
-  " Vim-JSDoc: shortcuts for JSDoc
-  Plug 'heavenshell/vim-jsdoc'
-    let g:jsdoc_allow_input_prompt = 1
-    let g:jsdoc_input_description = 1
-    let g:jsdoc_enable_es6 = 1
-    nnoremap <Leader>d :JsDoc<CR>
 
   " Kommentary: code-commenting shortcuts (neovim >= 0.5.0)
   Plug 'b3nj5m1n/kommentary'
@@ -210,6 +204,7 @@ call plug#begin("~/.config/nvim/plugged")
 
   " QuickScope: navigation helpers
   Plug 'unblevable/quick-scope'
+    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
   " RainbowParentheses: just like it sounds
   Plug 'junegunn/rainbow_parentheses.vim'
@@ -268,7 +263,7 @@ call plug#end()
 colorscheme halcyon
 set termguicolors
 
-highlight Folded cterm=NONE "guibg=NONE
+highlight Folded cterm=NONE
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
@@ -302,19 +297,6 @@ augroup TerminalStuff " https://github.com/onivim/oni/issues/962
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-" vertical movement through whitespace ...h/t WChargin http://vi.stackexchange.com/a/156/67
-" TODO move to plugin
-function! FloatUp()
-  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
-    norm k
-  endwhile
-endfunction
-function! FloatDown()
-  while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
-    norm j
-  endwhile
-endfunction
-
 highlight EyeGrabbers gui=bold guifg=magenta guibg=black
 syntax match EyeGrabbers /TBD|TODOs/
 
@@ -340,22 +322,26 @@ augroup END
 " Mappings "
 "„„„„„„„„„„"
 
-" jj kk : Escape
-inoremap jj <Esc>
+" jk / kj : Escape
 inoremap kj <Esc>
 inoremap jk <Esc>
-inoremap kk <Esc>
 
 " gk/gj : vertical movement through whitespace
-nnoremap gk :call FloatUp()<CR>
-nnoremap gj :call FloatDown()<CR>
+nnoremap gk :call VerticalSpaceJumpUp()<CR>
+nnoremap gj :call VerticalSpaceJumpDown()<CR>
 
-" j/k: respect wrapped lines when unprefixed by a count ...h/t https://www.hillelwayne.com/post/intermediate-vim/
+" j/k: respect wrapped lines when unprefixed by a count
+" ...h/t https://www.hillelwayne.com/post/intermediate-vim/
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 
-" h/t embedded.kyle https://superuser.com/a/540488/112856
+" Tab : (normal) change splits
+nnoremap <Tab> <C-w>w
+" Tab : (visual) delete selection, paste into new vertical split buffer
+vnoremap <Tab> d:vnew<CR>PGddgg
+
 " opens a new buffer with selection and deletes from original buffer
+" h/t embedded.kyle https://superuser.com/a/540488/112856
 vnoremap ,<Tab> :'<,'>d<Space>\|<Space>new<Space>\|<Space>0put<Space>\"
 
 " Q : close buffer but preserve split, using vim-bbye
@@ -363,6 +349,8 @@ nnoremap Q :Bdelete<CR>
 
 " make Y behave like C and D
 nnoremap Y y$
+" ...except in visual mode; then make it yank to the system clipboard
+vnoremap Y "+y
 
 " ,c ,o ,t : Close or Open or Toggle fold
 nnoremap ,c zc
@@ -379,7 +367,7 @@ nnoremap ,md :MarkdownPreview<CR>
 " ,n : remove search highlight
 nnoremap ,n :nohl<CR>
 
-" ,r : jump to next erorr
+" ,r : jump to next ALE error
 nnoremap ,r :ALENext<CR>
 nnoremap ,R :ALEPrevious<CR>
 
@@ -391,7 +379,8 @@ nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
 
-" +/- : increment/decrement numbers ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
+" +/- : increment/decrement numbers
+" ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
 nnoremap - <C-x>
 nnoremap + <C-a>
 
@@ -403,8 +392,6 @@ nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ":<C-U>call append('.',
 " Space : enter command-line mode
 nnoremap <Space> :
 vnoremap <Space> :
-
-vnoremap <Tab> d:vnew<CR>PGddgg
 
 " Shift-↑/↓ : move lines vertically
 nnoremap <S-Up> :m-2<CR>
@@ -423,7 +410,8 @@ nnoremap <C-p> :GFiles<CR>
 " (combo of Ctrl-| and Ctrl-_)
 nnoremap <C-w>/ <C-w><Bar><C-w>_
 
-" Ctrl-s : search for word under cursor ...h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+" Ctrl-s : search for word under cursor
+" h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Ctrl-Space : toggle folds
@@ -457,7 +445,8 @@ nnoremap <Leader>t :FloatermNew<CR>
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>
 
-" Leader v : edit vimrc ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+" Leader v : edit vimrc
+" ...h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 nnoremap <Leader>v :edit $MYVIMRC<CR>
 
 " Leader w : reveal/hide whitespace markers
@@ -465,6 +454,9 @@ nnoremap <Leader>w :set list!<CR>
 
 " Leader x : trim trailing whitespace
 nnoremap <Leader>x :s/\s\+$//<CR>:nohl<CR>
+
+" double-semicolon : append semicolon from insert mode
+inoremap ;;        <Esc>mzA;<Esc>`za
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.

@@ -119,7 +119,7 @@ call plug#begin("~/.config/nvim/plugged")
     nnoremap ,gc :Gcommit<CR>
     nnoremap ,gp :Gpush
     nnoremap ,gP :Gpush --force
-    nnoremap ,gs :Gstatus<CR><Leader>o
+    nnoremap ,gs :Gstatus<CR>:only<CR>
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
@@ -347,17 +347,17 @@ nnoremap Y y$
 " ...except in visual mode; then make it yank to the system clipboard
 vnoremap Y "+y
 
-" ,c ,o ,t : Close or Open or Toggle fold
+" ,c : close fold
 nnoremap ,c zc
-nnoremap ,o zo
-nnoremap ,t za
-nnoremap <Space><Space> za
 
 " ,f : reformat with npm
 nnoremap ,f :!npx prettier --write %<CR>
 
+" ,m : jump to merge conflict
+nnoremap ,m /\| merged common ancestors<CR>:noh<CR>zz
+
 " ,md : preview markdown file in browser with MarkdownPreview
-nnoremap ,md :MarkdownPreview<CR>
+" nnoremap ,md :MarkdownPreview<CR>
 
 " ,n : remove search highlight
 nnoremap ,n :nohl<CR>
@@ -369,6 +369,9 @@ nnoremap ,R :ALEPrevious<CR>
 " ,s : in NPM package.json, highlight related scripts (i.e. any pre/post hooks
 "      of the script name under the cursor). TODO highlight the other way around
 nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
+
+" ,t : toggle fold
+nnoremap ,t za
 
 " ,w/,W : make horizontal/vertical splits bigger
 nnoremap ,w <C-w>10>

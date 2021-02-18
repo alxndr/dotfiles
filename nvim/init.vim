@@ -412,11 +412,8 @@ nnoremap <C-w>/ <C-w><Bar><C-w>_
 " h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Ctrl-Space : toggle folds
-nnoremap <C-Space> za
-
-" Ctrl-\ : comment or uncomment line/selection
-nnoremap <C-\> :TComment<CR>
+" (terminal) Ctrl-Space : exit terminal mode
+tnoremap <C-Space> <C-\><C-n>
 
 " Leader Leader : list buffers (with FZF)
 nnoremap <Leader><Leader> :Buffers<CR>

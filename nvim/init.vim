@@ -378,6 +378,11 @@ vnoremap <Tab> d:vnew<CR>PGddgg
 nnoremap - <C-x>
 nnoremap + <C-a>
 
+" * : highlight word under cursor (whereupon n/p navigate to next/previous)
+" h/t Skunkleton
+" https://news.ycombinator.com/item?id=26287865
+nnoremap * :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
 " Enter : insert newline below current line
 " buftype check h/t Rich https://vi.stackexchange.com/a/3129/67
 " TODO extract to plugin??

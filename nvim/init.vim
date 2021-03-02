@@ -379,8 +379,7 @@ nnoremap - <C-x>
 nnoremap + <C-a>
 
 " * : highlight word under cursor (whereupon n/p navigate to next/previous)
-" h/t Skunkleton
-" https://news.ycombinator.com/item?id=26287865
+" h/t Skunkleton https://news.ycombinator.com/item?id=26287865
 nnoremap * :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " Enter : insert newline below current line
@@ -421,6 +420,10 @@ nnoremap <Leader><Leader> :Buffers<CR>
 
 " Leader Tab : open lf file browser
 nnoremap <Leader><Tab> :Lf<CR>
+
+" Leader . : repeat last replacement, and allow further repetition with a bare .
+" h/t edanm https://news.ycombinator.com/item?id=26291260
+nnoremap <Leader>. :let @/=@"<CR>/<CR>cgn<C-R>.<Esc>
 
 " Leader 2 : jump to next ToDo
 nnoremap <leader>2 /TODO<CR>:nohl<CR>

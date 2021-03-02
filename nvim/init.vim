@@ -357,9 +357,8 @@ nnoremap ,n :nohl<CR>
 nnoremap ,r :ALENext<CR>
 nnoremap ,R :ALEPrevious<CR>
 
-" ,s : in NPM package.json, highlight related scripts (i.e. any pre/post hooks
-"      of the script name under the cursor). TODO highlight the other way around
-nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
+" ,s : open cypress screenshots
+nnoremap ,s :!open cypress/screenshots/<CR><CR>
 
 " ,t : toggle fold
 nnoremap ,t za
@@ -456,6 +455,12 @@ nnoremap <Leader>w :set list!<CR>
 
 " Leader x : trim trailing whitespace
 nnoremap <Leader>x :s/\s\+$//<CR>:nohl<CR>
+
+" Leader comma : append comma & move down
+nnoremap <Leader>,      mzA,<Esc>`zj
+
+" Leader semicolon : append semicolon & move down
+nnoremap <Leader>;      mzA;<Esc>`zj
 
 " double-semicolon : append semicolon from insert mode
 inoremap ;;        <Esc>mzA;<Esc>`za

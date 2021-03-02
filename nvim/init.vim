@@ -330,15 +330,6 @@ nnoremap gj :call VerticalSpaceJumpDown()<CR>
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 
-" Tab : (normal) change splits
-nnoremap <Tab> <C-w>w
-" Tab : (visual) delete selection, paste into new vertical split buffer
-vnoremap <Tab> d:vnew<CR>PGddgg
-
-" opens a new buffer with selection and deletes from original buffer
-" h/t embedded.kyle https://superuser.com/a/540488/112856
-vnoremap ,<Tab> :'<,'>d<Space>\|<Space>new<Space>\|<Space>0put<Space>\"
-
 " Q : close buffer but preserve split, using vim-bbye
 nnoremap Q :Bdelete<CR>
 
@@ -376,6 +367,11 @@ nnoremap ,t za
 " ,w/,W : make horizontal/vertical splits bigger
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
+
+" Tab : (normal) change splits
+nnoremap <Tab> <C-w>w
+" Tab : (visual) delete selection, paste into new vertical split buffer
+vnoremap <Tab> d:vnew<CR>PGddgg
 
 " +/- : increment/decrement numbers
 " ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5

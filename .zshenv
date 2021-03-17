@@ -28,11 +28,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="curl"
-alias yr="ncal $(date -j +'%Y')"
 alias gr="grep"
-alias ls="ls -F"
 alias l="ls -AFl"
 alias ll="ls -aFl"
+alias ls="ls -F"
       lsd() {
         if [[ -n "$1" ]]; then
           ls -G -d $1/*(D/)
@@ -53,6 +52,7 @@ alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}'
       }
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 alias wh="which"
+alias yr="ncal $(date -j +'%Y')"
 
 #########
 # mac-y #

@@ -403,8 +403,8 @@ nnoremap <C-l> <C-w>l
 " Ctrl-p : fuzzy-find files (within the current Git repository; with FZF)
 nnoremap <C-p> :GFiles<CR>
 
-" Ctrl-/ : expand current split without closing others
-" (combo of Ctrl-| and Ctrl-_)
+" Ctrl-w / : expand current split without closing others
+" (combo of Ctrl-w | and Ctrl-w _)
 nnoremap <C-w>/ <C-w><Bar><C-w>_
 
 " Ctrl-s : search for word under cursor

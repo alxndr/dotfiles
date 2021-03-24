@@ -28,6 +28,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="curl"
+alias e="nvim"
 alias gr="grep"
 alias l="ls -AFl"
 alias ll="ls -aFl"
@@ -61,7 +62,6 @@ alias yr="ncal $(date -j +'%Y')"
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
 alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant" # h/t @GregMefford
       notify() { osascript -e "display notification \"$2\" with title \"$1\"" }
-alias nv="nvim"
       yt() { youtube-dl -f best $1 }
 
 

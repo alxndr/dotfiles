@@ -53,10 +53,10 @@ fi
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 # elixir... exenv
-if [[ -x $(which exenv) ]]; then
-  eval "$(exenv init -)"
-  export PATH="$HOME/.exenv/bin:$PATH"
-fi
+# if [[ -x $(which exenv) ]]; then
+#   eval "$(exenv init -)"
+#   export PATH="$HOME/.exenv/bin:$PATH"
+# fi
 
 # python... virtualenv (?)
 [[ -r "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"

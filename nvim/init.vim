@@ -263,9 +263,19 @@ highlight Folded cterm=NONE
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
-call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' =>', 'filetype': ['javascript', 'jasmine.javascript']})
-call lexima#add_rule({'char': "'",  'input': "'", 'filetype': ['lisp', 'scheme']})
-call lexima#add_rule({'char': "`",  'input': "`", 'filetype': ['lisp', 'scheme']})
+call lexima#add_rule({
+\ 'char': '=',
+\ 'at': ')\%#',
+\ 'input': ' => ',
+\ 'filetype': ['javascript', 'jasmine.javascript']
+\})
+call lexima#add_rule({
+\ 'char': '{',
+\ 'at': ')\%#',
+\ 'input': ' => {',
+\ 'input_after': '}',
+\ 'filetype': ['javascript', 'jasmine.javascript']
+\})
 
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856

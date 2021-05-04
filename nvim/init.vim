@@ -186,11 +186,6 @@ call plug#begin("~/.config/nvim/plugged")
   " NeoFormat: code formatting
   Plug 'sbdchd/neoformat'
 
-  " NeoTerm: terminal buffer manager
-  Plug 'kassio/neoterm'
-    let g:neoterm_default_mod = 1
-    " nnoremap <Leader>t :Tnew<CR>
-
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
 
@@ -446,8 +441,9 @@ nmap <Leader>m <Plug>(git-messenger)
 " Leader o : shortcut for :only
 nnoremap <Leader>o :only<CR>
 
-" Leader t : open terminal
-nnoremap <Leader>t :FloatermNew<CR>
+" Leader t : toggle terminal
+nnoremap <Leader>t :FloatermToggle<CR>
+tnoremap <Leader>t <C-\><C-n>:FloatermToggle<CR>
 
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>

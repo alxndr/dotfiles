@@ -159,9 +159,6 @@ call plug#begin("~/.config/nvim/plugged")
     nmap <leader>gl :call CopyGitLink()<CR>
     vmap <leader>gl :call CopyGitLink(1)<CR>
 
-  " Halcyon: colorscheme
-  Plug 'NieTiger/halcyon-neovim'
-
   " Lexima: auto-close parentheses/brackets/quotes/oh my
   Plug 'cohama/lexima.vim'
 
@@ -185,6 +182,9 @@ call plug#begin("~/.config/nvim/plugged")
 
   " NeoFormat: code formatting
   Plug 'sbdchd/neoformat'
+
+  " OneDark: colorscheme
+  Plug 'joshdick/onedark.vim'
 
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
@@ -250,8 +250,11 @@ call plug#end()
 " post-Plug configuration
 """
 
-colorscheme halcyon
-set termguicolors
+colorscheme onedark
+
+" if has('termguicolors') " This messes up colors for OS X's Terminal.app...
+"   set termguicolors
+" endif
 
 highlight Folded cterm=NONE
 

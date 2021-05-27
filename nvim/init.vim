@@ -94,8 +94,8 @@ call plug#begin("~/.config/nvim/plugged")
     let g:ale_sign_warning = '⚠️'
     let g:ale_lint_on_enter = 0
     let g:ale_lint_on_save = 1
-    let g:ale_sign_column_always = 1
-    let g:ale_lint_delay = 600
+    let g:ale_sign_column_always = 0
+    let g:ale_lint_delay = 300
 
   " BBye: smart buffer deleter
   Plug 'moll/vim-bbye'
@@ -116,10 +116,10 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
-    nnoremap ,gc :Gcommit<CR>
-    nnoremap ,gp :Gpush
-    nnoremap ,gP :Gpush --force
-    nnoremap ,gs :Gstatus<CR>:only<CR>
+    nnoremap ,gc :Git commit<CR>
+    nnoremap ,gp :Git push
+    nnoremap ,gP :Git push --force
+    nnoremap ,gs :Git<CR>
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
@@ -243,6 +243,9 @@ call plug#begin("~/.config/nvim/plugged")
   " ToggleCursor: change cursor in insert mode
   Plug 'jszakmeister/vim-togglecursor'
 
+  " yaml-folds: better-looking folding format for .yml files
+  Plug 'pedrohdz/vim-yaml-folds'
+
 call plug#end()
 
 
@@ -307,14 +310,15 @@ match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 
 augroup MarkdownStuff
   autocmd!
-  autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown,*.mdwn set concealcursor=n conceallevel=3
+  autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown,*.mdwn set concealcursor-=n conceallevel=3
   autocmd FileType markdown highlight htmlBold ctermbg=60
   autocmd FileType markdown highlight EyeGrabbers ctermbg=60
 augroup END
 
-augroup rainbow_parens
+augroup ParensStuff
   autocmd!
   autocmd FileType lisp,clojure,scheme RainbowParentheses
+  autocmd BufNewFile,BufRead *.scm set foldmethod=indent
 augroup END
 
 
@@ -326,11 +330,11 @@ augroup END
 inoremap kj <Esc>
 inoremap jk <Esc>
 
-" gk/gj : vertical movement through whitespace
+" gk / gj : vertical movement through whitespace
 nnoremap gk :call VerticalSpaceJumpUp()<CR>
 nnoremap gj :call VerticalSpaceJumpDown()<CR>
 
-" j/k: respect wrapped lines when unprefixed by a count
+" j / k: respect wrapped lines when unprefixed by a count
 " ...h/t https://www.hillelwayne.com/post/intermediate-vim/
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -440,6 +444,10 @@ nmap <Leader>m <Plug>(git-messenger)
 
 " Leader o : shortcut for :only
 nnoremap <Leader>o :only<CR>
+
+" Leader qc : "quickfix conflicting", open quickfix listing files which have merge conflicts
+" h/t Peter Rincker https://vi.stackexchange.com/questions/13433/how-to-load-list-of-files-in-commit-into-quickfix#comment23027_13435
+nnoremap <Leader>qc :call setqflist(map(systemlist("git conflicting"), '{"filename": v:val}'))<CR>
 
 " Leader t : toggle terminal
 nnoremap <Leader>t :FloatermToggle<CR>

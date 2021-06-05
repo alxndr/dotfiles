@@ -33,6 +33,10 @@ elseif isdirectory('.git') && executable('git')
   set grepprg=git\ grep\ -nI
 endif
 
+" h/t grep helpfile
+command! -nargs=+ GrepQF execute 'silent grep! <args>' | copen "42
+
+
 """""""""""
 " Plugins "
 """""""""""
@@ -161,13 +165,6 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Halcyon: colorscheme
   Plug 'NieTiger/halcyon-neovim'
-
-  " Kommentary: code-commenting shortcuts (neovim >= 0.5.0)
-  Plug 'b3nj5m1n/kommentary'
-    " require('kommentary.config').config["ft"] = {"//", {"/*", "*/"}}
-    nnoremap <C-\> gcc<CR> " TODO why no work?
-  " TODO only install this if has(lua) ?
-  " else use TComment
 
   " Lexima: auto-close parentheses/brackets/quotes/oh my
   Plug 'cohama/lexima.vim'
@@ -340,10 +337,6 @@ nnoremap <Tab> <C-w>w
 " Tab : (visual) delete selection, paste into new vertical split buffer
 vnoremap <Tab> d:vnew<CR>PGddgg
 
-" opens a new buffer with selection and deletes from original buffer
-" h/t embedded.kyle https://superuser.com/a/540488/112856
-vnoremap ,<Tab> :'<,'>d<Space>\|<Space>new<Space>\|<Space>0put<Space>\"
-
 " Q : close buffer but preserve split, using vim-bbye
 nnoremap Q :Bdelete<CR>
 
@@ -428,6 +421,8 @@ nnoremap <leader>2 /TODO<CR>:nohl<CR>
 
 " Leader e : convert colon-delimited emoji name to emoji character
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
+
+nnoremap <Leader>g :GrepQF<Space>
 
 " Leader j/k : jump to next/prev edited area
 map <Leader>j :GitGutterNextHunk<CR>

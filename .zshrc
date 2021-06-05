@@ -52,7 +52,6 @@ fi
 # javascript... yarn
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
-
 # python... virtualenv (?)
 [[ -r "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"
 

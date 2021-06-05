@@ -28,11 +28,11 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="curl"
-alias yr="ncal $(date -j +'%Y')"
+alias e="nvim"
 alias gr="grep"
-alias ls="ls -F"
 alias l="ls -AFl"
 alias ll="ls -aFl"
+alias ls="ls -F"
       lsd() {
         if [[ -n "$1" ]]; then
           ls -G -d $1/*(D/)
@@ -53,6 +53,7 @@ alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}'
       }
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 alias wh="which"
+alias yr="ncal $(date -j +'%Y')"
 
 #########
 # mac-y #
@@ -61,7 +62,6 @@ alias wh="which"
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
 alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant" # h/t @GregMefford
       notify() { osascript -e "display notification \"$2\" with title \"$1\"" }
-alias nv="nvim"
       yt() { youtube-dl -f best $1 }
 
 
@@ -209,23 +209,7 @@ alias webfiles="rg --type web --files"
       }
 alias y="yarn"
 
-
-###
-# BR stuff
-###
-
-gcf() { git checkout "feature/$1" }
-gcC() { git checkout "feature/CONS-$1" }
-gcN() { git checkout "feature/NR-$1" }
-gcP() { git checkout "feature/PT-$1" }
-gcS() { git checkout "feature/SOC-$1" }
-gcT() { git checkout "feature/CTT-$1" }
-gfs() { git checkout develop && git pull && git checkout -b "feature/$1" }
-
-# https://statmilk.atlassian.net/wiki/spaces/ENG/pages/943030296/Getting+AWS+Access+Keys+from+Okta+SSO
-export AWS_DEFAULT_REGION=us-east-1
-export AWS_PAGER=""
-# [[ ! -x $(which saml2aws) ]] && brew tap versent/homebrew-taps && brew install saml2aws
+nodeDevSetup() { fnm use $(cat .nvmrc) && npm install }
 
 back_up_media() {
   rsync \
@@ -240,3 +224,5 @@ back_up_media() {
 }
 
 yt-mp3() { youtube-dl --extract-audio --audio-format mp3 $1 }
+
+[[ -f ~/.br-env.zsh ]] && source ~/.br-env.zsh

@@ -98,8 +98,8 @@ call plug#begin("~/.config/nvim/plugged")
     let g:ale_sign_warning = '⚠️'
     let g:ale_lint_on_enter = 0
     let g:ale_lint_on_save = 1
-    let g:ale_sign_column_always = 1
-    let g:ale_lint_delay = 600
+    let g:ale_sign_column_always = 0
+    let g:ale_lint_delay = 300
 
   " BBye: smart buffer deleter
   Plug 'moll/vim-bbye'
@@ -120,10 +120,10 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Fugitive: Git wrapper
   Plug 'tpope/vim-fugitive'
-    nnoremap ,gc :Gcommit<CR>
-    nnoremap ,gp :Gpush
-    nnoremap ,gP :Gpush --force
-    nnoremap ,gs :Gstatus<CR><Leader>o
+    nnoremap ,gc :Git commit<CR>
+    nnoremap ,gp :Git push
+    nnoremap ,gP :Git push --force
+    nnoremap ,gs :Git<CR>
 
   " FZF: 'fuzzy' text finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " to install via plug
@@ -163,9 +163,6 @@ call plug#begin("~/.config/nvim/plugged")
     nmap <leader>gl :call CopyGitLink()<CR>
     vmap <leader>gl :call CopyGitLink(1)<CR>
 
-  " Halcyon: colorscheme
-  Plug 'NieTiger/halcyon-neovim'
-
   " Lexima: auto-close parentheses/brackets/quotes/oh my
   Plug 'cohama/lexima.vim'
 
@@ -195,6 +192,14 @@ call plug#begin("~/.config/nvim/plugged")
 
   " NeoFormat: code formatting
   Plug 'sbdchd/neoformat'
+
+  " NeoTerm: terminal buffer manager
+  Plug 'kassio/neoterm'
+    let g:neoterm_default_mod = 1
+    " nnoremap <Leader>t :Tnew<CR>
+
+  " OneDark: colorscheme
+  Plug 'joshdick/onedark.vim'
 
   " Polyglot: syntax highlighting for a bunch of languages
   Plug 'sheerun/vim-polyglot'
@@ -250,6 +255,9 @@ call plug#begin("~/.config/nvim/plugged")
   " ToggleCursor: change cursor in insert mode
   Plug 'jszakmeister/vim-togglecursor'
 
+  " yaml-folds: better-looking folding format for .yml files
+  Plug 'pedrohdz/vim-yaml-folds'
+
 call plug#end()
 
 
@@ -257,17 +265,30 @@ call plug#end()
 " post-Plug configuration
 """
 
-colorscheme halcyon
-set termguicolors
+colorscheme onedark
+
+" if has('termguicolors') " This messes up colors for OS X's Terminal.app...
+"   set termguicolors
+" endif
 
 highlight Folded cterm=NONE
 
 highlight clear SignColumn " make gutter background transparent
 autocmd ColorScheme * highlight clear SignColumn
 
-call lexima#add_rule({'char': '>', 'at': ')\%#', 'input': ' =>', 'filetype': ['javascript', 'jasmine.javascript']})
-call lexima#add_rule({'char': "'",  'input': "'", 'filetype': ['lisp', 'scheme']})
-call lexima#add_rule({'char': "`",  'input': "`", 'filetype': ['lisp', 'scheme']})
+call lexima#add_rule({
+\ 'char': '=',
+\ 'at': ')\%#',
+\ 'input': ' => ',
+\ 'filetype': ['javascript', 'jasmine.javascript']
+\})
+call lexima#add_rule({
+\ 'char': '{',
+\ 'at': ')\%#',
+\ 'input': ' => {',
+\ 'input_after': '}',
+\ 'filetype': ['javascript', 'jasmine.javascript']
+\})
 
 " fix saving crontab on OS X
 " h/t https://superuser.com/a/907889/112856
@@ -304,14 +325,15 @@ match Todo '\v^(\<|\||\=|\>){7}([^=].+)?$'
 
 augroup MarkdownStuff
   autocmd!
-  autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown,*.mdwn set concealcursor=n conceallevel=3
+  autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown,*.mdwn set concealcursor-=n conceallevel=3
   autocmd FileType markdown highlight htmlBold ctermbg=60
   autocmd FileType markdown highlight EyeGrabbers ctermbg=60
 augroup END
 
-augroup rainbow_parens
+augroup ParensStuff
   autocmd!
   autocmd FileType lisp,clojure,scheme RainbowParentheses
+  autocmd BufNewFile,BufRead *.scm set foldmethod=indent
 augroup END
 
 
@@ -323,11 +345,11 @@ augroup END
 inoremap kj <Esc>
 inoremap jk <Esc>
 
-" gk/gj : vertical movement through whitespace
+" gk / gj : vertical movement through whitespace
 nnoremap gk :call VerticalSpaceJumpUp()<CR>
 nnoremap gj :call VerticalSpaceJumpDown()<CR>
 
-" j/k: respect wrapped lines when unprefixed by a count
+" j / k: respect wrapped lines when unprefixed by a count
 " ...h/t https://www.hillelwayne.com/post/intermediate-vim/
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -345,17 +367,17 @@ nnoremap Y y$
 " ...except in visual mode; then make it yank to the system clipboard
 vnoremap Y "+y
 
-" ,c ,o ,t : Close or Open or Toggle fold
+" ,c : close fold
 nnoremap ,c zc
-nnoremap ,o zo
-nnoremap ,t za
-nnoremap <Space><Space> za
 
 " ,f : reformat with npm
 nnoremap ,f :!npx prettier --write %<CR>
 
+" ,m : jump to merge conflict
+nnoremap ,m /\| merged common ancestors<CR>:noh<CR>zz
+
 " ,md : preview markdown file in browser with MarkdownPreview
-nnoremap ,md :MarkdownPreview<CR>
+" nnoremap ,md :MarkdownPreview<CR>
 
 " ,n : remove search highlight
 nnoremap ,n :nohl<CR>
@@ -364,13 +386,20 @@ nnoremap ,n :nohl<CR>
 nnoremap ,r :ALENext<CR>
 nnoremap ,R :ALEPrevious<CR>
 
-" ,s : in NPM package.json, highlight related scripts (i.e. any pre/post hooks
-"      of the script name under the cursor). TODO highlight the other way around
-nnoremap ,s yi"/"\(pre\\|post\)\?<C-R>""<CR>
+" ,s : open cypress screenshots
+nnoremap ,s :!open cypress/screenshots/<CR><CR>
+
+" ,t : toggle fold
+nnoremap ,t za
 
 " ,w/,W : make horizontal/vertical splits bigger
 nnoremap ,w <C-w>10>
 nnoremap ,W <C-w>5+
+
+" Tab : (normal) change splits
+nnoremap <Tab> <C-w>w
+" Tab : (visual) delete selection, paste into new vertical split buffer
+vnoremap <Tab> d:vnew<CR>PGddgg
 
 " +/- : increment/decrement numbers
 " ...h/t myfreeweb https://lobste.rs/s/6qp0vo#c_0emhe5
@@ -399,22 +428,26 @@ nnoremap <C-l> <C-w>l
 " Ctrl-p : fuzzy-find files (within the current Git repository; with FZF)
 nnoremap <C-p> :GFiles<CR>
 
-" Ctrl-/ : expand current split without closing others
-" (combo of Ctrl-| and Ctrl-_)
+" Ctrl-w / : expand current split without closing others
+" (combo of Ctrl-w | and Ctrl-w _)
 nnoremap <C-w>/ <C-w><Bar><C-w>_
 
 " Ctrl-s : search for word under cursor
 " h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 nnoremap <C-s> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Ctrl-Space : toggle folds
-nnoremap <C-Space> za
+" (terminal) Ctrl-Space : exit terminal mode
+tnoremap <C-Space> <C-\><C-n>
 
 " Leader Leader : list buffers (with FZF)
 nnoremap <Leader><Leader> :Buffers<CR>
 
 " Leader Tab : open lf file browser
 nnoremap <Leader><Tab> :Lf<CR>
+
+" Leader . : repeat last replacement, and allow further repetition with a bare .
+" h/t edanm https://news.ycombinator.com/item?id=26291260
+nnoremap <Leader>. :let @/=@"<CR>/<CR>cgn<C-R>.<Esc>
 
 " Leader 2 : jump to next ToDo
 nnoremap <leader>2 /TODO<CR>:nohl<CR>
@@ -434,8 +467,13 @@ nmap <Leader>m <Plug>(git-messenger)
 " Leader o : shortcut for :only
 nnoremap <Leader>o :only<CR>
 
-" Leader t : open terminal
-nnoremap <Leader>t :FloatermNew<CR>
+" Leader qc : "quickfix conflicting", open quickfix listing files which have merge conflicts
+" h/t Peter Rincker https://vi.stackexchange.com/questions/13433/how-to-load-list-of-files-in-commit-into-quickfix#comment23027_13435
+nnoremap <Leader>qc :call setqflist(map(systemlist("git conflicting"), '{"filename": v:val}'))<CR>
+
+" Leader t : toggle terminal
+nnoremap <Leader>t :FloatermToggle<CR>
+tnoremap <Leader>t <C-\><C-n>:FloatermToggle<CR>
 
 " Leader u : revert current hunk to git HEAD
 nnoremap <Leader>u :GitGutterUndoHunk<CR>
@@ -449,6 +487,12 @@ nnoremap <Leader>w :set list!<CR>
 
 " Leader x : trim trailing whitespace
 nnoremap <Leader>x :s/\s\+$//<CR>:nohl<CR>
+
+" Leader comma : append comma & move down
+nnoremap <Leader>,      mzA,<Esc>`zj
+
+" Leader semicolon : append semicolon & move down
+nnoremap <Leader>;      mzA;<Esc>`zj
 
 " double-semicolon : append semicolon from insert mode
 inoremap ;;        <Esc>mzA;<Esc>`za

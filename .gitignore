@@ -2,6 +2,7 @@
 *~
 .#*
 .DS_Store
+.br-env.zsh
 .idea/
 .ignore
 .jhw-cache
@@ -15,4 +16,3 @@ config/database.yml.readonly
 coverage
 jscoverage
 node_modules/
-secrets.sh

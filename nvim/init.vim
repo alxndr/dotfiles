@@ -337,6 +337,9 @@ inoremap jk <Esc>
 nnoremap gk :call VerticalSpaceJumpUp()<CR>
 nnoremap gj :call VerticalSpaceJumpDown()<CR>
 
+" gn : Go to next File in quickfix
+nnoremap gn :cnf<CR>
+
 " j / k: respect wrapped lines when unprefixed by a count
 " ...h/t https://www.hillelwayne.com/post/intermediate-vim/
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')

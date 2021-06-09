@@ -4,8 +4,8 @@ export LESS="-F -R -S -W"
 
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 
-# export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-# these should already be there...
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+# these should already be there... but they're not in the right order?
 
 export PATH="$PATH:/Users/alxndr/Library/Python/3.7/bin"
 
@@ -31,7 +31,7 @@ alias c="curl"
 alias e="nvim"
 alias gr="grep"
 alias l="ls -AFl"
-alias ll="ls -aFl"
+alias ll="ls -aFl" # something is overriding this...
 alias ls="ls -F"
       lsd() {
         if [[ -n "$1" ]]; then

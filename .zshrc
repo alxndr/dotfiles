@@ -50,7 +50,7 @@ if [[ -x $(which fnm) ]]; then
 fi
 
 # javascript... yarn
-export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+# export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 # elixir... exenv
 # if [[ -x $(which exenv) ]]; then
@@ -59,7 +59,7 @@ export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 # fi
 
 # python... virtualenv (?)
-[[ -r "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"
+# [[ -r "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"
 
 # h/t https://nicksays.co.uk/iterm-tool-versions-status-bar/
 # also https://www.iterm2.com/3.3/documentation-scripting-fundamentals.html

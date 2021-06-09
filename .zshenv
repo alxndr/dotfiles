@@ -223,4 +223,6 @@ back_up_media() {
     /Volumes/Media2
 }
 
+yt-mp3() { youtube-dl --extract-audio --audio-format mp3 $1 }
+
 [[ -f ~/.br-env.zsh ]] && source ~/.br-env.zsh

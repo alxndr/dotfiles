@@ -33,6 +33,10 @@ elseif isdirectory('.git') && executable('git')
   set grepprg=git\ grep\ -nI
 endif
 
+" h/t grep helpfile
+command! -nargs=+ GrepQF execute 'silent grep! <args>' | copen "42
+
+
 """""""""""
 " Plugins "
 """""""""""
@@ -162,6 +166,12 @@ call plug#begin("~/.config/nvim/plugged")
   " Lexima: auto-close parentheses/brackets/quotes/oh my
   Plug 'cohama/lexima.vim'
 
+  " Lightbulb: add icon to gutter when LSP actions are available (?)
+  " TODO only install this if has(lua) ?
+  Plug 'kosayoda/nvim-lightbulb'
+    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+    " vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+
   " LF: file browser UI
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim' " dependency of lf.vim
@@ -182,6 +192,11 @@ call plug#begin("~/.config/nvim/plugged")
 
   " NeoFormat: code formatting
   Plug 'sbdchd/neoformat'
+
+  " NeoTerm: terminal buffer manager
+  Plug 'kassio/neoterm'
+    let g:neoterm_default_mod = 1
+    " nnoremap <Leader>t :Tnew<CR>
 
   " OneDark: colorscheme
   Plug 'joshdick/onedark.vim'
@@ -227,9 +242,6 @@ call plug#begin("~/.config/nvim/plugged")
 
   " Surround: modify enclosing matched pairs
   Plug 'tpope/vim-surround'
-
-  " TComment: smart comment-related shortcuts
-  Plug 'tomtom/tcomment_vim'
 
   " TextObjUser: custom text objs
   Plug 'kana/vim-textobj-user'
@@ -345,6 +357,11 @@ nnoremap gn :cnf<CR>
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 
+" Tab : (normal) change splits
+nnoremap <Tab> <C-w>w
+" Tab : (visual) delete selection, paste into new vertical split buffer
+vnoremap <Tab> d:vnew<CR>PGddgg
+
 " Q : close buffer but preserve split, using vim-bbye
 nnoremap Q :Bdelete<CR>
 
@@ -440,6 +457,8 @@ nnoremap <leader>2 /TODO<CR>:nohl<CR>
 
 " Leader e : convert colon-delimited emoji name to emoji character
 nmap <Leader>e :s/:\([^: ]\+\):/\=emoji#for(submatch(1), submatch(0), 0)/g<CR>:nohl<CR>
+
+nnoremap <Leader>g :GrepQF<Space>
 
 " Leader j/k : jump to next/prev edited area
 map <Leader>j :GitGutterNextHunk<CR>

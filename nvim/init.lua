@@ -5,22 +5,33 @@ local g = vim.g      -- a table to access global variables
 
 g.mapleader = '\\'
 
-require('lua/options')
+require 'options'
+
+require 'mappings'
 
 -- package manager
-cmd 'packadd paq-nvim'
-local paq = require('paq-nvim').paq
-paq {'savq/paq-nvim', opt = true} -- paq-nvim manages itself
+require 'paq-nvim' {
 
--- color scheme
-paq {'joshdick/onedark.vim'}
+  {'savq/paq-nvim', opt = true}; -- paq-nvim manages itself
+
+  'joshdick/onedark.vim'; -- color scheme
+
+  'nvim-treesitter/nvim-treesitter';
+
+  'neovim/nvim-lspconfig';
+
+  'camspiers/snap'; -- file / buffer finder
+
+  'bling/vim-airline'; -- status line
+
+  'winston0410/commented.nvim';
+
+  'tpope/vim-surround'; -- matched-pair character shortcuts
+}
+
 cmd 'colorscheme onedark'
+require('commented').setup()
 
-paq {'nvim-treesitter/nvim-treesitter'}
-
-paq {'neovim/nvim-lspconfig'}
-
-paq {'camspiers/snap'}
 local snap = require'snap'
 snap.register.map({'n'}, {'<C-p>'}, function ()
   snap.run {
@@ -47,16 +58,9 @@ snap.register.map({'n'}, {'<Leader>g'}, function()
   }
 end)
 
-paq {'winston0410/commented.nvim'}
-require('commented').setup()
-
-require('lua/mappings')
-
 -- TODO
--- * status line
 -- * fugitive
 -- * git gutter
 -- * floating terminal
 -- * lexima
--- * vim-surround
 -- * jump to prev/next git hunk

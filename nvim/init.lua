@@ -21,6 +21,7 @@ require 'paq-nvim' {
   'neovim/nvim-lspconfig';
   'joshdick/onedark.vim'; -- color scheme
   'nvim-lua/plenary.nvim'; -- required by gitsigns
+  'airblade/vim-rooter'; -- keep vim working directory set to project root
   'unblevable/quick-scope'; -- highlight letter targets when using f/t to move within a line
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder

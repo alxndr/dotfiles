@@ -10,6 +10,8 @@ map('n', '<Leader>o', ':only<CR>')
 map('n', '<Leader>t', ':FloatermToggle<CR>')
 map('n', '<Leader>v', ':edit $MYVIMRC<CR>') -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 map('n', '<Leader>w', ':set list!<CR>')
+map('n', '<Leader>,', 'm`A,<Esc>``j') -- append comma to line and move down
+map('n', '<Leader>;', 'm`A;<Esc>``j') -- append semicolon to line and move down
 map('n', ',gc', ':Git commit<CR>')
 map('n', ',gp', ':Git push')
 map('n', ',gP', ':Git push --force')

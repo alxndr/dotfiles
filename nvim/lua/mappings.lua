@@ -4,8 +4,20 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+map('n', '<Leader>j', '<cmd>lua require"gitsigns.actions".next_hunk()<CR>')
+map('n', '<Leader>k', '<cmd>lua require"gitsigns.actions".prev_hunk()<CR>')
 map('n', '<Leader>o', ':only<CR>')
+map('n', '<Leader>t', ':FloatermToggle<CR>')
+map('n', '<Leader>v', ':edit $MYVIMRC<CR>') -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+map('n', '<Leader>w', ':set list!<CR>')
+map('n', ',gc', ':Git commit<CR>')
+map('n', ',gp', ':Git push')
+map('n', ',gP', ':Git push --force')
+map('n', ',gs', ':Git<CR>')
 map('n', ',n', ':nohl<CR>')
+map('n', 'Q', ':BufDel<CR>')
+map('n', ',w', '10<C-w>>')
+map('n', ',W', '5<C-w>+')
 map('n', '<Space>', ':')
 map('n', '<CR>', 'm`o<Esc>``')
 map('n', '<Tab>', '<C-w><C-w>')
@@ -18,5 +30,8 @@ map('n', '+', '<C-a>')
 
 map('i', 'jk', '<Esc>')
 map('i', 'kj', '<Esc>')
+
+map('t', '<Leader>t', '<C-\\><C-n>:FloatermToggle<CR>')
+map('t', '<C-Space>', '<C-\\><C-n>')
 
 map('v', '<Space>', ':')

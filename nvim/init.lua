@@ -1,38 +1,53 @@
 -- helpful aliases
-local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g      -- a table to access global variables
+local cmd = vim.cmd  -- execute Vim commands
+local fn = vim.fn    -- call Vim functions
+local g = vim.g      -- access global variables
 
 g.mapleader = '\\'
 
 require 'options'
-
 require 'mappings'
 
 -- package manager
 require 'paq-nvim' {
-
   {'savq/paq-nvim', opt = true}; -- paq-nvim manages itself
-
-  'joshdick/onedark.vim'; -- color scheme
-
-  'nvim-treesitter/nvim-treesitter';
-
-  'neovim/nvim-lspconfig';
-
-  'camspiers/snap'; -- file / buffer finder
-
   'bling/vim-airline'; -- status line
-
-  'winston0410/commented.nvim';
-
+  'ojroques/nvim-bufdel'; -- buffer deletion made saner
+  'winston0410/commented.nvim'; -- commenting shortcuts
+  'voldikss/vim-floaterm'; -- terminal eyecandy
+  'tpope/vim-fugitive'; -- Git helpers
+  'lewis6991/gitsigns.nvim'; -- line markers for added/removed code
+  'cohama/lexima.vim'; -- matched-pair character closing
+  'neovim/nvim-lspconfig';
+  'joshdick/onedark.vim'; -- color scheme
+  'nvim-lua/plenary.nvim'; -- required by gitsigns
+  'unblevable/quick-scope'; -- highlight letter targets when using f/t to move within a line
+  'chrisbra/Recover.vim'; -- add Compare to swapfile actions
+  'camspiers/snap'; -- file / buffer finder
+  'mhinz/vim-startify'; -- startup screen
   'tpope/vim-surround'; -- matched-pair character shortcuts
+  'nvim-treesitter/nvim-treesitter';
 }
 
 cmd 'colorscheme onedark'
-require('commented').setup()
 
-local snap = require'snap'
+require('commented').setup {
+	keybindings = {n = 'gc', v = 'gc', nl = 'gcc'},
+}
+
+require('gitsigns').setup()
+
+-- lexima config
+cmd([[
+  call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'jasmine.javascript'] })
+  call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'jasmine.javascript'] })
+]])
+
+-- quickscope config
+g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+
+-- snap config
+local snap = require 'snap'
 snap.register.map({'n'}, {'<C-p>'}, function ()
   snap.run {
     producer = snap.get'consumer.fzf'(snap.get'producer.ripgrep.file'),
@@ -58,9 +73,26 @@ snap.register.map({'n'}, {'<Leader>g'}, function()
   }
 end)
 
--- TODO
--- * fugitive
--- * git gutter
--- * floating terminal
--- * lexima
--- * jump to prev/next git hunk
+-- startify config
+-- h/t https://github.com/mhinz/vim-startify/wiki/Example-configurations#show-modified-and-untracked-git-files
+-- TODO fix these functions...
+--[[
+  function! GitFilesModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+  endfunction
+  function! GitFilesUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+  endfunction
+]]
+g.startify_custom_header = ''
+g.startify_lists = {
+  { type='files',                   header={' ➤ recent global'}           },
+  { type='dir',                     header={' ➤ recent in '..fn.getcwd()} },
+  { type='sessions',                header={' ➤ Sessions'}                },
+  { type='bookmarks',               header={' ➤ Bookmarks'}               },
+  -- { type=fn['GitFilesModified'](),  header={' ➤ git modified'}            },
+  -- { type=fn['GitFilesUntracked'](), header={' ➤ git untracked'}           },
+  { type='commands',                header={' ➤ Commands'}                },
+}

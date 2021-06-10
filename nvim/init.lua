@@ -10,8 +10,9 @@ require 'mappings'
 
 -- package manager
 require 'paq-nvim' {
-  {'savq/paq-nvim', opt = true}; -- paq-nvim manages itself
-  'bling/vim-airline'; -- status line
+  'savq/paq-nvim'; -- paq-nvim manages itself
+  'vim-airline/vim-airline'; -- status line
+  'vim-airline/vim-airline-themes'; -- status line eyecandy
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'winston0410/commented.nvim'; -- commenting shortcuts
   'voldikss/vim-floaterm'; -- terminal eyecandy
@@ -21,8 +22,8 @@ require 'paq-nvim' {
   'neovim/nvim-lspconfig';
   'joshdick/onedark.vim'; -- color scheme
   'nvim-lua/plenary.nvim'; -- required by gitsigns
-  'airblade/vim-rooter'; -- keep vim working directory set to project root
   'unblevable/quick-scope'; -- highlight letter targets when using f/t to move within a line
+  'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
   'mhinz/vim-startify'; -- startup screen

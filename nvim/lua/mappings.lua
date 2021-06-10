@@ -12,11 +12,13 @@ map('n', '<Leader>v', ':edit $MYVIMRC<CR>') -- h/t roryokane https://lobste.rs/s
 map('n', '<Leader>w', ':set list!<CR>')
 map('n', '<Leader>,', 'm`A,<Esc>``j') -- append comma to line and move down
 map('n', '<Leader>;', 'm`A;<Esc>``j') -- append semicolon to line and move down
+map('n', '<Leader><Tab>', ':NvimTreeToggle<CR>')
 map('n', ',gc', ':Git commit<CR>')
 map('n', ',gp', ':Git push')
 map('n', ',gP', ':Git push --force')
 map('n', ',gs', ':Git<CR>')
 map('n', ',n', ':nohl<CR>')
+map('n', ',t', 'za')
 map('n', 'Q', ':BufDel<CR>')
 map('n', ',w', '10<C-w>>')
 map('n', ',W', '5<C-w>+')
@@ -27,6 +29,7 @@ map('n', '<C-h>', '<C-w>h')
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
+-- map('n', '<C-s>', ':grep! "\\b<C-R><C-W>\\b"<CR>:cw<CR>') -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map('n', '-', '<C-x>')
 map('n', '+', '<C-a>')
 

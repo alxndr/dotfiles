@@ -28,8 +28,18 @@ require 'paq-nvim' {
   'camspiers/snap'; -- file / buffer finder
   'mhinz/vim-startify'; -- startup screen
   'tpope/vim-surround'; -- matched-pair character shortcuts
+  'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
+  'kyazdani42/nvim-web-devicons'; -- required by nvim-tree ... but doesn't seem to work
 }
+
+g.airline_theme = 'ouo'
+g.airline_powerline_fonts = 1
+g.airline_section_x = 0 -- hide tagbar, filetype, virtualenv section
+g.airline_section_y = 0 -- hide fileencoding, fileformat section
+g['airline#extensions#hunks#enabled'] = 0 -- hide git change summary
+g['airline#extensions#tabline#formatter'] = 'unique_tail_improved'
+g['airline#extensions#whitespace#enabled'] = 0 -- hide [88]trailing
 
 cmd 'colorscheme onedark'
 
@@ -94,7 +104,16 @@ g.startify_lists = {
   { type='dir',                     header={' ➤ recent in '..fn.getcwd()} },
   { type='sessions',                header={' ➤ Sessions'}                },
   { type='bookmarks',               header={' ➤ Bookmarks'}               },
-  -- { type=fn['GitFilesModified'](),  header={' ➤ git modified'}            },
-  -- { type=fn['GitFilesUntracked'](), header={' ➤ git untracked'}           },
+--{ type=fn['GitFilesModified'](),  header={' ➤ git modified'}            },
+--{ type=fn['GitFilesUntracked'](), header={' ➤ git untracked'}           },
   { type='commands',                header={' ➤ Commands'}                },
 }
+
+g.nvim_tree_quit_on_open = 1
+g.nvim_tree_add_trailing = 1
+
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {'bash', 'comment', 'css', 'dockerfile', 'elixir', 'graphql', 'html', 'javascript', 'json', 'lua', 'ruby', 'scss', 'yaml'},
+}
+
+-- require('nvim-web-devicons').setup()

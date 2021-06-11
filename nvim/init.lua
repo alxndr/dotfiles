@@ -33,6 +33,9 @@ require 'paq-nvim' {
   'kyazdani42/nvim-web-devicons'; -- required by nvim-tree ... but doesn't seem to work
 }
 
+cmd 'colorscheme onedark'
+
+-- airline config
 g.airline_theme = 'ouo'
 g.airline_powerline_fonts = 1
 g.airline_section_x = 0 -- hide tagbar, filetype, virtualenv section
@@ -41,12 +44,12 @@ g['airline#extensions#hunks#enabled'] = 0 -- hide git change summary
 g['airline#extensions#tabline#formatter'] = 'unique_tail_improved'
 g['airline#extensions#whitespace#enabled'] = 0 -- hide [88]trailing
 
-cmd 'colorscheme onedark'
-
+-- commented config
 require('commented').setup {
 	keybindings = {n = 'gc', v = 'gc', nl = 'gcc'},
 }
 
+-- gitsigns config
 require('gitsigns').setup()
 
 -- lexima config
@@ -109,11 +112,14 @@ g.startify_lists = {
   { type='commands',                header={' ➤ Commands'}                },
 }
 
+-- tree config
 g.nvim_tree_quit_on_open = 1
 g.nvim_tree_add_trailing = 1
 
+-- treesitter config
 require('nvim-treesitter.configs').setup {
   ensure_installed = {'bash', 'comment', 'css', 'dockerfile', 'elixir', 'graphql', 'html', 'javascript', 'json', 'lua', 'ruby', 'scss', 'yaml'},
 }
 
+-- web-devicons config
 -- require('nvim-web-devicons').setup()

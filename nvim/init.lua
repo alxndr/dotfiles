@@ -19,10 +19,10 @@ require 'paq-nvim' {
   'tpope/vim-fugitive'; -- Git helpers
   'lewis6991/gitsigns.nvim'; -- line markers for added/removed code
   'cohama/lexima.vim'; -- matched-pair character closing
+  'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
   'joshdick/onedark.vim'; -- color scheme
   'nvim-lua/plenary.nvim'; -- required by gitsigns
-  'unblevable/quick-scope'; -- highlight letter targets when using f/t to move within a line
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
@@ -57,9 +57,6 @@ cmd([[
   call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'jasmine.javascript'] })
   call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'jasmine.javascript'] })
 ]])
-
--- quickscope config
-g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
 
 -- snap config
 local snap = require 'snap'

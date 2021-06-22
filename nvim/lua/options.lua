@@ -9,6 +9,7 @@ opt.splitbelow = true
 opt.splitright = true
 opt.tabstop = 2
 opt.termguicolors = false
+opt.updatetime = 333
 opt.wrap = false
 
 vim.wo.foldmethod = 'expr'

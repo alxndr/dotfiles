@@ -17,12 +17,11 @@ require 'paq-nvim' {
   'winston0410/commented.nvim'; -- commenting shortcuts
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
-  'lewis6991/gitsigns.nvim'; -- line markers for added/removed code
+  'airblade/vim-gitgutter'; -- for GitGutterUndoHunk
   'cohama/lexima.vim'; -- matched-pair character closing
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
   'joshdick/onedark.vim'; -- color scheme
-  'nvim-lua/plenary.nvim'; -- required by gitsigns
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
@@ -48,9 +47,6 @@ g['airline#extensions#whitespace#enabled'] = 0 -- hide [88]trailing
 require('commented').setup {
 	keybindings = {n = 'gc', v = 'gc', nl = 'gcc'},
 }
-
--- gitsigns config
-require('gitsigns').setup()
 
 -- lexima config
 cmd([[

@@ -166,6 +166,7 @@ alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{con
           $1 \
         | awk '/^ *[0-9]/ {print $2}'
       }
+alias f="fnm use $([[ -f .node-version ]] && cat .node-version || ([[ -f .nvmrc ]] && cat .nvmrc))"
 alias gx="gigalixir"
 alias h="hex"
 alias ism="iex -S mix"

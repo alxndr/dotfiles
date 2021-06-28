@@ -45,6 +45,11 @@ map('t', '<Leader>t', '<C-\\><C-n>:FloatermToggle<CR>')
 map('t', '<Leader>[', '<C-\\><C-n>:FloatermPrev<CR>')
 map('t', '<Leader>]', '<C-\\><C-n>:FloatermNext<CR>')
 map('t', '<C-Space>', '<C-\\><C-n>')
+map('t', '<C-t>', '<C-\\><C-n>:FloatermToggle<CR>')
+map('t', '<C-[>', '<C-\\><C-n>:FloatermPrev<CR>')
+map('t', '<C-]>', '<C-\\><C-n>:FloatermNext<CR>')
 
 -- visual mode
 map('v', '<Space>', ':')
+map('v', 'Y', '"+y')
+map('v', '<C-s>', 'y\\g<C-r>"', {noremap=false}) -- grep for selection using Snap; h/t https://robots.thoughtbot.com/faster-grepping-in-vim

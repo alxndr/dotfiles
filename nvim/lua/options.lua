@@ -1,6 +1,7 @@
 local opt = vim.opt  -- to set options
 
 opt.expandtab = true
+opt.fillchars = 'fold: '
 opt.foldlevelstart = 99
 opt.number = true
 opt.relativenumber = true

@@ -21,18 +21,21 @@ require 'paq-nvim' {
   'cohama/lexima.vim'; -- matched-pair character closing
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
-  'joshdick/onedark.vim'; -- color scheme
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
   'mhinz/vim-startify'; -- startup screen
   'tpope/vim-surround'; -- matched-pair character shortcuts
+  'jacoborus/tender.vim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
   'kyazdani42/nvim-web-devicons'; -- required by nvim-tree ... but doesn't seem to work
 }
 
-cmd 'colorscheme onedark'
+cmd 'syntax enable'
+cmd 'colorscheme tender'
+
+cmd 'hi FloatermNC guibg=gray'
 
 -- airline config
 g.airline_theme = 'ouo'

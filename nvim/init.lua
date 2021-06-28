@@ -57,32 +57,6 @@ cmd([[
   call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'jasmine.javascript'] })
 ]])
 
--- snap config
-local snap = require 'snap'
-snap.register.map({'n'}, {'<C-p>'}, function ()
-  snap.run {
-    producer = snap.get'consumer.fzf'(snap.get'producer.ripgrep.file'),
-    select = snap.get'select.file'.select,
-    multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'}
-  }
-end)
-snap.register.map({'n'}, {'<Leader><Leader>'}, function ()
-  snap.run {
-    producer = snap.get'consumer.fzf'(snap.get'producer.vim.buffer'),
-    select = snap.get'select.file'.select,
-    multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'}
-  }
-end)
-snap.register.map({'n'}, {'<Leader>g'}, function()
-  snap.run {
-    producer = snap.get'consumer.limit'(100000, snap.get'producer.ripgrep.vimgrep'),
-    select = snap.get'select.vimgrep'.select,
-    multiselect = snap.get'select.vimgrep'.multiselect,
-    views = {snap.get'preview.vimgrep'}
-  }
-end)
 
 -- startify config
 -- h/t https://github.com/mhinz/vim-startify/wiki/Example-configurations#show-modified-and-untracked-git-files

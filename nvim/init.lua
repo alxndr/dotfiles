@@ -5,9 +5,6 @@ local g = vim.g      -- access global variables
 
 g.mapleader = '\\'
 
-require 'options'
-require 'mappings'
-
 -- package manager
 require 'paq-nvim' {
   'savq/paq-nvim'; -- paq-nvim manages itself
@@ -31,6 +28,9 @@ require 'paq-nvim' {
   'nvim-treesitter/nvim-treesitter';
   'kyazdani42/nvim-web-devicons'; -- required by nvim-tree ... but doesn't seem to work
 }
+
+require 'options'
+require 'mappings'
 
 cmd 'syntax enable'
 cmd 'colorscheme tender'

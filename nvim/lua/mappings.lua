@@ -63,6 +63,8 @@ map('n', ',w', '10<C-w>>')
 map('n', ',W', '5<C-w>+')
 map('n', '-', '<C-x>')
 map('n', '+', '<C-a>')
+map('n', '#', '#N', {noremap=false}) -- "find word under cursor" remains on current word
+map('n', '*', '*N', {noremap=false}) -- "find word under cursor" remains on current word
 
 -- insert mode
 map('i', 'jk', '<Esc>')

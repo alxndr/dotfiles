@@ -8,8 +8,6 @@ g.mapleader = '\\'
 -- package manager
 require 'paq-nvim' {
   'savq/paq-nvim'; -- paq-nvim manages itself
-  'vim-airline/vim-airline'; -- status line
-  'vim-airline/vim-airline-themes'; -- status line eyecandy
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'winston0410/commented.nvim'; -- commenting shortcuts
   'voldikss/vim-floaterm'; -- terminal eyecandy
@@ -18,6 +16,7 @@ require 'paq-nvim' {
   'cohama/lexima.vim'; -- matched-pair character closing
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
+  'hoob3rt/lualine.nvim'; -- status line
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
@@ -37,15 +36,6 @@ cmd 'colorscheme tender'
 
 cmd 'hi FloatermNC guibg=gray'
 
--- airline config
-g.airline_theme = 'ouo'
-g.airline_powerline_fonts = 1
-g.airline_section_x = 0 -- hide tagbar, filetype, virtualenv section
-g.airline_section_y = 0 -- hide fileencoding, fileformat section
-g['airline#extensions#hunks#enabled'] = 0 -- hide git change summary
-g['airline#extensions#tabline#formatter'] = 'unique_tail_improved'
-g['airline#extensions#whitespace#enabled'] = 0 -- hide [88]trailing
-
 -- commented config
 require('commented').setup {
 	keybindings = {n = 'gc', v = 'gc', nl = 'gcc'},
@@ -57,6 +47,26 @@ cmd([[
   call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'jasmine.javascript'] })
   call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'jasmine.javascript'] })
 ]])
+
+
+-- lualine config
+require'lualine'.setup{
+  options = {
+    icons_enabled = true,
+    component_separators = {'', ''},
+    section_separators = {'', ''},
+    theme = 'seoul256',
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {'filetype'},
+    lualine_z = {'progress', 'location'}
+  },
+}
+
 
 -- startify config
 -- h/t https://github.com/mhinz/vim-startify/wiki/Example-configurations#show-modified-and-untracked-git-files

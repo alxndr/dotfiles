@@ -9,6 +9,7 @@ local g = vim.g      -- access global variables
 require 'paq-nvim' {
   'savq/paq-nvim'; -- paq-nvim manages itself
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
+  'Iron-E/nvim-cartographer'; -- simpler API for mappings
   'winston0410/commented.nvim'; -- commenting shortcuts
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers

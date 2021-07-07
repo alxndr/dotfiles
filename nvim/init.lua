@@ -38,7 +38,7 @@ cmd 'hi FloatermNC guibg=gray'
 
 -- commented config
 require('commented').setup {
-	keybindings = {n = 'gc', v = 'gc', nl = 'gcc'},
+  keybindings = {n = 'gc', v = 'gc', nl = 'gcc'},
 }
 
 -- lexima config

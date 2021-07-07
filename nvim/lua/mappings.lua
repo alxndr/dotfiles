@@ -35,11 +35,12 @@ snap.register.map({'n'}, {'<Leader><Leader>'}, findBuffer)
 snap.register.map({'n'}, {'<Leader>g'}, searchWithGrep)
 map('n', '<Leader>j', ':GitGutterNextHunk<CR>')
 map('n', '<Leader>k', ':GitGutterPrevHunk<CR>')
-map('n', '<Leader>o', ':only<CR>')
+map('n', '<Leader>n', ':only<CR>')
 map('n', '<Leader>t', ':FloatermToggle<CR>')
 map('n', '<Leader>u', ':GitGutterUndoHunk<CR>')
 map('n', '<Leader>v', ':edit $MYVIMRC<CR>') -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 map('n', '<Leader>w', ':set list!<CR>')
+map('n', '<Leader>y', ':only<CR>')
 map('n', '<Leader>,', 'm`A,<Esc>``j') -- append comma to line and move down
 map('n', '<Leader>;', 'm`A;<Esc>``j') -- append semicolon to line and move down
 map('n', '<Leader><Tab>', ':NvimTreeToggle<CR>')

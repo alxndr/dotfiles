@@ -31,8 +31,8 @@ end
 -- normal mode
 snap.register.map({'n'}, {'<Leader><Leader>'}, findBuffer)
 snap.register.map({'n'}, {'<Leader>g'}, searchWithGrep)
-map.n.nore['<Leader>j'] = ':GitGutterNextHunk<CR>'
-map.n.nore['<Leader>k'] = ':GitGutterPrevHunk<CR>'
+map.n.nore['<Leader>j'] = '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'
+map.n.nore['<Leader>k'] = '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'
 map.n.nore['<Leader>n'] = ':only<CR>'
 map.n.nore['<Leader>t'] = ':FloatermToggle<CR>'
 map.n.nore['<Leader>u'] = ':lua require"gitsigns".reset_hunk()<CR>'
@@ -66,9 +66,8 @@ map.n['#'] = '#N' -- "find word under cursor" remains on current word
 map.n['*'] = '*N' -- "find word under cursor" remains on current word
 
 -- insert mode
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = true})
-vim.api.nvim_set_keymap('i', 'kj', '<Esc>', {noremap = true})
--- bug (?) in Cartographer / Startify (?) means that using `map` to set these makes Startify pause after `j` and `k` alone
+map.i.nore['jk'] = '<Esc>'
+map.i.nore['kj'] = '<Esc>'
 
 -- terminal mode
 map.t.nore['<Leader>n'] = '<C-\\><C-n>:FloatermNew<CR>'
@@ -83,5 +82,5 @@ map.t.nore['<C-]>'] = '<C-\\><C-n>:FloatermNext<CR>'
 -- visual mode
 map.v.nore['<Space>'] = ':'
 map.v.nore['Y'] = '"+y'
-vim.api.nvim_set_keymap('v', '<Tab>', 'd:vnew<CR>PGddgg', {noremap = true}) -- bug in Cartographer...
+map.v.nore['<Tab>'] = 'd:vnew<CR>PGddgg'
 map.v['<C-s>'] = 'y\\g<C-r>"' -- grep for selection using Snap; h/t https://robots.thoughtbot.com/faster-grepping-in-vim

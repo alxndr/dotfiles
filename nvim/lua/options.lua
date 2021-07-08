@@ -3,6 +3,7 @@ local opt = vim.opt  -- to set options
 opt.expandtab = true
 opt.fillchars = 'fold: '
 opt.foldlevelstart = 99
+opt.ignorecase = true
 opt.list = true
 opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
 opt.number = true

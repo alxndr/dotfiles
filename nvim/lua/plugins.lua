@@ -14,11 +14,12 @@ require 'paq-nvim' {
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
-  'airblade/vim-gitgutter'; -- for GitGutterUndoHunk
+  'lewis6991/gitsigns.nvim'; -- git change sigils
   'cohama/lexima.vim'; -- matched-pair character closing
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
   'hoob3rt/lualine.nvim'; -- status line
+  'nvim-lua/plenary.nvim'; -- prereq for gitsigns
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
@@ -37,6 +38,10 @@ require('commented').setup {
     v = 'gc',
     nl = 'gcc',
   },
+}
+
+-- gitsigns config
+require('gitsigns').setup{
 }
 
 -- lexima config

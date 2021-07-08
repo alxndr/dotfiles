@@ -81,5 +81,5 @@ map.t.nore['<C-]>'] = '<C-\\><C-n>:FloatermNext<CR>'
 -- visual mode
 map.v.nore['<Space>'] = ':'
 map.v.nore['Y'] = '"+y'
-map.v.nore['<Tab>'] = 'd:vnew<CR>PGddgg'
+vim.api.nvim_set_keymap('v', '<Tab>', 'd:vnew<CR>PGddgg', {noremap = true}) -- bug in Cartographer...
 map.v['<C-s>'] = 'y\\g<C-r>"' -- grep for selection using Snap; h/t https://robots.thoughtbot.com/faster-grepping-in-vim

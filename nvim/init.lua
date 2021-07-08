@@ -1,7 +1,4 @@
 local cmd = vim.cmd  -- execute Vim commands
-local g = vim.g      -- access global variables
-
-g.mapleader = '\\'
 
 require 'plugins'
 require 'options'

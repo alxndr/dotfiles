@@ -1,3 +1,5 @@
+vim.g.mapleader = '\\'
+
 local map = require 'cartographer'
 local snap = require 'snap'
 

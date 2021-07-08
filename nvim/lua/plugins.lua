@@ -5,12 +5,12 @@ local g = vim.g      -- access global variables
 -- Paq: package manager
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
-
 require 'paq-nvim' {
   'savq/paq-nvim'; -- paq-nvim manages itself
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
   'winston0410/commented.nvim'; -- commenting shortcuts
+  'nvim-lua/completion-nvim';
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
   'airblade/vim-gitgutter'; -- for GitGutterUndoHunk
@@ -43,69 +43,72 @@ cmd([[
 
 -- lsp config
 local lspc = require'lspconfig'
+local completion = require'completion'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspc.cssls.setup{
   capabilities = capabilities,
+  on_attach = completion.on_attach,
 }
 -- TODO: `eslint_d` seems to chew up CPU after running for a few minutes 😞
--- local function eslint_config_exists()
-  -- local eslintrc = fn.glob('.eslintrc*', 0, 1)
-  -- if not vim.tbl_isempty(eslintrc) then
-    -- return true
-  -- end
-  -- if fn.glob('package.json') and fn.filereadable('package.json') then
-    -- if fn.json_decode(fn.readfile('package.json'))['eslintConfig'] then
-      -- return true
-    -- end
-  -- end
-  -- return false
--- end
--- local eslint = {
-  -- lintCommand = 'eslint_d --format visualstudio --stdin --stdin-filename ${INPUT}',
-  -- lintStdin = true,
-  -- lintFormats = {'%f:%l:%c: %m'},
-  -- lintIgnoreExitCode = true,
-  -- formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
-  -- formatStdin = true
--- }
--- lspc.efm.setup{
-  -- on_attach = function(client)
-    -- client.resolved_capabilities.document_formatting = true
-    -- client.resolved_capabilities.goto_definition = false
-    -- -- set_lsp_config(client)
-  -- end,
-  -- root_dir = function()
-    -- if not eslint_config_exists() then
-      -- return nil
-    -- end
-    -- return fn.getcwd()
-  -- end,
-  -- filetypes = {
-    -- 'javascript',
-    -- 'javascriptreact',
-    -- 'javascript.jsx',
-    -- 'json',
-  -- },
-  -- settings = {
-    -- languages = {
-      -- javascript = {eslint},
-      -- javascriptreact = {eslint},
-      -- ['javascript.jsx'] = {eslint},
-      -- json = {eslint},
-    -- },
-  -- },
--- }
+local function eslint_config_exists()
+  local eslintrc = fn.glob('.eslintrc*', 0, 1)
+  if not vim.tbl_isempty(eslintrc) then
+    return true
+  end
+  if fn.glob('package.json') and fn.filereadable('package.json') then
+    if fn.json_decode(fn.readfile('package.json'))['eslintConfig'] then
+      return true
+    end
+  end
+  return false
+end
+local eslint = {
+  lintCommand = 'eslint_d --format visualstudio --stdin --stdin-filename ${INPUT}',
+  lintStdin = true,
+  lintFormats = {'%f:%l:%c: %m'},
+  lintIgnoreExitCode = true,
+  formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
+  formatStdin = true
+}
+lspc.efm.setup{
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = true
+    client.resolved_capabilities.goto_definition = false
+    -- set_lsp_config(client)
+  end,
+  root_dir = function()
+    if not eslint_config_exists() then
+      return nil
+    end
+    return fn.getcwd()
+  end,
+  filetypes = {
+    'javascript',
+    'javascriptreact',
+    'javascript.jsx',
+    'json',
+  },
+  settings = {
+    languages = {
+      javascript = {eslint},
+      javascriptreact = {eslint},
+      ['javascript.jsx'] = {eslint},
+      json = {eslint},
+    },
+  },
+}
 lspc.html.setup{
   capabilities = capabilities,
+  on_attach = completion.on_attach,
 }
 
 -- lualine config
 require'lualine'.setup{
   options = {
     icons_enabled = true,
-    component_separators = {'', ''},
-    section_separators = {'', ''},
+    component_separators = {'⧹', '⧸'},
+    section_separators = {'▋', '▐'},
     theme = 'seoul256',
   },
   sections = {

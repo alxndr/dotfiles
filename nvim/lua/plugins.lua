@@ -164,6 +164,10 @@ g.startify_lists = {
 -- tree config
 g.nvim_tree_quit_on_open = 1
 g.nvim_tree_add_trailing = 1
+g.nvim_tree_bindings = {
+  { key = '<Tab>', mode = 'n', cb = '<C-w><C-w>'}
+}
+
 
 -- treesitter config
 require('nvim-treesitter.configs').setup {

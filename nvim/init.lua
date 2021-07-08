@@ -9,4 +9,4 @@ require 'mappings'
 
 cmd 'syntax enable'
 cmd 'colorscheme tender' -- installed via plugins
-cmd 'hi FloatermNC guibg=gray'
+cmd 'highlight FloatermNC guibg=gray'

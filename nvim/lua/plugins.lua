@@ -11,6 +11,7 @@ require 'paq-nvim' {
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
   'winston0410/commented.nvim'; -- commenting shortcuts
   'nvim-lua/completion-nvim';
+  'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
   'airblade/vim-gitgutter'; -- for GitGutterUndoHunk
@@ -26,12 +27,16 @@ require 'paq-nvim' {
   'jacoborus/tender.vim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
-  'kyazdani42/nvim-web-devicons'; -- required by nvim-tree ... but doesn't seem to work
+  'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree ... but doesn't seem to work
 }
 
 -- commented config
 require('commented').setup {
-  keybindings = {n = 'gc', v = 'gc', nl = 'gcc'},
+  keybindings = {
+    n = 'gc',
+    v = 'gc',
+    nl = 'gcc',
+  },
 }
 
 -- lexima config
@@ -45,12 +50,6 @@ cmd([[
 local lspc = require'lspconfig'
 local completion = require'completion'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-lspc.cssls.setup{
-  capabilities = capabilities,
-  on_attach = completion.on_attach,
-}
--- TODO: `eslint_d` seems to chew up CPU after running for a few minutes 😞
 local function eslint_config_exists()
   local eslintrc = fn.glob('.eslintrc*', 0, 1)
   if not vim.tbl_isempty(eslintrc) then
@@ -71,6 +70,13 @@ local eslint = {
   formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
   formatStdin = true
 }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspc.cssls.setup{
+  capabilities = capabilities,
+  on_attach = completion.on_attach,
+}
+-- TODO: `eslint_d` seems to chew up CPU after running for a few minutes 😞
+--[[
 lspc.efm.setup{
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
@@ -98,6 +104,7 @@ lspc.efm.setup{
     },
   },
 }
+]]
 lspc.html.setup{
   capabilities = capabilities,
   on_attach = completion.on_attach,
@@ -121,10 +128,10 @@ require'lualine'.setup{
   },
   inactive_sections = {
     lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
     lualine_x = {},
-    lualine_y = {},
+    lualine_y = {'filetype'},
     lualine_z = {}
   },
 }
@@ -162,6 +169,3 @@ g.nvim_tree_add_trailing = 1
 require('nvim-treesitter.configs').setup {
   ensure_installed = {'bash', 'comment', 'css', 'dockerfile', 'elixir', 'graphql', 'html', 'javascript', 'json', 'lua', 'ruby', 'scss', 'yaml'},
 }
-
--- web-devicons config
-require('nvim-web-devicons').setup()

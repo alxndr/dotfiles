@@ -1,19 +1,17 @@
-local opt = vim.opt  -- to set options
-
-opt.expandtab = true
-opt.fillchars = 'fold: '
-opt.foldlevelstart = 99
-opt.list = true
-opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
-opt.number = true
-opt.relativenumber = true
-opt.shiftwidth = 2
-opt.splitbelow = true
-opt.splitright = true
-opt.tabstop = 2
-opt.termguicolors = false
-opt.updatetime = 333
-opt.wrap = false
+vim.opt.expandtab = true
+vim.opt.fillchars = 'fold: '
+vim.opt.foldlevelstart = 99
+vim.opt.list = true
+vim.opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.shiftwidth = 2
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.tabstop = 2
+vim.opt.termguicolors = false
+vim.opt.updatetime = 333
+vim.opt.wrap = false
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'

@@ -1,6 +1,7 @@
 vim.opt.expandtab = true
 vim.opt.fillchars = 'fold: '
 vim.opt.foldlevelstart = 99
+vim.opt.ignorecase = true
 vim.opt.list = true
 vim.opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
 vim.opt.number = true

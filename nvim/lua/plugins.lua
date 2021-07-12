@@ -14,6 +14,8 @@ require 'paq-nvim' {
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
+  'junegunn/fzf'; -- fuzzy file finder
+  'junegunn/fzf.vim'; -- fuzzy file finder
   'lewis6991/gitsigns.nvim'; -- git change sigils
   'cohama/lexima.vim'; -- matched-pair character closing
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts

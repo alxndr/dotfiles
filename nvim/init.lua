@@ -1,7 +1,9 @@
 local cmd = vim.cmd  -- execute Vim commands
 
-require 'plugins'
 require 'options'
+
+require 'plugins'
+
 require 'mappings'
 
 cmd 'syntax enable'

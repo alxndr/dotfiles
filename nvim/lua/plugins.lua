@@ -9,6 +9,7 @@ require 'paq-nvim' {
   'savq/paq-nvim'; -- paq-nvim manages itself
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
+  'norcalli/nvim-colorizer.lua'; -- color eye-candy
   'winston0410/commented.nvim'; -- commenting shortcuts
   'nvim-lua/completion-nvim';
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine
@@ -32,6 +33,18 @@ require 'paq-nvim' {
   'nvim-treesitter/nvim-treesitter';
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree ... but doesn't seem to work
 }
+
+
+-- colorizer config
+require 'colorizer'.setup({
+  'css';
+  'javascript';
+  'html';
+}, {
+  RRGGBBAA = true;
+  rgb_fn   = true;
+})
+
 
 -- commented config
 require('commented').setup {

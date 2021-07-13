@@ -12,7 +12,7 @@ opt.shiftwidth = 2
 opt.splitbelow = true
 opt.splitright = true
 opt.tabstop = 2
-opt.termguicolors = false
+opt.termguicolors = true
 opt.updatetime = 333
 opt.wrap = false
 

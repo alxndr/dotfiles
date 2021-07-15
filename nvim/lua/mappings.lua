@@ -51,6 +51,8 @@ map.n.nore['<C-k>'] = '<C-w>k'
 map.n.nore['<C-l>'] = '<C-w>l'
 snap.register.map({'n'}, {'<C-p>'}, findFile)
 map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+map.n.nore['gj'] = ':call VerticalSpaceJumpDown()<CR>'
+map.n.nore['gk'] = ':call VerticalSpaceJumpUp()<CR>'
 map.n.nore[',gc'] = ':Git commit<CR>'
 map.n.nore[',gp'] = ':Git push'
 map.n.nore[',gP'] = ':Git push --force'

@@ -45,12 +45,14 @@ map.n.nore['<Leader><Tab>'] = ':NvimTreeToggle<CR>'
 map.n.nore['<Space>'] = ':'
 map.n.nore['<CR>'] = 'm`o<Esc>``'
 map.n.nore['<Tab>'] = '<C-w><C-w>'
+map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'"
 map.n.nore['<C-h>'] = '<C-w>h'
 map.n.nore['<C-j>'] = '<C-w>j'
 map.n.nore['<C-k>'] = '<C-w>k'
 map.n.nore['<C-l>'] = '<C-w>l'
 snap.register.map({'n'}, {'<C-p>'}, findFile)
 map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 map.n.nore['gj'] = ':call VerticalSpaceJumpDown()<CR>'
 map.n.nore['gk'] = ':call VerticalSpaceJumpUp()<CR>'
 map.n.nore[',gc'] = ':Git commit<CR>'

@@ -132,6 +132,7 @@ lspc.html.setup{
   on_attach = completion.on_attach,
 }
 
+
 -- lualine config
 require'lualine'.setup{
   options = {
@@ -149,11 +150,11 @@ require'lualine'.setup{
     lualine_z = {'progress', 'location'}
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {'branch'},
-    lualine_c = {'filename'},
+    lualine_a = {'filename'},
+    lualine_b = {},
+    lualine_c = {},
     lualine_x = {},
-    lualine_y = {'filetype'},
+    lualine_y = {},
     lualine_z = {}
   },
 }

@@ -137,21 +137,21 @@ lspc.html.setup{
 require'lualine'.setup{
   options = {
     icons_enabled = true,
-    component_separators = {'⧹', '⧸'},
-    section_separators = {'▋', '▐'},
+    component_separators = {'…', '…'},
+    section_separators = '',
     theme = 'seoul256',
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch'},
+    lualine_b = {'branch', 'diff'},
     lualine_c = {'filename'},
-    lualine_x = {},
+    lualine_x = {'diagnostics'},
     lualine_y = {'filetype'},
-    lualine_z = {'progress', 'location'}
+    lualine_z = {'location', 'progress'}
   },
   inactive_sections = {
-    lualine_a = {'filename'},
-    lualine_b = {},
+    lualine_a = {'diff'},
+    lualine_b = {'filename'},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},

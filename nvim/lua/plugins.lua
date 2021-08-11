@@ -30,7 +30,7 @@ require 'paq-nvim' {
   'camspiers/snap'; -- file / buffer finder
   'mhinz/vim-startify'; -- startup screen
   'tpope/vim-surround'; -- matched-pair character shortcuts
-  'jacoborus/tender.vim'; -- color scheme
+  'folke/tokyonight.nvim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree ... but doesn't seem to work
@@ -157,6 +157,7 @@ require'lualine'.setup{
     lualine_y = {},
     lualine_z = {}
   },
+  theme = 'tokyonight',
 }
 
 
@@ -183,6 +184,11 @@ g.startify_lists = {
 --{ type=fn['GitFilesUntracked'](), header={' ➤ git untracked'}           },
   { type='commands',                header={' ➤ Commands'}                },
 }
+
+
+-- tokyonight config
+vim.g.tokyonight_italic_keywords = false
+
 
 -- tree config
 g.nvim_tree_quit_on_open = 1

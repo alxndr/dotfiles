@@ -19,6 +19,8 @@ Check out the repo, then either `ln -s workspace/dotfiles/[...]` into `~` or see
 
 ## os x settings
 
+Need [patched fonts](https://www.nerdfonts.com/font-downloads)... currently enamored with `Hasklig` / Hasklug
+
 ### high sierra
 
 * dvorak keyboard

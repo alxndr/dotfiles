@@ -4,6 +4,7 @@ opt.expandtab = true
 opt.fillchars = 'fold: '
 opt.foldlevelstart = 99
 opt.ignorecase = true
+opt.joinspaces = false
 opt.list = true
 opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
 opt.number = true

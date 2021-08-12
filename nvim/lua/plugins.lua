@@ -24,6 +24,7 @@ require 'paq-nvim' {
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
   'hoob3rt/lualine.nvim'; -- status line
+  'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
@@ -158,6 +159,21 @@ require'lualine'.setup{
     lualine_z = {}
   },
   theme = 'tokyonight',
+}
+
+
+-- package-info config
+require('package-info').setup{
+  colors = {
+    outdated = '#11aaee',
+    up_to_date = '#000000',
+  },
+  icons = {
+    style = {
+      outdated = ' //  ',
+      up_to_date = ' //  ',
+    },
+  },
 }
 
 

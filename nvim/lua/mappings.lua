@@ -39,8 +39,6 @@ map.n.nore['<Leader>u'] = ':lua require"gitsigns".reset_hunk()<CR>'
 map.n.nore['<Leader>v'] = ':edit $MYVIMRC<CR>' -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 map.n.nore['<Leader>w'] = ':set list!<CR>'
 map.n.nore['<Leader>y'] = ':only<CR>'
-map.n.nore['<Leader>,'] = 'm`A,<Esc>``j' -- append comma to line and move down
-map.n.nore['<Leader>;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
 map.n.nore['<Leader><Tab>'] = ':NvimTreeToggle<CR>'
 map.n.nore['<Space>'] = ':'
 map.n.nore['<CR>'] = 'm`o<Esc>``'
@@ -67,6 +65,8 @@ map.n.nore[',t'] = 'za'
 map.n.nore['Q'] = ':BufDel<CR>'
 map.n.nore[',w'] = '10<C-w>>'
 map.n.nore[',W'] = '5<C-w>+'
+map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
+map.n.nore[';;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
 map.n.nore['-'] = '<C-x>'
 map.n.nore['+'] = '<C-a>'
 map.n['#'] = '#N' -- "find word under cursor" remains on current word
@@ -75,6 +75,8 @@ map.n['*'] = '*N' -- "find word under cursor" remains on current word
 -- insert mode
 map.i.nore['jk'] = '<Esc>'
 map.i.nore['kj'] = '<Esc>'
+map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
+map.i.nore[';;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
 
 -- terminal mode
 map.t.nore['<Leader>n'] = '<C-\\><C-n>:FloatermNew<CR>'

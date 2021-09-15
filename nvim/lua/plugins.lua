@@ -13,9 +13,11 @@ require 'paq-nvim' {
   'goolord/alpha-nvim'; -- startup screen
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
+  'hrsh7th/nvim-cmp'; -- completion
+  'hrsh7th/cmp-buffer'; -- something for nvim-cmp
+  'hrsh7th/cmp-nvim-lsp'; -- "LSP source for nvim-cmp"
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
   'winston0410/commented.nvim'; -- commenting shortcuts
-  'nvim-lua/completion-nvim';
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
@@ -36,6 +38,7 @@ require 'paq-nvim' {
   'folke/tokyonight.nvim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
+  'onsails/vimway-lsp-diag.nvim'; -- show LSP diagnostics in Quickfix
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree ... but doesn't seem to work
 }
 
@@ -64,6 +67,43 @@ require('commented').setup {
   },
 }
 
+-- cmp config
+local cmp = require'cmp'
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.documentationFormat = {'markdown', 'plaintext'}
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.preselectSupport = true
+-- capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+-- capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+-- capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+-- capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+-- capabilities.textDocument.completion.completionItem.tagSupport = {valueSet = {1}}
+-- capabilities.textDocument.completion.completionItem.resolveSupport = {properties = {
+  -- 'documentation', 'detail', 'additionalTextEdits',
+-- }}
+cmp.setup {
+  mapping = {
+    ['<Tab>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+  },
+  sources = {
+    {name = 'buffer'},
+  },
+}
+-- TODO these are not working yet... conflict with Lexima?
+-- g.lexima_no_default_rules = true
+-- cmd [[
+  -- call lexima#set_default_rules()
+  -- inoremap <silent><expr> <C-Space> compe#complete()
+  -- inoremap <silent><expr> <CR>      compe#confirm(lexima#expand('<LT>CR>', 'i'))
+  -- inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+  -- inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+  -- inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+-- ]]
+
+
 -- gitsigns config
 require('gitsigns').setup {}
 
@@ -77,8 +117,8 @@ cmd([[
 
 -- lsp config
 local lspc = require'lspconfig'
-local completion = require'completion'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local completion = require'completion'
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
 local function eslint_config_exists()
   local eslintrc = fn.glob('.eslintrc*', 0, 1)
   if not vim.tbl_isempty(eslintrc) then
@@ -99,13 +139,12 @@ local eslint = {
   formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
   formatStdin = true
 }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-lspc.cssls.setup{
-  capabilities = capabilities,
-  on_attach = completion.on_attach,
-}
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- lspc.cssls.setup{
+  -- capabilities = capabilities,
+  -- on_attach = completion.on_attach,
+-- }
 -- TODO: `eslint_d` seems to chew up CPU after running for a few minutes 😞
---[[
 lspc.efm.setup{
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
@@ -126,18 +165,17 @@ lspc.efm.setup{
   },
   settings = {
     languages = {
-      javascript = {eslint},
-      javascriptreact = {eslint},
-      ['javascript.jsx'] = {eslint},
-      json = {eslint},
+      -- javascript = {eslint},
+      -- javascriptreact = {eslint},
+      -- ['javascript.jsx'] = {eslint},
+      -- json = {eslint},
     },
   },
 }
-]]
-lspc.html.setup{
-  capabilities = capabilities,
-  on_attach = completion.on_attach,
-}
+-- lspc.html.setup{
+  -- capabilities = capabilities,
+  -- on_attach = completion.on_attach,
+-- }
 
 
 -- lualine config
@@ -237,3 +275,9 @@ g.nvim_tree_bindings = {
 require('nvim-treesitter.configs').setup {
   ensure_installed = {'bash', 'comment', 'css', 'dockerfile', 'elixir', 'graphql', 'html', 'javascript', 'json', 'lua', 'ruby', 'scss', 'yaml'},
 }
+
+
+-- vimway-lsp-diag config
+require('vimway-lsp-diag').init({
+  debounce_ms = 100,
+})

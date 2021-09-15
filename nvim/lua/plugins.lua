@@ -173,6 +173,8 @@ require('package-info').setup{
     outdated = '#11aaee',
     up_to_date = '#000000',
   },
+  hide_unstable_versions = true,
+  hide_up_to_date = true,
   icons = {
     style = {
       outdated = ' //  ',

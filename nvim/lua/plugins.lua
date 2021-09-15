@@ -7,11 +7,13 @@ local g = vim.g      -- access global variables
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
 require 'paq-nvim' {
   'savq/paq-nvim'; -- paq-nvim manages itself
+
+  'goolord/alpha-nvim'; -- startup screen
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
   'winston0410/commented.nvim'; -- commenting shortcuts
   'nvim-lua/completion-nvim';
-  'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine
+  'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
   'junegunn/fzf'; -- fuzzy file finder
@@ -25,13 +27,17 @@ require 'paq-nvim' {
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
-  'mhinz/vim-startify'; -- startup screen
   'tpope/vim-surround'; -- matched-pair character shortcuts
   'jacoborus/tender.vim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree ... but doesn't seem to work
 }
+
+
+-- alpha config
+require('alpha').setup(require('alpha.themes.startify').opts)
+
 
 -- commented config
 require('commented').setup {
@@ -135,38 +141,14 @@ require'lualine'.setup{
   },
   inactive_sections = {
     lualine_a = {},
-    lualine_b = {'branch'},
+    lualine_b = {},
     lualine_c = {'filename'},
     lualine_x = {},
-    lualine_y = {'filetype'},
-    lualine_z = {}
+    lualine_y = {},
+    lualine_z = {'progress', 'location'}
   },
 }
 
-
--- startify config
--- h/t https://github.com/mhinz/vim-startify/wiki/Example-configurations#show-modified-and-untracked-git-files
--- TODO fix these functions...
---[[
-  function! GitFilesModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-  endfunction
-  function! GitFilesUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-  endfunction
-]]
-g.startify_custom_header = ''
-g.startify_lists = {
-  { type='files',                   header={' ➤ recent global'}           },
-  { type='dir',                     header={' ➤ recent in '..fn.getcwd()} },
-  { type='sessions',                header={' ➤ Sessions'}                },
-  { type='bookmarks',               header={' ➤ Bookmarks'}               },
---{ type=fn['GitFilesModified'](),  header={' ➤ git modified'}            },
---{ type=fn['GitFilesUntracked'](), header={' ➤ git untracked'}           },
-  { type='commands',                header={' ➤ Commands'}                },
-}
 
 -- tree config
 g.nvim_tree_quit_on_open = 1

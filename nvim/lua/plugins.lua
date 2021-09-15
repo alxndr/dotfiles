@@ -26,6 +26,7 @@ require 'paq-nvim' {
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
   'hoob3rt/lualine.nvim'; -- status line
+  'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns
   'airblade/vim-rooter'; -- keep vim working directory set to project root

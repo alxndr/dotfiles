@@ -3,34 +3,9 @@ vim.g.mapleader = '\\'
 local map = require 'cartographer'
 local snap = require 'snap'
 
-local findFile = function ()
-  snap.run {
-    producer = snap.get'consumer.fzf'(snap.get'producer.ripgrep.file'),
-    select = snap.get'select.file'.select,
-    multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'}
-  }
-end
-local findBuffer = function ()
-  snap.run {
-    producer = snap.get'consumer.fzf'(snap.get'producer.vim.buffer'),
-    select = snap.get'select.file'.select,
-    multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'}
-  }
-end
-local searchWithGrep = function ()
-  snap.run {
-    producer = snap.get'consumer.limit'(100000, snap.get'producer.ripgrep.vimgrep'),
-    select = snap.get'select.vimgrep'.select,
-    multiselect = snap.get'select.vimgrep'.multiselect,
-    views = {snap.get'preview.vimgrep'}
-  }
-end
-
 -- normal mode
-snap.register.map({'n'}, {'<Leader><Leader>'}, findBuffer)
-snap.register.map({'n'}, {'<Leader>g'}, searchWithGrep)
+snap.register.map({'n'}, {'<Leader><Leader>'}, snapFindBuffer)
+snap.register.map({'n'}, {'<Leader>g'}, snapSearchWithGrep)
 map.n.nore['<Leader>j'] = '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'
 map.n.nore['<Leader>k'] = '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'
 map.n.nore['<Leader>n'] = ':only<CR>'
@@ -48,7 +23,7 @@ map.n.nore['<C-h>'] = '<C-w>h'
 map.n.nore['<C-j>'] = '<C-w>j'
 map.n.nore['<C-k>'] = '<C-w>k'
 map.n.nore['<C-l>'] = '<C-w>l'
-snap.register.map({'n'}, {'<C-p>'}, findFile)
+snap.register.map({'n'}, {'<C-p>'}, snapFindFile)
 map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 map.n.nore['gj'] = ':call VerticalSpaceJumpDown()<CR>'

@@ -2,6 +2,8 @@ local cmd = vim.cmd  -- execute Vim commands
 local fn = vim.fn    -- call Vim functions
 local g = vim.g      -- access global variables
 
+require 'plugin/vertical_space_jumper'
+
 -- Paq: package manager
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
@@ -11,6 +13,7 @@ require 'paq-nvim' {
   'goolord/alpha-nvim'; -- startup screen
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
+  'norcalli/nvim-colorizer.lua'; -- color eye-candy
   'winston0410/commented.nvim'; -- commenting shortcuts
   'nvim-lua/completion-nvim';
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
@@ -23,12 +26,13 @@ require 'paq-nvim' {
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
   'hoob3rt/lualine.nvim'; -- status line
+  'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
   'tpope/vim-surround'; -- matched-pair character shortcuts
-  'jacoborus/tender.vim'; -- color scheme
+  'folke/tokyonight.nvim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree ... but doesn't seem to work
@@ -37,6 +41,17 @@ require 'paq-nvim' {
 
 -- alpha config
 require('alpha').setup(require('alpha.themes.startify').opts)
+
+
+-- colorizer config
+require 'colorizer'.setup({
+  'css';
+  'javascript';
+  'html';
+}, {
+  RRGGBBAA = true;
+  rgb_fn   = true;
+})
 
 
 -- commented config
@@ -49,8 +64,8 @@ require('commented').setup {
 }
 
 -- gitsigns config
-require('gitsigns').setup{
-}
+require('gitsigns').setup {}
+
 
 -- lexima config
 cmd([[
@@ -123,31 +138,88 @@ lspc.html.setup{
   on_attach = completion.on_attach,
 }
 
+
 -- lualine config
 require'lualine'.setup{
   options = {
     icons_enabled = true,
-    component_separators = {'⧹', '⧸'},
-    section_separators = {'▋', '▐'},
+    component_separators = {'…', '…'},
+    section_separators = '',
     theme = 'seoul256',
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch'},
+    lualine_b = {'branch', 'diff'},
     lualine_c = {'filename'},
-    lualine_x = {},
+    lualine_x = {'diagnostics'},
     lualine_y = {'filetype'},
-    lualine_z = {'progress', 'location'}
+    lualine_z = {'location', 'progress'}
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_a = {'diff'},
+    lualine_b = {'branch'},
+    lualine_c = {{'filename', path = 1}},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {'progress', 'location'}
   },
+  theme = 'tokyonight',
 }
+
+
+-- package-info config
+require('package-info').setup{
+  colors = {
+    outdated = '#11aaee',
+    up_to_date = '#000000',
+  },
+  icons = {
+    style = {
+      outdated = ' //  ',
+      up_to_date = ' //  ',
+    },
+  },
+}
+
+
+-- snap config
+-- mappings are in `mappings.lua`
+local snap = require('snap')
+snapFindFile = function ()
+  snap.run {
+    producer = snap.get'consumer.fzf'(snap.get'producer.ripgrep.file'),
+    -- producer = snap.get'consumer.fzf'(
+      -- snap.get'consumer.try'(
+        -- snap.get'producer.git.file',
+        -- snap.get'producer.ripgrep.file'
+      -- ),
+    -- ),
+    select = snap.get'select.file'.select,
+    multiselect = snap.get'select.file'.multiselect,
+    views = {snap.get'preview.file'}
+  }
+end
+snapFindBuffer = function ()
+  snap.run {
+    producer = snap.get'consumer.fzf'(snap.get'producer.vim.buffer'),
+    select = snap.get'select.file'.select,
+    multiselect = snap.get'select.file'.multiselect,
+    views = {snap.get'preview.file'}
+  }
+end
+snapSearchWithGrep = function ()
+  snap.run {
+    producer = snap.get'consumer.limit'(100000, snap.get'producer.ripgrep.vimgrep'),
+    select = snap.get'select.vimgrep'.select,
+    multiselect = snap.get'select.vimgrep'.multiselect,
+    views = {snap.get'preview.vimgrep'}
+  }
+end
+
+
+
+-- tokyonight config
+vim.g.tokyonight_italic_keywords = false
 
 
 -- tree config

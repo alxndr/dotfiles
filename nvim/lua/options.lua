@@ -2,6 +2,7 @@ vim.opt.expandtab = true
 vim.opt.fillchars = 'fold: '
 vim.opt.foldlevelstart = 99
 vim.opt.ignorecase = true
+vim.opt.joinspaces = false
 vim.opt.list = true
 vim.opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
 vim.opt.number = true
@@ -10,7 +11,7 @@ vim.opt.shiftwidth = 2
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.tabstop = 2
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 vim.opt.updatetime = 333
 vim.opt.wrap = false
 

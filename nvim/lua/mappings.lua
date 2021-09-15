@@ -8,7 +8,6 @@ snap.register.map({'n'}, {'<Leader><Leader>'}, snapFindBuffer)
 snap.register.map({'n'}, {'<Leader>g'}, snapSearchWithGrep)
 map.n.nore['<Leader>j'] = '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'
 map.n.nore['<Leader>k'] = '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'
-map.n.nore['<Leader>n'] = ':only<CR>'
 map.n.nore['<Leader>t'] = ':FloatermToggle<CR>'
 map.n.nore['<Leader>u'] = ':lua require"gitsigns".reset_hunk()<CR>'
 map.n.nore['<Leader>v'] = ':edit $MYVIMRC<CR>' -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
@@ -23,6 +22,7 @@ map.n.nore['<C-h>'] = '<C-w>h'
 map.n.nore['<C-j>'] = '<C-w>j'
 map.n.nore['<C-k>'] = '<C-w>k'
 map.n.nore['<C-l>'] = '<C-w>l'
+map.n.nore['<C-w>/'] = '<C-w>|<C-w>_'
 snap.register.map({'n'}, {'<C-p>'}, snapFindFile)
 map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
@@ -44,8 +44,8 @@ map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
 map.n.nore[';;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
 map.n.nore['-'] = '<C-x>'
 map.n.nore['+'] = '<C-a>'
-map.n['#'] = '#N' -- "find word under cursor" remains on current word
-map.n['*'] = '*N' -- "find word under cursor" remains on current word
+map.n['#'] = '#zz' -- "find word under cursor" centers the next match
+map.n['*'] = '*zz' -- "find word under cursor" centers the next match
 
 -- insert mode
 map.i.nore['jk'] = '<Esc>'

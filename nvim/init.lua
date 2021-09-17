@@ -8,4 +8,3 @@ require 'mappings'
 
 cmd 'syntax enable'
 cmd 'colorscheme tokyonight' -- installed via plugins
-cmd 'highlight FloatermNC guibg=gray'

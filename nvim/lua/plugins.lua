@@ -104,6 +104,10 @@ cmp.setup {
 -- ]]
 
 
+-- floaterm config
+cmd 'highlight FloatermNC guibg=gray'
+
+
 -- gitsigns config
 require('gitsigns').setup {}
 

@@ -20,6 +20,7 @@ require 'paq-nvim' {
   'winston0410/commented.nvim'; -- commenting shortcuts
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
   'voldikss/vim-floaterm'; -- terminal eyecandy
+  'beauwilliams/focus.nvim'; -- split window sizer
   'tpope/vim-fugitive'; -- Git helpers
   'junegunn/fzf'; -- fuzzy file finder
   'junegunn/fzf.vim'; -- fuzzy file finder
@@ -106,6 +107,10 @@ cmp.setup {
 
 -- floaterm config
 cmd 'highlight FloatermNC guibg=gray'
+
+
+-- focus config
+require('focus').setup()
 
 
 -- gitsigns config

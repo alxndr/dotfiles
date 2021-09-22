@@ -54,6 +54,7 @@ map.n['*'] = '*zz' -- "find word under cursor" centers the next match
 -- insert mode
 map.i.nore['jk'] = '<Esc>'
 map.i.nore['kj'] = '<Esc>'
+map.i.nore['qq'] = '<Esc>m`gqq``a' -- wrap current line and return to position
 map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
 map.i.nore[';;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
 

@@ -17,7 +17,7 @@ require 'paq-nvim' {
   'hrsh7th/cmp-buffer'; -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp'; -- "LSP source for nvim-cmp"
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
-  'winston0410/commented.nvim'; -- commenting shortcuts
+  'numToStr/Comment.nvim'; -- commenting shortcuts
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'beauwilliams/focus.nvim'; -- split window sizer
@@ -40,7 +40,7 @@ require 'paq-nvim' {
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
   'onsails/vimway-lsp-diag.nvim'; -- show LSP diagnostics in Quickfix
-  'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree ... but doesn't seem to work
+  'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
 }
 
 
@@ -59,14 +59,8 @@ require 'colorizer'.setup({
 })
 
 
--- commented config
-require('commented').setup {
-  keybindings = {
-    n = 'gc',
-    v = 'gc',
-    nl = 'gcc',
-  },
-}
+-- Comment config
+require('Comment').setup()
 
 -- cmp config
 local cmp = require'cmp'
@@ -225,8 +219,7 @@ require('package-info').setup{
   hide_up_to_date = true,
   icons = {
     style = {
-      outdated = ' //  ',
-      up_to_date = ' //  ',
+      outdated = ' // new version: ',
     },
   },
 }

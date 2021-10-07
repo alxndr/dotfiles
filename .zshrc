@@ -45,9 +45,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # javascript... Schniz/fnm
-if [[ -x $(which fnm) ]]; then
-  eval $(fnm env --multi)
-fi
+test -x "$(which fnm)" && eval "$(fnm env)"
 
 # javascript... yarn
 # export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"

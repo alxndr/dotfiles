@@ -78,7 +78,6 @@ alias gA="git add --all"
 alias gap="git add --patch"
 alias gb="git branch --color"
 alias gco="git checkout"
-# alias gcompare="git show-branch \$(git rev-parse --abbrev-ref HEAD) origin/\$(git rev-parse --abbrev-ref HEAD)"
 alias gcv="git commit --verbose"
 alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
       gdiff() {
@@ -105,6 +104,9 @@ alias gsl="git stash list"
       }
       gss() {
         git stash show --patch stash@{${1:-0}}
+      }
+      resolve() {
+        $EDITOR -O $(git conflicting)
       }
 alias s="git status --short"
 

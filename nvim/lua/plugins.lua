@@ -28,7 +28,7 @@ require 'paq-nvim' {
   'cohama/lexima.vim'; -- matched-pair character closing
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
-  'hoob3rt/lualine.nvim'; -- status line
+  'nvim-lualine/lualine.nvim'; -- status line
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns

@@ -28,6 +28,7 @@ require 'paq-nvim' {
   'cohama/lexima.vim'; -- matched-pair character closing
   'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
+  'williamboman/nvim-lsp-installer';
   'nvim-lualine/lualine.nvim'; -- status line
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
@@ -39,7 +40,6 @@ require 'paq-nvim' {
   'folke/tokyonight.nvim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
-  'onsails/vimway-lsp-diag.nvim'; -- show LSP diagnostics in Quickfix
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
 }
 
@@ -120,65 +120,19 @@ cmd([[
 
 -- lsp config
 local lspc = require'lspconfig'
--- local completion = require'completion'
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
-local function eslint_config_exists()
-  local eslintrc = fn.glob('.eslintrc*', 0, 1)
-  if not vim.tbl_isempty(eslintrc) then
-    return true
-  end
-  if fn.glob('package.json') and fn.filereadable('package.json') then
-    if fn.json_decode(fn.readfile('package.json'))['eslintConfig'] then
-      return true
-    end
-  end
-  return false
-end
-local eslint = {
-  lintCommand = 'eslint_d --format visualstudio --stdin --stdin-filename ${INPUT}',
-  lintStdin = true,
-  lintFormats = {'%f:%l:%c: %m'},
-  lintIgnoreExitCode = true,
-  formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
-  formatStdin = true
-}
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- lspc.cssls.setup{
-  -- capabilities = capabilities,
-  -- on_attach = completion.on_attach,
--- }
--- TODO: `eslint_d` seems to chew up CPU after running for a few minutes 😞
-lspc.efm.setup{
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = true
-    client.resolved_capabilities.goto_definition = false
-    -- set_lsp_config(client)
-  end,
-  root_dir = function()
-    if not eslint_config_exists() then
-      return nil
-    end
-    return fn.getcwd()
-  end,
-  filetypes = {
-    'javascript',
-    'javascriptreact',
-    'javascript.jsx',
-    'json',
-  },
-  settings = {
-    languages = {
-      -- javascript = {eslint},
-      -- javascriptreact = {eslint},
-      -- ['javascript.jsx'] = {eslint},
-      -- json = {eslint},
-    },
-  },
-}
--- lspc.html.setup{
-  -- capabilities = capabilities,
-  -- on_attach = completion.on_attach,
--- }
+lspc.eslint.setup{}
+local lspi = require'nvim-lsp-installer'
+lspi.on_server_ready(function(server)
+  local opts = {}
+  -- (optional) Customize the options passed to the server
+  -- if server.name == "tsserver" then
+  --     opts.root_dir = function() ... end
+  -- end
+  -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+  server:setup(opts)
+  vim.cmd [[ do User LspAttachBuffers ]]
+end)
+
 
 
 -- lualine config
@@ -268,18 +222,13 @@ vim.g.tokyonight_italic_keywords = false
 -- tree config
 g.nvim_tree_quit_on_open = 1
 g.nvim_tree_add_trailing = 1
-g.nvim_tree_bindings = {
-  { key = '<Tab>', mode = 'n', cb = '<C-w><C-w>'}
-}
+require'nvim-tree'.setup {}
+-- g.nvim_tree_bindings = {
+--   { key = '<Tab>', mode = 'n', cb = '<C-w><C-w>'}
+-- }
 
 
 -- treesitter config
 require('nvim-treesitter.configs').setup {
   ensure_installed = {'bash', 'comment', 'css', 'dockerfile', 'elixir', 'graphql', 'html', 'javascript', 'json', 'lua', 'ruby', 'scss', 'yaml'},
 }
-
-
--- vimway-lsp-diag config
-require('vimway-lsp-diag').init({
-  debounce_ms = 100,
-})

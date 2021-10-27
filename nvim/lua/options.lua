@@ -1,4 +1,5 @@
 vim.opt.expandtab = true
+vim.opt.fileformat = 'unix'
 vim.opt.fillchars = 'fold: '
 vim.opt.foldlevelstart = 99
 vim.opt.ignorecase = true
@@ -18,3 +19,7 @@ vim.opt.wrap = false
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
+vim.cmd [[
+  highlight Folded guibg=NONE
+]]

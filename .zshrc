@@ -14,13 +14,6 @@ CASE_SENSITIVE="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(
-  # autosuggestions
-  # git
-  mix
-  # zsh-vi-more/vi-increment
-)
-
 source $ZSH/oh-my-zsh.sh
 
 

@@ -12,6 +12,7 @@ require 'paq-nvim' {
 
   'goolord/alpha-nvim'; -- startup screen
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
+  'nicwest/vim-camelsnek'; -- camelcase / snake_case conversion functions
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
   'hrsh7th/nvim-cmp'; -- completion
   'hrsh7th/cmp-buffer'; -- something for nvim-cmp

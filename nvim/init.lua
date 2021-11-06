@@ -7,4 +7,4 @@ require 'plugins'
 require 'mappings'
 
 cmd 'syntax enable'
-cmd 'colorscheme tokyonight' -- installed via plugins
+cmd 'colorscheme moonfly' -- installed via plugins

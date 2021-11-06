@@ -30,6 +30,7 @@ require 'paq-nvim' {
   'neovim/nvim-lspconfig';
   'williamboman/nvim-lsp-installer';
   'nvim-lualine/lualine.nvim'; -- status line
+  'bluz71/vim-moonfly-colors'; -- colorscheme
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns
@@ -37,7 +38,6 @@ require 'paq-nvim' {
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
   'tpope/vim-surround'; -- matched-pair character shortcuts
-  'folke/tokyonight.nvim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags
@@ -144,7 +144,7 @@ require'lualine'.setup{
     icons_enabled = true,
     component_separators = {'…', '…'},
     section_separators = '',
-    theme = 'seoul256',
+    theme = 'moonfly',
   },
   sections = {
     lualine_a = {'mode'},
@@ -162,8 +162,11 @@ require'lualine'.setup{
     lualine_y = {},
     lualine_z = {'progress', 'location'}
   },
-  theme = 'tokyonight',
 }
+
+
+-- moonfly config
+vim.g.moonflyItalics = false
 
 
 -- package-info config
@@ -216,10 +219,6 @@ snapSearchWithGrep = function ()
   }
 end
 
-
-
--- tokyonight config
-vim.g.tokyonight_italic_keywords = false
 
 
 -- tree config

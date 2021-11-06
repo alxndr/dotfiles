@@ -40,7 +40,8 @@ require 'paq-nvim' {
   'folke/tokyonight.nvim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
-  'windwp/nvim-ts-autotag';
+  'windwp/nvim-ts-autotag'; -- auto-close HTML tags
+  'p00f/nvim-ts-rainbow'; -- color matching parens
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
 }
 
@@ -181,10 +182,6 @@ require('package-info').setup{
 }
 
 
--- ts-autotag config
-require('nvim-ts-autotag').setup()
-
-
 -- snap config
 -- mappings are in `mappings.lua`
 local snap = require('snap')
@@ -237,4 +234,13 @@ require'nvim-tree'.setup {}
 -- treesitter config
 require('nvim-treesitter.configs').setup {
   ensure_installed = {'bash', 'comment', 'css', 'dockerfile', 'elixir', 'graphql', 'html', 'javascript', 'json', 'lua', 'ruby', 'scss', 'yaml'},
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+  }
 }
+
+
+-- ts-autotag config
+require('nvim-ts-autotag').setup()

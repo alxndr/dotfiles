@@ -40,6 +40,7 @@ require 'paq-nvim' {
   'folke/tokyonight.nvim'; -- color scheme
   'kyazdani42/nvim-tree.lua'; -- file browser
   'nvim-treesitter/nvim-treesitter';
+  'windwp/nvim-ts-autotag';
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
 }
 
@@ -118,6 +119,7 @@ cmd([[
   call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'jasmine.javascript'] })
 ]])
 
+
 -- lsp config
 local lspc = require'lspconfig'
 lspc.eslint.setup{}
@@ -177,6 +179,10 @@ require('package-info').setup{
     },
   },
 }
+
+
+-- ts-autotag config
+require('nvim-ts-autotag').setup()
 
 
 -- snap config

@@ -30,6 +30,8 @@ map.n.nore['<C-w>/'] = '<C-w>|<C-w>_'
 snap.register.map({'n'}, {'<C-p>'}, snapFindFile)
 map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
+map.n.nore['<S-Down>'] = 'ddp'
+map.n.nore['<S-Up>'] = 'ddkP'
 map.n.nore['gj'] = ':call VerticalSpaceJumpDown()<CR>'
 map.n.nore['gk'] = ':call VerticalSpaceJumpUp()<CR>'
 map.n.nore['H'] = '^'

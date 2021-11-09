@@ -65,29 +65,19 @@ require 'colorizer'.setup({
 -- Comment config
 require('Comment').setup()
 
+
 -- cmp config
 local cmp = require'cmp'
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.documentationFormat = {'markdown', 'plaintext'}
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.preselectSupport = true
--- capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
--- capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
--- capabilities.textDocument.completion.completionItem.deprecatedSupport = true
--- capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
--- capabilities.textDocument.completion.completionItem.tagSupport = {valueSet = {1}}
--- capabilities.textDocument.completion.completionItem.resolveSupport = {properties = {
-  -- 'documentation', 'detail', 'additionalTextEdits',
--- }}
 cmp.setup {
+  sources = {
+    {name = 'nvim_lsp'},
+    {name = 'buffer'},
+  },
   mapping = {
-    ['<Tab>'] = cmp.mapping.complete(),
+    ['<Tab>'] = cmp.mapping.confirm({select = true}),
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
-  },
-  sources = {
-    {name = 'buffer'},
   },
 }
 -- TODO these are not working yet... conflict with Lexima?

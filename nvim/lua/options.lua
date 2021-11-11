@@ -21,5 +21,5 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.cmd [[
-  highlight Folded guibg=NONE
+  au VimEnter * highlight Folded guibg=NONE
 ]]

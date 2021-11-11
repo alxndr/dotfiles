@@ -27,7 +27,6 @@ require 'paq-nvim' {
   'junegunn/fzf.vim'; -- fuzzy file finder
   'lewis6991/gitsigns.nvim'; -- git change sigils
   'cohama/lexima.vim'; -- matched-pair character closing
-  'ggandor/lightspeed.nvim'; -- cursor navigation shortcuts
   'neovim/nvim-lspconfig';
   'williamboman/nvim-lsp-installer';
   'nvim-lualine/lualine.nvim'; -- status line

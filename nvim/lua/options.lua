@@ -17,6 +17,14 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 333
 vim.opt.wrap = false
 
+vim.cmd [[
+  augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+  augroup END
+]] -- h/t https://jeffkreeftmeijer.com/vim-number/
+
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 

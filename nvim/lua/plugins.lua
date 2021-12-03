@@ -113,7 +113,11 @@ cmd([[
 
 -- lsp config
 local lspc = require'lspconfig'
+lspc.bashls.setup{}
+lspc.cssls.setup{}
 lspc.eslint.setup{}
+lspc.racket_langserver.setup{}
+
 local lspi = require'nvim-lsp-installer'
 lspi.on_server_ready(function(server)
   local opts = {}
@@ -181,15 +185,10 @@ local snap = require('snap')
 snapFindFile = function ()
   snap.run {
     producer = snap.get'consumer.fzf'(snap.get'producer.ripgrep.file'),
-    -- producer = snap.get'consumer.fzf'(
-      -- snap.get'consumer.try'(
-        -- snap.get'producer.git.file',
-        -- snap.get'producer.ripgrep.file'
-      -- ),
-    -- ),
     select = snap.get'select.file'.select,
     multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'}
+    views = {snap.get'preview.file'},
+    hidden = true,
   }
 end
 snapFindBuffer = function ()
@@ -197,7 +196,8 @@ snapFindBuffer = function ()
     producer = snap.get'consumer.fzf'(snap.get'producer.vim.buffer'),
     select = snap.get'select.file'.select,
     multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'}
+    views = {snap.get'preview.file'},
+    hidden = true,
   }
 end
 snapSearchWithGrep = function ()
@@ -205,7 +205,8 @@ snapSearchWithGrep = function ()
     producer = snap.get'consumer.limit'(100000, snap.get'producer.ripgrep.vimgrep'),
     select = snap.get'select.vimgrep'.select,
     multiselect = snap.get'select.vimgrep'.multiselect,
-    views = {snap.get'preview.vimgrep'}
+    views = {snap.get'preview.vimgrep'},
+    hidden = true,
   }
 end
 
@@ -222,7 +223,21 @@ require'nvim-tree'.setup {}
 
 -- treesitter config
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {'bash', 'comment', 'css', 'dockerfile', 'elixir', 'graphql', 'html', 'javascript', 'json', 'lua', 'ruby', 'scss', 'yaml'},
+  ensure_installed = {
+    'bash',
+    'comment',
+    'css',
+    'dockerfile',
+    'elixir',
+    'graphql',
+    'html',
+    'javascript',
+    'json',
+    'lua',
+    'ruby',
+    'scss',
+    'yaml',
+  },
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean

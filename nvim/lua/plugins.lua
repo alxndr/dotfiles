@@ -7,7 +7,7 @@ require 'plugin/vertical_space_jumper'
 -- Paq: package manager
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
-require 'paq-nvim' {
+require 'paq' {
   'savq/paq-nvim'; -- paq-nvim manages itself
 
   'goolord/alpha-nvim'; -- startup screen

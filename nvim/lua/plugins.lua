@@ -215,10 +215,12 @@ end
 -- tree config
 g.nvim_tree_quit_on_open = 1
 g.nvim_tree_add_trailing = 1
-require'nvim-tree'.setup {}
--- g.nvim_tree_bindings = {
---   { key = '<Tab>', mode = 'n', cb = '<C-w><C-w>'}
--- }
+require'nvim-tree'.setup {
+  update_focused_file = {
+    enable      = true,
+    update_cwd  = false,
+  },
+}
 
 
 -- treesitter config

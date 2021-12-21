@@ -17,17 +17,28 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 333
 vim.opt.wrap = false
 
+-- line number tweaks
+--  * "hybrid" style: normal mode shows absolute & insert mode shows absolute for current line, relative for others
+--    h/t https://jeffkreeftmeijer.com/vim-number/
+--  * no numbering for Markdown
 vim.cmd [[
   augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
     autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
   augroup END
-]] -- h/t https://jeffkreeftmeijer.com/vim-number/
+]]
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
+-- colorscheme tweaks
 vim.cmd [[
+  au VimEnter * highlight Whitespace guifg=red
   au VimEnter * highlight Folded guibg=NONE
+]]
+
+-- wrap tweaks
+vim.cmd [[
+  autocmd filetype markdown setlocal wrap
 ]]

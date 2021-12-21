@@ -54,8 +54,9 @@ require('alpha').setup(require('alpha.themes.startify').opts)
 -- colorizer config
 require 'colorizer'.setup({
   'css';
-  'javascript';
   'html';
+  'javascript';
+  'rust';
 }, {
   RRGGBBAA = true;
   rgb_fn   = true;
@@ -93,7 +94,7 @@ cmp.setup {
 
 
 -- floaterm config
-cmd 'highlight FloatermNC guibg=gray'
+cmd 'au VimEnter * highlight FloatermNC guibg=gray'
 
 
 -- focus config
@@ -219,6 +220,15 @@ snapSearchWithGrep = function ()
     hidden = true,
   }
 end
+vim.cmd [[
+  highlight! link SnapSelect Search
+  highlight! link SnapMultiSelect Search
+  highlight! link SnapNormal Fg1
+  highlight! link SnapBorder SnapNormal
+  highlight! link SnapPrompt MoreMsg
+  highlight! link SnapPosition Yellow
+  highlight! link WildMenu Yellow
+]]
 
 
 
@@ -247,6 +257,7 @@ require('nvim-treesitter.configs').setup {
     'json',
     'lua',
     'ruby',
+    'rust',
     'scss',
     'yaml',
   },

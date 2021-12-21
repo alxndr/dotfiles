@@ -25,6 +25,7 @@ require 'paq' {
   'tpope/vim-fugitive'; -- Git helpers
   'junegunn/fzf'; -- fuzzy file finder
   'junegunn/fzf.vim'; -- fuzzy file finder
+  'ruanyl/vim-gh-line'; -- GitHub functions
   'lewis6991/gitsigns.nvim'; -- git change sigils
   'cohama/lexima.vim'; -- matched-pair character closing
   'neovim/nvim-lspconfig';
@@ -97,6 +98,15 @@ cmd 'highlight FloatermNC guibg=gray'
 
 -- focus config
 require('focus').setup()
+
+
+-- gh-line config
+cmd [[
+  let g:gh_line_map_default = 0
+  let g:gh_line_map = ',gl'
+  let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
+  let g:gh_line_blame_map_default = 0
+]]
 
 
 -- gitsigns config

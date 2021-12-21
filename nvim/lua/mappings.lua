@@ -24,12 +24,13 @@ map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
 map.n.nore[';;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/ {<CR>:nohl<CR>zz'
+map.n.nore[',ga'] = ':Git commit --amend'
 map.n.nore[',gc'] = ':Git commit<CR>'
-map.n.nore[',gl'] = ':Git pull<CR>'
+-- ,gl = gh-line's gh_line_map
 map.n.nore[',go'] = ':Git checkout '
 map.n.nore[',gp'] = ':Git push'
 map.n.nore[',gP'] = ':Git push --force'
-map.n.nore[',g'] = ':Git<CR>'
+map.n.nore[',gs'] = ':Git<CR>'
 map.n.nore[',m'] = '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR>:nohl<CR>zz'
 map.n.nore[',n'] = ':nohl<CR>'
 map.n.nore[',r'] = '<CMD>lua vim.diagnostic.goto_next()<CR>'

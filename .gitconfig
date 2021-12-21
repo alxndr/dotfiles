@@ -37,6 +37,7 @@
   gol = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message-branch
   reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
   reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master
+  set-upstream = !git branch --set-upstream-to=origin/$(git branch-name) $(git branch-name)
   show-unchanged = !git ls-files -v | grep "^[a-z]"
   st = status
   tagv = tag --message=$2 $2 $1 # create tag: $ git tg SHA vX.X.X

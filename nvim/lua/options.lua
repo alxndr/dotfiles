@@ -1,3 +1,5 @@
+vim.cmd 'colorscheme moonfly' -- installed via plugins
+
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
 vim.opt.fillchars = 'fold: '
@@ -17,6 +19,9 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 333
 vim.opt.wrap = false
 
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
 -- line number tweaks
 --  * "hybrid" style: normal mode shows absolute & insert mode shows absolute for current line, relative for others
 --    h/t https://jeffkreeftmeijer.com/vim-number/
@@ -28,9 +33,6 @@ vim.cmd [[
     autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
   augroup END
 ]]
-
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- colorscheme tweaks
 vim.cmd [[

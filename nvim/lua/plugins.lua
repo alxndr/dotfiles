@@ -26,6 +26,7 @@ require 'paq' {
   'junegunn/fzf.vim'; -- fuzzy file finder
   'ruanyl/vim-gh-line'; -- GitHub functions
   'lewis6991/gitsigns.nvim'; -- git change sigils
+  'machakann/vim-highlightedyank'; -- highlight yanked region
   'cohama/lexima.vim'; -- matched-pair character closing
   'neovim/nvim-lspconfig';
   'williamboman/nvim-lsp-installer';
@@ -108,6 +109,12 @@ cmd [[
 
 -- gitsigns config
 require('gitsigns').setup {}
+
+
+-- highlightedyank config
+cmd [[
+  highlight HighlightedyankRegion guifg=magenta
+]]
 
 
 -- lexima config

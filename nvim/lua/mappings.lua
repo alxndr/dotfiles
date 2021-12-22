@@ -22,6 +22,7 @@ map.n.nore['<CR>'] = 'm`o<Esc>``'
 map.n.nore['<Tab>'] = '<C-w><C-w>'
 map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
 map.n.nore[';;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
+map.n.nore[',b'] = '<CMD>lua require("memento").toggle()<CR>'
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/ {<CR>:nohl<CR>zz'
 map.n.nore[',ga'] = ':Git commit --amend'

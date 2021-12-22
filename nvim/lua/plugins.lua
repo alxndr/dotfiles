@@ -28,8 +28,8 @@ require 'paq' {
   'lewis6991/gitsigns.nvim'; -- git change sigils
   'machakann/vim-highlightedyank'; -- highlight yanked region
   'cohama/lexima.vim'; -- matched-pair character closing
-  'neovim/nvim-lspconfig';
-  'williamboman/nvim-lsp-installer';
+  'neovim/nvim-lspconfig'; -- LSP config
+  'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'nvim-lualine/lualine.nvim'; -- status line
   'gaborvecsei/memento.nvim'; -- recent file navigator
   'bluz71/vim-moonfly-colors'; -- colorscheme
@@ -39,11 +39,11 @@ require 'paq' {
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
-  'tpope/vim-surround'; -- matched-pair character shortcuts
+  'tpope/vim-surround'; -- matched-pair character conversion shortcuts
   'kyazdani42/nvim-tree.lua'; -- file browser
-  'nvim-treesitter/nvim-treesitter';
-  'windwp/nvim-ts-autotag'; -- auto-close HTML tags
-  'p00f/nvim-ts-rainbow'; -- color matching parens
+  'nvim-treesitter/nvim-treesitter'; -- file content parser
+  'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
+  'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
 }
 

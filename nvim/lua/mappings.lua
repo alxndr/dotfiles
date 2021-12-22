@@ -1,4 +1,4 @@
-vim.g.mapleader = '\\'
+vim.g.mapleader = '\\' -- 💪
 
 local map = require 'cartographer'
 local snap = require 'snap'
@@ -17,7 +17,7 @@ map.n.nore['<Leader>vo'] = ':edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>'
 map.n.nore['<Leader>vp'] = ':edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>'
 map.n.nore['<Leader>w'] = ':set list!<CR>'
 map.n.nore['<Leader>y'] = ':only<CR>'
-map.n.nore['<Space>'] = ':'
+map.n.nore['<Space>'] = ':' -- 🙌
 map.n.nore['<CR>'] = 'm`o<Esc>``'
 map.n.nore['<Tab>'] = '<C-w><C-w>'
 map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
@@ -27,7 +27,7 @@ map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/ {<CR>:nohl<CR>zz'
 map.n.nore[',ga'] = ':Git commit --amend'
 map.n.nore[',gc'] = ':Git commit<CR>'
--- ,gl = gh-line's gh_line_map
+-- ,gl = gh-line's gh_line_map (defined in plugins file)
 map.n.nore[',go'] = ':Git checkout '
 map.n.nore[',gp'] = ':Git push'
 map.n.nore[',gP'] = ':Git push --force'
@@ -82,9 +82,9 @@ map.t.nore['<C-[>'] = '<C-\\><C-n>:FloatermPrev<CR>'
 map.t.nore['<C-]>'] = '<C-\\><C-n>:FloatermNext<CR>'
 
 -- visual mode
-map.v.nore['<Space>'] = ':'
-map.v.nore['<Tab>'] = 'd:vnew<CR>PGddgg'
-map.v.nore['Y'] = '"+y'
+map.v.nore['<Space>'] = ':' -- 🙌
+map.v.nore['<Tab>'] = 'd:vnew<CR>PGddgg' -- extract selection from current file & paste into new buffer
+map.v.nore['Y'] = '"+y' -- copy selection to system clipboard
 map.v['<C-s>'] = 'y\\g<C-r>"' -- grep for selection using Snap; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.v.nore['<S-Down>'] = ":m '>+1<CR>gv=gv" -- shift current line down, h/t https://superuser.com/a/1611268/112856
 map.v.nore['<S-Up>']   = ":m '<-2<CR>gv=gv" -- shift current line up, h/t https://superuser.com/a/1611268/112856

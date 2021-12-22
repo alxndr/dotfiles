@@ -31,10 +31,11 @@ require 'paq' {
   'neovim/nvim-lspconfig';
   'williamboman/nvim-lsp-installer';
   'nvim-lualine/lualine.nvim'; -- status line
+  'gaborvecsei/memento.nvim'; -- recent file navigator
   'bluz71/vim-moonfly-colors'; -- colorscheme
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
-  'nvim-lua/plenary.nvim'; -- prereq for gitsigns
+  'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder

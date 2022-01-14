@@ -37,6 +37,7 @@ require 'paq' {
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
+  'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
@@ -185,6 +186,17 @@ require('package-info').setup{
     },
   },
 }
+
+
+-- pretty-fold config
+require('pretty-fold').setup {
+  fill_char = '⋅',
+  sections = {
+    left = { 'content' },
+    right = { ' ', 'number_of_folded_lines', ' ' },
+  },
+}
+require('pretty-fold.preview').setup {}
 
 
 -- snap config

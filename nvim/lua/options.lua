@@ -1,4 +1,4 @@
-vim.cmd 'colorscheme moonfly' -- installed via plugins
+vim.cmd 'colorscheme catppuccin'
 
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'

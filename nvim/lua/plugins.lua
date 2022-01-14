@@ -14,6 +14,7 @@ require 'paq' {
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'nicwest/vim-camelsnek'; -- camelcase / snake_case conversion functions
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
+  {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'hrsh7th/nvim-cmp'; -- completion
   'hrsh7th/cmp-buffer'; -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp'; -- "LSP source for nvim-cmp"
@@ -32,7 +33,6 @@ require 'paq' {
   'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'nvim-lualine/lualine.nvim'; -- status line
   'gaborvecsei/memento.nvim'; -- recent file navigator
-  'bluz71/vim-moonfly-colors'; -- colorscheme
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
@@ -152,7 +152,7 @@ require'lualine'.setup{
     icons_enabled = true,
     component_separators = {'…', '…'},
     section_separators = '',
-    theme = 'moonfly',
+    theme = 'catppuccin',
   },
   sections = {
     lualine_a = {'mode'},
@@ -171,10 +171,6 @@ require'lualine'.setup{
     lualine_z = {'progress', 'location'}
   },
 }
-
-
--- moonfly config
-vim.g.moonflyItalics = false
 
 
 -- package-info config

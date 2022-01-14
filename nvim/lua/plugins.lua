@@ -46,6 +46,7 @@ require 'paq' {
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
+  'svban/YankAssassin.vim'; -- control cursor behavior while yanking
 }
 
 

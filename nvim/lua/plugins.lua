@@ -21,6 +21,7 @@ require 'paq' {
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
   'numToStr/Comment.nvim'; -- commenting shortcuts
   'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
+  {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
   'junegunn/fzf'; -- fuzzy file finder
@@ -82,16 +83,12 @@ cmp.setup {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
   },
 }
--- TODO these are not working yet... conflict with Lexima?
--- g.lexima_no_default_rules = true
--- cmd [[
-  -- call lexima#set_default_rules()
-  -- inoremap <silent><expr> <C-Space> compe#complete()
-  -- inoremap <silent><expr> <CR>      compe#confirm(lexima#expand('<LT>CR>', 'i'))
-  -- inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-  -- inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-  -- inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
--- ]]
+
+
+-- vim-emoji-ab config
+cmd [[
+  au FileType html,php,markdown,mmd,text,mail,gitcommit runtime macros/emoji-ab.vim
+]]
 
 
 -- floaterm config

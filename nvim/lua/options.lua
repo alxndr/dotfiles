@@ -1,5 +1,3 @@
-vim.cmd 'colorscheme catppuccin'
-
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
 vim.opt.fillchars = 'fold: '

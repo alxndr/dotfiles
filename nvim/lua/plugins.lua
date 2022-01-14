@@ -55,6 +55,21 @@ require 'paq' {
 require('alpha').setup(require('alpha.themes.startify').opts)
 
 
+-- catppuccin config
+require('catppuccin').setup {
+  styles = {
+    functions = 'NONE',
+    keywords = 'NONE',
+    variables = 'NONE',
+  },
+  integrations = {
+    gitsigns = true,
+    ts_rainbow = true,
+  },
+}
+cmd 'colorscheme catppuccin'
+
+
 -- colorizer config
 require 'colorizer'.setup({
   'css';

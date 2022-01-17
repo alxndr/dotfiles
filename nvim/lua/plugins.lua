@@ -10,44 +10,55 @@ require 'plugin/vertical_space_jumper'
 require 'paq' {
   'savq/paq-nvim'; -- paq-nvim manages itself
 
+  -- features
   'goolord/alpha-nvim'; -- startup screen
-  'ojroques/nvim-bufdel'; -- buffer deletion made saner
-  'nicwest/vim-camelsnek'; -- camelcase / snake_case conversion functions
-  'Iron-E/nvim-cartographer'; -- simpler API for mappings
-  {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'hrsh7th/nvim-cmp'; -- completion
-  'hrsh7th/cmp-buffer'; -- something for nvim-cmp
-  'hrsh7th/cmp-nvim-lsp'; -- "LSP source for nvim-cmp"
-  'norcalli/nvim-colorizer.lua'; -- color eye-candy
-  'numToStr/Comment.nvim'; -- commenting shortcuts
-  'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
-  {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
-  'voldikss/vim-floaterm'; -- terminal eyecandy
   'tpope/vim-fugitive'; -- Git helpers
   'junegunn/fzf'; -- fuzzy file finder
   'junegunn/fzf.vim'; -- fuzzy file finder
   'ruanyl/vim-gh-line'; -- GitHub functions
   'lewis6991/gitsigns.nvim'; -- git change sigils
-  'machakann/vim-highlightedyank'; -- highlight yanked region
-  'cohama/lexima.vim'; -- matched-pair character closing
-  'neovim/nvim-lspconfig'; -- LSP config
-  'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'nvim-lualine/lualine.nvim'; -- status line
   'gaborvecsei/memento.nvim'; -- recent file navigator
-  'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
-  'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
-  'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
-  'tpope/vim-surround'; -- matched-pair character conversion shortcuts
   'kyazdani42/nvim-tree.lua'; -- file browser
+
+  -- behavior tweaks
+  'ojroques/nvim-bufdel'; -- buffer deletion made saner
+  'svban/YankAssassin.vim'; -- control cursor behavior while yanking
+
+  -- text manipulation
+  'nicwest/vim-camelsnek'; -- camelcase / snake_case conversion functions
+  'numToStr/Comment.nvim'; -- commenting shortcuts
+  {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
+  'cohama/lexima.vim'; -- matched-pair character closing
+  'tpope/vim-surround'; -- matched-pair character conversion shortcuts
+
+  -- eye candy
+  {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
+  'norcalli/nvim-colorizer.lua'; -- color eye-candy
+  'voldikss/vim-floaterm'; -- terminal eyecandy
+  'machakann/vim-highlightedyank'; -- highlight yanked region
+  'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
+
+  -- treesitter etc
   'nvim-treesitter/nvim-treesitter'; -- file content parser
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
+
+  -- meta / dependencies
+  'Iron-E/nvim-cartographer'; -- simpler API for mappings
+  'hrsh7th/cmp-buffer'; -- something for nvim-cmp
+  'hrsh7th/cmp-nvim-lsp'; -- "LSP source for nvim-cmp"
+  'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
+  'neovim/nvim-lspconfig'; -- LSP config
+  'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
+  'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
+  'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
-  'svban/YankAssassin.vim'; -- control cursor behavior while yanking
 }
 
 

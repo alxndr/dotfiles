@@ -21,7 +21,8 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- line number tweaks
---  * "hybrid" style: normal mode shows absolute & insert mode shows absolute for current line, relative for others
+--  * "hybrid" style: normal mode shows absolute & insert mode shows absolute
+--    for current line, relative for others
 --    h/t https://jeffkreeftmeijer.com/vim-number/
 --  * no numbering for Markdown
 vim.cmd [[
@@ -41,4 +42,14 @@ vim.cmd [[
 -- wrap tweaks
 vim.cmd [[
   autocmd filetype markdown setlocal wrap
+]]
+
+-- disable syntax highlighting in large files
+-- h/t `/u/Narizocracia` https://www.reddit.com/r/neovim/comments/pz3wyc/comment/heyy4qf
+-- function definition in `functions.lua`
+vim.ccmd [[
+  augroup BigFileDisable
+    autocmd!
+    autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | endif
+  augroup END
 ]]

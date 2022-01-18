@@ -12,6 +12,7 @@ map.n.nore['<Leader>k'] = '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'
 map.n.nore['<Leader>t'] = ':FloatermToggle<CR>'
 map.n.nore['<Leader>u'] = ':lua require"gitsigns".reset_hunk()<CR>'
 map.n.nore['<Leader>v'] = ':edit $MYVIMRC<CR>' -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
+map.n.nore['<Leader>vf'] = ':edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>'
 map.n.nore['<Leader>vm'] = ':edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>'
 map.n.nore['<Leader>vo'] = ':edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>'
 map.n.nore['<Leader>vp'] = ':edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>'

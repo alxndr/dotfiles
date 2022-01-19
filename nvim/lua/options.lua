@@ -47,7 +47,7 @@ vim.cmd [[
 -- disable syntax highlighting in large files
 -- h/t `/u/Narizocracia` https://www.reddit.com/r/neovim/comments/pz3wyc/comment/heyy4qf
 -- function definition in `functions.lua`
-vim.ccmd [[
+vim.cmd [[
   augroup BigFileDisable
     autocmd!
     autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | endif

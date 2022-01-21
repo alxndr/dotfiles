@@ -2,8 +2,6 @@ local cmd = vim.cmd  -- execute Vim commands
 local fn = vim.fn    -- call Vim functions
 local g = vim.g      -- access global variables
 
-require 'plugin/vertical_space_jumper'
-
 -- Paq: package manager
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation

@@ -152,7 +152,7 @@ cmd([[
 local lspc = require'lspconfig'
 lspc.bashls.setup{}
 lspc.cssls.setup{}
-lspc.eslint.setup{}
+-- lspc.eslint.setup{}
 lspc.racket_langserver.setup{}
 
 local lspi = require'nvim-lsp-installer'
@@ -293,6 +293,12 @@ require('nvim-treesitter.configs').setup {
     'rust',
     'scss',
     'yaml',
+  },
+  highlight = {
+    enable = true,
+    disable = function(lang, bufnr) -- Disable in large buffers
+      return vim.api.nvim_buf_line_count(bufnr) > 10000
+    end,
   },
   rainbow = {
     enable = true,

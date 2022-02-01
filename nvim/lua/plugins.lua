@@ -11,11 +11,8 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim'; -- startup screen
   'hrsh7th/nvim-cmp'; -- completion
-  'tpope/vim-fugitive'; -- Git helpers
   'junegunn/fzf'; -- fuzzy file finder
   'junegunn/fzf.vim'; -- fuzzy file finder
-  'ruanyl/vim-gh-line'; -- GitHub functions
-  'lewis6991/gitsigns.nvim'; -- git change sigils
   'nvim-lualine/lualine.nvim'; -- status line
   'gaborvecsei/memento.nvim'; -- recent file navigator
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
@@ -23,6 +20,11 @@ require 'paq' {
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
   'kyazdani42/nvim-tree.lua'; -- file browser
+
+  -- git stuff
+  'tpope/vim-fugitive'; -- general functions
+  'ruanyl/vim-gh-line'; -- GitHub-specific functions
+  'lewis6991/gitsigns.nvim'; -- status sigils in the sign column
 
   -- behavior tweaks
   'ojroques/nvim-bufdel'; -- buffer deletion made saner

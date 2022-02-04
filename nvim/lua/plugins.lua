@@ -11,11 +11,15 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim'; -- startup screen
   'hrsh7th/nvim-cmp'; -- completion
-  'junegunn/fzf'; -- fuzzy file finder
-  'junegunn/fzf.vim'; -- fuzzy file finder
-  'nvim-lualine/lualine.nvim'; -- status line
+
+  -- behavior tweaks
+  'ojroques/nvim-bufdel'; -- buffer deletion made saner
+  'svban/YankAssassin.vim'; -- control cursor behavior while yanking
+
+  -- files / navigation
+  'junegunn/fzf'; -- fuzzy file finder core?
+  'junegunn/fzf.vim'; -- fuzzy file finder functions?
   'gaborvecsei/memento.nvim'; -- recent file navigator
-  'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
@@ -26,10 +30,6 @@ require 'paq' {
   'ruanyl/vim-gh-line'; -- GitHub-specific functions
   'lewis6991/gitsigns.nvim'; -- status sigils in the sign column
 
-  -- behavior tweaks
-  'ojroques/nvim-bufdel'; -- buffer deletion made saner
-  'svban/YankAssassin.vim'; -- control cursor behavior while yanking
-
   -- text manipulation
   'nicwest/vim-camelsnek'; -- camelcase / snake_case conversion functions
   'numToStr/Comment.nvim'; -- commenting shortcuts
@@ -37,11 +37,15 @@ require 'paq' {
   'cohama/lexima.vim'; -- matched-pair character closing
   'tpope/vim-surround'; -- matched-pair character conversion shortcuts
 
+  -- javascript / nodejs
+  'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
+
   -- eye candy
   {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'machakann/vim-highlightedyank'; -- highlight yanked region
+  'nvim-lualine/lualine.nvim'; -- status line
   'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
 
   -- treesitter etc

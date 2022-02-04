@@ -27,6 +27,7 @@ map.n.nore[',b'] = '<CMD>lua require("memento").toggle()<CR>'
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/ {<CR>:nohl<CR>zz'
 map.n.nore[',ga'] = ':Git commit --amend'
+map.n.nore[',gb'] = ':BlamerToggle<CR>'
 map.n.nore[',gc'] = ':Git commit<CR>'
 -- ,gl = gh-line's gh_line_map (defined in plugins file)
 map.n.nore[',go'] = ':Git checkout '

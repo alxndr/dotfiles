@@ -26,6 +26,8 @@ require 'paq' {
   'kyazdani42/nvim-tree.lua'; -- file browser
 
   -- git stuff
+  'APZelos/blamer.nvim'; -- show contributor info in virtualtext
+  'whiteinge/diffconflicts'; -- merge conflict helper: `:DiffConflicts`
   'tpope/vim-fugitive'; -- general functions
   'ruanyl/vim-gh-line'; -- GitHub-specific functions
   'lewis6991/gitsigns.nvim'; -- status sigils in the sign column
@@ -50,6 +52,7 @@ require 'paq' {
 
   -- treesitter etc
   'nvim-treesitter/nvim-treesitter'; -- file content parser
+  'danymat/neogen'; -- code annotation helper
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
 
@@ -68,6 +71,13 @@ require 'paq' {
 
 -- alpha config
 require('alpha').setup(require('alpha.themes.startify').opts)
+
+
+-- blamer config
+cmd [[
+  let g:blamer_prefix = '    '
+  let g:blamer_show_in_insert_modes = 0
+]]
 
 
 -- catppuccin config
@@ -199,6 +209,12 @@ require'lualine'.setup{
     lualine_y = {},
     lualine_z = {'progress', 'location'}
   },
+}
+
+
+-- neogen config
+require('neogen').setup {
+  enabled = true
 }
 
 

@@ -45,6 +45,7 @@ require 'paq' {
   -- eye candy
   {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
+  'wellle/context.vim'; -- show off-screen context line in virtualtext
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'machakann/vim-highlightedyank'; -- highlight yanked region
   'nvim-lualine/lualine.nvim'; -- status line

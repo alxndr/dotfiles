@@ -24,7 +24,6 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 --  * "hybrid" style: normal mode shows absolute & insert mode shows absolute
 --    for current line, relative for others
 --    h/t https://jeffkreeftmeijer.com/vim-number/
---  * no numbering for Markdown
 vim.cmd [[
   augroup numbertoggle
     autocmd!
@@ -39,9 +38,14 @@ vim.cmd [[
   au VimEnter * highlight Folded guibg=NONE
 ]]
 
--- wrap tweaks
+-- markdown tweaks
 vim.cmd [[
-  autocmd filetype markdown setlocal wrap
+  autocmd filetype markdown setlocal wrap spell nonumber
+]]
+
+-- gitcommit tweaks
+vim.cmd [[
+  autocmd filetype gitcommit setlocal spell
 ]]
 
 -- disable syntax highlighting in large files

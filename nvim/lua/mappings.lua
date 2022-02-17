@@ -22,7 +22,7 @@ map.n.nore['<Space>'] = ':' -- 🙌
 map.n.nore['<CR>'] = 'm`o<Esc>``'
 map.n.nore['<Tab>'] = '<C-w><C-w>'
 map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
-map.n.nore[';;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
+map.n.nore[',;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
 map.n.nore[',b'] = '<CMD>lua require("memento").toggle()<CR>'
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/ {<CR>:nohl<CR>zz'
@@ -48,8 +48,6 @@ map.n['#'] = '#zz' -- "find word under cursor" centers the next match
 map.n['*'] = '*zz' -- "find word under cursor" centers the next match
 map.n.nore['gj'] = ":call search('\\%' . virtcol('.') . 'v\\S', 'W')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
 map.n.nore['gk'] = ":call search('\\%' . virtcol('.') . 'v\\S', 'bW')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
-map.n.nore['H'] = '^'
-map.n.nore['L'] = '$'
 map.n.nore['Q'] = ':BufDel<CR>'
 map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'"
 map.n.nore['<C-h>'] = '<C-w>h'
@@ -65,7 +63,7 @@ map.n.nore['<S-Up>'] = 'ddkP' -- shift current line up
 
 -- insert mode
 map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
-map.i.nore[';;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
+map.i.nore[',;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
 map.i.nore['jk'] = '<Esc>'
 map.i.nore['kj'] = '<Esc>'
 map.i.nore['qq'] = '<Esc>m`gqq``a' -- wrap current line and return to position

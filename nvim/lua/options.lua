@@ -35,7 +35,7 @@ vim.cmd [[
 -- colorscheme tweaks
 vim.cmd [[
   au VimEnter * highlight Whitespace guifg=red
-  au VimEnter * highlight Folded guibg=NONE
+  au BufEnter * highlight Folded guibg=NONE
 ]]
 
 -- markdown tweaks

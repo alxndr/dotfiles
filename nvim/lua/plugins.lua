@@ -215,7 +215,7 @@ cmd([[
 local lspc = require'lspconfig'
 lspc.bashls.setup{}
 lspc.cssls.setup{}
-lspc.eslint.setup{}
+-- lspc.eslint.setup{}
 lspc.racket_langserver.setup{}
 
 local lspi = require'nvim-lsp-installer'
@@ -296,7 +296,12 @@ require('pretty-fold.preview').setup {}
 local snap = require('snap')
 snapFindFile = function ()
   snap.run {
-    producer = snap.get'consumer.fzf'(snap.get'producer.ripgrep.file'),
+    producer = snap.get'consumer.fzf'(
+      snap.get'consumer.try'(
+        snap.get'producer.git.file',
+        snap.get'producer.ripgrep.file'
+      )
+    ),
     select = snap.get'select.file'.select,
     multiselect = snap.get'select.file'.multiselect,
     views = {snap.get'preview.file'},
@@ -314,7 +319,7 @@ snapFindBuffer = function ()
 end
 snapSearchWithGrep = function ()
   snap.run {
-    producer = snap.get'consumer.limit'(100000, snap.get'producer.ripgrep.vimgrep'),
+    producer = snap.get'consumer.limit'(999, snap.get'producer.ripgrep.vimgrep'),
     select = snap.get'select.vimgrep'.select,
     multiselect = snap.get'select.vimgrep'.multiselect,
     views = {snap.get'preview.vimgrep'},
@@ -362,6 +367,12 @@ require('nvim-treesitter.configs').setup {
     'rust',
     'scss',
     'yaml',
+  },
+  highlight = {
+    enable = true,
+    disable = function(lang, bufnr) -- Disable in large buffers
+      return vim.api.nvim_buf_line_count(bufnr) > 10000
+    end,
   },
   rainbow = {
     enable = true,

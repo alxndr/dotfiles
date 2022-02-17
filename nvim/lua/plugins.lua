@@ -11,6 +11,8 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim'; -- startup screen
   'hrsh7th/nvim-cmp'; -- completion
+  'folke/trouble.nvim'; -- lists of stuff...
+
 
   -- behavior tweaks
   'ojroques/nvim-bufdel'; -- buffer deletion made saner
@@ -42,10 +44,15 @@ require 'paq' {
   -- javascript / nodejs
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
 
+  -- lisp/scheme/racket
+  'guns/vim-sexp';
+  'tpope/vim-repeat'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
+  'tpope/vim-surround'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
+  'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
+
   -- eye candy
   {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
-  'wellle/context.vim'; -- show off-screen context line in virtualtext
   'voldikss/vim-floaterm'; -- terminal eyecandy
   'machakann/vim-highlightedyank'; -- highlight yanked region
   'nvim-lualine/lualine.nvim'; -- status line
@@ -53,9 +60,11 @@ require 'paq' {
 
   -- treesitter etc
   'nvim-treesitter/nvim-treesitter'; -- file content parser
-  'danymat/neogen'; -- code annotation helper
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
+  'haringsrob/nvim_context_vt'; -- show function context at closers
+  'danymat/neogen'; -- code annotation helper
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
+  'nvim-treesitter/nvim-treesitter-refactor'; -- refactor modules
 
   -- meta / dependencies
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
@@ -71,7 +80,30 @@ require 'paq' {
 
 
 -- alpha config
-require('alpha').setup(require('alpha.themes.startify').opts)
+local alpha = require'alpha'
+local startify = require'alpha.themes.startify'
+startify.section.header.val = {
+  [[______________________________________________________________________________________]],
+  [[ ____________________________________________________________/\\\______________________]],
+  [[  ___/\\/\\\\\\_______/\\\\\\\\______/\\\\\_____/\\\____/\\\_\///_____/\\\\\__/\\\\\____]],
+  [[   __\/\\\////\\\____/\\\/////\\\___/\\\///\\\__\//\\\__/\\\___/\\\__/\\\///\\\\\///\\\__]],
+  [[    __\/\\\__\//\\\__/\\\\\\\\\\\___/\\\__\//\\\__\//\\\/\\\___\/\\\_\/\\\_\//\\\__\/\\\__]],
+  [[     __\/\\\___\/\\\_\//\\///////___\//\\\__/\\\____\//\\\\\____\/\\\_\/\\\__\/\\\__\/\\\__]],
+  [[      __\/\\\___\/\\\__\//\\\\\\\\\\__\///\\\\\/______\//\\\_____\/\\\_\/\\\__\/\\\__\/\\\__]],
+  [[       __\///____\///____\//////////_____\/////_________\///______\///__\///___\///___\///___]],
+}
+local function footer()
+  return [[wheeeeeeeeeeeeeeee]]
+  --local total_plugins = #vim.tbl_keys(packer_plugins)
+  --local datetime = os.date(" %d-%m-%Y   %H:%M:%S")
+  --local version = vim.version()
+  --local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+  --return datetime .. "   " .. total_plugins .. " plugins" .. nvim_version_info
+end
+-- startify.section.footer = footer() -- { { type = "text", val = footer() }, }
+-- startify.section.footer.opts.hl = "Constant"
+
+alpha.setup(startify.opts)
 
 
 -- blamer config
@@ -112,6 +144,11 @@ require 'colorizer'.setup({
 require('Comment').setup()
 
 
+-- context_vt config
+require('nvim_context_vt').setup {
+  prefix = '',
+}
+
 -- cmp config
 local cmp = require'cmp'
 cmp.setup {
@@ -125,6 +162,15 @@ cmp.setup {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
   },
+  enabled = function()
+  -- h/t `u/Miserable-Ad-7341` https://www.reddit.com/r/neovim/comments/skkp1r/comment/hvocxmj/
+    local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
+    if in_prompt then  -- this will disable cmp in the Telescope window (taken from the default config)
+      return false
+    end
+    local context = require('cmp.config.context')
+    return not(context.in_treesitter_capture('comment') == true or context.in_syntax_group('Comment'))
+  end,
 }
 
 
@@ -183,7 +229,6 @@ lspi.on_server_ready(function(server)
   server:setup(opts)
   vim.cmd [[ do User LspAttachBuffers ]]
 end)
-
 
 
 -- lualine config
@@ -304,6 +349,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'bash',
     'comment',
+    'commonlisp',
     'css',
     'dockerfile',
     'elixir',
@@ -320,9 +366,13 @@ require('nvim-treesitter.configs').setup {
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    max_file_lines = 9999, -- Do not enable for files with more than n lines, int
   }
 }
+
+
+-- trouble config
+require('trouble').setup {}
 
 
 -- ts-autotag config

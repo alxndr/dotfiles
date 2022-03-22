@@ -59,7 +59,6 @@ require 'paq' {
   -- treesitter etc
   'nvim-treesitter/nvim-treesitter'; -- file content parser
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
-  'haringsrob/nvim_context_vt'; -- show function context at closers
   'danymat/neogen'; -- code annotation helper
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
   'nvim-treesitter/nvim-treesitter-refactor'; -- refactor modules
@@ -142,10 +141,6 @@ require 'colorizer'.setup({
 require('Comment').setup()
 
 
--- context_vt config
-require('nvim_context_vt').setup {
-  prefix = '',
-}
 
 -- cmp config
 local cmp = require'cmp'

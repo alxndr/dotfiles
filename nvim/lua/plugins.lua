@@ -57,7 +57,7 @@ require 'paq' {
   'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
 
   -- treesitter etc
-  'nvim-treesitter/nvim-treesitter'; -- file content parser
+  {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
   'danymat/neogen'; -- code annotation helper
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
@@ -337,9 +337,13 @@ vim.cmd [[
 
 
 -- tree config
-g.nvim_tree_quit_on_open = 1
 g.nvim_tree_add_trailing = 1
 require'nvim-tree'.setup {
+  actions = {
+    open_file = {
+      quit_on_open = 1,
+    },
+  },
   update_focused_file = {
     enable      = true,
     update_cwd  = false,

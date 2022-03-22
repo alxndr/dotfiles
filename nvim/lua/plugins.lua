@@ -364,7 +364,7 @@ require('nvim-treesitter.configs').setup {
     'html',
     'javascript',
     'json',
-    'lua',
+    -- 'lua', -- this causes trouble...
     'ruby',
     'rust',
     'scss',
@@ -373,7 +373,7 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     disable = function(lang, bufnr) -- Disable in large buffers
-      return vim.api.nvim_buf_line_count(bufnr) > 10000
+      return vim.api.nvim_buf_line_count(bufnr) > 999999
     end,
   },
   rainbow = {

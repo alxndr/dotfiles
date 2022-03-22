@@ -49,12 +49,12 @@ vim.cmd [[
   autocmd filetype gitcommit setlocal spell
 ]]
 
--- disable syntax highlighting in large files
+-- disable large files: syntax highlighting, context scope visualization, etc
 -- h/t `/u/Narizocracia` https://www.reddit.com/r/neovim/comments/pz3wyc/comment/heyy4qf
 -- function definition in `functions.lua`
 vim.cmd [[
   augroup BigFileDisable
     autocmd!
-    autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | endif
+    autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | let b:minicursorword_disable=v:true | endif
   augroup END
 ]]

@@ -36,6 +36,7 @@ vim.cmd [[
 vim.cmd [[
   au VimEnter * highlight Whitespace guifg=red
   au BufEnter * highlight Folded guibg=NONE
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Underlined", timeout=500})
 ]]
 
 -- markdown tweaks

@@ -54,7 +54,6 @@ require 'paq' {
   {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
   'voldikss/vim-floaterm'; -- terminal eyecandy
-  'machakann/vim-highlightedyank'; -- highlight yanked region
   'nvim-lualine/lualine.nvim'; -- status line
   'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
 
@@ -195,12 +194,6 @@ cmd [[
 
 -- gitsigns config
 require('gitsigns').setup {}
-
-
--- highlightedyank config
-cmd [[
-  highlight HighlightedyankRegion guifg=magenta
-]]
 
 
 -- lexima config

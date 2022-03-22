@@ -13,10 +13,9 @@ require 'paq' {
   'hrsh7th/nvim-cmp'; -- completion
   'folke/trouble.nvim'; -- lists of stuff...
 
-
   -- behavior tweaks
-  'ojroques/nvim-bufdel'; -- buffer deletion made saner
   'svban/YankAssassin.vim'; -- control cursor behavior while yanking
+  'echasnovski/mini.nvim'; -- ...?
 
   -- files / navigation
   'junegunn/fzf'; -- fuzzy file finder core?
@@ -249,6 +248,17 @@ require'lualine'.setup{
     lualine_z = {'progress', 'location'}
   },
 }
+
+
+-- mini config
+require('mini.bufremove').setup({})
+require('mini.indentscope').setup({
+  draw = {
+    delay = 1,
+    animation = require('mini.indentscope').gen_animation('none'),
+  },
+  symbol = '･',
+})
 
 
 -- neogen config

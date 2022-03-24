@@ -72,6 +72,8 @@ map.i.nore[',;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to
 map.i.nore['jk'] = '<Esc>'
 map.i.nore['kj'] = '<Esc>'
 map.i.nore['qq'] = '<Esc>m`gqq``a' -- wrap current line and return to position
+map.i.nore['<C-e>'] = '<Esc><C-e>a' -- preserve `<C-e>` scroll behavior in insert mode
+map.i.nore['<C-y>'] = '<Esc><C-y>a' -- preserve `<C-y>` scroll behavior in insert mode
 map.i.nore['<S-Down>'] = '<Esc>m`ddp``a' -- shift current line down and return to position
 map.i.nore['<S-Up>'] = '<Esc>m`ddkP``a' -- shift current line up and return to position
 

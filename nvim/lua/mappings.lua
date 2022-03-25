@@ -56,6 +56,8 @@ map.n.nore['gk'] = ":call search('\\%' . virtcol('.') . 'v\\S', 'bW')<CR>" -- h/
 map.n.nore['H'] = 'zh'
 map.n.nore['L'] = 'zl'
 map.n.nore['Q'] = ':lua MiniBufremove.delete()<CR>'
+map.n.nore['<S-Down>'] = 'ddp' -- shift current line down
+map.n.nore['<S-Up>'] = 'ddkP' -- shift current line up
 map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'"
 map.n.nore['<C-h>'] = '<C-w>h'
 map.n.nore['<C-j>'] = '<C-w>j'
@@ -66,8 +68,6 @@ map.n.nore['<C-w>/'] = '<C-w>|<C-w>_'
 snap.register.map({'n'}, {'<C-p>'}, snapFindFile)
 map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
-map.n.nore['<S-Down>'] = 'ddp' -- shift current line down
-map.n.nore['<S-Up>'] = 'ddkP' -- shift current line up
 
 -- insert mode
 map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position

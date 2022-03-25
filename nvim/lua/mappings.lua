@@ -53,6 +53,8 @@ map.n.nore['=)'] = '$=a('
 --          gc   = numToStr/Comment.nvim linewise comment action/toggle
 map.n.nore['gj'] = ":call search('\\%' . virtcol('.') . 'v\\S', 'W')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
 map.n.nore['gk'] = ":call search('\\%' . virtcol('.') . 'v\\S', 'bW')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
+map.n.nore['H'] = 'zh'
+map.n.nore['L'] = 'zl'
 map.n.nore['Q'] = ':lua MiniBufremove.delete()<CR>'
 map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'"
 map.n.nore['<C-h>'] = '<C-w>h'

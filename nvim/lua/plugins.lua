@@ -45,8 +45,6 @@ require 'paq' {
 
   -- lisp/scheme/racket
   'guns/vim-sexp';
-  'tpope/vim-repeat'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
-  'tpope/vim-surround'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
   'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
 
   -- eye candy
@@ -72,6 +70,8 @@ require 'paq' {
   'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
+  'tpope/vim-repeat'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
+  'tpope/vim-surround'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
 }
 

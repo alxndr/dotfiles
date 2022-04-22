@@ -30,7 +30,7 @@ require 'paq' {
   'APZelos/blamer.nvim'; -- show contributor info in virtualtext
   'whiteinge/diffconflicts'; -- merge conflict helper: `:DiffConflicts`
   'tpope/vim-fugitive'; -- general functions
-  'ruanyl/vim-gh-line'; -- GitHub-specific functions
+  'ruanyl/vim-gh-line'; -- GitHub-specific functions (namely: copy link to current line of code)
   'lewis6991/gitsigns.nvim'; -- status sigils in the sign column
 
   -- text manipulation
@@ -89,17 +89,6 @@ startify.section.header.val = {
   [[      __\/\\\___\/\\\__\//\\\\\\\\\\__\///\\\\\/______\//\\\_____\/\\\_\/\\\__\/\\\__\/\\\__]],
   [[       __\///____\///____\//////////_____\/////_________\///______\///__\///___\///___\///___]],
 }
-local function footer()
-  return [[wheeeeeeeeeeeeeeee]]
-  --local total_plugins = #vim.tbl_keys(packer_plugins)
-  --local datetime = os.date(" %d-%m-%Y   %H:%M:%S")
-  --local version = vim.version()
-  --local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
-  --return datetime .. "   " .. total_plugins .. " plugins" .. nvim_version_info
-end
--- startify.section.footer = footer() -- { { type = "text", val = footer() }, }
--- startify.section.footer.opts.hl = "Constant"
-
 alpha.setup(startify.opts)
 
 

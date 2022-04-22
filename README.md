@@ -43,7 +43,7 @@ Need [patched fonts](https://www.nerdfonts.com/font-downloads)... currently enam
 * rip out the spell checker:
   * System Preferences > Keyboard > Text, uncheck "Correct spelling automatically"
 * rip out a bunch of keyboard shortcuts:
-  * System Preferences > Keyboard > Shortcuts, uncheck pretty much everything excepyt for the Screen Shots
+  * System Preferences > Keyboard > Shortcuts, uncheck pretty much everything except for the Screen Shots
 * turn off hold-letter-for-accent-marks:
   * `defaults write -g ApplePressAndHoldEnabled -bool false`
  enable using Tab to move keyboard focus between all sorts of GUI controls

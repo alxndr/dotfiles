@@ -40,9 +40,10 @@ vim.cmd [[
 ]]
 
 -- markdown tweaks
-vim.cmd [[
-  autocmd filetype markdown setlocal wrap spell nonumber
-]]
+vim.api.nvim_create_autocmd(
+  { 'BufRead', 'BufNewFile' },
+  { pattern = { '*.md' }, command = 'setlocal wrap spell nonumber' }
+)
 
 -- gitcommit tweaks
 vim.cmd [[

@@ -58,6 +58,7 @@ require 'paq' {
   {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
   'danymat/neogen'; -- code annotation helper
+  'ziontee113/syntax-tree-surfer'; -- syntax-aware selection helpers
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
   'nvim-treesitter/nvim-treesitter-refactor'; -- refactor modules
 

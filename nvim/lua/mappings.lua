@@ -95,6 +95,8 @@ map.v.nore['<Space>'] = ':' -- 🙌
 map.v.nore['<Tab>'] = 'd:vnew<CR>PGddgg' -- extract selection from current file & paste into new buffer
 --          gb  = numToStr/Comment blockwise comment toggle
 --          gc  = numToStr/Comment linewise comment toggle
+map.v.nore['L'] = '<cmd>lua require("syntax-tree-surfer").surf("next", "visual", true)<cr>'
+map.v.nore['H'] = '<cmd>lua require("syntax-tree-surfer").surf("prev", "visual", true)<cr>'
 map.v.nore['Y'] = '"+y' -- copy selection to system clipboard
 map.v['<C-s>'] = 'y\\g<C-r>"' -- grep for selection using Snap; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.v.nore['<S-Down>'] = ":m '>+1<CR>gv=gv" -- shift current line down, h/t https://superuser.com/a/1611268/112856

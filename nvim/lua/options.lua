@@ -24,25 +24,40 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 --  * "hybrid" style: normal mode shows absolute & insert mode shows absolute
 --    for current line, relative for others
 --    h/t https://jeffkreeftmeijer.com/vim-number/
-vim.cmd [[
-  augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-  augroup END
-]]
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' },
+  { command = 'if &nu && mode() != "i" | set rnu | endif' }
+)
+vim.api.nvim_create_autocmd(
+  { 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' },
+  { command = 'if &nu && mode() != "i" | set rnu | endif' }
+)
 
 -- colorscheme tweaks
-vim.cmd [[
-  au VimEnter * highlight Whitespace guifg=red
-  au BufEnter * highlight Folded guibg=NONE
-  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Underlined", timeout=500})
-]]
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', },
+  { command = 'highlight Folded guibg=NONE', }
+)
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', },
+  { command = 'highlight Whitespace guibg=red', }
+)
+vim.api.nvim_create_autocmd(
+  { 'TextYankPost', },
+  {
+    callback = function(_args)
+      -- silent! lua vim.highlight.on_yank({higroup="Underlined", timeout=500})
+      vim.highlight.on_yank({higroup="Underlined", timeout=500})
+    end
+  }
+)
 
 -- markdown tweaks
 vim.api.nvim_create_autocmd(
   { 'BufRead', 'BufNewFile' },
-  { pattern = { '*.md' }, command = 'setlocal wrap spell nonumber' }
+  { pattern = { '*.md' },
+    command = 'setlocal wrap spell nonumber',
+  }
 )
 
 -- gitcommit tweaks
@@ -53,9 +68,7 @@ vim.cmd [[
 -- disable large files: syntax highlighting, context scope visualization, etc
 -- h/t `/u/Narizocracia` https://www.reddit.com/r/neovim/comments/pz3wyc/comment/heyy4qf
 -- function definition in `functions.lua`
-vim.cmd [[
-  augroup BigFileDisable
-    autocmd!
-    autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | let b:minicursorword_disable=v:true | endif
-  augroup END
-]]
+vim.api.nvim_create_autocmd(
+  { 'BufReadPre', 'FileReadPre', },
+  { command = 'if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | let b:minicursorword_disable=v:true | endif' }
+)

@@ -176,6 +176,7 @@ require'lualine'.setup{
     component_separators = {'…', '…'},
     section_separators = '',
     theme = 'catppuccin',
+    globalstatus = true, -- global status line
   },
   sections = {
     lualine_a = {'mode'},

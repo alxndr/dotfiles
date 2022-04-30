@@ -4,6 +4,7 @@ vim.opt.fillchars = 'fold: '
 vim.opt.foldlevelstart = 99
 vim.opt.ignorecase = true
 vim.opt.joinspaces = false
+vim.opt.laststatus = 3 -- global status line
 vim.opt.list = true
 vim.opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
 vim.opt.number = true

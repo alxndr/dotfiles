@@ -50,6 +50,7 @@ alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}'
         eval "$@"
         while [ "$?" -eq "0" ]; do
           ((tries+=1))
+          sleep 1
           eval "$@"
         done
         echo "tries: ${tries}"
@@ -58,6 +59,7 @@ alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}'
         tries=1
         eval "$@"
         while [ "$?" -ne "0" ]; do
+          sleep 1
           ((tries+=1))
           eval "$@"
         done
@@ -170,8 +172,6 @@ alias bl="bundle"
         # TODO This breaks if there's a backslash in a value?
         env $(grep -E "^(export )?\w+=" .env | xargs) $@
       }
-alias eau="mix test && eautotest"
-alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{config,test}.exs | entr -d mix test"
       extract_urls() {
         [[ -z "$1" ]] && echo "Usage: spider url [depth=5]" && return 1
         lynx \
@@ -183,7 +183,6 @@ alias eautotest="ls {lib,web}/**/*.ex test/**/*.exs mix.exs mix.lock config/{con
       f() {
         fnm use $([[ -f .node-version ]] && cat .node-version || ([[ -f .nvmrc ]] && cat .nvmrc))
       }
-alias gx="gigalixir"
 alias h="hex"
 alias ism="iex -S mix"
 alias ismp="iex -S mix phx.server"
@@ -220,24 +219,26 @@ alias us="bundle exec unicorn -c tmp/unicorn.rb"
         echo $URL
         date
       }
+alias waitfor="wait-on --interval 999 --timeout ${TIMEOUT:-99999}"
 alias webfiles="rg --type web --files"
       webm2mp3() {
         ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
       }
 alias y="yarn"
 
-nodeDevSetup() { fnm use $(cat .nvmrc) && npm install }
-
-back_up_media() {
-  rsync \
-    --verbose \
-    --itemize-changes \
-    --progress \
-    --archive \
-    --delete \
-    --extended-attributes \
-    /Volumes/MEDIA/* \
+back_up_media_unison() {
+  START=$(date)
+  echo "Started: $START"
+  unison \
+    -fastcheck true \
+    -copythreshold 999 \
+    -ignore 'Name .*' \
+    /Volumes/MEDIA \
     /Volumes/Media2
+  END=$(date)
+  echo
+  echo "Started: $START"
+  echo "Ended @: $END"
 }
 
 yt-mp3() { youtube-dl --extract-audio --audio-format mp3 $1 }

@@ -1,19 +1,29 @@
 export EDITOR="nvim"
 export PAGER="more"
+export MANPAGER="nvim +Man!"
 export LESS="-F -R -S -W"
 
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+# TODO craft PATH mindfully...
+#
+#export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # these should already be there... but they're not in the right order?
 
-export PATH="$PATH:/Users/alxndr/Library/Python/3.7/bin"
+# brew...
+# [ -x $(which brew) ] && eval $(brew shellenv)
+
+# python
+# export PATH="$PATH:/Users/alxndr/Library/Python/3.7/bin"
 
 # make sure we can see psql
-export PATH="/usr/local/opt/postgresql/bin:$PATH"
+#export PATH="/usr/local/opt/postgresql/bin:$PATH"
 
 # npm
-export PATH="/usr/local/share/npm/bin:$PATH"
+#export PATH="/usr/local/share/npm/bin:$PATH"
+
+# rust
+#. "$HOME/.cargo/env"
 
 # export IPFS_PATH=~/.ipfs-2
 
@@ -108,6 +118,7 @@ alias gh="giturl | xargs open"
 alias giturl="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//'"
 alias gl="git l"
 alias glg="git lg"
+alias glh="git l | head"
 alias glu="git log --patch"
 alias gmd="git co develop && git pull && git co - && git merge develop"
 alias gp="git pull"

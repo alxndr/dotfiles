@@ -25,20 +25,17 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 --  * "hybrid" style: normal mode shows absolute & insert mode shows absolute
 --    for current line, relative for others
 --    h/t https://jeffkreeftmeijer.com/vim-number/
---  * no numbering for Markdown
-vim.cmd [[
-  augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-  augroup END
-]]
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' },
+  { command = 'if &nu && mode() != "i" | set rnu | endif' }
+)
+vim.api.nvim_create_autocmd(
+  { 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' },
+  { command = 'if &nu && mode() != "i" | set rnu | endif' }
+)
 
 -- colorscheme tweaks
 vim.cmd [[
-  au VimEnter * highlight Whitespace guifg=red
-  au VimEnter * highlight Folded guibg=NONE
-
   " Background colors for active vs inactive windows
   " h/t https://caleb89taylor.medium.com/customizing-individual-neovim-windows-4a08f2d02b4e
   hi ActiveWindow guibg=#302D41
@@ -52,20 +49,42 @@ vim.cmd [[
   function! Handle_Win_Enter()
     setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
   endfunction
-
 ]]
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', },
+  { command = 'highlight Folded guibg=NONE', }
+)
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', },
+  { command = 'highlight Whitespace guibg=red', }
+)
+vim.api.nvim_create_autocmd(
+  { 'TextYankPost', },
+  {
+    callback = function(_args)
+      -- silent! lua vim.highlight.on_yank({higroup="Underlined", timeout=500})
+      vim.highlight.on_yank({higroup="Underlined", timeout=500})
+    end
+  }
+)
 
--- wrap tweaks
+-- markdown tweaks
+vim.api.nvim_create_autocmd(
+  { 'BufRead', 'BufNewFile' },
+  { pattern = { '*.md' },
+    command = 'setlocal wrap spell nonumber',
+  }
+)
+
+-- gitcommit tweaks
 vim.cmd [[
-  autocmd filetype markdown setlocal wrap
+  autocmd filetype gitcommit setlocal spell
 ]]
 
--- disable syntax highlighting in large files
+-- disable large files: syntax highlighting, context scope visualization, etc
 -- h/t `/u/Narizocracia` https://www.reddit.com/r/neovim/comments/pz3wyc/comment/heyy4qf
 -- function definition in `functions.lua`
-vim.cmd [[
-  augroup BigFileDisable
-    autocmd!
-    autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | endif
-  augroup END
-]]
+vim.api.nvim_create_autocmd(
+  { 'BufReadPre', 'FileReadPre', },
+  { command = 'if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | let b:minicursorword_disable=v:true | endif' }
+)

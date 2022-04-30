@@ -11,22 +11,27 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim'; -- startup screen
   'hrsh7th/nvim-cmp'; -- completion
-  'tpope/vim-fugitive'; -- Git helpers
-  'junegunn/fzf'; -- fuzzy file finder
-  'junegunn/fzf.vim'; -- fuzzy file finder
-  'ruanyl/vim-gh-line'; -- GitHub functions
-  'lewis6991/gitsigns.nvim'; -- git change sigils
-  'nvim-lualine/lualine.nvim'; -- status line
+  'folke/trouble.nvim'; -- lists of stuff...
+
+  -- behavior tweaks
+  'svban/YankAssassin.vim'; -- control cursor behavior while yanking
+  'echasnovski/mini.nvim'; -- ...?
+
+  -- files / navigation
+  'junegunn/fzf'; -- fuzzy file finder core?
+  'junegunn/fzf.vim'; -- fuzzy file finder functions?
   'gaborvecsei/memento.nvim'; -- recent file navigator
-  'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
   'airblade/vim-rooter'; -- keep vim working directory set to project root
   'chrisbra/Recover.vim'; -- add Compare to swapfile actions
   'camspiers/snap'; -- file / buffer finder
   'kyazdani42/nvim-tree.lua'; -- file browser
 
-  -- behavior tweaks
-  'ojroques/nvim-bufdel'; -- buffer deletion made saner
-  'svban/YankAssassin.vim'; -- control cursor behavior while yanking
+  -- git stuff
+  'APZelos/blamer.nvim'; -- show contributor info in virtualtext
+  'whiteinge/diffconflicts'; -- merge conflict helper: `:DiffConflicts`
+  'tpope/vim-fugitive'; -- general functions
+  'ruanyl/vim-gh-line'; -- GitHub-specific functions (namely: copy link to current line of code)
+  'lewis6991/gitsigns.nvim'; -- status sigils in the sign column
 
   -- text manipulation
   'nicwest/vim-camelsnek'; -- camelcase / snake_case conversion functions
@@ -35,17 +40,27 @@ require 'paq' {
   'cohama/lexima.vim'; -- matched-pair character closing
   'tpope/vim-surround'; -- matched-pair character conversion shortcuts
 
+  -- javascript / nodejs
+  'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
+
+  -- lisp/scheme/racket
+  'guns/vim-sexp';
+  'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
+
   -- eye candy
   {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'norcalli/nvim-colorizer.lua'; -- color eye-candy
   'voldikss/vim-floaterm'; -- terminal eyecandy
-  'machakann/vim-highlightedyank'; -- highlight yanked region
+  'nvim-lualine/lualine.nvim'; -- status line
   'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
 
   -- treesitter etc
-  'nvim-treesitter/nvim-treesitter'; -- file content parser
+  {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
   'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
+  'danymat/neogen'; -- code annotation helper
+  'ziontee113/syntax-tree-surfer'; -- syntax-aware selection helpers
   'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
+  'nvim-treesitter/nvim-treesitter-refactor'; -- refactor modules
 
   -- meta / dependencies
   'Iron-E/nvim-cartographer'; -- simpler API for mappings
@@ -56,12 +71,33 @@ require 'paq' {
   'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
   'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
+  'tpope/vim-repeat'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
+  'tpope/vim-surround'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
   'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
 }
 
 
 -- alpha config
-require('alpha').setup(require('alpha.themes.startify').opts)
+local alpha = require'alpha'
+local startify = require'alpha.themes.startify'
+startify.section.header.val = {
+  [[______________________________________________________________________________________]],
+  [[ ____________________________________________________________/\\\______________________]],
+  [[  ___/\\/\\\\\\_______/\\\\\\\\______/\\\\\_____/\\\____/\\\_\///_____/\\\\\__/\\\\\____]],
+  [[   __\/\\\////\\\____/\\\/////\\\___/\\\///\\\__\//\\\__/\\\___/\\\__/\\\///\\\\\///\\\__]],
+  [[    __\/\\\__\//\\\__/\\\\\\\\\\\___/\\\__\//\\\__\//\\\/\\\___\/\\\_\/\\\_\//\\\__\/\\\__]],
+  [[     __\/\\\___\/\\\_\//\\///////___\//\\\__/\\\____\//\\\\\____\/\\\_\/\\\__\/\\\__\/\\\__]],
+  [[      __\/\\\___\/\\\__\//\\\\\\\\\\__\///\\\\\/______\//\\\_____\/\\\_\/\\\__\/\\\__\/\\\__]],
+  [[       __\///____\///____\//////////_____\/////_________\///______\///__\///___\///___\///___]],
+}
+alpha.setup(startify.opts)
+
+
+-- blamer config
+cmd [[
+  let g:blamer_prefix = '    '
+  let g:blamer_show_in_insert_modes = 0
+]]
 
 
 -- catppuccin config
@@ -95,6 +131,7 @@ require 'colorizer'.setup({
 require('Comment').setup()
 
 
+
 -- cmp config
 local cmp = require'cmp'
 cmp.setup {
@@ -108,6 +145,15 @@ cmp.setup {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
   },
+  enabled = function()
+  -- h/t `u/Miserable-Ad-7341` https://www.reddit.com/r/neovim/comments/skkp1r/comment/hvocxmj/
+    local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
+    if in_prompt then  -- this will disable cmp in the Telescope window (taken from the default config)
+      return false
+    end
+    local context = require('cmp.config.context')
+    return not(context.in_treesitter_capture('comment') == true or context.in_syntax_group('Comment'))
+  end,
 }
 
 
@@ -132,12 +178,6 @@ cmd [[
 
 -- gitsigns config
 require('gitsigns').setup {}
-
-
--- highlightedyank config
-cmd [[
-  highlight HighlightedyankRegion guifg=magenta
-]]
 
 
 -- lexima config
@@ -168,7 +208,6 @@ lspi.on_server_ready(function(server)
 end)
 
 
-
 -- lualine config
 require'lualine'.setup{
   options = {
@@ -177,6 +216,9 @@ require'lualine'.setup{
     section_separators = '',
     theme = 'catppuccin',
     globalstatus = true, -- global status line
+  },
+  extensions = {
+    'nvim-tree'
   },
   sections = {
     lualine_a = {'mode'},
@@ -194,6 +236,23 @@ require'lualine'.setup{
     lualine_y = {},
     lualine_z = {'progress', 'location'}
   },
+}
+
+
+-- mini config
+require('mini.bufremove').setup({})
+require('mini.indentscope').setup({
+  draw = {
+    delay = 1,
+    animation = require('mini.indentscope').gen_animation('none'),
+  },
+  symbol = '･',
+})
+
+
+-- neogen config
+require('neogen').setup {
+  enabled = true
 }
 
 
@@ -272,9 +331,13 @@ vim.cmd [[
 
 
 -- tree config
-g.nvim_tree_quit_on_open = 1
 g.nvim_tree_add_trailing = 1
 require'nvim-tree'.setup {
+  actions = {
+    open_file = {
+      quit_on_open = 1,
+    },
+  },
   update_focused_file = {
     enable      = true,
     update_cwd  = false,
@@ -287,6 +350,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'bash',
     'comment',
+    'commonlisp',
     'css',
     'dockerfile',
     'elixir',
@@ -294,7 +358,7 @@ require('nvim-treesitter.configs').setup {
     'html',
     'javascript',
     'json',
-    'lua',
+    -- 'lua', -- this causes trouble...
     'ruby',
     'rust',
     'scss',
@@ -303,15 +367,19 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     disable = function(lang, bufnr) -- Disable in large buffers
-      return vim.api.nvim_buf_line_count(bufnr) > 10000
+      return vim.api.nvim_buf_line_count(bufnr) > 999999
     end,
   },
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    max_file_lines = 9999, -- Do not enable for files with more than n lines, int
   }
 }
+
+
+-- trouble config
+require('trouble').setup {}
 
 
 -- ts-autotag config

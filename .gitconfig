@@ -75,18 +75,13 @@
 
 [merge]
   conflictstyle = diff3
-  keepBackup = false;
-  tool = p4mergetool
-[mergetool "p4merge"]
-  cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-  keepTemporaries = false
-  trustExitCode = false
   keepBackup = false
-[mergetool "p4mergetool"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
-  trustExitCode = false
+  tool = diffconflicts
 [mergetool]
   keepBackup = false
+[mergetool "diffconflicts"]
+  cmd = nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+  rustExitCode = true
 
 [log]
   date = local
@@ -97,3 +92,5 @@
 
 [help]
   autocorrect = 15
+[init]
+	defaultBranch = main

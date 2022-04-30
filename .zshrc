@@ -53,3 +53,13 @@ iterm2_print_user_vars() {
   iterm2_set_user_var versionElixir $(elixir -v | awk '/Elixir/{print $2}')
 }
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# do some stuff on `cd`
+# https://stackoverflow.com/a/45444758/303896
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd () {
+  test -f "./.node-version" -o -f "./.nvmrc" -a -x "$(which fnm)" && \
+    echo "... setting up fnm ..." && \
+    eval "$(fnm env)" && \
+    f;
+}

@@ -38,6 +38,21 @@ vim.cmd [[
 vim.cmd [[
   au VimEnter * highlight Whitespace guifg=red
   au VimEnter * highlight Folded guibg=NONE
+
+  " Background colors for active vs inactive windows
+  " h/t https://caleb89taylor.medium.com/customizing-individual-neovim-windows-4a08f2d02b4e
+  hi ActiveWindow guibg=#302D41
+  hi InactiveWindow guibg=#161320
+  " Call method on window enter
+  augroup WindowManagement
+    autocmd!
+    autocmd WinEnter * call Handle_Win_Enter()
+  augroup END
+  " Change highlight group of active/inactive windows
+  function! Handle_Win_Enter()
+    setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+  endfunction
+
 ]]
 
 -- wrap tweaks

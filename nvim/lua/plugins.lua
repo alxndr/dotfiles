@@ -29,7 +29,7 @@ require 'paq' {
 
   -- git stuff
   'APZelos/blamer.nvim'; -- show contributor info in virtualtext
-  'whiteinge/diffconflicts'; -- merge conflict helper: `:DiffConflicts`
+  'rhysd/conflict-marker.vim'; -- merge conflict eye candy
   'tpope/vim-fugitive'; -- general functions
   'ruanyl/vim-gh-line'; -- GitHub-specific functions (namely: copy link to current line of code)
   'lewis6991/gitsigns.nvim'; -- status sigils in the sign column

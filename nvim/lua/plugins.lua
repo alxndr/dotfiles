@@ -10,12 +10,13 @@ require 'paq' {
 
   -- features
   'goolord/alpha-nvim'; -- startup screen
+  'editorconfig/editorconfig-vim'; -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp'; -- completion
   'folke/trouble.nvim'; -- lists of stuff...
 
   -- behavior tweaks
   'svban/YankAssassin.vim'; -- control cursor behavior while yanking
-  'echasnovski/mini.nvim'; -- ...?
+  'echasnovski/mini.nvim'; -- buffer deletion; indent eye candy
 
   -- files / navigation
   'junegunn/fzf'; -- fuzzy file finder core?
@@ -89,6 +90,7 @@ startify.section.header.val = {
   [[     __\/\\\___\/\\\_\//\\///////___\//\\\__/\\\____\//\\\\\____\/\\\_\/\\\__\/\\\__\/\\\__]],
   [[      __\/\\\___\/\\\__\//\\\\\\\\\\__\///\\\\\/______\//\\\_____\/\\\_\/\\\__\/\\\__\/\\\__]],
   [[       __\///____\///____\//////////_____\/////_________\///______\///__\///___\///___\///___]],
+  [[        ______________________________________________________________________________________]],
 }
 alpha.setup(startify.opts)
 
@@ -240,13 +242,6 @@ require'lualine'.setup{
 
 -- mini config
 require('mini.bufremove').setup({})
-require('mini.indentscope').setup({
-  draw = {
-    delay = 1,
-    animation = require('mini.indentscope').gen_animation('none'),
-  },
-  symbol = '･',
-})
 
 
 -- neogen config
@@ -334,7 +329,7 @@ g.nvim_tree_add_trailing = 1
 require'nvim-tree'.setup {
   actions = {
     open_file = {
-      quit_on_open = 1,
+      quit_on_open = true,
     },
   },
   update_focused_file = {

@@ -191,23 +191,14 @@ cmd([[
 
 
 -- lsp config
+local lspi = require'nvim-lsp-installer'
+lspi.setup {}
+-- "make sure you call the .setup() function before you set up any servers with lspconfig" https://github.com/williamboman/nvim-lsp-installer/blob/2be5d77ab0/README.md#setup
 local lspc = require'lspconfig'
 lspc.bashls.setup{}
 lspc.cssls.setup{}
 -- lspc.eslint.setup{}
 lspc.racket_langserver.setup{}
-
-local lspi = require'nvim-lsp-installer'
-lspi.on_server_ready(function(server)
-  local opts = {}
-  -- (optional) Customize the options passed to the server
-  -- if server.name == "tsserver" then
-  --     opts.root_dir = function() ... end
-  -- end
-  -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-  server:setup(opts)
-  vim.cmd [[ do User LspAttachBuffers ]]
-end)
 
 
 -- lualine config

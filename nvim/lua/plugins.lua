@@ -9,72 +9,72 @@ require 'paq' {
   'savq/paq-nvim'; -- paq-nvim manages itself
 
   -- features
-  'goolord/alpha-nvim'; -- startup screen
+  'goolord/alpha-nvim';            -- startup screen
   'editorconfig/editorconfig-vim'; -- integrate with `.editorconfig` files
-  'hrsh7th/nvim-cmp'; -- completion
-  'folke/trouble.nvim'; -- lists of stuff...
+  'hrsh7th/nvim-cmp';              -- completion
+  'folke/trouble.nvim';            -- lists of stuff...
 
   -- behavior tweaks
   'svban/YankAssassin.vim'; -- control cursor behavior while yanking
-  'echasnovski/mini.nvim'; -- buffer deletion; indent eye candy
+  'echasnovski/mini.nvim';  -- buffer deletion; indent eye candy
 
   -- files / navigation
-  'junegunn/fzf'; -- fuzzy file finder core?
-  'junegunn/fzf.vim'; -- fuzzy file finder functions?
+  'junegunn/fzf';             -- fuzzy file finder core?
+  'junegunn/fzf.vim';         -- fuzzy file finder functions?
   'gaborvecsei/memento.nvim'; -- recent file navigator
-  'airblade/vim-rooter'; -- keep vim working directory set to project root
-  'chrisbra/Recover.vim'; -- add Compare to swapfile actions
-  'camspiers/snap'; -- file / buffer finder
+  'airblade/vim-rooter';      -- keep vim working directory set to project root
+  'chrisbra/Recover.vim';     -- add Compare to swapfile actions
+  'camspiers/snap';           -- file / buffer finder
   'kyazdani42/nvim-tree.lua'; -- file browser
 
   -- git stuff
-  'APZelos/blamer.nvim'; -- show contributor info in virtualtext
+  'APZelos/blamer.nvim';       -- show contributor info in virtualtext
   'rhysd/conflict-marker.vim'; -- merge conflict eye candy
-  'tpope/vim-fugitive'; -- general functions
-  'ruanyl/vim-gh-line'; -- GitHub-specific functions (namely: copy link to current line of code)
-  'lewis6991/gitsigns.nvim'; -- status sigils in the sign column
+  'tpope/vim-fugitive';        -- general functions
+  'ruanyl/vim-gh-line';        -- GitHub-specific functions (namely: copy link to current line of code)
+  'lewis6991/gitsigns.nvim';   -- status sigils in the sign column, and next/prev hunk nav functions
 
   -- text manipulation
-  'nicwest/vim-camelsnek'; -- camelcase / snake_case conversion functions
-  'numToStr/Comment.nvim'; -- commenting shortcuts
+  'nicwest/vim-camelsnek';                        -- camelcase / snake_case conversion functions
+  'numToStr/Comment.nvim';                        -- commenting shortcuts
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
-  'cohama/lexima.vim'; -- matched-pair character closing
-  'tpope/vim-surround'; -- matched-pair character conversion shortcuts
+  'cohama/lexima.vim';                            -- matched-pair character closing
+  'tpope/vim-surround';                           -- matched-pair character conversion shortcuts
 
   -- javascript / nodejs
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
 
   -- lisp/scheme/racket
-  'guns/vim-sexp';
+  'guns/vim-sexp';                              -- paren-navigation fundamentals
   'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
 
   -- eye candy
   {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
-  'norcalli/nvim-colorizer.lua'; -- color eye-candy
-  'voldikss/vim-floaterm'; -- terminal eyecandy
-  'nvim-lualine/lualine.nvim'; -- status line
-  'anuvyklack/pretty-fold.nvim'; -- eye candy for folds
+  'norcalli/nvim-colorizer.lua';          -- color eye-candy
+  'voldikss/vim-floaterm';                -- terminal eyecandy
+  'nvim-lualine/lualine.nvim';            -- status line
+  'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
 
   -- treesitter etc
   {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
-  'windwp/nvim-ts-autotag'; -- auto-close HTML tags (treesitter plugin)
-  'danymat/neogen'; -- code annotation helper
-  'ziontee113/syntax-tree-surfer'; -- syntax-aware selection helpers
-  'p00f/nvim-ts-rainbow'; -- color matching parens (treesitter plugin
-  'nvim-treesitter/nvim-treesitter-refactor'; -- refactor modules
+  'windwp/nvim-ts-autotag';                                 -- auto-close HTML tags (treesitter plugin)
+  'danymat/neogen';                                         -- code annotation helper
+  'ziontee113/syntax-tree-surfer';                          -- syntax-aware selection helpers
+  'p00f/nvim-ts-rainbow';                                   -- color matching parens (treesitter plugin
+  'nvim-treesitter/nvim-treesitter-refactor';               -- refactor modules
 
   -- meta / dependencies
-  'Iron-E/nvim-cartographer'; -- simpler API for mappings
-  'hrsh7th/cmp-buffer'; -- something for nvim-cmp
-  'hrsh7th/cmp-nvim-lsp'; -- "LSP source for nvim-cmp"
-  'ryanoasis/vim-devicons'; -- icon characters; optionally (?) used by lualine; required by alpha
-  'neovim/nvim-lspconfig'; -- LSP config
+  'Iron-E/nvim-cartographer';        -- simpler API for mappings
+  'hrsh7th/cmp-buffer';              -- something for nvim-cmp
+  'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
+  'ryanoasis/vim-devicons';          -- icon characters; optionally (?) used by lualine; required by alpha
+  'neovim/nvim-lspconfig';           -- LSP config
   'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
-  'MunifTanjim/nui.nvim'; -- UI toolkit used by `package-info.nvim`
-  'nvim-lua/plenary.nvim'; -- prereq for gitsigns & memento
-  'tpope/vim-repeat'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
-  'tpope/vim-surround'; -- dependency of tpope's vim-sexp-mappings-for-regular-people
-  'kyazdani42/nvim-web-devicons'; -- icon characters; required by nvim-tree
+  'MunifTanjim/nui.nvim';            -- UI toolkit used by `package-info.nvim`
+  'nvim-lua/plenary.nvim';           -- prereq for gitsigns & memento
+  'tpope/vim-repeat';                -- dependency of tpope's vim-sexp-mappings-for-regular-people
+  'tpope/vim-surround';              -- dependency of tpope's vim-sexp-mappings-for-regular-people
+  'kyazdani42/nvim-web-devicons';    -- icon characters; required by nvim-tree
 }
 
 

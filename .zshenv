@@ -5,28 +5,6 @@ export LESS="-F -R -S -W"
 
 export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
 
-# TODO craft PATH mindfully...
-#
-#export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-# these should already be there... but they're not in the right order?
-
-# brew...
-# [ -x $(which brew) ] && eval $(brew shellenv)
-
-# python
-# export PATH="$PATH:/Users/alxndr/Library/Python/3.7/bin"
-
-# make sure we can see psql
-#export PATH="/usr/local/opt/postgresql/bin:$PATH"
-
-# npm
-#export PATH="/usr/local/share/npm/bin:$PATH"
-
-# rust
-#. "$HOME/.cargo/env"
-
-# export IPFS_PATH=~/.ipfs-2
-
 export RIPGREP_CONFIG_PATH=~/workspace/dotfiles/ripgrep.cfg
 
 

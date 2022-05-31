@@ -49,11 +49,11 @@ require 'paq' {
   'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
 
   -- eye candy
-  {'catppuccin/nvim', name='catppuccin'}; -- colorscheme
   'norcalli/nvim-colorizer.lua';          -- color eye-candy
   'voldikss/vim-floaterm';                -- terminal eyecandy
   'nvim-lualine/lualine.nvim';            -- status line
   'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
+  'Domeee/mosel.nvim';                    -- colorscheme
 
   -- treesitter etc
   {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
@@ -102,21 +102,6 @@ cmd [[
 ]]
 
 
--- catppuccin config
-require('catppuccin').setup {
-  styles = {
-    functions = 'NONE',
-    keywords = 'NONE',
-    variables = 'NONE',
-  },
-  integrations = {
-    gitsigns = true,
-    ts_rainbow = true,
-  },
-}
-cmd 'colorscheme catppuccin'
-
-
 -- colorizer config
 require 'colorizer'.setup({
   'css';
@@ -131,7 +116,6 @@ require 'colorizer'.setup({
 
 -- Comment config
 require('Comment').setup()
-
 
 
 -- cmp config
@@ -204,11 +188,11 @@ lspc.racket_langserver.setup{}
 -- lualine config
 require'lualine'.setup{
   options = {
-    icons_enabled = true,
     component_separators = {'…', '…'},
-    section_separators = '',
-    theme = 'catppuccin',
     globalstatus = true, -- global status line
+    icons_enabled = true,
+    section_separators = '',
+    theme = 'mosel',
   },
   extensions = {
     'nvim-tree'

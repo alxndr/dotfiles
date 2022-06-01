@@ -298,12 +298,14 @@ vim.cmd [[
 
 
 -- tree config
-g.nvim_tree_add_trailing = 1
 require'nvim-tree'.setup {
   actions = {
     open_file = {
       quit_on_open = true,
     },
+  },
+  renderer = {
+    add_trailing = true,
   },
   update_focused_file = {
     enable      = true,

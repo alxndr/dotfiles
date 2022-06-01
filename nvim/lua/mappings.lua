@@ -1,5 +1,6 @@
 vim.g.mapleader = '\\' -- 💪
 
+local keymap = vim.api.nvim_set_keymap
 local map = require 'cartographer'
 local snap = require 'snap'
 
@@ -28,7 +29,6 @@ map.n.nore[',b'] = '<CMD>lua require("memento").toggle()<CR>'
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/{\\n<CR>:nohl<CR>zz'
 map.n.nore[',F'] = ':set foldlevel=0<CR>zozz'
-map.n.nore[',l'] = ':Trouble' -- i.e. List of Lint
 map.n.nore[',ga'] = ':Git commit --amend'
 map.n.nore[',gb'] = ':BlamerToggle<CR>'
 map.n.nore[',gc'] = ':Git commit<CR>'
@@ -36,6 +36,7 @@ map.n.nore[',gc'] = ':Git commit<CR>'
 map.n.nore[',gp'] = ':Git push'
 map.n.nore[',gP'] = ':Git push --force'
 map.n.nore[',gs'] = ':Git<CR>'
+keymap('n', ',l', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {silent = true})
 map.n.nore[',m'] = '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR>:nohl<CR>zz'
 map.n.nore[',n'] = ':nohl<CR>'
 map.n.nore[',r'] = '<CMD>lua vim.diagnostic.goto_next()<CR>'
@@ -94,6 +95,7 @@ map.t.nore['<C-]>'] = '<C-\\><C-n>:FloatermNext<CR>'
 -- visual mode
 map.v.nore['<Space>'] = ':' -- 🙌
 map.v.nore['<Tab>'] = 'd:vnew<CR>PGddgg' -- extract selection from current file & paste into new buffer
+keymap('v', ',l', '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {})
 --          gb  = numToStr/Comment blockwise comment toggle
 --          gc  = numToStr/Comment linewise comment toggle
 map.v.nore['L'] = '<cmd>lua require("syntax-tree-surfer").surf("next", "visual", true)<cr>'

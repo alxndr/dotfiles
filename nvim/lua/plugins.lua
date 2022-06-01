@@ -31,7 +31,7 @@ require 'paq' {
   'APZelos/blamer.nvim';       -- show contributor info in virtualtext
   'rhysd/conflict-marker.vim'; -- merge conflict eye candy
   'tpope/vim-fugitive';        -- general functions
-  'ruanyl/vim-gh-line';        -- GitHub-specific functions (namely: copy link to current line of code)
+  'ruifm/gitlinker.nvim';      -- copy link to current line of code
   'lewis6991/gitsigns.nvim';   -- status sigils in the sign column, and next/prev hunk nav functions
 
   -- text manipulation
@@ -153,13 +153,10 @@ cmd [[
 cmd 'au VimEnter * highlight FloatermNC guibg=gray'
 
 
--- gh-line config
-cmd [[
-  let g:gh_line_map_default = 0
-  let g:gh_line_map = ',gl'
-  let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
-  let g:gh_line_blame_map_default = 0
-]]
+-- gitlinker config
+require('gitlinker').setup {
+  mappings = nil,
+}
 
 
 -- gitsigns config

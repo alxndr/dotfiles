@@ -39,6 +39,9 @@ iterm2_print_user_vars() {
 test -f "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
+echo -n …deno ''
+test -x "$(which deno)" && export PATH="/Users/xander/.deno/bin:$PATH"
+
 if [[ -x "$(which brew)" ]]; then
   echo -n …brew ''
   UPDATEFILE=/tmp/zshrc-brew-update

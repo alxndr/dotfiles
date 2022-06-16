@@ -16,7 +16,6 @@ require 'paq' {
 
   -- behavior tweaks
   'svban/YankAssassin.vim'; -- control cursor behavior while yanking
-  'echasnovski/mini.nvim';  -- buffer deletion; indent eye candy
 
   -- files / navigation
   'junegunn/fzf';             -- fuzzy file finder core?
@@ -58,7 +57,6 @@ require 'paq' {
   -- treesitter etc
   {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
   'windwp/nvim-ts-autotag';                                 -- auto-close HTML tags (treesitter plugin)
-  'danymat/neogen';                                         -- code annotation helper
   'ziontee113/syntax-tree-surfer';                          -- syntax-aware selection helpers
   'p00f/nvim-ts-rainbow';                                   -- color matching parens (treesitter plugin
   'nvim-treesitter/nvim-treesitter-refactor';               -- refactor modules
@@ -210,16 +208,6 @@ require'lualine'.setup{
     lualine_y = {},
     lualine_z = {'progress', 'location'}
   },
-}
-
-
--- mini config
-require('mini.bufremove').setup({})
-
-
--- neogen config
-require('neogen').setup {
-  enabled = true
 }
 
 

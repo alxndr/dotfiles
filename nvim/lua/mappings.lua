@@ -71,6 +71,7 @@ map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.th
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 
 -- insert mode
+keymap('i', '<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
 map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
 map.i.nore[',;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
 map.i.nore['jk'] = '<Esc>'

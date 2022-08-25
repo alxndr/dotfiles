@@ -37,6 +37,7 @@ require 'paq' {
   'nicwest/vim-camelsnek';                        -- camelcase / snake_case conversion functions
   'numToStr/Comment.nvim';                        -- commenting shortcuts
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
+  'WilsonOh/emoji_picker-nvim';                   -- emoji UX
   'cohama/lexima.vim';                            -- matched-pair character closing
   'tpope/vim-surround';                           -- matched-pair character conversion shortcuts
 
@@ -145,6 +146,10 @@ cmp.setup {
 cmd [[
   au FileType html,php,markdown,mmd,text,mail,gitcommit runtime macros/emoji-ab.vim
 ]]
+
+
+-- emoji setup
+require("emoji_picker").setup()
 
 
 -- floaterm config

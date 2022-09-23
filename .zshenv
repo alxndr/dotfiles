@@ -170,7 +170,17 @@ alias bl="bundle"
         | awk '/^ *[0-9]/ {print $2}'
       }
       f() {
-        fnm use $([[ -f .node-version ]] && cat .node-version || ([[ -f .nvmrc ]] && cat .nvmrc))
+        if [[ -f .node-version ]]; then
+          fnm use $(cat .node-version)
+        elif [[ -f .nvmrc ]]; then
+          fnm use $(cat .nvmrc)
+        elif [[ -f package.json ]]; then
+          VERSION=$(jq --raw-output '.engines.node' package.json)
+          echo $VERSION
+          if [[ "$VERSION" != "null" ]]; then
+            fnm use $(npx semver --coerce $VERSION)
+          fi
+        fi
       }
 alias h="hex"
 alias ism="iex -S mix"

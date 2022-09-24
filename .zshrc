@@ -42,26 +42,29 @@ test -f "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 echo -n …deno ''
 test -x "$(which deno)" && export PATH="/Users/xander/.deno/bin:$PATH"
 
-if [[ -x "$(which brew)" ]]; then
-  echo -n …brew ''
-  UPDATEFILE=/tmp/zshrc-brew-update
-  MINUTE=60 # seconds
-  HOUR=$((60 * MINUTE))
-  DAY=$((24 * HOUR))
-  if [[
-    (! (-e $UPDATEFILE))
-    || ($(($(date -r $UPDATEFILE '+%s') + (2 * $DAY))) -lt $(date '+%s'))
-  ]]; then
-    echo
-    vared -p 'update brew?? Y/n ' -c CONFIRM
-    case ${CONFIRM:0:1} in
-      [Yy])
-        brew update && touch $UPDATEFILE
-        ;;
-      *);
-        echo 'skipping brew update'
-        ;;
-    esac
+if [[ -x "/opt/homebrew/bin/brew" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  if [[ -x "$(which brew)" ]]; then
+    echo -n …brew ''
+    UPDATEFILE=/tmp/zshrc-brew-update
+    MINUTE=60 # seconds
+    HOUR=$((60 * MINUTE))
+    DAY=$((24 * HOUR))
+    if [[
+      (! (-e $UPDATEFILE))
+      || ($(($(date -r $UPDATEFILE '+%s') + (2 * $DAY))) -lt $(date '+%s'))
+    ]]; then
+      echo
+      vared -p 'update brew?? Y/n ' -c CONFIRM
+      case ${CONFIRM:0:1} in
+        [Yy])
+          brew update && touch $UPDATEFILE
+          ;;
+        *);
+          echo 'skipping brew update'
+          ;;
+      esac
+    fi
   fi
 fi
 

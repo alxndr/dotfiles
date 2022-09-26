@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export PAGER="more"
+export PAGER="most" # TODO use more if most isn't found
 export MANPAGER="nvim +Man!"
 export LESS="-F -R -S -W"
 
@@ -16,11 +16,14 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="curl"
+      digbr() {
+        dig ${1?:specify a subdomain to look up}.bleacherreport.com
+      }
 alias e="nvim"
 alias gr="grep"
-alias l="ls -AFl"
-alias ll="ls -aFl" # something is overriding this...
-alias ls="ls -F"
+alias l="ls -AFlno" # OMZ? is overriding this...
+alias ll="ls -aFl" # OMZ? is overriding this...
+alias ln="ln -v"
       lsd() {
         if [[ -n "$1" ]]; then
           ls -G -d $1/*(D/)
@@ -29,7 +32,6 @@ alias ls="ls -F"
           ls -G -d -- *(D/)
         fi
       }
-alias ln="ln -v"
 alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
@@ -64,7 +66,9 @@ alias yr="ncal $(date -j +'%Y')"
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
 alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant" # h/t @GregMefford
       notify() { osascript -e "display notification \"$2\" with title \"$1\"" }
-      yt() { youtube-dl -f best $1 }
+      yt() { youtube-dl --format best $1 }
+      yt-mp3() { youtube-dl --extract-audio --audio-format mp3 $1 }
+
 
 
 #######
@@ -100,7 +104,7 @@ alias glh="git l | head"
 alias glu="git log --patch"
 alias gmd="git co develop && git pull && git co - && git merge develop"
 alias gp="git pull"
-      gri() { git rebase --interactive "HEAD~$1" }
+      gri() { git rebase --interactive "HEAD~$1" --verbose }
 alias gsl="git stash list"
       gsp() {
         git stash pop stash@{${1:-0}}
@@ -182,13 +186,6 @@ alias bl="bundle"
           fi
         fi
       }
-alias h="hex"
-alias ism="iex -S mix"
-alias ismp="iex -S mix phx.server"
-alias m="mix"
-alias meb="mix escript.build"
-alias mps="mix phx.server"
-alias mt="mix test"
 alias n="npm"
 alias nd="node"
 alias ndd="nodemon"
@@ -240,7 +237,5 @@ back_up_media_unison() {
   echo "Started: $START"
   echo "Ended @: $END"
 }
-
-yt-mp3() { youtube-dl --extract-audio --audio-format mp3 $1 }
 
 [[ -f ~/.br-env.zsh ]] && source ~/.br-env.zsh

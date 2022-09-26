@@ -48,7 +48,6 @@
   sha-date-message-author-branch = format:%C(red)%h%C(reset) %C(green)%ar%C(reset) %s %C(bold blue)%an%C(reset)%C(yellow)%d%C(reset)
   sha-family-tree = format:%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(bold blue)%an %C(green)%cr%C(reset)
 
-
 [branch]
   autosetupmerge = true
 [branch "master"]
@@ -73,15 +72,12 @@
   changed = green
   untracked = cyan
 
+[diff]
+	external = difft
+
 [merge]
   conflictstyle = diff3
   keepBackup = false
-  tool = diffconflicts
-[mergetool]
-  keepBackup = false
-[mergetool "diffconflicts"]
-  cmd = nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
-  rustExitCode = true
 
 [log]
   date = local
@@ -92,5 +88,6 @@
 
 [help]
   autocorrect = 15
+
 [init]
 	defaultBranch = main

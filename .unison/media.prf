@@ -1,0 +1,16 @@
+# to use this profile, run unison like so: (?)
+# > unison media
+
+# docs for options:
+# https://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html
+
+root = /Volumes/MEDIA
+root = /Volumes/Media3
+mountpoint = /Volumes/MEDIA
+mountpoint = /Volumes/Media3
+
+# batch = true
+fastcheck = true
+copythreshold = 9999
+
+include common.prf.inc

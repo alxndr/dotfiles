@@ -41,7 +41,7 @@ export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 ZSH_THEME="alxndr"
 CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(dotenv)
+plugins=(dotenv vi-mode)
 test -f "$ZSH/oh-my-zsh.sh" && source "$ZSH/oh-my-zsh.sh"
 
 

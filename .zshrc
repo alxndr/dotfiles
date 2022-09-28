@@ -41,7 +41,8 @@ export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 ZSH_THEME="alxndr"
 CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
-test -f "$ZSH/oh-my-zsh.sh" && source $ZSH/oh-my-zsh.sh
+plugins=(dotenv)
+test -f "$ZSH/oh-my-zsh.sh" && source "$ZSH/oh-my-zsh.sh"
 
 
 if [[ -f "${HOME}/.iterm2_shell_integration.zsh" ]]; then
@@ -56,13 +57,15 @@ if [[ -f "${HOME}/.iterm2_shell_integration.zsh" ]]; then
 fi
 
 
-if [[ -f ~/.fzf.zsh ]]; then
+if [[ -x $(which fzf) ]]; then
   echo -n …fzf ''
-  if [[ -x "$(which rg)" && -x "$(which fzf)" ]]; then
+  plugins+=(fzf)
+  if [[ -x "$(which rg)" ]]; then
     export FZF_DEFAULT_COMMAND="rg"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    plugins+=(ripgrep)
   fi
-  source ~/.fzf.zsh
+  test -f ~/.fzf.zsh && source ~/.fzf.zsh
 fi
 
 
@@ -77,3 +80,4 @@ test -x "$(which deno)" && \
 
 
 echo
+date

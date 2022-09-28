@@ -19,3 +19,4 @@ ignore = Name .idsff
 ignore = Name .Spotlight*
 ignore = Name .DS_Store
 ignore = Name .CFUserTextEncoding
+ignore = Name .DocumentRevisions-V100

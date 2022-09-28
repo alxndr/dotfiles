@@ -10,15 +10,19 @@ Install [oh-my-zsh]
       Schniz/fnm \
       ripgrep \
       fzf \
-    # ...probably a bunch more
-    # oh-my-zsh ?
+      entr
 
 ## setting em up
 
-Check out the repo, then either `ln -s workspace/dotfiles/[...]` into `~` or see if `./link_dotfiles.sh` still works...
+Check out the repo, then:
 
-    ln -s workspace/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
-    ln -s ~/workspace/dotfiles/alxndr.zsh-theme ~/.oh-my-zsh/themes
+    mkdir ~/.config
+    cd ~/.config
+    ln -s ~/workspace/dotfiles/nvim
+    ln -s ~/workspace/dotfiles/alxndr.zsh-theme
+    ln -s ~/workspace/dotfiles/.zshrc
+    ln -s ~/workspace/dotfiles/.zshenv
+    ln -s ~/workspace/dotfiles/.gitconfig
 
 ## os x settings
 

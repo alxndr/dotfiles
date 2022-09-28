@@ -42,10 +42,6 @@ ZSH_THEME="alxndr"
 CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 test -f "$ZSH/oh-my-zsh.sh" && source $ZSH/oh-my-zsh.sh
-if [[ -x $(which git) ]]; then
-  echo -n …git ''
-  plugins=(git)
-fi
 
 
 if [[ -f "${HOME}/.iterm2_shell_integration.zsh" ]]; then

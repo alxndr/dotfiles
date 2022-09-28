@@ -41,6 +41,7 @@ map.n.nore[',m'] = '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR>:nohl<CR>zz'
 map.n.nore[',n'] = ':nohl<CR>'
 map.n.nore[',r'] = '<CMD>lua vim.diagnostic.goto_next()<CR>'
 map.n.nore[',R'] = '<CMD>lua vim.diagnostic.goto_prev()<CR>'
+keymap('n', ',s', ':Git<CR>', {silent = true})
 map.n.nore[',t'] = 'za'
 map.n.nore[',vv'] = '<CMD>lua require("package-info").show()<CR>'
 map.n.nore[',vu'] = '<CMD>lua require("package-info").change_version()<CR>'

@@ -203,6 +203,7 @@ alias niS="npm install --loglevel warn --save"
         fi
       }
 alias nr="npm run --silent"
+alias nt="npm test"
 alias nvm="echo \"You probably want fnm, not nvm...\""
 alias nx="npx"
       report() { $@ && say "done" || say "error" }

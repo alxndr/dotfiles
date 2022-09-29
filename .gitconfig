@@ -17,8 +17,8 @@
   bl = blame -C -C -C
   bn = branch-name
   branch-name = rev-parse --abbrev-ref HEAD
-  ci = commit
   cf = conflicting
+  ci = commit
   co = checkout
   conflicting = !git ls-files -u | awk '{print $4}' | uniq
   contributors = !git log --pretty=format:"%at@%an" --reverse | sort --unique --key=2 | sort --numeric --key=1 | cut -d"@" -f2 - # in order of first contribution... h/t https://stackoverflow.com/a/20639730/303896
@@ -31,10 +31,10 @@
   find = log -u -G # searchRegex [path]
   find-untracked-files = !git ls-files -v $(git get-root-dir) | grep -e "^[a-z]"
   first-commit = rev-list --max-parents=0 HEAD
-  l = log --no-merges --abbrev-commit --abbrev=8 --pretty=sha-date-message-author-branch
-  lg = log --graph --abbrev-commit --abbrev=8 --pretty=sha-branch-message-author-date
   get-root-dir = !git rev-parse --show-toplevel
   gol = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message-branch
+  l = log --no-merges --abbrev-commit --abbrev=8 --pretty=sha-date-message-author-branch
+  lg = log --graph --abbrev-commit --abbrev=8 --pretty=sha-branch-message-author-date
   reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
   reset-upstream = !git fetch upstream && git checkout master && git reset --hard upstream/master
   set-upstream = !git branch --set-upstream-to=origin/$(git branch-name) $(git branch-name)

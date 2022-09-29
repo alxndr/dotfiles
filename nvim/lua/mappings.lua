@@ -7,7 +7,9 @@ local snap = require 'snap'
 -- normal mode
 snap.register.map({'n'}, {'<Leader><Leader>'}, snapFindBuffer)
 map.n.nore['<Leader><Tab>'] = ':NvimTreeToggle<CR>'
+keymap('n', '<Leader>f', ':Easypick deprank<CR>', {silent = true})
 snap.register.map({'n'}, {'<Leader>g'}, snapSearchWithGrep) -- TODO why does this pause before launching??
+keymap('n', '<Leader>a', ':Alpha<CR>', {silent=true})
 map.n.nore['<Leader>j'] = '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'
 map.n.nore['<Leader>k'] = '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'
 map.n.nore['<Leader>t'] = ':FloatermToggle<CR>'
@@ -26,6 +28,7 @@ map.n.nore['<Tab>'] = '<C-w><C-w>'
 map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
 map.n.nore[',;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
 map.n.nore[',b'] = '<CMD>lua require("memento").toggle()<CR>'
+keymap('n', ',c', ':Easypick conflicts<CR>', {silent = true})
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/{\\n<CR>:nohl<CR>zz'
 map.n.nore[',F'] = ':set foldlevel=0<CR>zozz'
@@ -58,7 +61,7 @@ map.n.nore['gj'] = ":call search('\\%' . virtcol('.') . 'v\\S', 'W')<CR>" -- h/t
 map.n.nore['gk'] = ":call search('\\%' . virtcol('.') . 'v\\S', 'bW')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
 map.n.nore['H'] = 'zh'
 map.n.nore['L'] = 'zl'
-map.n.nore['Q'] = ':bd<CR>'
+map.n.nore['Q'] = ':Bdelete<CR>'
 map.n.nore['<S-Down>'] = 'ddp' -- shift current line down
 map.n.nore['<S-Up>'] = 'ddkP' -- shift current line up
 map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'"
@@ -80,6 +83,7 @@ map.i.nore['jk'] = '<Esc>'
 map.i.nore['kj'] = '<Esc>'
 map.i.nore['qq'] = '<Esc>m`gqq``a' -- wrap current line and return to position
 map.i.nore['<C-a>'] = [[<Esc>A]] -- append (e.g. to hop over autocompleted characters)
+vim.api.nvim_set_keymap('i', '<C-d>', '', { callback = function() require'better-digraphs'.digraphs('i') end, desc = 'better-digraphs helper', noremap = true })
 map.i.nore['<C-e>'] = '<Esc><C-e>a' -- preserve `<C-e>` scroll behavior in insert mode
 map.i.nore['<C-y>'] = '<Esc><C-y>a' -- preserve `<C-y>` scroll behavior in insert mode
 map.i.nore['<S-Down>'] = '<Esc>m`ddp``a' -- shift current line down and return to position
@@ -99,6 +103,7 @@ map.t.nore['<C-]>'] = '<C-\\><C-n>:FloatermNext<CR>'
 map.v.nore['<Space>'] = ':' -- 🙌
 map.v.nore['<Tab>'] = 'd:vnew<CR>PGddgg' -- extract selection from current file & paste into new buffer
 keymap('v', ',l', '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {})
+keymap('v', ',s', ':Ray<CR>', {}) -- Share code via ray.so
 --          gb  = numToStr/Comment blockwise comment toggle
 --          gc  = numToStr/Comment linewise comment toggle
 map.v.nore['L'] = '<cmd>lua require("syntax-tree-surfer").surf("next", "visual", true)<cr>'

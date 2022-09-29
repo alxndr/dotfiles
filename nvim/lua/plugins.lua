@@ -10,16 +10,22 @@ require 'paq' {
 
   -- features
   'goolord/alpha-nvim';            -- startup screen
-  'editorconfig/editorconfig-vim'; -- integrate with `.editorconfig` files
+  'protex/better-digraphs.nvim';   -- character picker
+  'gpanders/editorconfig.nvim';    -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';              -- completion
+  's-u-d-o-e-r/vim-ray-so-beautiful';  -- shortcut for sharing code via https://ray.so
   'folke/trouble.nvim';            -- lists of stuff...
 
   -- behavior tweaks
   'svban/YankAssassin.vim'; -- control cursor behavior while yanking
 
-  -- files / navigation
+  -- files / buffers / navigation
+  'famiu/bufdelete.nvim';     -- delete buffer but don't modify window splits
+  'ghillb/cybu.nvim';         -- buffers navigation
+  'axkirillov/easypick.nvim'; -- helper for creating custom Telescope pickers
   'junegunn/fzf';             -- fuzzy file finder core?
   'junegunn/fzf.vim';         -- fuzzy file finder functions?
+  'ggandor/leap.nvim';        -- fancy cursor navigation
   'gaborvecsei/memento.nvim'; -- recent file navigator
   'airblade/vim-rooter';      -- keep vim working directory set to project root
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
@@ -43,6 +49,11 @@ require 'paq' {
 
   -- javascript / nodejs
   'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
+  'MunifTanjim/prettier.nvim'; -- integration with Prettier (code formatter)
+  'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string
+
+  -- elixir
+  'mhanberg/elixir.nvim'; -- install elixirls and more
 
   -- lisp/scheme/racket
   'guns/vim-sexp';                              -- paren-navigation fundamentals
@@ -50,10 +61,11 @@ require 'paq' {
 
   -- eye candy
   'norcalli/nvim-colorizer.lua';          -- color eye-candy
+  'sindrets/diffview.nvim';               -- make diffs prettier
   'voldikss/vim-floaterm';                -- terminal eyecandy
   'nvim-lualine/lualine.nvim';            -- status line
-  'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
   'Domeee/mosel.nvim';                    -- colorscheme
+  'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
 
   -- treesitter etc
   {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
@@ -66,14 +78,15 @@ require 'paq' {
   'Iron-E/nvim-cartographer';        -- simpler API for mappings
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
-  'ryanoasis/vim-devicons';          -- icon characters; optionally (?) used by lualine; required by alpha
+  'ryanoasis/vim-devicons';          -- icon characters; optionally (?) used by diffview & lualine
   'neovim/nvim-lspconfig';           -- LSP config
   'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'MunifTanjim/nui.nvim';            -- UI toolkit used by `package-info.nvim`
-  'nvim-lua/plenary.nvim';           -- prereq for gitsigns & memento
+  'nvim-lua/plenary.nvim';           -- prereq for diffview & gitsigns & memento
   'tpope/vim-repeat';                -- dependency of tpope's vim-sexp-mappings-for-regular-people
   'tpope/vim-surround';              -- dependency of tpope's vim-sexp-mappings-for-regular-people
-  'kyazdani42/nvim-web-devicons';    -- icon characters; required by nvim-tree
+  'nvim-telescope/telescope.nvim';
+  'kyazdani42/nvim-web-devicons';    -- icon characters; required by nvim-tre; required by alphae
 }
 
 
@@ -142,6 +155,26 @@ cmp.setup {
 }
 
 
+-- easypick config
+local easypick = require 'easypick'
+easypick.setup({
+  pickers = {
+    {
+      name = 'conflicts',
+      command = 'git conflicting',
+      previewer = easypick.previewers.file_diff(),
+      -- previewer = easypick.previewers.default(),
+    },
+    {
+      name = 'deprank',
+      command = 'deprank ./src | grep src | awk \'{print $2}\'',
+      previewer = easypick.previewers.file_diff(),
+      -- previewer = easypick.previewers.default(),
+    },
+  }
+})
+
+
 -- vim-emoji-ab config
 cmd [[
   au FileType html,php,markdown,mmd,text,mail,gitcommit runtime macros/emoji-ab.vim
@@ -166,23 +199,30 @@ require('gitlinker').setup {
 require('gitsigns').setup {}
 
 
+-- leap config
+require('leap').set_default_keymaps()
+
+
 -- lexima config
 cmd([[
-  call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'javascriptreact', 'jasmine.javascript'] })
-  call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'jasmine.javascript'] })
-  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'jasmine.javascript'] })
+  call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
 ]])
 
 
 -- lsp config
 local lspi = require'nvim-lsp-installer'
-lspi.setup {}
+lspi.setup {
+  automatic_installation = true,
+}
 -- "make sure you call the .setup() function before you set up any servers with lspconfig" https://github.com/williamboman/nvim-lsp-installer/blob/2be5d77ab0/README.md#setup
 local lspc = require'lspconfig'
 lspc.bashls.setup{}
 lspc.cssls.setup{}
--- lspc.eslint.setup{}
+lspc.eslint.setup{}
 lspc.racket_langserver.setup{}
+lspc.tsserver.setup{}
 
 
 -- lualine config
@@ -232,9 +272,16 @@ require('package-info').setup{
 }
 
 
+-- prettier.nvim config
+require('prettier').setup {
+  bin = 'prettier', -- or `prettierd`
+}
+
+
 -- pretty-fold config
 require('pretty-fold').setup {
-  fill_char = '⋅',
+  default_keybindings = false,
+  fill_char = 'ᐧ',
   sections = {
     left = { 'content' },
     right = { ' ', 'number_of_folded_lines', ' ' },
@@ -289,6 +336,10 @@ vim.cmd [[
 ]]
 
 
+-- template-string config
+require('template-string').setup()
+
+
 
 -- tree config
 require'nvim-tree'.setup {
@@ -320,10 +371,11 @@ require('nvim-treesitter.configs').setup {
     'html',
     'javascript',
     'json',
-    -- 'lua', -- this causes trouble...
+    'lua',
     'ruby',
     'rust',
     'scss',
+    'typescript',
     'yaml',
   },
   highlight = {

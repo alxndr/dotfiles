@@ -1,6 +1,5 @@
 local cmd = vim.cmd  -- execute Vim commands
 local fn = vim.fn    -- call Vim functions
-local g = vim.g      -- access global variables
 
 -- Paq: package manager
 -- installation instructions:
@@ -11,6 +10,7 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim';            -- startup screen
   'protex/better-digraphs.nvim';   -- character picker
+  'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
   'gpanders/editorconfig.nvim';    -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';              -- completion
   's-u-d-o-e-r/vim-ray-so-beautiful';  -- shortcut for sharing code via https://ray.so
@@ -105,6 +105,11 @@ startify.section.header.val = {
   [[        ______________________________________________________________________________________]],
 }
 alpha.setup(startify.opts)
+
+
+-- better-escape config
+vim.g.better_escape_interval = 100
+vim.g.better_escape_shortcut = { 'jk'; 'kj' }
 
 
 -- blamer config

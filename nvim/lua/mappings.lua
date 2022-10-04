@@ -35,7 +35,7 @@ map.n.nore[',F'] = ':set foldlevel=0<CR>zozz'
 map.n.nore[',ga'] = ':Git commit --amend'
 map.n.nore[',gb'] = ':BlamerToggle<CR>'
 map.n.nore[',gc'] = ':Git commit<CR>'
---          ,gl   = gh-line's gh_line_map (defined in plugins file)
+keymap('n', ',gl', ':Git lg<CR>', {silent = true})
 map.n.nore[',gp'] = ':Git push'
 map.n.nore[',gP'] = ':Git push --force'
 map.n.nore[',gs'] = ':Git<CR>'
@@ -79,8 +79,6 @@ map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 keymap('i', '<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
 map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
 map.i.nore[',;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
-map.i.nore['jk'] = '<Esc>'
-map.i.nore['kj'] = '<Esc>'
 map.i.nore['qq'] = '<Esc>m`gqq``a' -- wrap current line and return to position
 map.i.nore['<C-a>'] = [[<Esc>A]] -- append (e.g. to hop over autocompleted characters)
 vim.api.nvim_set_keymap('i', '<C-d>', '', { callback = function() require'better-digraphs'.digraphs('i') end, desc = 'better-digraphs helper', noremap = true })

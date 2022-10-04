@@ -286,13 +286,12 @@ require('prettier').setup {
 -- pretty-fold config
 require('pretty-fold').setup {
   default_keybindings = false,
-  fill_char = 'ᐧ',
+  fill_char = '․',
   sections = {
     left = { 'content' },
     right = { ' ', 'number_of_folded_lines', ' ' },
   },
 }
-require('pretty-fold.preview').setup {}
 
 
 -- snap config

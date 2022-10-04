@@ -58,16 +58,21 @@ vim.api.nvim_create_autocmd(
 )
 
 -- gitcommit tweaks
-vim.cmd [[
-  autocmd filetype gitcommit setlocal spell
-]]
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'gitcommit',
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.textwidth = 72
+    vim.opt_local.makeprg = 'npx commitlint --edit'
+  end,
+})
 
 -- large file tweaks
--- * syntax highlighting
--- * context scope visualization
+-- * no plugins
+-- * turn off syntax highlighting, expr-folding, undo, etc
 -- h/t `/u/Narizocracia` https://www.reddit.com/r/neovim/comments/pz3wyc/comment/heyy4qf
 vim.cmd [[
-  function DisableSyntaxTreesitter()
+  function! DisableSyntaxTreesitter()
     if exists(':TSBufDisable')
       exec 'TSBufDisable autotag'
       exec 'TSBufDisable highlight'

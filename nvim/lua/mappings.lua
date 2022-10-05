@@ -44,13 +44,13 @@ map.n.nore[',m'] = '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR>:nohl<CR>zz'
 map.n.nore[',n'] = ':nohl<CR>'
 map.n.nore[',r'] = '<CMD>lua vim.diagnostic.goto_next()<CR>'
 map.n.nore[',R'] = '<CMD>lua vim.diagnostic.goto_prev()<CR>'
-keymap('n', ',s', ':Git<CR>', {silent = true})
+keymap('n', ',s', '<CMD>Git<CR>', {silent = true})
 map.n.nore[',t'] = 'za'
 map.n.nore[',vv'] = '<CMD>lua require("package-info").show()<CR>'
 map.n.nore[',vu'] = '<CMD>lua require("package-info").change_version()<CR>'
 map.n.nore[',w'] = '10<C-w>>'
 map.n.nore[',W'] = '5<C-w>+'
-map.n.nore[':']  = ':set cursorline!<CR>:set cursorcolumn!<CR>'
+keymap('n', ':',  '<CMD>set cursorline!<CR>:set cursorcolumn!<CR>', {noremap = true, silent = true})
 map.n.nore['-'] = '<C-x>'
 map.n.nore['+'] = '<C-a>'
 map.n.nore['=('] = '0=a('

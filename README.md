@@ -11,12 +11,14 @@ Install [oh-my-zsh]
       ripgrep \
       fzf \
       entr \
+      difftastic \
       dos2unix
 
 Unison
 [docs](https://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#mountpoints)
 [wiki](https://alliance.seas.upenn.edu/~bcpierce/wiki/index.php)
 [home](https://www.cis.upenn.edu/~bcpierce/unison/)
+
 
 
 ## setting em up
@@ -48,6 +50,8 @@ Need [patched fonts](https://www.nerdfonts.com/font-downloads)...
 * Apps...
   * iTerm2 (of course)
   * Karabiner (to turn Enter into Control when held)
+    * Complex Modifications > "Change return to control if pressed with other keys..."
+    * installing Karabiner seems to moot the built-in CL-to-Ctrl mapping, so have to set it up in Karabiner as well
   * Markdown Editor
 
 

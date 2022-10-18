@@ -32,12 +32,12 @@ keymap('n', ',c', '<CMD>Easypick conflicts<CR>', {silent = true})
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
 map.n.nore[',f'] = 'zcj0/{\\n<CR><CMD>nohl<CR>zz'
 map.n.nore[',F'] = '<CMD>set foldlevel=0<CR>zozz'
-map.n.nore[',ga'] = '<CMD>Git commit --amend'
+map.n.nore[',ga'] = ':Git commit --amend'
 map.n.nore[',gb'] = '<CMD>BlamerToggle<CR>'
 map.n.nore[',gc'] = '<CMD>Git commit<CR>'
 keymap('n', ',gl', '<CMD>Git lg<CR>', {silent = true})
-map.n.nore[',gp'] = '<CMD>Git push'
-map.n.nore[',gP'] = '<CMD>Git push --force'
+map.n.nore[',gp'] = ':Git push'
+map.n.nore[',gP'] = ':Git push --force'
 map.n.nore[',gs'] = '<CMD>Git<CR>'
 keymap('n', ',l', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {silent = true})
 map.n.nore[',m'] = '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR><CMD>nohl<CR>zz'

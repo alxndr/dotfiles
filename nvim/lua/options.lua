@@ -1,3 +1,4 @@
+vim.opt.cmdheight = 0 -- neovim 0.8.x
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
 vim.opt.fillchars = 'fold: '

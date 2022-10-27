@@ -4,17 +4,24 @@ Nothin' to see here but some invisible files.
 
 Install [oh-my-zsh]
 
+### via Homebrew:
+
     brew install \
+      asdf \
       lua \
       neovim \
-      Schniz/fnm \
       ripgrep \
       fzf \
       entr \
       difftastic \
       dos2unix
 
-Unison
+Then set up `asdf`:
+
+    $ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+    $ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+
+**Unison** backup tool...
 [docs](https://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#mountpoints)
 [wiki](https://alliance.seas.upenn.edu/~bcpierce/wiki/index.php)
 [home](https://www.cis.upenn.edu/~bcpierce/unison/)
@@ -128,4 +135,3 @@ Need [patched fonts](https://www.nerdfonts.com/font-downloads)...
 [little-snitch]: https://www.obdev.at/products/littlesnitch/index.html
 [oh-my-zsh]: https://ohmyz.sh
 [sizeup]: http://www.irradiatedsoftware.com/sizeup/
-[Schniz/fnm]: https://github.com/Schniz/fnm

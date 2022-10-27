@@ -10,8 +10,8 @@ map.n.nore['<Leader><Tab>'] = '<CMD>NvimTreeToggle<CR>'
 keymap('n', '<Leader>f', '<CMD>Easypick deprank<CR>', {silent = true})
 snap.register.map({'n'}, {'<Leader>g'}, snapSearchWithGrep) -- TODO why does this pause before launching??
 keymap('n', '<Leader>a', '<CMD>Alpha<CR>', {silent=true})
-map.n.nore['<Leader>j'] = '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'
-map.n.nore['<Leader>k'] = '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'
+keymap('n','<Leader>j', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>", {})
+keymap('n','<Leader>k', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>", {})
 map.n.nore['<Leader>t'] = '<CMD>FloatermToggle<CR>'
 map.n.nore['<Leader>u'] = '<CMD>lua require"gitsigns".reset_hunk()<CR>'
 map.n.nore['<Leader>v'] = '<CMD>edit $MYVIMRC<CR>' -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
@@ -39,6 +39,8 @@ keymap('n', ',gl', '<CMD>Git lg<CR>', {silent = true})
 map.n.nore[',gp'] = ':Git push'
 map.n.nore[',gP'] = ':Git push --force'
 map.n.nore[',gs'] = '<CMD>Git<CR>'
+map.n.nore[',j'] = "<CMD>call search('\\%' . virtcol('.') . 'v\\S', 'W')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
+map.n.nore[',k'] = "<CMD>call search('\\%' . virtcol('.') . 'v\\S', 'bW')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
 keymap('n', ',l', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {silent = true})
 map.n.nore[',m'] = '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR><CMD>nohl<CR>zz'
 map.n.nore[',n'] = '<CMD>nohl<CR>'
@@ -57,8 +59,8 @@ map.n.nore['=('] = '0=a('
 map.n.nore['=)'] = '$=a('
 --          gb   = numToStr/Comment.nvim blockwise comment action/toggle
 --          gc   = numToStr/Comment.nvim linewise comment action/toggle
-map.n.nore['gj'] = "<CMD>call search('\\%' . virtcol('.') . 'v\\S', 'W')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
-map.n.nore['gk'] = "<CMD>call search('\\%' . virtcol('.') . 'v\\S', 'bW')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
+keymap('n', 'j', 'gj', {})
+keymap('n', 'k', 'gk', {})
 map.n.nore['H'] = 'zh'
 map.n.nore['L'] = 'zl'
 map.n.nore['Q'] = '<CMD>Bdelete<CR>'

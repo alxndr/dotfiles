@@ -89,6 +89,7 @@
   stat = true
 
 [push]
+  autoSetupRemote = true
   default = current
 
 [help]

@@ -1,5 +1,10 @@
 vim.g.mapleader = '\\' -- 💪
 
+vim.cmd [[
+  noremap <expr> j v:count ? 'j' : 'gj'
+  noremap <expr> k v:count ? 'k' : 'gk'
+]]
+
 local keymap = vim.api.nvim_set_keymap
 local map = require 'cartographer'
 local snap = require 'snap'

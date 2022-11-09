@@ -29,7 +29,6 @@ require 'paq' {
   'gaborvecsei/memento.nvim'; -- recent file navigator
   'airblade/vim-rooter';      -- keep vim working directory set to project root
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
-  'camspiers/snap';           -- file / buffer finder
   'kyazdani42/nvim-tree.lua'; -- file browser
 
   -- git stuff
@@ -292,52 +291,6 @@ require('pretty-fold').setup {
     right = { ' ', 'number_of_folded_lines', ' ' },
   },
 }
-
-
--- snap config
--- mappings are in `mappings.lua`
-local snap = require('snap')
-snapFindFile = function ()
-  snap.run {
-    producer = snap.get'consumer.fzf'(
-      snap.get'consumer.try'(
-        snap.get'producer.git.file',
-        snap.get'producer.ripgrep.file'
-      )
-    ),
-    select = snap.get'select.file'.select,
-    multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'},
-    hidden = true,
-  }
-end
-snapFindBuffer = function ()
-  snap.run {
-    producer = snap.get'consumer.fzf'(snap.get'producer.vim.buffer'),
-    select = snap.get'select.file'.select,
-    multiselect = snap.get'select.file'.multiselect,
-    views = {snap.get'preview.file'},
-    hidden = true,
-  }
-end
-snapSearchWithGrep = function ()
-  snap.run {
-    producer = snap.get'consumer.limit'(999, snap.get'producer.ripgrep.vimgrep'),
-    select = snap.get'select.vimgrep'.select,
-    multiselect = snap.get'select.vimgrep'.multiselect,
-    views = {snap.get'preview.vimgrep'},
-    hidden = true,
-  }
-end
-vim.cmd [[
-  highlight! link SnapSelect Search
-  highlight! link SnapMultiSelect Search
-  highlight! link SnapNormal Fg1
-  highlight! link SnapBorder SnapNormal
-  highlight! link SnapPrompt MoreMsg
-  highlight! link SnapPosition Yellow
-  highlight! link WildMenu Yellow
-]]
 
 
 -- template-string config

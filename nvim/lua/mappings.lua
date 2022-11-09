@@ -6,14 +6,14 @@ vim.cmd [[
 ]]
 
 local keymap = vim.api.nvim_set_keymap
+
 local map = require 'cartographer'
-local snap = require 'snap'
 
 -- normal mode
-snap.register.map({'n'}, {'<Leader><Leader>'}, snapFindBuffer)
+keymap('n', '<Leader><Leader>', '<CMD>Buffers<CR>', {})
 map.n.nore['<Leader><Tab>'] = '<CMD>NvimTreeToggle<CR>'
 keymap('n', '<Leader>f', '<CMD>Easypick deprank<CR>', {silent = true})
-snap.register.map({'n'}, {'<Leader>g'}, snapSearchWithGrep) -- TODO why does this pause before launching??
+keymap('n', '<Leader>g', '<CMD>Rg<CR>', {noremap=true})
 keymap('n', '<Leader>a', '<CMD>Alpha<CR>', {silent=true})
 map.n.nore['<Leader>j'] = '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'
 map.n.nore['<Leader>k'] = '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'
@@ -76,8 +76,8 @@ map.n.nore['<C-k>'] = '<C-w>k'
 map.n.nore['<C-l>'] = '<C-w>l'
 map.n.nore['<C-n>'] = '<CMD>cn<CR>' -- next quickfix entry
 map.n.nore['<C-w>/'] = '<C-w>|<C-w>_'
-snap.register.map({'n'}, {'<C-p>'}, snapFindFile)
-map.n['<C-s>'] = 'viw<C-s>' -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+keymap('n', '<C-p>', '<CMD>Files<CR>', {})
+keymap('n', '<C-s>', '<CMD>Rg<CR>', {}) -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 
 -- insert mode
@@ -112,6 +112,6 @@ keymap('v', ',s', '<CMD>Ray<CR>', {}) -- Share code via ray.so
 map.v.nore['L'] = '<cmd>lua require("syntax-tree-surfer").surf("next", "visual", true)<cr>'
 map.v.nore['H'] = '<cmd>lua require("syntax-tree-surfer").surf("prev", "visual", true)<cr>'
 map.v.nore['Y'] = '"+y' -- copy selection to system clipboard
-map.v['<C-s>'] = 'y\\g<C-r>"' -- grep for selection using Snap; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+keymap('v', '<C-s>', 'y<CMD>Rg "<CR>', {}) -- grep for selection; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.v.nore['<S-Up>']   = "<CMD>move '<-2<CR>" -- shift current line up
 map.v.nore['<S-Down>'] = "<CMD>move '>+1<CR>" -- shift current line down

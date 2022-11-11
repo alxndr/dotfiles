@@ -78,8 +78,8 @@ map.n.nore['<C-k>'] = '<C-w>k'
 map.n.nore['<C-l>'] = '<C-w>l'
 map.n.nore['<C-n>'] = '<CMD>cn<CR>' -- next quickfix entry
 map.n.nore['<C-w>/'] = '<C-w>|<C-w>_'
-keymap('n', '<C-p>', '<CMD>Files<CR>', {})
-keymap('n', '<C-s>', '<CMD>Rg<CR>', {}) -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+keymap('n', '<C-p>', '<CMD>lua require("fzf-lua").files()<CR>', {silent=true})
+keymap('n', '<C-s>', 'viwy<CMD>Rg "<CR>', {}) -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 
 -- insert mode

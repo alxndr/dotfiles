@@ -23,8 +23,8 @@ require 'paq' {
   'famiu/bufdelete.nvim';     -- delete buffer but don't modify window splits
   'ghillb/cybu.nvim';         -- buffers navigation
   'axkirillov/easypick.nvim'; -- helper for creating custom Telescope pickers
-  'junegunn/fzf';             -- fuzzy file finder core?
-  'junegunn/fzf.vim';         -- fuzzy file finder functions?
+  -- 'junegunn/fzf.vim';         -- fuzzy file finder functions
+  'ibhagwan/fzf-lua';         -- fuzzy file finder functions
   'ggandor/leap.nvim';        -- fancy cursor navigation
   'gaborvecsei/memento.nvim'; -- recent file navigator
   'airblade/vim-rooter';      -- keep vim working directory set to project root
@@ -78,6 +78,7 @@ require 'paq' {
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
   'ryanoasis/vim-devicons';          -- icon characters; optionally (?) used by diffview & lualine
+  'junegunn/fzf';                    -- fuzzy file finder core
   'neovim/nvim-lspconfig';           -- LSP config
   'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'MunifTanjim/nui.nvim';            -- UI toolkit used by `package-info.nvim`

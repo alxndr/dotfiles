@@ -69,11 +69,6 @@ if [[ -x $(which fzf) ]]; then
 fi
 
 
-test -x "$(which fnm)" && \
-  echo -n …fnm '' && \
-  eval "$(fnm env)"
-
-
 test -x "$(which deno)" && \
   echo -n …deno '' && \
   export PATH="$PATH:/Users/xander/.deno/bin"

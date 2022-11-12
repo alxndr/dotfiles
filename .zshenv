@@ -211,6 +211,7 @@ alias webfiles="rg --type web --files"
         ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
       }
 alias y="yarn"
+alias z="zola"
 
 back_up_media_unison() {
   START=$(date)

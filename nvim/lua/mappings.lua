@@ -9,11 +9,22 @@ local keymap = vim.api.nvim_set_keymap
 
 local map = require 'cartographer'
 
+vim.cmd [[
+  function! RipgrepFzf(query, fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+  endfunction
+  command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+]]
+
 -- normal mode
-keymap('n', '<Leader><Leader>', '<CMD>Buffers<CR>', {})
+keymap('n', '<Leader><Leader>', '<CMD>lua require("fzf-lua").buffers()<CR>', {})
 map.n.nore['<Leader><Tab>'] = '<CMD>NvimTreeToggle<CR>'
 keymap('n', '<Leader>f', '<CMD>Easypick deprank<CR>', {silent = true})
-keymap('n', '<Leader>g', '<CMD>Rg<CR>', {noremap=true})
+keymap('n', '<Leader>g', '<CMD>RG<CR>', {noremap=true})
 keymap('n', '<Leader>a', '<CMD>Alpha<CR>', {silent=true})
 keymap('n','<Leader>j', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>", {})
 keymap('n','<Leader>k', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>", {})
@@ -78,8 +89,8 @@ map.n.nore['<C-k>'] = '<C-w>k'
 map.n.nore['<C-l>'] = '<C-w>l'
 map.n.nore['<C-n>'] = '<CMD>cn<CR>' -- next quickfix entry
 map.n.nore['<C-w>/'] = '<C-w>|<C-w>_'
-keymap('n', '<C-p>', '<CMD>lua require("fzf-lua").files()<CR>', {silent=true})
-keymap('n', '<C-s>', 'viwy<CMD>Rg "<CR>', {}) -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+keymap('n', '<C-p>', '<CMD>lua require("fzf-lua").files()<CR>', {})
+keymap('n', '<C-s>', '<CMD>lua require("fzf-lua").grep_cword()<CR>', {}) -- grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 
 -- insert mode

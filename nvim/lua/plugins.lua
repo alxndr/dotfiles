@@ -14,6 +14,7 @@ require 'paq' {
   'gpanders/editorconfig.nvim';    -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';              -- completion
   's-u-d-o-e-r/vim-ray-so-beautiful';  -- shortcut for sharing code via https://ray.so
+  'godlygeek/tabular';                -- align columns of text
   'folke/trouble.nvim';            -- lists of stuff...
 
   -- behavior tweaks

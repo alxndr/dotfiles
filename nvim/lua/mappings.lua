@@ -128,3 +128,4 @@ map.v.nore['Y'] = '"+y' -- copy selection to system clipboard
 keymap('v', '<C-s>', '<CMD>lua require"fzf-lua".grep_visual()<CR>', {}) -- grep for selection; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.v.nore['<S-Up>']   = "<CMD>move '<-2<CR>" -- shift current line up
 map.v.nore['<S-Down>'] = "<CMD>move '>+1<CR>" -- shift current line down
+keymap('v', '<Leader>a', ':Tab /', {noremap=true}) -- for *a*lign

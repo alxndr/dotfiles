@@ -21,7 +21,7 @@ vim.cmd [[
 ]]
 
 -- normal mode
-keymap('n', '<Leader><Leader>', '<CMD>lua require("fzf-lua").buffers()<CR>', {})
+keymap('n', '<Leader><Leader>', '<CMD>lua require"fzf-lua".buffers()<CR>', {})
 map.n.nore['<Leader><Tab>'] = '<CMD>NvimTreeToggle<CR>'
 keymap('n', '<Leader>f', '<CMD>Easypick deprank<CR>', {silent = true})
 keymap('n', '<Leader>g', '<CMD>RG<CR>', {noremap=true})
@@ -125,6 +125,6 @@ keymap('v', ',s', '<CMD>Ray<CR>', {}) -- Share code via ray.so
 map.v.nore['L'] = '<cmd>lua require("syntax-tree-surfer").surf("next", "visual", true)<cr>'
 map.v.nore['H'] = '<cmd>lua require("syntax-tree-surfer").surf("prev", "visual", true)<cr>'
 map.v.nore['Y'] = '"+y' -- copy selection to system clipboard
-keymap('v', '<C-s>', 'y<CMD>Rg "<CR>', {}) -- grep for selection; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+keymap('v', '<C-s>', '<CMD>lua require"fzf-lua".grep_visual()<CR>', {}) -- grep for selection; h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 map.v.nore['<S-Up>']   = "<CMD>move '<-2<CR>" -- shift current line up
 map.v.nore['<S-Down>'] = "<CMD>move '>+1<CR>" -- shift current line down

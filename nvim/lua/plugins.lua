@@ -8,13 +8,14 @@ require 'paq' {
   'savq/paq-nvim'; -- paq-nvim manages itself
 
   -- features
-  'goolord/alpha-nvim';            -- startup screen
-  'protex/better-digraphs.nvim';   -- character picker
-  'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
-  'gpanders/editorconfig.nvim';    -- integrate with `.editorconfig` files
-  'hrsh7th/nvim-cmp';              -- completion
-  's-u-d-o-e-r/vim-ray-so-beautiful';  -- shortcut for sharing code via https://ray.so
-  'folke/trouble.nvim';            -- lists of stuff...
+  'goolord/alpha-nvim';               -- startup screen
+  'protex/better-digraphs.nvim';      -- character picker
+  'jdhao/better-escape.vim';          -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
+  'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
+  'hrsh7th/nvim-cmp';                 -- completion
+  's-u-d-o-e-r/vim-ray-so-beautiful'; -- shortcut for sharing code via https://ray.so
+  'godlygeek/tabular';                -- align columns of text
+  'folke/trouble.nvim';               -- lists of stuff...
 
   -- behavior tweaks
   'svban/YankAssassin.vim'; -- control cursor behavior while yanking
@@ -23,7 +24,6 @@ require 'paq' {
   'famiu/bufdelete.nvim';     -- delete buffer but don't modify window splits
   'ghillb/cybu.nvim';         -- buffers navigation
   'axkirillov/easypick.nvim'; -- helper for creating custom Telescope pickers
-  -- 'junegunn/fzf.vim';         -- fuzzy file finder functions
   'ibhagwan/fzf-lua';         -- fuzzy file finder functions
   'ggandor/leap.nvim';        -- fancy cursor navigation
   'gaborvecsei/memento.nvim'; -- recent file navigator
@@ -47,8 +47,8 @@ require 'paq' {
   'tpope/vim-surround';                           -- matched-pair character conversion shortcuts
 
   -- javascript / nodejs
-  'vuki656/package-info.nvim'; -- version info for contents of `package.json` files
-  'MunifTanjim/prettier.nvim'; -- integration with Prettier (code formatter)
+  'vuki656/package-info.nvim';   -- version info for contents of `package.json` files
+  'MunifTanjim/prettier.nvim';   -- integration with Prettier (code formatter)
   'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string
 
   -- elixir

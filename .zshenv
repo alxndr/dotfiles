@@ -138,6 +138,7 @@ alias dmenv="eval \"\$(docker-machine env default)\""
 # general #
 ###########
 
+alias a="asdf"
 alias b="brew"
 alias bl="bundle"
       decode_jwt() {
@@ -173,19 +174,7 @@ alias bl="bundle"
           $1 \
         | awk '/^ *[0-9]/ {print $2}'
       }
-      f() {
-        if [[ -f .node-version ]]; then
-          fnm use $(cat .node-version)
-        elif [[ -f .nvmrc ]]; then
-          fnm use $(cat .nvmrc)
-        elif [[ -f package.json ]]; then
-          VERSION=$(jq --raw-output '.engines.node' package.json)
-          echo $VERSION
-          if [[ "$VERSION" != "null" ]]; then
-            fnm use $(npx semver --coerce $VERSION)
-          fi
-        fi
-      }
+      f="echo Start getting used to asdf... aliased to 'a' at least"
 alias n="npm"
 alias nd="node"
 alias ndd="nodemon"
@@ -201,7 +190,7 @@ alias niS="npm install --loglevel warn --save"
       }
 alias nr="npm run --silent"
 alias nt="npm test"
-alias nvm="echo \"You probably want fnm, not nvm...\""
+alias nvm="echo \"You probably want asdf, not nvm...\""
 alias nx="npx"
       report() { $@ && say "done" || say "error" }
 alias sactl="sudo apachectl"
@@ -222,6 +211,7 @@ alias webfiles="rg --type web --files"
         ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
       }
 alias y="yarn"
+alias z="zola"
 
 back_up_media_unison() {
   START=$(date)

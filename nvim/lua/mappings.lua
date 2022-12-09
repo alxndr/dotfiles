@@ -9,22 +9,11 @@ local keymap = vim.api.nvim_set_keymap
 
 local map = require 'cartographer'
 
-vim.cmd [[
-  function! RipgrepFzf(query, fullscreen)
-    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-    let initial_command = printf(command_fmt, shellescape(a:query))
-    let reload_command = printf(command_fmt, '{q}')
-    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-  endfunction
-  command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-]]
-
 -- normal mode
 keymap('n', '<Leader><Leader>', '<CMD>lua require("fzf-lua").buffers()<CR>', {})
 map.n.nore['<Leader><Tab>'] = '<CMD>NvimTreeToggle<CR>'
 keymap('n', '<Leader>f', '<CMD>Easypick deprank<CR>', {silent = true})
-keymap('n', '<Leader>g', '<CMD>RG<CR>', {noremap=true})
+keymap('n', '<Leader>g', '<CMD>lua require "fzf-lua".live_grep_native()<CR>', {noremap=true})
 keymap('n', '<Leader>a', '<CMD>Alpha<CR>', {silent=true})
 keymap('n','<Leader>j', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>", {})
 keymap('n','<Leader>k', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>", {})
@@ -38,7 +27,7 @@ map.n.nore['<Leader>vp'] = '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<
 map.n.nore['<Leader>w'] = '<CMD>set list!<CR>'
 map.n.nore['<Leader>y'] = '<CMD>only<CR>'
 map.n.nore['<Leader>2'] = '/TODO<CR><CMD>nohl<CR>'
-map.n.nore['<Space>'] = ':' -- 🙌
+map.n.nore['<Space>'] = ':' -- note that this means using <CMD> over : in other mappings, or using noremap
 map.n.nore['<CR>'] = 'm`o<Esc>``'
 map.n.nore['<Tab>'] = '<C-w><C-w>'
 map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down

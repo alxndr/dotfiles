@@ -227,6 +227,8 @@ cmd([[
   call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
   call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
   call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '%', 'at': '{\%#}', 'input': '%',    'input_after': '%', 'filetype': 'html' })
+  call lexima#add_rule({ 'char': '-', 'at': '{%\%#%}', 'input': '-',    'input_after': ' -', 'filetype': 'html' })
 ]])
 
 

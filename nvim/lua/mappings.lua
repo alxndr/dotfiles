@@ -1,8 +1,10 @@
 vim.g.mapleader = '\\' -- 💪
 
+-- use j/k to move down/up in a wrap-aware way if appropriate
+-- ...using `g<Down|Up>` so as to not conflict with my remapping of `gj`/`gk`...
 vim.cmd [[
-  noremap <expr> j v:count ? 'j' : 'gj'
-  noremap <expr> k v:count ? 'k' : 'gk'
+  noremap <expr> j v:count ? 'j' : 'g<Down>'
+  noremap <expr> k v:count ? 'k' : 'g<Up>'
 ]]
 
 local keymap = vim.api.nvim_set_keymap
@@ -12,9 +14,10 @@ local map = require 'cartographer'
 -- normal mode
 keymap('n', '<Leader><Leader>', '<CMD>lua require"fzf-lua".buffers()<CR>', {})
 map.n.nore['<Leader><Tab>'] = '<CMD>NvimTreeToggle<CR>'
-keymap('n', '<Leader>f', '<CMD>Easypick deprank<CR>', {silent = true})
+map.n.nore['<Leader>;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
+keymap('n','<Leader>a', '<CMD>Alpha<CR>', {})
+keymap('n','<Leader>f', '<CMD>Easypick deprank<CR>', {})
 keymap('n', '<Leader>g', '<CMD>lua require "fzf-lua".live_grep_native()<CR>', {noremap=true})
-keymap('n', '<Leader>a', '<CMD>Alpha<CR>', {silent=true})
 keymap('n','<Leader>j', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>", {})
 keymap('n','<Leader>k', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>", {})
 map.n.nore['<Leader>t'] = '<CMD>FloatermToggle<CR>'
@@ -31,7 +34,6 @@ map.n.nore['<Space>'] = ':' -- note that this means using <CMD> over : in other 
 map.n.nore['<CR>'] = 'm`o<Esc>``'
 map.n.nore['<Tab>'] = '<C-w><C-w>'
 map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
-map.n.nore[',;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
 map.n.nore[',b'] = '<CMD>lua require("memento").toggle()<CR>'
 keymap('n', ',c', '<CMD>Easypick conflicts<CR>', {silent = true})
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
@@ -44,8 +46,6 @@ keymap('n', ',gl', '<CMD>Git lg<CR>', {silent = true})
 map.n.nore[',gp'] = ':Git push'
 map.n.nore[',gP'] = ':Git push --force'
 map.n.nore[',gs'] = '<CMD>Git<CR>'
-map.n.nore[',j'] = "<CMD>call search('\\%' . virtcol('.') . 'v\\S', 'W')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
-map.n.nore[',k'] = "<CMD>call search('\\%' . virtcol('.') . 'v\\S', 'bW')<CR>" -- h/t kenorb https://vi.stackexchange.com/a/693/67
 keymap('n', ',l', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {silent = true})
 map.n.nore[',m'] = '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR><CMD>nohl<CR>zz'
 map.n.nore[',n'] = '<CMD>nohl<CR>'
@@ -64,8 +64,8 @@ map.n.nore['=('] = '0=a('
 map.n.nore['=)'] = '$=a('
 --          gb   = numToStr/Comment.nvim blockwise comment action/toggle
 --          gc   = numToStr/Comment.nvim linewise comment action/toggle
-keymap('n', 'j', 'gj', {})
-keymap('n', 'k', 'gk', {})
+keymap('n', 'gj', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>", {noremap=true})
+keymap('n', 'gk', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>", {noremap=true})
 map.n.nore['H'] = 'zh'
 map.n.nore['L'] = 'zl'
 map.n.nore['Q'] = '<CMD>Bdelete<CR>'

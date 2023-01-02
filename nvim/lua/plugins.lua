@@ -11,6 +11,7 @@ require 'paq' {
   'goolord/alpha-nvim';               -- startup screen
   'protex/better-digraphs.nvim';      -- character picker
   'jdhao/better-escape.vim';          -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
+  'princejoogie/chafa.nvim';          -- functions for viewing images within neovim
   'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';                 -- completion
   's-u-d-o-e-r/vim-ray-so-beautiful'; -- shortcut for sharing code via https://ray.so
@@ -74,6 +75,7 @@ require 'paq' {
   'nvim-treesitter/nvim-treesitter-refactor';               -- refactor modules
 
   -- meta / dependencies
+  'm00qek/baleia.nvim';              -- dependency for chafa
   'Iron-E/nvim-cartographer';        -- simpler API for mappings
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
@@ -82,7 +84,7 @@ require 'paq' {
   'neovim/nvim-lspconfig';           -- LSP config
   'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
   'MunifTanjim/nui.nvim';            -- UI toolkit used by `package-info.nvim`
-  'nvim-lua/plenary.nvim';           -- prereq for diffview & gitsigns & memento
+  'nvim-lua/plenary.nvim';           -- prereq for diffview & gitsigns & memento & chafa
   'tpope/vim-repeat';                -- dependency of tpope's vim-sexp-mappings-for-regular-people
   'tpope/vim-surround';              -- dependency of tpope's vim-sexp-mappings-for-regular-people
   'nvim-telescope/telescope.nvim';
@@ -117,6 +119,18 @@ cmd [[
   let g:blamer_prefix = '    '
   let g:blamer_show_in_insert_modes = 0
 ]]
+
+
+-- chafa
+require('chafa').setup({
+  render = {
+    min_padding = 5,
+    show_label = true,
+  },
+  events = {
+    update_on_nvim_resize = true,
+  },
+})
 
 
 -- colorizer config

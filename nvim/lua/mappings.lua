@@ -84,8 +84,8 @@ map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 
 -- insert mode
 keymap('i', '<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
+map.i.nore['<Leader>;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
 map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
-map.i.nore[',;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
 map.i.nore['qq'] = '<Esc>m`gqq``a' -- wrap current line and return to position
 map.i.nore['<C-a>'] = [[<Esc>A]] -- append (e.g. to hop over autocompleted characters)
 vim.api.nvim_set_keymap('i', '<C-d>', '', { callback = function() require'better-digraphs'.digraphs('i') end, desc = 'better-digraphs helper', noremap = true })

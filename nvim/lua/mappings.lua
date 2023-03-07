@@ -18,8 +18,8 @@ map.n.nore['<Leader>;'] = 'm`A;<Esc>``j' -- append semicolon to line and move do
 keymap('n','<Leader>a', '<CMD>Alpha<CR>', {})
 keymap('n','<Leader>f', '<CMD>Easypick deprank<CR>', {})
 keymap('n', '<Leader>g', '<CMD>lua require "fzf-lua".live_grep_native()<CR>', {noremap=true})
-keymap('n','<Leader>j', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>", {})
-keymap('n','<Leader>k', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>", {})
+keymap('n','<Leader>j', "<CMD>call VerticalSpaceJumpDown()<CR>", {})
+keymap('n','<Leader>k', "<CMD>call VerticalSpaceJumpUp()<CR>", {})
 map.n.nore['<Leader>t'] = '<CMD>FloatermToggle<CR>'
 map.n.nore['<Leader>u'] = '<CMD>lua require"gitsigns".reset_hunk()<CR>'
 map.n.nore['<Leader>v'] = '<CMD>edit $MYVIMRC<CR>' -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh

@@ -37,9 +37,9 @@ Then set up `asdf`:
 
 
 
-## setting em up
+## setup
 
-Check out the repo, then:
+Once the repo is checked out:
 
     mkdir ~/.config
     cd ~/.config
@@ -52,6 +52,7 @@ Check out the repo, then:
 
 ## other things
 
+* [Inconsolata for Powerline][inconsolata] or other [patched fonts](https://www.nerdfonts.com/font-downloads)
 * [iTerm 2][iterm2]
   * Settings > General
     * in Window tab, uncheck "Native full screen windows"
@@ -61,7 +62,6 @@ Check out the repo, then:
     * `/bin/zsh` as the login shell
     * blinking cursor
     * unlimited scrollback
-* [Inconsolata for Powerline][inconsolata] or other [patched fonts](https://www.nerdfonts.com/font-downloads)
 * [LittleSnitch][little-snitch]
 * [SizeUp][sizeup]
 

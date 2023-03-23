@@ -2,9 +2,18 @@ Nothin' to see here but some invisible files.
 
 ## prereqs
 
-Install [oh-my-zsh]
+[iTerm][iterm2], `git clone` this repo...
 
-### via Homebrew:
+Set up SSH...  
+[generate new keypair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)  
+add GitHub stuff to `~/.ssh/config` if it's not there already  
+`ssh-add` the privkey...  
+finally [let GitHub know about the pubkey](https://github.com/settings/keys)
+
+
+Install [oh-my-zsh] and [Homebrew]
+
+### via [Homebrew]:
 
     brew install \
       asdf \
@@ -41,9 +50,45 @@ Check out the repo, then:
     ln -s ~/workspace/dotfiles/.gitconfig
 
 
-## os x settings
+## other things
 
-Need [patched fonts](https://www.nerdfonts.com/font-downloads)...
+* [iTerm 2][iterm2]
+  * Settings > General
+    * in Window tab, uncheck "Native full screen windows"
+      * in earlier versions, this was labeled "Use Lion-style fullscreen windows"
+  * Settings > Profile
+    * use [Inconsolata for Powerline][inconsolata] as the font
+    * `/bin/zsh` as the login shell
+    * blinking cursor
+    * unlimited scrollback
+* [Inconsolata for Powerline][inconsolata] or other [patched fonts](https://www.nerdfonts.com/font-downloads)
+* [LittleSnitch][little-snitch]
+* [SizeUp][sizeup]
+
+
+## OS/version-specific notes
+
+
+### macOS 13 (Ventura)
+
+2021 MBP
+
+* Prefs...
+  * Keyboard
+    * Dvorak layout inder Input Sources
+    * "Press 🌐 key to": "Show Emoji & Symbols" 🎉
+    * turn on "Keyboard navigation" (tab / shift-tab)
+  * Mouse / Trackpad
+    * tap-to-click
+    * double-tap-to-right-click
+  * Accessibility
+    * "three-finger drag" is in Accessibility > Pointer Control > Trackpad Options button, "Enable dragging": "with three finger drag" (make sure there's no 'normal' 3-finger gesture which conflicts)
+    * "Reduce motion" option in Display
+* Auto-Hide Dock (right-click the dock, "Turn Hiding On")
+* [iTerm 2][iterm2]
+* [Karabiner]
+* [Bartender][bartender]
+
 
 ### macOS 12 (Monterey)
 
@@ -62,21 +107,21 @@ Need [patched fonts](https://www.nerdfonts.com/font-downloads)...
   * Markdown Editor
 
 
-### high sierra
+### OS X 10.13 (High Sierra)
 
 * dvorak keyboard
 * karabiner needs permissions
 * restore from Time Machine works pretty pretty pretty well
 
 
-### for OS X 10.12
+### OS X 10.12
 
 * Dvorak keyboard
 * Karabiner
 * Chrome: Warn Before Quitting
 
 
-### for OS X 10.10.5
+### OS X 10.10.5
 
 * Dvorak keyboard:
   * System Preferences > Keyboard > Input Sources, `+` button, English > Dvorak
@@ -100,32 +145,6 @@ Need [patched fonts](https://www.nerdfonts.com/font-downloads)...
   * System Preferences > Mission Control > uncheck "Displays have separate Spaces", then re-login
 
 
-## other things
-
-### fonts
-
-* [Inconsolata for Powerline][inconsolata]
-
-
-### gui tools
-
-* [iTerm 2][iterm2]
-  * Settings > General
-    * in Window tab, uncheck "Native full screen windows"
-      * in earlier versions, this was labeled "Use Lion-style fullscreen windows"
-  * Settings > Profile
-    * use [Inconsolata for Powerline][inconsolata] as the font
-    * `/bin/zsh` as the login shell
-    * blinking cursor
-    * unlimited scrollback
-* [LittleSnitch][little-snitch]
-* [SizeUp][sizeup]
-
-
-### quality of life
-
-* [Bartender][bartender]
-* [f.lux][flux] ... now built-in to newer versions of Mac OS X
 
 
 [bartender]: http://www.macbartender.com/
@@ -135,3 +154,5 @@ Need [patched fonts](https://www.nerdfonts.com/font-downloads)...
 [little-snitch]: https://www.obdev.at/products/littlesnitch/index.html
 [oh-my-zsh]: https://ohmyz.sh
 [sizeup]: http://www.irradiatedsoftware.com/sizeup/
+[Homebrew]: https://brew.sh/
+[Karabiner]: https://karabiner-elements.pqrs.org/

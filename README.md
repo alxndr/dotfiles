@@ -4,10 +4,10 @@ Nothin' to see here but some invisible files.
 
 [iTerm][iterm2]
 
-Set up SSH...  
-[generate new keypair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)  
-add GitHub stuff to `~/.ssh/config` if it's not there already  
-`ssh-add` the privkey...  
+Set up SSH...
+[generate new keypair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
+add GitHub stuff to `~/.ssh/config` if it's not there already
+`ssh-add` the privkey...
 finally [let GitHub know about the pubkey](https://github.com/settings/keys)
 
 Clone the repo
@@ -15,7 +15,11 @@ Clone the repo
 
 ## setup
 
+### zsh
+
 Install [oh-my-zsh] to configure zsh.
+
+### [Homebrew]
 
 Install [Homebrew] and then:
 
@@ -31,33 +35,51 @@ brew install \
   dos2unix
 ```
 
-Install dotfiles...
+### install these dotfiles
 
 ```shell
-ln -s ~/workspace/dotfiles/.zshrc   ~
-ln -s ~/workspace/dotfiles/.zshenv  ~
-ln -s ~/workspace/dotfiles/alxndr.zsh-theme  ~/.oh-my-zsh/themes
-mkdir .config
-ln -s ~/workspace/dotfiles/nvim        ~/.config/
-ln -s ~/workspace/dotfiles/.gitconfig  ~/.config/
+ln -s .zshrc   ~
+ln -s .zshenv  ~
+ln -s alxndr.zsh-theme  ~/.oh-my-zsh/themes
+mkdir -p ~/.config
+ln -s nvim        ~/.config/
+ln -s .gitconfig  ~/.config/
 ```
 
 
-Set up `neovim`...
-
-
-
-Set up `asdf`:
+### asdf setup
 
 ```shell
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git \
+  && asdf install nodejs latest
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git \
+  && asdf install ruby latest
 ```
 
-**Unison** backup tool...
-[docs](https://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#mountpoints)
-[wiki](https://alliance.seas.upenn.edu/~bcpierce/wiki/index.php)
-[home](https://www.cis.upenn.edu/~bcpierce/unison/)
+### neovim setup
+
+It'll start off saying "module 'paq' not found" because you gotta [install it separately](https://github.com/savq/paq-nvim/blob/295fbf1/README.md#installation) first...
+
+```shell
+git clone --depth=1 https://github.com/savq/paq-nvim.git \
+    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+```
+
+Then install the other modules...
+
+```shell
+nvim -c 'PaqInstall|TSUpdate'
+```
+
+Might then complain about "Node JS not found: `node` is not executable!" if you haven't done something like `asdf install nodejs latest`...
+
+...or `Vim(lua):E5108: Error executing lua .../start/nvim-treesitter/lua/nvim-treesitter/highlight.lua:14: attempt to index local 'hlmap' (a nil value)`
+
+### [Unison] backup tool
+
+* [docs](https://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#mountpoints)
+* [wiki](https://alliance.seas.upenn.edu/~bcpierce/wiki/index.php)
+* [home](https://www.cis.upenn.edu/~bcpierce/unison/)
 
 
 ## other things

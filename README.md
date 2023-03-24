@@ -2,7 +2,7 @@ Nothin' to see here but some invisible files.
 
 ## prereqs
 
-[iTerm][iterm2], `git clone` this repo...
+[iTerm][iterm2]
 
 Set up SSH...  
 [generate new keypair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)  
@@ -10,44 +10,54 @@ add GitHub stuff to `~/.ssh/config` if it's not there already
 `ssh-add` the privkey...  
 finally [let GitHub know about the pubkey](https://github.com/settings/keys)
 
+Clone the repo
 
-Install [oh-my-zsh] and [Homebrew]
 
-### via [Homebrew]:
+## setup
 
-    brew install \
-      asdf \
-      lua \
-      neovim \
-      ripgrep \
-      fzf \
-      entr \
-      difftastic \
-      dos2unix
+Install [oh-my-zsh] to configure zsh.
 
-Then set up `asdf`:
+Install [Homebrew] and then:
 
-    $ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-    $ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+```shell
+brew install \
+  asdf \
+  lua luarocks \
+  neovim \
+  ripgrep \
+  fzf \
+  entr \
+  difftastic \
+  dos2unix
+```
+
+Install dotfiles...
+
+```shell
+ln -s ~/workspace/dotfiles/.zshrc   ~
+ln -s ~/workspace/dotfiles/.zshenv  ~
+ln -s ~/workspace/dotfiles/alxndr.zsh-theme  ~/.oh-my-zsh/themes
+mkdir .config
+ln -s ~/workspace/dotfiles/nvim        ~/.config/
+ln -s ~/workspace/dotfiles/.gitconfig  ~/.config/
+```
+
+
+Set up `neovim`...
+
+
+
+Set up `asdf`:
+
+```shell
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+```
 
 **Unison** backup tool...
 [docs](https://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#mountpoints)
 [wiki](https://alliance.seas.upenn.edu/~bcpierce/wiki/index.php)
 [home](https://www.cis.upenn.edu/~bcpierce/unison/)
-
-
-
-## setup
-
-Once the repo is checked out:
-
-    mkdir ~/.config
-    cd ~/.config
-    ln -s ~/workspace/dotfiles/nvim
-    ln -s ~/workspace/dotfiles/alxndr.zsh-theme
-    ln -s ~/workspace/dotfiles/.zshrc
-    ln -s ~/workspace/dotfiles/.zshenv
-    ln -s ~/workspace/dotfiles/.gitconfig
 
 
 ## other things
@@ -58,7 +68,8 @@ Once the repo is checked out:
     * in Window tab, uncheck "Native full screen windows"
       * in earlier versions, this was labeled "Use Lion-style fullscreen windows"
   * Settings > Profile
-    * use [Inconsolata for Powerline][inconsolata] as the font
+    * newer versions have "Use built-in Powerline glyphs": Prefs > Profiles > Text > Text Rendering
+      * older: use [Inconsolata for Powerline][inconsolata] as the font
     * `/bin/zsh` as the login shell
     * blinking cursor
     * unlimited scrollback
@@ -76,8 +87,9 @@ Once the repo is checked out:
 * Prefs...
   * Keyboard
     * Dvorak layout inder Input Sources
-    * "Press 🌐 key to": "Show Emoji & Symbols" 🎉
     * turn on "Keyboard navigation" (tab / shift-tab)
+    * "Press 🌐 key to": "Show Emoji & Symbols" 🎉
+    * "Keyboard Shortcuts…" button opens a panel, "Modifier Keys" tab lets you map Caps Lock to Control
   * Mouse / Trackpad
     * tap-to-click
     * double-tap-to-right-click

@@ -1,0 +1,9 @@
+# this is for the `asdf` utility: asdf-vm.com
+
+# nodejs <15 doesn't work on M1 chips
+nodejs 19.8.1
+
+# nodejs uses Python's configure utility, but can't use >3.9 yet (2023-03-27)
+python 3.9.16
+
+ruby 3.2.1

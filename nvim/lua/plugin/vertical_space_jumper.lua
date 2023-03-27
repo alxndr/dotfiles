@@ -1,15 +1,11 @@
--- vertical movement through whitespace
--- ...h/t WChargin http://vi.stackexchange.com/a/156/67
+-- move cursor vertically, to next printable character
+-- ...h/t kenorb https://vi.stackexchange.com/a/693/67
 
 vim.cmd [[
   function! VerticalSpaceJumpUp()
-    while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
-      norm k
-    endwhile
+    call search('\%' . virtcol('.') . 'v\S', 'bW')
   endfunction
   function! VerticalSpaceJumpDown()
-    while line(".") > 1 && (strlen(getline(".")) < col(".") || getline(".")[col(".") - 1] =~ '\s')
-      norm j
-    endwhile
+    call search('\%' . virtcol('.') . 'v\S', 'W')
   endfunction
 ]]

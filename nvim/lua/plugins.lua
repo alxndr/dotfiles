@@ -8,13 +8,13 @@ require 'paq' {
   'savq/paq-nvim'; -- paq-nvim manages itself
 
   -- features
-  'goolord/alpha-nvim';               -- startup screen
   'protex/better-digraphs.nvim';      -- character picker
   'jdhao/better-escape.vim';          -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
   'princejoogie/chafa.nvim';          -- functions for viewing images within neovim
   'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';                 -- completion
   's-u-d-o-e-r/vim-ray-so-beautiful'; -- shortcut for sharing code via https://ray.so
+  'startup-nvim/startup.nvim';        -- startup screen
   'godlygeek/tabular';                -- align columns of text
   'folke/trouble.nvim';               -- lists of stuff...
 
@@ -50,7 +50,7 @@ require 'paq' {
   -- javascript / nodejs
   'vuki656/package-info.nvim';   -- version info for contents of `package.json` files
   'MunifTanjim/prettier.nvim';   -- integration with Prettier (code formatter)
-  'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string
+  -- 'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
 
   -- elixir
   'mhanberg/elixir.nvim'; -- install elixirls and more
@@ -67,46 +67,32 @@ require 'paq' {
   'Domeee/mosel.nvim';                    -- colorscheme
   'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
 
-  -- treesitter etc
-  {'nvim-treesitter/nvim-treesitter', branch='0.5-compat'}; -- file content parser
-  'windwp/nvim-ts-autotag';                                 -- auto-close HTML tags (treesitter plugin)
-  'ziontee113/syntax-tree-surfer';                          -- syntax-aware selection helpers
-  'p00f/nvim-ts-rainbow';                                   -- color matching parens (treesitter plugin
-  'nvim-treesitter/nvim-treesitter-refactor';               -- refactor modules
+  -- -- treesitter etc
+  -- {'nvim-treesitter/nvim-treesitter',         -- file content parser
+  --   run = function()
+  --     local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+  --     ts_update()
+  --   end};
+  -- 'windwp/nvim-ts-autotag';                   -- auto-close HTML tags (treesitter plugin)
+  -- 'ziontee113/syntax-tree-surfer';            -- syntax-aware selection helpers
+  -- 'p00f/nvim-ts-rainbow';                     -- color matching parens (treesitter plugin
+  -- 'nvim-treesitter/nvim-treesitter-refactor'; -- refactor modules
 
   -- meta / dependencies
   'm00qek/baleia.nvim';              -- dependency for chafa
   'Iron-E/nvim-cartographer';        -- simpler API for mappings
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
-  'ryanoasis/vim-devicons';          -- icon characters; optionally (?) used by diffview & lualine
+  'ryanoasis/vim-devicons';          -- icon characters; prereq for: diffview, lualine
   'junegunn/fzf';                    -- fuzzy file finder core
   'neovim/nvim-lspconfig';           -- LSP config
-  'williamboman/nvim-lsp-installer'; -- LSP server installation helpers
-  'MunifTanjim/nui.nvim';            -- UI toolkit used by `package-info.nvim`
-  'nvim-lua/plenary.nvim';           -- prereq for diffview & gitsigns & memento & chafa
-  'tpope/vim-repeat';                -- dependency of tpope's vim-sexp-mappings-for-regular-people
-  'tpope/vim-surround';              -- dependency of tpope's vim-sexp-mappings-for-regular-people
-  'nvim-telescope/telescope.nvim';
-  'kyazdani42/nvim-web-devicons';    -- icon characters; required by nvim-tre; required by alphae
+  'MunifTanjim/nui.nvim';            -- UI toolkit; prereq for: package-info
+  'nvim-lua/plenary.nvim';           -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
+  'tpope/vim-repeat';                -- prereq for: vim-sexp-mappings-for-regular-people
+  'tpope/vim-surround';              -- prereq for: vim-sexp-mappings-for-regular-people
+  'nvim-telescope/telescope.nvim';   -- list searcher; prereq for: startup…
+  'kyazdani42/nvim-web-devicons';    -- icon characters; prereq for: nvim-tree
 }
-
-
--- alpha config
-local alpha = require'alpha'
-local startify = require'alpha.themes.startify'
-startify.section.header.val = {
-  [[______________________________________________________________________________________]],
-  [[ ____________________________________________________________/\\\______________________]],
-  [[  ___/\\/\\\\\\_______/\\\\\\\\______/\\\\\_____/\\\____/\\\_\///_____/\\\\\__/\\\\\____]],
-  [[   __\/\\\////\\\____/\\\/////\\\___/\\\///\\\__\//\\\__/\\\___/\\\__/\\\///\\\\\///\\\__]],
-  [[    __\/\\\__\//\\\__/\\\\\\\\\\\___/\\\__\//\\\__\//\\\/\\\___\/\\\_\/\\\_\//\\\__\/\\\__]],
-  [[     __\/\\\___\/\\\_\//\\///////___\//\\\__/\\\____\//\\\\\____\/\\\_\/\\\__\/\\\__\/\\\__]],
-  [[      __\/\\\___\/\\\__\//\\\\\\\\\\__\///\\\\\/______\//\\\_____\/\\\_\/\\\__\/\\\__\/\\\__]],
-  [[       __\///____\///____\//////////_____\/////_________\///______\///__\///___\///___\///___]],
-  [[        ______________________________________________________________________________________]],
-}
-alpha.setup(startify.opts)
 
 
 -- better-escape config
@@ -163,7 +149,7 @@ cmp.setup {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
   },
   enabled = function()
-  -- h/t `u/Miserable-Ad-7341` https://www.reddit.com/r/neovim/comments/skkp1r/comment/hvocxmj/
+    -- h/t `u/Miserable-Ad-7341` https://www.reddit.com/r/neovim/comments/skkp1r/comment/hvocxmj/
     local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
     if in_prompt then  -- this will disable cmp in the Telescope window (taken from the default config)
       return false
@@ -233,11 +219,6 @@ cmd([[
 
 
 -- lsp config
-local lspi = require'nvim-lsp-installer'
-lspi.setup {
-  automatic_installation = true,
-}
--- "make sure you call the .setup() function before you set up any servers with lspconfig" https://github.com/williamboman/nvim-lsp-installer/blob/2be5d77ab0/README.md#setup
 local lspc = require'lspconfig'
 lspc.bashls.setup{}
 lspc.cssls.setup{}
@@ -310,8 +291,12 @@ require('pretty-fold').setup {
 }
 
 
--- template-string config
-require('template-string').setup()
+-- startup config
+require('startup').setup({theme = 'startify'})
+
+
+-- -- template-string config
+-- require('template-string').setup()
 
 
 
@@ -332,43 +317,43 @@ require'nvim-tree'.setup {
 }
 
 
--- treesitter config
-require('nvim-treesitter.configs').setup {
-  ensure_installed = {
-    'bash',
-    'comment',
-    'commonlisp',
-    'css',
-    'dockerfile',
-    'elixir',
-    'graphql',
-    'html',
-    'javascript',
-    'json',
-    'lua',
-    'ruby',
-    'rust',
-    'scss',
-    'typescript',
-    'yaml',
-  },
-  highlight = {
-    enable = true,
-    disable = function(lang, bufnr) -- Disable in large buffers
-      return vim.api.nvim_buf_line_count(bufnr) > 999999
-    end,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 9999, -- Do not enable for files with more than n lines, int
-  }
-}
+-- -- treesitter config
+-- require('nvim-treesitter.configs').setup {
+--   ensure_installed = {
+--     'bash',
+--     'comment',
+--     'commonlisp',
+--     'css',
+--     'dockerfile',
+--     'elixir',
+--     'graphql',
+--     'html',
+--     'javascript',
+--     'json',
+--     'lua',
+--     'ruby',
+--     'rust',
+--     'scss',
+--     'typescript',
+--     'yaml',
+--   },
+--   highlight = {
+--     enable = true,
+--     disable = function(lang, bufnr) -- Disable in large buffers
+--       return vim.api.nvim_buf_line_count(bufnr) > 999999
+--     end,
+--   },
+--   rainbow = {
+--     enable = true,
+--     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+--     max_file_lines = 9999, -- Do not enable for files with more than n lines, int
+--   }
+-- }
 
 
 -- trouble config
 require('trouble').setup {}
 
 
--- ts-autotag config
-require('nvim-ts-autotag').setup()
+-- -- ts-autotag config
+-- require('nvim-ts-autotag').setup()

@@ -117,3 +117,11 @@ vim.api.nvim_create_autocmd(
   { 'BufReadPre', 'FileReadPre', },
   { command = 'if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | let b:minicursorword_disable=v:true | endif' }
 )
+
+-- don't need python integration...?
+vim.cmd [[
+  let g:loaded_node_provider = 0
+  let g:loaded_perl_provider = 0
+  let g:loaded_python3_provider = 0
+  let g:loaded_ruby_provider = 0
+]]

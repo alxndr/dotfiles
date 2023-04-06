@@ -9,13 +9,15 @@ vim.cmd [[
 
 local keymap = vim.api.nvim_set_keymap
 
+-- TODO: implement function normal(sequence, mapping, [opts]) & also visual() terminal() as wrappers for vim.api.nvim_set_keymap
+
 local map = require 'cartographer'
 
 -- normal mode
 keymap('n', '<Leader><Leader>', '<CMD>lua require"fzf-lua".buffers()<CR>', {})
 map.n.nore['<Leader><Tab>'] = '<CMD>NvimTreeToggle<CR>'
-map.n.nore['<Leader>;'] = 'm`A;<Esc>``j' -- append semicolon to line and move down
-keymap('n','<Leader>a', '<CMD>Alpha<CR>', {})
+keymap('n', '<Leader>,', 'm`A,<Esc>``j', {}) -- append comma to line and move down
+keymap('n', '<Leader>;', 'm`A;<Esc>``j', {}) -- append semicolon to line and move down
 keymap('n','<Leader>f', '<CMD>Easypick deprank<CR>', {})
 keymap('n', '<Leader>g', '<CMD>lua require "fzf-lua".live_grep_native()<CR>', {noremap=true})
 keymap('n','<Leader>j', "<CMD>call VerticalSpaceJumpDown()<CR>", {})
@@ -33,7 +35,6 @@ map.n.nore['<Leader>2'] = '/TODO<CR><CMD>nohl<CR>'
 map.n.nore['<Space>'] = ':' -- note that this means using <CMD> over : in other mappings, or using noremap
 map.n.nore['<CR>'] = 'm`o<Esc>``'
 map.n.nore['<Tab>'] = '<C-w><C-w>'
-map.n.nore[',,'] = 'm`A,<Esc>``j' -- append comma to line and move down
 map.n.nore[',b'] = '<CMD>lua require("memento").toggle()<CR>'
 keymap('n', ',c', '<CMD>Easypick conflicts<CR>', {silent = true})
 map.n.nore[',d'] = '<CMD>lua vim.diagnostic.open_float()<CR>'
@@ -57,11 +58,9 @@ map.n.nore[',vv'] = '<CMD>lua require("package-info").show()<CR>'
 map.n.nore[',vu'] = '<CMD>lua require("package-info").change_version()<CR>'
 map.n.nore[',w'] = '10<C-w>>'
 map.n.nore[',W'] = '5<C-w>+'
-keymap('n', ':',  '<CMD>set cursorline!<CR><CMD>set cursorcolumn!<CR>', {noremap = true, silent = true})
+keymap('n', '|', '<CMD>set cursorcolumn!<CR><CMD>set cursorline!<CR>', {silent = true}) -- TODO tweak so that Count-| still changes cursor position
 map.n.nore['-'] = '<C-x>'
 map.n.nore['+'] = '<C-a>'
-map.n.nore['=('] = '0=a('
-map.n.nore['=)'] = '$=a('
 --          gb   = numToStr/Comment.nvim blockwise comment action/toggle
 --          gc   = numToStr/Comment.nvim linewise comment action/toggle
 keymap('n', 'gj', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>", {noremap=true})
@@ -84,8 +83,8 @@ map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
 
 -- insert mode
 keymap('i', '<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
+map.i.nore['<Leader>,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
 map.i.nore['<Leader>;'] = '<Esc>m`A;<Esc>``a' -- append semicolon to line and return to position
-map.i.nore[',,'] = '<Esc>m`A,<Esc>``a' -- append comma to line and return to position
 map.i.nore['qq'] = '<Esc>m`gqq``a' -- wrap current line and return to position
 map.i.nore['<C-a>'] = [[<Esc>A]] -- append (e.g. to hop over autocompleted characters)
 vim.api.nvim_set_keymap('i', '<C-d>', '', { callback = function() require'better-digraphs'.digraphs('i') end, desc = 'better-digraphs helper', noremap = true })

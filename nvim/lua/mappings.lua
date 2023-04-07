@@ -1,7 +1,7 @@
 -- NOTE: deprecated
 local map = require 'cartographer'
 
-vim.g.mapleader = '\\' -- 💪
+vim.g.mapleader = [[\]] -- 💪
 
 -- opts: nowait=false, silent=false, script=false, expr=false, unique=false, noremap, desc, callback, replace_keycodes
 local function mapInsert (sequence, mapping, opts)
@@ -49,7 +49,7 @@ mapNormal('<Tab>', '<C-w><C-w>')
 mapNormal(',b', '<CMD>lua require("memento").toggle()<CR>')
 mapNormal(',c', '<CMD>Easypick conflicts<CR>', {silent = true})
 mapNormal(',d', '<CMD>lua vim.diagnostic.open_float()<CR>')
-mapNormal(',f', 'zcj0/{\\n<CR><CMD>nohl<CR>zz')
+mapNormal(',f', [[zcj0/{\n<CR><CMD>nohl<CR>zz]])
 mapNormal(',F', '<CMD>set foldlevel=0<CR>zozz')
 mapNormal(',ga', ':Git commit --amend')
 mapNormal(',gb', '<CMD>BlamerToggle<CR>')
@@ -59,7 +59,7 @@ mapNormal(',gp', ':Git push')
 mapNormal(',gP', ':Git push --force')
 mapNormal(',gs', '<CMD>Git<CR>')
 mapNormal(',l', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {silent = true})
-mapNormal(',m', '/\\v^(\\<|\\||\\=|\\>){7}(.+)?$<CR><CMD>nohl<CR>zz')
+mapNormal(',m', [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]])
 mapNormal(',n', '<CMD>nohl<CR>')
 mapNormal(',r', '<CMD>lua vim.diagnostic.goto_next()<CR>')
 mapNormal(',R', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
@@ -105,14 +105,14 @@ mapInsert('<C-y>', '<Esc><C-y>a', {desc = 'preserve `<C-y>` scroll behavior in i
 mapInsert('<S-Down>', '<Esc>mmddp`ma', {desc = 'shift current line down and return to position'})
 mapInsert('<S-Up>', '<Esc>mmddkP`ma', {desc = 'shift current line up and return to position'})
 
-mapTerminal('<Leader>[', '<C-\\><C-n><CMD>FloatermPrev<CR>')
-mapTerminal('<Leader>)', '<C-\\><C-n><CMD>FloatermNext<CR>')
-mapTerminal('<Leader>n', '<C-\\><C-n><CMD>FloatermNew<CR>')
-mapTerminal('<Leader>t', '<C-\\><C-n><CMD>FloatermToggle<CR>')
-mapTerminal('<C-Space>', '<C-\\><C-n>')
-mapTerminal('<C-[>', '<C-\\><C-n><CMD>FloatermPrev<CR>')
-mapTerminal('<C-)>', '<C-\\><C-n><CMD>FloatermNext<CR>')
-mapTerminal('<C-t>', '<C-\\><C-n><CMD>FloatermToggle<CR>')
+mapTerminal('<Leader>[', [[<C-\><C-n><CMD>FloatermPrev<CR>]])
+mapTerminal('<Leader>)', [[<C-\><C-n><CMD>FloatermNext<CR>]])
+mapTerminal('<Leader>n', [[<C-\><C-n><CMD>FloatermNew<CR>]])
+mapTerminal('<Leader>t', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
+mapTerminal('<C-Space>', [[<C-\><C-n>]])
+mapTerminal('<C-[>', [[<C-\><C-n><CMD>FloatermPrev<CR>]])
+mapTerminal('<C-)>', [[<C-\><C-n><CMD>FloatermNext<CR>]])
+mapTerminal('<C-t>', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
 
 mapVisual('<Leader>a', ':Tab /', {desc = '_a_lign'})
 mapVisual('<Space>', ':')

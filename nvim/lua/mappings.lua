@@ -1,6 +1,5 @@
 -- NOTE: deprecated
 local map = require 'cartographer'
-local keymap = vim.api.nvim_set_keymap
 
 vim.g.mapleader = '\\' -- 💪
 
@@ -22,22 +21,14 @@ local function mapVisual (sequence, mapping, opts)
   vim.api.nvim_set_keymap('v', sequence, mapping, opts)
 end
 
--- use j/k to move down/up in a wrap-aware way if appropriate
--- ...using `g<Down|Up>` so as to not conflict with my remapping of `gj`/`gk`...
--- note that <expr> with Count conditional can't be map'd in nvim yet?
-vim.cmd [[
-  noremap <expr> j v:count ? 'j' : 'g<Down>'
-  noremap <expr> k v:count ? 'k' : 'g<Up>'
-  noremap <expr> \| v:count ? '\|' : '<CMD>set cursorcolumn!<CR><CMD>set cursorline!<CR>'
-]]
 
 -- custom order: Leader, nonprinting chars, punctuation, alnum, modifiers (alphabetic where possible)
 
 -- normal mode
 mapNormal('<Leader><Leader>', '<CMD>lua require"fzf-lua".buffers()<CR>')
 mapNormal('<Leader><Tab>', '<CMD>NvimTreeToggle<CR>')
-mapNormal('<Leader>,', 'm`A,<Esc>``j', {desc = 'append comma to line and move down'})
-mapNormal('<Leader>;', 'm`A;<Esc>``j', {desc = 'append semicolon to line and move down'})
+mapNormal('<Leader>,', 'mmA,<Esc>`mj', {desc = 'append comma to line and move down'})
+mapNormal('<Leader>;', 'mmA;<Esc>`mj', {desc = 'append semicolon to line and move down'})
 mapNormal('<Leader>f', '<CMD>Easypick deprank<CR>')
 mapNormal('<Leader>g', '<CMD>lua require "fzf-lua".live_grep_native()<CR>')
 mapNormal('<Leader>j', "<CMD>call VerticalSpaceJumpDown()<CR>")
@@ -53,7 +44,7 @@ mapNormal('<Leader>w', '<CMD>set list!<CR>')
 mapNormal('<Leader>y', '<CMD>only<CR>')
 mapNormal('<Leader>2', '/TODO<CR><CMD>nohl<CR>')
 mapNormal('<Space>', ':') -- note that this means using <CMD> over : in other mappings, or using noremap
-mapNormal('<CR>', 'm`o<Esc>``')
+mapNormal('<CR>', 'mmo<Esc>`m')
 mapNormal('<Tab>', '<C-w><C-w>')
 mapNormal(',b', '<CMD>lua require("memento").toggle()<CR>')
 mapNormal(',c', '<CMD>Easypick conflicts<CR>', {silent = true})
@@ -78,18 +69,19 @@ mapNormal(',vv', '<CMD>lua require("package-info").show()<CR>')
 mapNormal(',vu', '<CMD>lua require("package-info").change_version()<CR>')
 mapNormal(',w', '10<C-w>>')
 mapNormal(',W', '5<C-w>+')
+      --[[ | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>set cursorcolumn!<CR><CMD>set cursorline!<CR>']]
 mapNormal('-', '<C-x>')
 mapNormal('+', '<C-a>')
 --         gb   = numToStr/Comment.nvim blockwise comment action/toggle
 --         gc   = numToStr/Comment.nvim linewise comment action/toggle
 mapNormal('gj', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>")
 mapNormal('gk', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>")
+      --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
+      --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
 mapNormal('H', 'zh')
 mapNormal('L', 'zl')
 mapNormal('Q', '<CMD>Bdelete<CR>')
-map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'"
--- not working:
--- mapNormal('<C-d>', [[(winheight(0)/3).'<C-d>']], {expr = true})
+map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'" -- expr not working (freezes, need to <C-c> to get cursor back): mapNormal('<C-d>', [[(winheight(0)/3).'<C-d>']], {expr = true})
 mapNormal('<C-h>', '<C-w>h')
 mapNormal('<C-j>', '<C-w>j')
 mapNormal('<C-k>', '<C-w>k')
@@ -102,19 +94,17 @@ mapNormal('<C-w>/', '<C-w>|<C-w>_')
 mapNormal('<S-Down>', 'ddp', {desc = 'shift current line down'})
 mapNormal('<S-Up>', 'ddkP', {desc = 'shift current line up'})
 
--- insert mode
 mapInsert('<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
-mapInsert('<Leader>,', '<Esc>m`A,<Esc>``a', {desc = 'append comma to line and return to position'})
-mapInsert('<Leader>;', '<Esc>m`A;<Esc>``a', {desc = 'append semicolon to line and return to position'})
-mapInsert('qq', '<Esc>m`gqq``a', {desc = 'wrap current line and return to position'})
+mapInsert('<Leader>,', '<Esc>mmA,<Esc>`ma', {desc = 'append comma to line and return to position'})
+mapInsert('<Leader>;', '<Esc>mmA;<Esc>`ma', {desc = 'append semicolon to line and return to position'})
+mapInsert('qq', '<Esc>mmgqq`ma', {desc = 'wrap current line and return to position'})
 mapInsert('<C-a>', [[<Esc>A]], {desc = 'append (e.g. to hop over autocompleted characters)'})
 mapInsert('<C-d>', '', {callback = function() require'better-digraphs'.digraphs('i') end, desc = 'better-digraphs helper'})
 mapInsert('<C-e>', '<Esc><C-e>a', {desc = 'preserve `<C-e>` scroll behavior in insert mode'})
 mapInsert('<C-y>', '<Esc><C-y>a', {desc = 'preserve `<C-y>` scroll behavior in insert mode'})
-mapInsert('<S-Down>', '<Esc>m`ddp``a', {desc = 'shift current line down and return to position'})
-mapInsert('<S-Up>', '<Esc>m`ddkP``a', {desc = 'shift current line up and return to position'})
+mapInsert('<S-Down>', '<Esc>mmddp`ma', {desc = 'shift current line down and return to position'})
+mapInsert('<S-Up>', '<Esc>mmddkP`ma', {desc = 'shift current line up and return to position'})
 
--- terminal mode
 mapTerminal('<Leader>[', '<C-\\><C-n><CMD>FloatermPrev<CR>')
 mapTerminal('<Leader>)', '<C-\\><C-n><CMD>FloatermNext<CR>')
 mapTerminal('<Leader>n', '<C-\\><C-n><CMD>FloatermNew<CR>')
@@ -124,7 +114,6 @@ mapTerminal('<C-[>', '<C-\\><C-n><CMD>FloatermPrev<CR>')
 mapTerminal('<C-)>', '<C-\\><C-n><CMD>FloatermNext<CR>')
 mapTerminal('<C-t>', '<C-\\><C-n><CMD>FloatermToggle<CR>')
 
--- visual mode
 mapVisual('<Leader>a', ':Tab /', {desc = '_a_lign'})
 mapVisual('<Space>', ':')
 mapVisual('<Tab>', 'd<CMD>vnew<CR>PGddgg', {desc = 'extract selection from current file & paste into new buffer'})

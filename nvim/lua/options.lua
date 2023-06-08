@@ -26,6 +26,9 @@ vim.api.nvim_create_autocmd('RecordingLeave', {
     end,
 })
 
+vim.opt.cursorcolumn = false
+vim.opt.cursorline = false -- gets reset when changing splits :/ see autocmd on WinEnter below
+vim.opt.cmdheight = 0 -- neovim 0.8.x
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
 vim.opt.fillchars = 'fold: '
@@ -76,6 +79,15 @@ vim.api.nvim_create_autocmd(
     end
   }
 )
+vim.api.nvim_create_autocmd(
+  { 'WinEnter', },
+  {
+    callback = function(_args)
+      vim.wo.cursorline = false -- this gets reset to true on splits?? but just this and not cursorcolumn...
+    end
+  }
+)
+
 
 -- markdown tweaks
 vim.api.nvim_create_autocmd(

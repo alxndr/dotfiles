@@ -69,7 +69,7 @@ mapNormal(',vv', '<CMD>lua require("package-info").show()<CR>')
 mapNormal(',vu', '<CMD>lua require("package-info").change_version()<CR>')
 mapNormal(',w', '10<C-w>>')
 mapNormal(',W', '5<C-w>+')
-      --[[ | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>set cursorcolumn!<CR><CMD>set cursorline!<CR>']]
+      --[[ | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
 mapNormal('-', '<C-x>')
 mapNormal('+', '<C-a>')
 --         gb   = numToStr/Comment.nvim blockwise comment action/toggle

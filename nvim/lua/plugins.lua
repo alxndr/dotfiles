@@ -7,6 +7,8 @@ local fn = vim.fn    -- call Vim functions
 require 'paq' {
   'savq/paq-nvim'; -- paq-nvim manages itself
 
+  -- 🚧 👷🏼🛠️ '~/workspace/dotfiles/tokipona.nvim';
+
   -- features
   'protex/better-digraphs.nvim';      -- character picker
   'jdhao/better-escape.vim';          -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode

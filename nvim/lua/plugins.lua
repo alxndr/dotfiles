@@ -63,8 +63,8 @@ require 'paq' {
   'norcalli/nvim-colorizer.lua';          -- color eye-candy
   'sindrets/diffview.nvim';               -- make diffs prettier
   'voldikss/vim-floaterm';                -- terminal eyecandy
+  'rebelot/kanagawa.nvim';                -- colorscheme
   'nvim-lualine/lualine.nvim';            -- status line
-  'Domeee/mosel.nvim';                    -- colorscheme
   'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
 
   -- -- treesitter etc
@@ -204,6 +204,22 @@ require('gitlinker').setup {
 require('gitsigns').setup {}
 
 
+-- kanagawa
+require('kanagawa').setup({
+    undercurl = false,
+    keywordStyle = { italic = false},
+    typeStyle = {italic=true},
+    -- theme = "wave",              -- Load "wave" theme when 'background' option is not set
+    -- background = {               -- map the value of 'background' option to a theme
+    --     dark = "wave",           -- try "dragon" !
+    --     light = "lotus"
+    -- },
+})
+
+-- setup must be called before loading
+vim.cmd("colorscheme kanagawa")
+
+
 -- leap config
 require('leap').set_default_keymaps()
 
@@ -234,7 +250,7 @@ require'lualine'.setup{
     globalstatus = true, -- global status line
     icons_enabled = true,
     section_separators = '',
-    theme = 'mosel',
+    theme = 'kanagawa',
   },
   extensions = {
     'nvim-tree'

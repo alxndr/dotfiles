@@ -1,15 +1,3 @@
-vim.opt.cmdheight = 0 -- neovim 0.8.x
--- h/t u/Treatybreaker https://www.reddit.com/r/neovim/comments/vfn99v/psa_macros_w_cmdheight_0/
--- NOTE: Handles issues with cmdheight=0, waiting for
--- https://github.com/neovim/neovim/pull/18961
--- to be merged
-vim.api.nvim_create_autocmd('RecordingEnter', {
-    pattern = '*',
-    callback = function()
-        vim.opt_local.cmdheight = 1
-    end,
-})
-
 vim.api.nvim_create_autocmd('RecordingLeave', {
     pattern = '*',
     callback = function()
@@ -27,7 +15,6 @@ vim.api.nvim_create_autocmd('RecordingLeave', {
 })
 
 vim.opt.cursorcolumn = false
-vim.opt.cursorline = false -- gets reset when changing splits :/ see autocmd on WinEnter below
 vim.opt.cmdheight = 0 -- neovim 0.8.x
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
@@ -49,21 +36,24 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 333
 vim.opt.wrap = false
 
+vim.wo.cursorline = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
 
 -- line number tweaks
 --  * "hybrid" style: normal mode shows absolute & insert mode shows absolute
 --    for current line, relative for others
 --    h/t https://jeffkreeftmeijer.com/vim-number/
 vim.api.nvim_create_autocmd(
-  { 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' },
+  { 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter', },
   { command = 'if &nu && mode() != "i" | set rnu | endif' }
 )
 vim.api.nvim_create_autocmd(
-  { 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' },
+  { 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave', },
   { command = 'if &nu && mode() != "i" | set rnu | endif' }
 )
+
 
 -- colorscheme tweaks
 vim.api.nvim_create_autocmd(
@@ -76,14 +66,6 @@ vim.api.nvim_create_autocmd(
     callback = function(_args)
       -- silent! lua vim.highlight.on_yank({higroup="Underlined", timeout=500})
       vim.highlight.on_yank({higroup="Underlined", timeout=500})
-    end
-  }
-)
-vim.api.nvim_create_autocmd(
-  { 'WinEnter', },
-  {
-    callback = function(_args)
-      vim.wo.cursorline = false -- this gets reset to true on splits?? but just this and not cursorcolumn...
     end
   }
 )

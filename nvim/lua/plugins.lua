@@ -37,18 +37,24 @@ require 'paq' {
   'ruifm/gitlinker.nvim';      -- copy link to current line of code
   'lewis6991/gitsigns.nvim';   -- status sigils in the sign column, and next/prev hunk nav functions
 
+  -- eyecandy
+  'WilsonOh/emoji_picker-nvim';  -- emoji UX
+  'p00f/nvim-ts-rainbow';        -- color matching parens (treesitter)
+
   -- text manipulation
   'nicwest/vim-camelsnek';                        -- camelcase / snake_case conversion functions
   'numToStr/Comment.nvim';                        -- commenting shortcuts
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
-  'WilsonOh/emoji_picker-nvim';                   -- emoji UX
   'cohama/lexima.vim';                            -- matched-pair character closing
   'tpope/vim-surround';                           -- matched-pair character conversion shortcuts
+
+  -- html
+  'windwp/nvim-ts-autotag';  -- auto-close HTML tags (treesitter)
 
   -- javascript / nodejs
   'vuki656/package-info.nvim';   -- version info for contents of `package.json` files
   'MunifTanjim/prettier.nvim';   -- integration with Prettier (code formatter)
-  -- 'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
+  'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
 
   -- elixir
   'mhanberg/elixir.nvim'; -- install elixirls and more
@@ -65,17 +71,6 @@ require 'paq' {
   'nvim-lualine/lualine.nvim';            -- status line
   'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
 
-  -- -- treesitter etc
-  -- {'nvim-treesitter/nvim-treesitter',         -- file content parser
-  --   run = function()
-  --     local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-  --     ts_update()
-  --   end};
-  -- 'windwp/nvim-ts-autotag';                   -- auto-close HTML tags (treesitter plugin)
-  -- 'ziontee113/syntax-tree-surfer';            -- syntax-aware selection helpers
-  -- 'p00f/nvim-ts-rainbow';                     -- color matching parens (treesitter plugin
-  -- 'nvim-treesitter/nvim-treesitter-refactor'; -- refactor modules
-
   -- meta / dependencies
   'm00qek/baleia.nvim';              -- dependency for chafa
   'Iron-E/nvim-cartographer';        -- simpler API for mappings
@@ -89,6 +84,11 @@ require 'paq' {
   'tpope/vim-repeat';                -- prereq for: vim-sexp-mappings-for-regular-people
   'tpope/vim-surround';              -- prereq for: vim-sexp-mappings-for-regular-people
   'nvim-telescope/telescope.nvim';   -- list searcher; prereq for: startup…
+  {'nvim-treesitter/nvim-treesitter',-- file content parser
+    run = function()
+      require('nvim-treesitter.install').update({ with_sync = true })()
+    end};
+  'nvim-treesitter/nvim-treesitter-refactor';  -- refactor modules
   'kyazdani42/nvim-web-devicons';    -- icon characters; prereq for: nvim-tree
 }
 
@@ -360,38 +360,40 @@ require'nvim-tree'.setup {
 }
 
 
--- -- treesitter config
--- require('nvim-treesitter.configs').setup {
---   ensure_installed = {
---     'bash',
---     'comment',
---     'commonlisp',
---     'css',
---     'dockerfile',
---     'elixir',
---     'graphql',
---     'html',
---     'javascript',
---     'json',
---     'lua',
---     'ruby',
---     'rust',
---     'scss',
---     'typescript',
---     'yaml',
---   },
---   highlight = {
---     enable = true,
---     disable = function(lang, bufnr) -- Disable in large buffers
---       return vim.api.nvim_buf_line_count(bufnr) > 999999
---     end,
---   },
---   rainbow = {
---     enable = true,
---     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
---     max_file_lines = 9999, -- Do not enable for files with more than n lines, int
---   }
--- }
+-- treesitter config
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {
+    'awk',
+    'bash',
+    'comment',
+    'commonlisp',
+    'css',
+    'dockerfile',
+    'elixir',
+    -- 'eslint',
+    'graphql',
+    'html',
+    'javascript',
+    -- 'json',
+    'lua',
+    'ruby',
+    'rust',
+    'scss',
+    'typescript',
+    'yaml',
+  },
+  highlight = {
+    enable = true,
+    disable = function(lang, bufnr) -- Disable in large buffers
+      return vim.api.nvim_buf_line_count(bufnr) > 999999
+    end,
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = 9999, -- Do not enable for files with more than n lines, int
+  }
+}
 
 
 -- trouble config

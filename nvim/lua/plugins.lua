@@ -1,5 +1,4 @@
 local cmd = vim.cmd  -- execute Vim commands
-local fn = vim.fn    -- call Vim functions
 
 -- Paq: package manager
 -- installation instructions:
@@ -13,7 +12,6 @@ require 'paq' {
   'princejoogie/chafa.nvim';          -- functions for viewing images within neovim
   'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';                 -- completion
-  's-u-d-o-e-r/vim-ray-so-beautiful'; -- shortcut for sharing code via https://ray.so
   'startup-nvim/startup.nvim';        -- startup screen
   'godlygeek/tabular';                -- align columns of text
   'folke/trouble.nvim';               -- lists of stuff...
@@ -236,10 +234,28 @@ cmd([[
 
 -- lsp config
 local lspc = require'lspconfig'
+local lsp_defaults = lspc.util.default_config
+
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lsp_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
 lspc.bashls.setup{}
 lspc.cssls.setup{}
-lspc.eslint.setup{}
-lspc.racket_langserver.setup{}
+-- lspc.eslint.setup{}
+lspc.graphql.setup{}
+lspc.html.setup{}
+-- lspc.jsonls.setup{}
+lspc.lua_ls.setup{
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+}
 lspc.tsserver.setup{}
 
 

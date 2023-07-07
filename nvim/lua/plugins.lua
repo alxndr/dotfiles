@@ -58,10 +58,10 @@ require 'paq' {
   'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
 
   -- eye candy
+  'ribru17/bamboo.nvim';                  -- colorscheme
   'norcalli/nvim-colorizer.lua';          -- color eye-candy
   'sindrets/diffview.nvim';               -- make diffs prettier
   'voldikss/vim-floaterm';                -- terminal eyecandy
-  'rebelot/kanagawa.nvim';                -- colorscheme
   'nvim-lualine/lualine.nvim';            -- status line
   'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
 
@@ -91,6 +91,20 @@ require 'paq' {
   'nvim-telescope/telescope.nvim';   -- list searcher; prereq for: startup…
   'kyazdani42/nvim-web-devicons';    -- icon characters; prereq for: nvim-tree
 }
+
+
+-- bamboo config
+require('bamboo').setup({
+  transparent = 'true',
+  code_style = {
+    comments = 'italic',
+    keywords = 'bold',
+    functions = 'none',
+    strings = 'none',
+    variables = 'none'
+  },
+})
+require('bamboo').load()
 
 
 -- better-escape config
@@ -202,22 +216,6 @@ require('gitlinker').setup {
 require('gitsigns').setup {}
 
 
--- kanagawa
-require('kanagawa').setup({
-    undercurl = false,
-    keywordStyle = { italic = false},
-    typeStyle = {italic=true},
-    -- theme = "wave",              -- Load "wave" theme when 'background' option is not set
-    -- background = {               -- map the value of 'background' option to a theme
-    --     dark = "wave",           -- try "dragon" !
-    --     light = "lotus"
-    -- },
-})
-
--- setup must be called before loading
-vim.cmd("colorscheme kanagawa")
-
-
 -- leap config
 require('leap').set_default_keymaps()
 
@@ -266,7 +264,7 @@ require'lualine'.setup{
     globalstatus = true, -- global status line
     icons_enabled = true,
     section_separators = '',
-    theme = 'kanagawa',
+    theme = 'bamboo',
   },
   extensions = {
     'nvim-tree'
@@ -324,7 +322,20 @@ require('pretty-fold').setup {
 
 
 -- startup config
-require('startup').setup({theme = 'startify'})
+require('startup').setup({
+  theme = 'startify',
+  mappings = {
+    open_file = '<CR>',
+  },
+  section_1 = {
+    type = 'oldfiles',
+    oldfiles_directory = true,
+  },
+  section_2 = {
+    type = 'oldfiles',
+    oldfiles_directory = false,
+  },
+})
 
 
 -- -- template-string config

@@ -1,19 +1,3 @@
-vim.api.nvim_create_autocmd('RecordingLeave', {
-    pattern = '*',
-    callback = function()
-        local timer = vim.loop.new_timer()
-        -- NOTE: Timer is here because we need to close cmdheight AFTER
-        -- the macro is ended, not during the Leave event
-        timer:start(
-            50,
-            0,
-            vim.schedule_wrap(function()
-                vim.opt_local.cmdheight = 0
-            end)
-        )
-    end,
-})
-
 vim.opt.cursorcolumn = false
 vim.opt.cmdheight = 0 -- neovim 0.8.x
 vim.opt.expandtab = true
@@ -65,7 +49,6 @@ vim.api.nvim_create_autocmd(
   { 'TextYankPost', },
   {
     callback = function(_args)
-      -- silent! lua vim.highlight.on_yank({higroup="Underlined", timeout=500})
       vim.highlight.on_yank({higroup="Underlined", timeout=500})
     end
   }

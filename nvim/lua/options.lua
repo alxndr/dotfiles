@@ -26,20 +26,6 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 
--- line number tweaks
---  * "hybrid" style: normal mode shows absolute & insert mode shows absolute
---    for current line, relative for others
---    h/t https://jeffkreeftmeijer.com/vim-number/
-vim.api.nvim_create_autocmd(
-  { 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter', },
-  { command = 'if &nu && mode() != "i" | set rnu | endif' }
-)
-vim.api.nvim_create_autocmd(
-  { 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave', },
-  { command = 'if &nu && mode() != "i" | set rnu | endif' }
-)
-
-
 -- colorscheme tweaks
 vim.api.nvim_create_autocmd(
   { 'BufEnter', },
@@ -48,7 +34,7 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
   { 'TextYankPost', },
   {
-    callback = function(_args)
+    callback = function()
       vim.highlight.on_yank({higroup="Underlined", timeout=500})
     end
   }

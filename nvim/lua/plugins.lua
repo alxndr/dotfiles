@@ -359,17 +359,6 @@ require('pretty-fold').setup {
 -- startup config
 require('startup').setup({
   theme = 'startify',
-  mappings = {
-    open_file = '<CR>',
-  },
-  section_1 = {
-    type = 'oldfiles',
-    oldfiles_directory = true,
-  },
-  section_2 = {
-    type = 'oldfiles',
-    oldfiles_directory = false,
-  },
 })
 
 

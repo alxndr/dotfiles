@@ -39,8 +39,8 @@ require 'paq' {
   'lewis6991/gitsigns.nvim';   -- status sigils in the sign column, and next/prev hunk nav functions
 
   -- eyecandy
-  'WilsonOh/emoji_picker-nvim';  -- emoji UX
-  'p00f/nvim-ts-rainbow';        -- color matching parens (treesitter)
+  'WilsonOh/emoji_picker-nvim';      -- emoji UX
+  'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
 
   -- text manipulation
   'nicwest/vim-camelsnek';                        -- camelcase / snake_case conversion functions

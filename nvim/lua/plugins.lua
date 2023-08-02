@@ -86,6 +86,7 @@ require 'paq' {
   'junegunn/fzf';                    -- fuzzy file finder core
   'neovim/nvim-lspconfig';           -- LSP config
   'MunifTanjim/nui.nvim';            -- UI toolkit; prereq for: package-info
+  'jose-elias-alvarez/null-ls.nvim'; -- customizable language server for LSP
   'nvim-lua/plenary.nvim';           -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
   'tpope/vim-repeat';                -- prereq for: vim-sexp-mappings-for-regular-people
   'tpope/vim-surround';              -- prereq for: vim-sexp-mappings-for-regular-people
@@ -239,18 +240,14 @@ cmd([[
 -- lsp config
 local lspc = require'lspconfig'
 local lsp_defaults = lspc.util.default_config
-
-lsp_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lsp_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
+lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
 lspc.bashls.setup{}
 lspc.cssls.setup{}
--- lspc.eslint.setup{}
+lspc.cucumber_language_server.setup{}
+lspc.eslint.setup{}
 lspc.graphql.setup{}
 lspc.html.setup{}
--- lspc.jsonls.setup{}
+lspc.jsonls.setup{}
 lspc.lua_ls.setup{
   settings = {
     Lua = {
@@ -260,7 +257,45 @@ lspc.lua_ls.setup{
     }
   }
 }
-lspc.tsserver.setup{}
+lspc.tsserver.setup {
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" }
+}
+
+local null_ls = require("null-ls")
+local markdownlint = { -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/db09b6c691def00/README.md#parsing-cli-program-output
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = { "markdown" },
+  -- null_ls.generator creates an async source that spawns the command with the given arguments and options
+  generator = null_ls.generator({
+    command = "markdownlint",
+    args = { "--stdin" },
+    to_stdin = true,
+    from_stderr = true,
+    -- choose an output format (raw, json, or line)
+    format = "line",
+    check_exit_code = function(code, stderr)
+      local success = code <= 1
+      if not success then
+        -- can be noisy for things that run often (e.g. diagnostics), but can be useful for things that run on demand (e.g. formatting)
+        print(stderr)
+      end
+      return success
+    end,
+    -- use helpers to parse the output from string matchers, or parse it manually with a function
+    on_output = require("null-ls.helpers").diagnostics.from_patterns({
+      {
+        pattern = [[:(%d+):(%d+) [%w-/]+ (.*)]],
+        groups = { "row", "col", "message" },
+      },
+      {
+        pattern = [[:(%d+) [%w-/]+ (.*)]],
+        groups = { "row", "message" },
+      },
+    }),
+  }),
+}
+null_ls.register(markdownlint)
 
 
 -- lualine config

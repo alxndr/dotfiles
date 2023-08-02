@@ -54,7 +54,6 @@ require 'paq' {
 
   -- javascript / nodejs
   'vuki656/package-info.nvim';   -- version info for contents of `package.json` files
-  'MunifTanjim/prettier.nvim';   -- integration with Prettier (code formatter)
   'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
 
   -- elixir
@@ -302,12 +301,6 @@ require('package-info').setup{
       outdated = ' // new version: ',
     },
   },
-}
-
-
--- prettier.nvim config
-require('prettier').setup {
-  bin = 'prettier', -- or `prettierd`
 }
 
 

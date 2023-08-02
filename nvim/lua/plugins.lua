@@ -17,8 +17,8 @@ require 'paq' {
   'folke/trouble.nvim';               -- lists of stuff...
 
   -- behavior tweaks
-  'svban/YankAssassin.vim';            -- control cursor behavior while yanking
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
+  'svban/YankAssassin.vim';            -- control cursor behavior while yanking
 
   -- files / buffers / navigation
   'famiu/bufdelete.nvim';     -- delete buffer but don't modify window splits

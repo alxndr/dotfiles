@@ -52,6 +52,9 @@ require 'paq' {
   -- html
   'windwp/nvim-ts-autotag';  -- auto-close HTML tags (treesitter)
 
+  -- markdown
+  'rhysd/vim-gfm-syntax'; -- syntax highlighting for Git-Flavored Markdown
+
   -- javascript / nodejs
   'vuki656/package-info.nvim';   -- version info for contents of `package.json` files
   'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
@@ -62,6 +65,9 @@ require 'paq' {
   -- lisp/scheme/racket
   'guns/vim-sexp';                              -- paren-navigation fundamentals
   'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
+
+  -- query languages
+  'neo4j-contrib/cypher-vim-syntax'; -- cypher (graph databases)
 
   -- eye candy
   'ribru17/bamboo.nvim';                  -- colorscheme
@@ -332,8 +338,8 @@ require('startup').setup({
 })
 
 
--- -- template-string config
--- require('template-string').setup()
+-- template-string config
+require('template-string').setup()
 
 
 
@@ -370,6 +376,7 @@ require('nvim-treesitter.configs').setup {
     'javascript',
     -- 'json',
     'lua',
+    'markdown',
     'ruby',
     'rust',
     'scss',
@@ -395,4 +402,4 @@ require('trouble').setup {}
 
 
 -- -- ts-autotag config
--- require('nvim-ts-autotag').setup()
+require('nvim-ts-autotag').setup()

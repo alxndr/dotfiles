@@ -1,6 +1,3 @@
--- NOTE: deprecated
-local map = require 'cartographer'
-
 vim.g.mapleader = [[\]] -- 💪
 
 -- opts: nowait=false, silent=false, script=false, expr=false, unique=false, noremap, desc, callback, replace_keycodes
@@ -80,7 +77,7 @@ mapNormal('gk', "<CMD>lua vim.schedule(function() require('gitsigns.actions').pr
 mapNormal('H', 'zh')
 mapNormal('L', 'zl')
 mapNormal('Q', '<CMD>Bdelete<CR>')
-map.n.nore.expr['<C-d>'] = "(winheight(0)/3).'<C-d>'" -- expr not working (freezes, need to <C-c> to get cursor back): mapNormal('<C-d>', [[(winheight(0)/3).'<C-d>']], {expr = true})
+mapNormal('<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap = true, expr = true, desc = 'jump-down a third of the window-height'})
 mapNormal('<C-h>', '<C-w>h')
 mapNormal('<C-j>', '<C-w>j')
 mapNormal('<C-k>', '<C-w>k')
@@ -88,7 +85,7 @@ mapNormal('<C-l>', '<C-w>l')
 mapNormal('<C-n>', '<CMD>cn<CR>', {desc = 'next quickfix entry'})
 mapNormal('<C-p>', '<CMD>lua require("fzf-lua").files()<CR>')
 mapNormal('<C-s>', '<CMD>lua require("fzf-lua").grep_cword()<CR>', {desc = 'grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim'})
-map.n.nore.expr['<C-u>'] = "(winheight(0)/3).'<C-u>'"
+mapNormal('<C-u>',  vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap = true, expr = true, desc = 'jump-up a third of the window-height'} )
 mapNormal('<C-w>/', '<C-w>|<C-w>_')
 mapNormal('<S-Down>', 'ddp', {desc = 'shift current line down'})
 mapNormal('<S-Up>', 'ddkP', {desc = 'shift current line up'})

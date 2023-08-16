@@ -356,6 +356,12 @@ require('pretty-fold').setup {
 }
 
 
+-- rooter config
+vim.cmd [[
+  let g:rooter_patterns = ['.git', '.editorconfig']
+]]
+
+
 -- startup config
 require('startup').setup({
   theme = 'startify',

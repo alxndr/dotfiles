@@ -78,24 +78,24 @@ require 'paq' {
   'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
 
   -- meta / dependencies
-  'm00qek/baleia.nvim';              -- dependency for chafa
-  'Iron-E/nvim-cartographer';        -- simpler API for mappings
-  'hrsh7th/cmp-buffer';              -- something for nvim-cmp
-  'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
-  'junegunn/fzf';                    -- fuzzy file finder core
-  'neovim/nvim-lspconfig';           -- LSP config
-  'MunifTanjim/nui.nvim';            -- UI toolkit; prereq for: package-info
-  'jose-elias-alvarez/null-ls.nvim'; -- customizable language server for LSP
-  'nvim-lua/plenary.nvim';           -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
-  'tpope/vim-repeat';                -- prereq for: vim-sexp-mappings-for-regular-people
-  'tpope/vim-surround';              -- prereq for: vim-sexp-mappings-for-regular-people
-  'nvim-telescope/telescope.nvim';   -- list searcher; prereq for: startup…
-  {'nvim-treesitter/nvim-treesitter',-- file content parser
+  'm00qek/baleia.nvim';                        -- dependency for chafa
+  'Iron-E/nvim-cartographer';                  -- simpler API for mappings
+  'hrsh7th/cmp-buffer';                        -- something for nvim-cmp
+  'hrsh7th/cmp-nvim-lsp';                      -- "LSP source for nvim-cmp"
+  'junegunn/fzf';                              -- fuzzy file finder core
+  'neovim/nvim-lspconfig';                     -- LSP config
+  'MunifTanjim/nui.nvim';                      -- UI toolkit; prereq for: package-info
+  'jose-elias-alvarez/null-ls.nvim';           -- customizable language server for LSP
+  'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
+  'tpope/vim-repeat';                          -- prereq for: vim-sexp-mappings-for-regular-people
+  'tpope/vim-surround';                        -- prereq for: vim-sexp-mappings-for-regular-people
+  'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup…
+  {'nvim-treesitter/nvim-treesitter',          -- file content parser
     run = function()
       require('nvim-treesitter.install').update({ with_sync = true })()
     end};
   'nvim-treesitter/nvim-treesitter-refactor';  -- refactor modules
-  'nvim-tree/nvim-web-devicons';     -- icon characters; prereq for: alpha-nvim, lualine, nvim-tree
+  'nvim-tree/nvim-web-devicons';               -- icon characters; prereq for: alpha-nvim, lualine, nvim-tree
 }
 
 
@@ -231,13 +231,13 @@ require('leap').set_default_keymaps()
 
 
 -- lexima config
-cmd([[
+cmd [[
   call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
   call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
   call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
   call lexima#add_rule({ 'char': '%', 'at': '{\%#}', 'input': '%',    'input_after': '%', 'filetype': 'html' })
   call lexima#add_rule({ 'char': '-', 'at': '{%\%#%}', 'input': '-',    'input_after': ' -', 'filetype': 'html' })
-]])
+]]
 
 
 -- lsp config

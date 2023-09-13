@@ -7,12 +7,12 @@ require 'paq' {
   'savq/paq-nvim'; -- paq-nvim manages itself
 
   -- features
+  'goolord/alpha-nvim';               -- startup screen
   'protex/better-digraphs.nvim';      -- character picker
   'jdhao/better-escape.vim';          -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
   'princejoogie/chafa.nvim';          -- functions for viewing images within neovim
   'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';                 -- completion
-  'startup-nvim/startup.nvim';        -- startup screen
   'godlygeek/tabular';                -- align columns of text
   'folke/trouble.nvim';               -- lists of stuff...
 
@@ -24,12 +24,12 @@ require 'paq' {
   'famiu/bufdelete.nvim';     -- delete buffer but don't modify window splits
   'ghillb/cybu.nvim';         -- buffers navigation
   'axkirillov/easypick.nvim'; -- helper for creating custom Telescope pickers
-  'ibhagwan/fzf-lua';         -- fuzzy file finder functions
-  'ggandor/leap.nvim';        -- fancy cursor navigation
-  'gaborvecsei/memento.nvim'; -- recent file navigator
-  'airblade/vim-rooter';      -- keep vim working directory set to project root
+  'ibhagwan/fzf-lua';         -- fuzzy file finder functions -- \\ -- \g -- <C-p> -- <C-s>
+  'ggandor/leap.nvim';        -- fancy cursor navigation -- s -- S
+  'gaborvecsei/memento.nvim'; -- recent file navigator   -- ,b
+  'airblade/vim-rooter';      -- keep vim working directory set to project root (nextreport confuses this...)
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
-  'kyazdani42/nvim-tree.lua'; -- file browser
+  'kyazdani42/nvim-tree.lua'; -- file browser            -- \<Tab>
 
   -- git stuff
   'APZelos/blamer.nvim';       -- show contributor info in virtualtext
@@ -82,7 +82,6 @@ require 'paq' {
   'Iron-E/nvim-cartographer';        -- simpler API for mappings
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
-  'ryanoasis/vim-devicons';          -- icon characters; prereq for: diffview, lualine
   'junegunn/fzf';                    -- fuzzy file finder core
   'neovim/nvim-lspconfig';           -- LSP config
   'MunifTanjim/nui.nvim';            -- UI toolkit; prereq for: package-info
@@ -96,8 +95,12 @@ require 'paq' {
       require('nvim-treesitter.install').update({ with_sync = true })()
     end};
   'nvim-treesitter/nvim-treesitter-refactor';  -- refactor modules
-  'kyazdani42/nvim-web-devicons';    -- icon characters; prereq for: nvim-tree
+  'nvim-tree/nvim-web-devicons';     -- icon characters; prereq for: alpha-nvim, lualine, nvim-tree
 }
+
+
+-- alpha config
+require'alpha'.setup(require'alpha.themes.startify'.config)
 
 
 -- bamboo config
@@ -360,12 +363,6 @@ require('pretty-fold').setup {
 vim.cmd [[
   let g:rooter_patterns = ['.git', '.editorconfig']
 ]]
-
-
--- startup config
-require('startup').setup({
-  theme = 'startify',
-})
 
 
 -- template-string config

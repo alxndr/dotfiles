@@ -38,44 +38,32 @@ require 'paq' {
   'ruifm/gitlinker.nvim';      -- copy link to current line of code
   'lewis6991/gitsigns.nvim';   -- status sigils in the sign column, and next/prev hunk nav functions
 
-  -- eyecandy
-  'WilsonOh/emoji_picker-nvim';      -- emoji UX
-  'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
-
   -- text manipulation
   'nicwest/vim-camelsnek';                        -- camelcase / snake_case conversion functions
   'numToStr/Comment.nvim';                        -- commenting shortcuts
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
   'cohama/lexima.vim';                            -- matched-pair character closing
-  'tpope/vim-surround';                           -- matched-pair character conversion shortcuts
+  'tpope/vim-surround';                           -- mappings for converting matched-pair characters; prereq for: vim-sexp-mappings-for-regular-people
 
-  -- html
-  'windwp/nvim-ts-autotag';  -- auto-close HTML tags (treesitter)
-
-  -- markdown
-  'rhysd/vim-gfm-syntax'; -- syntax highlighting for Git-Flavored Markdown
-
-  -- javascript / nodejs
-  'vuki656/package-info.nvim';   -- version info for contents of `package.json` files
-  'axelvc/template-string.nvim'; -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
-
-  -- elixir
-  'mhanberg/elixir.nvim'; -- install elixirls and more
-
-  -- lisp/scheme/racket
-  'guns/vim-sexp';                              -- paren-navigation fundamentals
-  'tpope/vim-sexp-mappings-for-regular-people'; -- different mappings
-
-  -- query languages
-  'neo4j-contrib/cypher-vim-syntax'; -- cypher (graph databases)
+  -- language-specific features...
+  'mhanberg/elixir.nvim';                       --   elixir: install elixirls and more
+  'windwp/nvim-ts-autotag';                     --     html: auto-close tags (treesitter)
+  'vuki656/package-info.nvim';                  --       js: version info for contents of `package.json` files
+  'axelvc/template-string.nvim';                --       js: autoconvert quotes to backticks if you type ${} in the string (treesitter)
+  'guns/vim-sexp';                              --     lisp: paren-navigation fundamentals
+  'tpope/vim-sexp-mappings-for-regular-people'; --     lisp: tweak mappings
+  'rhysd/vim-gfm-syntax';                       -- markdown: syntax highlighting for Git-Flavored Markdown
+  'neo4j-contrib/cypher-vim-syntax';            --    query: cypher (graph databases)
 
   -- eye candy
-  'ribru17/bamboo.nvim';                  -- colorscheme
-  'norcalli/nvim-colorizer.lua';          -- color eye-candy
-  'sindrets/diffview.nvim';               -- make diffs prettier
-  'voldikss/vim-floaterm';                -- terminal eyecandy
-  'nvim-lualine/lualine.nvim';            -- status line
-  'anuvyklack/pretty-fold.nvim';          -- eye candy for folds
+  'ribru17/bamboo.nvim';             -- colorscheme
+  'norcalli/nvim-colorizer.lua';     -- color eye-candy
+  'sindrets/diffview.nvim';          -- make diffs prettier
+  'WilsonOh/emoji_picker-nvim';      -- emoji UX
+  'voldikss/vim-floaterm';           -- terminal eyecandy
+  'nvim-lualine/lualine.nvim';       -- status line
+  'anuvyklack/pretty-fold.nvim';     -- eye candy for folds
+  'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
 
   -- meta / dependencies
   'm00qek/baleia.nvim';                        -- dependency for chafa
@@ -88,7 +76,6 @@ require 'paq' {
   'jose-elias-alvarez/null-ls.nvim';           -- customizable language server for LSP
   'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
   'tpope/vim-repeat';                          -- prereq for: vim-sexp-mappings-for-regular-people
-  'tpope/vim-surround';                        -- prereq for: vim-sexp-mappings-for-regular-people
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup…
   {'nvim-treesitter/nvim-treesitter',          -- file content parser
     run = function()

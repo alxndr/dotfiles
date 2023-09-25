@@ -289,6 +289,14 @@ null_ls.register(markdownlint)
 
 
 -- lualine config
+local function show_macro_recording()
+  local recording_register = vim.fn.reg_recording()
+  if recording_register == "" then
+    return ""
+  else
+    return "Recording @" .. recording_register
+  end
+end
 require'lualine'.setup{
   options = {
     component_separators = {'…', '…'},
@@ -303,7 +311,7 @@ require'lualine'.setup{
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff'},
-    lualine_c = {'filename'},
+    lualine_c = {'filename', {'macro-recording', fmt=show_macro_recording}},
     lualine_x = {'searchcount', 'diagnostics'},
     lualine_y = {'filetype'},
     lualine_z = {'location', 'progress'}

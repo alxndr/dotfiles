@@ -31,7 +31,6 @@ mapNormal('<Leader>g', '<CMD>lua require "fzf-lua".live_grep_native()<CR>')
 mapNormal('<Leader>j', "<CMD>call VerticalSpaceJumpDown()<CR>")
 mapNormal('<Leader>k', "<CMD>call VerticalSpaceJumpUp()<CR>")
 mapNormal('<Leader>t', '<CMD>FloatermToggle<CR>')
-mapNormal('<Leader>u', '<CMD>lua require"gitsigns".reset_hunk()<CR>')
 mapNormal('<Leader>v', '<CMD>edit $MYVIMRC<CR>') -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
 mapNormal('<Leader>vf', '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>')
 mapNormal('<Leader>vm', '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>')
@@ -70,8 +69,9 @@ mapNormal('-', '<C-x>')
 mapNormal('+', '<C-a>')
 --         gb   = numToStr/Comment.nvim blockwise comment action/toggle
 --         gc   = numToStr/Comment.nvim linewise comment action/toggle
-mapNormal('gj', "<CMD>lua vim.schedule(function() require('gitsigns.actions').next_hunk() end)<CR>")
-mapNormal('gk', "<CMD>lua vim.schedule(function() require('gitsigns.actions').prev_hunk() end)<CR>")
+mapNormal('gj', '<CMD>lua require("gitsigns.actions").next_hunk()<CR>')
+mapNormal('gk', '<CMD>lua require("gitsigns.actions").prev_hunk()<CR>')
+mapNormal('gu', '<CMD>lua require"gitsigns".reset_hunk()<CR>')
       --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
       --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
 mapNormal('H', 'zh')

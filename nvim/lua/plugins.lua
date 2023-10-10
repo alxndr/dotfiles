@@ -13,6 +13,10 @@ require 'paq' {
   'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';                 -- completion
   'godlygeek/tabular';                -- align columns of text
+  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
+    run = function()
+      require('telescope').load_extension('import')
+    end};
   'folke/trouble.nvim';               -- lists of stuff...
 
   -- behavior tweaks
@@ -75,7 +79,7 @@ require 'paq' {
   'jose-elias-alvarez/null-ls.nvim';           -- customizable language server for LSP
   'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
   'tpope/vim-repeat';                          -- prereq for: vim-sexp-mappings-for-regular-people
-  'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup…
+  'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
   {'nvim-treesitter/nvim-treesitter',          -- file content parser
     run = function()
       require('nvim-treesitter.install').update({ with_sync = true })()
@@ -357,6 +361,17 @@ require('pretty-fold').setup {
 vim.cmd [[
   let g:rooter_patterns = ['.git', '.editorconfig']
 ]]
+
+
+-- telescope-import
+require("telescope").setup({
+  extensions = {
+    import = {
+      -- Add imports to the top of the file keeping the cursor in place
+      insert_at_top = true,
+    },
+  },
+})
 
 
 -- template-string config

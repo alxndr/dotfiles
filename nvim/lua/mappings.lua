@@ -95,7 +95,6 @@ mapInsert('<Leader>,', '<Esc>mmA,<Esc>`ma', {desc = 'append comma to line and re
 mapInsert('<Leader>;', '<Esc>mmA;<Esc>`ma', {desc = 'append semicolon to line and return to position'})
 mapInsert('qq', '<Esc>mmgqq`ma', {desc = 'wrap current line and return to position'})
 mapInsert('<C-a>', [[<Esc>A]], {desc = 'append (e.g. to hop over autocompleted characters)'})
-mapInsert('<C-d>', '', {callback = function() require'better-digraphs'.digraphs('i') end, desc = 'better-digraphs helper'})
 mapInsert('<C-e>', '<Esc><C-e>a', {desc = 'preserve `<C-e>` scroll behavior in insert mode'})
 mapInsert('<C-y>', '<Esc><C-y>a', {desc = 'preserve `<C-y>` scroll behavior in insert mode'})
 mapInsert('<S-Down>', '<Esc>mmddp`ma', {desc = 'shift current line down and return to position'})

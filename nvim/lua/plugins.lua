@@ -8,7 +8,6 @@ require 'paq' {
 
   -- features
   'goolord/alpha-nvim';               -- startup screen
-  'protex/better-digraphs.nvim';      -- character picker
   'jdhao/better-escape.vim';          -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
   'princejoogie/chafa.nvim';          -- functions for viewing images within neovim
   'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files

@@ -190,8 +190,6 @@ alias niS="npm install --loglevel warn --save"
       }
 alias nr="npm run --silent"
 alias nt="npm test"
-alias nvm="echo \"You probably want asdf, not nvm...\""
-alias nx="npx"
       report() { $@ && say "done" || say "error" }
 alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -210,7 +208,7 @@ alias webfiles="rg --type web --files"
       webm2mp3() {
         ffmpeg -i "$1" -vn -f mp3 "${1%.webm}.mp3"
       }
-alias y="yarn"
+alias y="yarn" # runs `yarn install` with no args...
 alias z="zola"
 
 back_up_media_unison() {

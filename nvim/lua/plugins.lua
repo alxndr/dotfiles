@@ -8,8 +8,7 @@ require 'paq' {
 
   -- features
   'goolord/alpha-nvim';               -- startup screen
-  'jdhao/better-escape.vim';          -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
-  'princejoogie/chafa.nvim';          -- functions for viewing images within neovim
+  'princejoogie/chafa.nvim';          -- viewing images within neovim
   'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
   'hrsh7th/nvim-cmp';                 -- completion
   'godlygeek/tabular';                -- align columns of text
@@ -20,6 +19,7 @@ require 'paq' {
   'folke/trouble.nvim';               -- lists of stuff...
 
   -- behavior tweaks
+  'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
   'svban/YankAssassin.vim';            -- control cursor behavior while yanking
 

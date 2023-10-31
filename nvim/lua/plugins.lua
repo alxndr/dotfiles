@@ -14,7 +14,7 @@ require 'paq' {
   'hrsh7th/nvim-cmp';                 -- completion
   'godlygeek/tabular';                -- align columns of text
   {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
-    run = function()
+    build = function()
       require('telescope').load_extension('import')
     end};
   'folke/trouble.nvim';               -- lists of stuff...
@@ -81,7 +81,7 @@ require 'paq' {
   'tpope/vim-repeat';                          -- prereq for: vim-sexp-mappings-for-regular-people
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
   {'nvim-treesitter/nvim-treesitter',          -- file content parser
-    run = function()
+    build = function()
       require('nvim-treesitter.install').update({ with_sync = true })()
     end};
   'nvim-treesitter/nvim-treesitter-refactor';  -- refactor modules

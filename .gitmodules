@@ -16,3 +16,6 @@
 [submodule "vim-yardoc"]
 	path = vim-yardoc
 	url = https://github.com/noprompt/vim-yardoc.git
+[submodule "toki-pona-vim-spellcheck"]
+	path = toki-pona-vim-spellcheck
+	url = https://gitlab.com/dev_urandom/toki-pona-vim-spellcheck.git

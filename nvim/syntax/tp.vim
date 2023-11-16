@@ -1,5 +1,5 @@
 " Vim syntax file
-" Langugae:   Toki Pona https://tokipona.org (unofficial)
+" Language:   Toki Pona https://tokipona.org (unofficial)
 " Maintainer: jan Lesate <alxndr+tp.vim@gmail.com>
 " Source:     https://github.com/alxndr/dotfiles
 

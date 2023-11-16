@@ -1,18 +1,19 @@
-" Vim syntax file for Toki Pona https://tp.org (unofficial)
-" by jan Lesate <alxndr+tp.vim@gmail.com>
+" Vim syntax file
+" Langugae:   Toki Pona https://tokipona.org (unofficial)
+" Maintainer: jan Lesate <alxndr+tp.vim@gmail.com>
+" Source:     https://github.com/alxndr/dotfiles
 
-" TODO:
-" hl as error? `[sentence start] mi li ...` and same for `sina`"
-" hl as error? `[non-particle] pi [non-particle] [fragment-end]`"
+"" USAGE:
+"" :set filetype=tp
 
-echo "TP syntax file..."
+"" TODO:
+"" hl as error? `[fragment start] mi li ...` and same for `sina`"
+"" hl as error? `[non-particle] pi [non-particle] [fragment-end]`"
 
-" https://vim.fandom.com/wiki/Creating_your_own_syntax_files#Telling_Vim_how_to_highlight_.2B_final_touches
 let b:current_syntax = "tp"
 
 " syntax keyword tpHeadnouns      jan
 " syntax match   tpHeadnounsMatch '[a-z]\+'
-
 syntax keyword tpInterrogatives    anu seme
 syntax match tpInterrogativesMatch '\<\([a-z]\+\) ala \1\>'
 syntax match tpNamesMatch '\(\<[A-Z][A-Za-z]\+\>\s*\)\+'

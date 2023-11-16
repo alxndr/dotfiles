@@ -33,7 +33,7 @@ highlight default link tpInterrogatives      Special
 highlight default link tpInterrogativesMatch Special
 highlight default link tpNamesMatch          Statement
 highlight default link tpNounParticles       Operator
-highlight default link tpPrenex              String " predecednce above others...
+highlight default link tpPrenex              String
 highlight default link tpPrepositions        PreProc
 highlight default link tpPronouns            Type
 highlight default link tpPunctuation         Comment

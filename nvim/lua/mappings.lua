@@ -40,8 +40,9 @@ mapNormal('<Leader>w', '<CMD>set list!<CR>')
 mapNormal('<Leader>y', '<CMD>only<CR>')
 mapNormal('<Leader>2', '/TODO<CR><CMD>nohl<CR>')
 mapNormal('<Space>', ':') -- note that this means using <CMD> over : in other mappings, or using noremap
-mapNormal('<CR>', 'mmo<Esc>`m')
+mapNormal('<CR>', [[:put=nr2char(10)|'[-1<CR>]])
 mapNormal('<Tab>', '<C-w><C-w>')
+mapNormal('!', '@@') -- \o/
 mapNormal(',b', '<CMD>lua require("memento").toggle()<CR>')
 mapNormal(',c', '<CMD>Easypick conflicts<CR>', {silent = true})
 mapNormal(',d', '<CMD>lua vim.diagnostic.open_float()<CR>')

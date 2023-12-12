@@ -44,15 +44,13 @@ require 'paq' {
   'numToStr/Comment.nvim';                        -- commenting shortcuts
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
   'cohama/lexima.vim';                            -- matched-pair character closing
-  'tpope/vim-surround';                           -- mappings for converting matched-pair characters; prereq for: vim-sexp-mappings-for-regular-people
+  'tpope/vim-surround';                           -- mappings for converting matched-pair characters
 
   -- language-specific features...
   'mhanberg/elixir.nvim';                       --   elixir: install elixirls and more
   'windwp/nvim-ts-autotag';                     --     html: auto-close tags (treesitter)
   'vuki656/package-info.nvim';                  --       js: version info for contents of `package.json` files
   'axelvc/template-string.nvim';                --       js: autoconvert quotes to backticks if you type ${} in the string (treesitter)
-  'guns/vim-sexp';                              --     lisp: paren-navigation fundamentals
-  'tpope/vim-sexp-mappings-for-regular-people'; --     lisp: tweak mappings
   'rhysd/vim-gfm-syntax';                       -- markdown: syntax highlighting for Git-Flavored Markdown
   'neo4j-contrib/cypher-vim-syntax';            --    query: cypher (graph databases)
 
@@ -76,7 +74,6 @@ require 'paq' {
   'MunifTanjim/nui.nvim';                      -- UI toolkit; prereq for: package-info
   'jose-elias-alvarez/null-ls.nvim';           -- customizable language server for LSP
   'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
-  'tpope/vim-repeat';                          -- prereq for: vim-sexp-mappings-for-regular-people
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
   {'nvim-treesitter/nvim-treesitter',          -- file content parser
     build = function()

@@ -1,5 +1,3 @@
-local cmd = vim.cmd  -- execute Vim commands
-
 -- Paq: package manager
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
@@ -113,7 +111,7 @@ vim.g.better_escape_shortcut = { 'jk'; 'kj' }
 
 
 -- blamer config
-cmd [[
+vim.cmd [[
   let g:blamer_prefix = '    '
   let g:blamer_show_in_insert_modes = 0
 ]]
@@ -193,7 +191,7 @@ easypick.setup({
 
 
 -- vim-emoji-ab config
-cmd [[
+vim.cmd [[
   au FileType html,php,markdown,mmd,text,mail,gitcommit runtime macros/emoji-ab.vim
 ]]
 
@@ -203,7 +201,7 @@ require("emoji_picker").setup()
 
 
 -- floaterm config
-cmd 'au VimEnter * highlight FloatermNC guibg=gray'
+vim.cmd 'au VimEnter * highlight FloatermNC guibg=gray'
 
 
 -- gitlinker config
@@ -221,7 +219,7 @@ require('leap').set_default_keymaps()
 
 
 -- lexima config
-cmd [[
+vim.cmd [[
   call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
   call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
   call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })

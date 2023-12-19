@@ -47,12 +47,22 @@ require 'paq' {
   'tpope/vim-surround';                           -- mappings for converting matched-pair characters
 
   -- language-specific features...
-  'mhanberg/elixir.nvim';                       --   elixir: install elixirls and more
-  'windwp/nvim-ts-autotag';                     --     html: auto-close tags (treesitter)
-  'vuki656/package-info.nvim';                  --       js: version info for contents of `package.json` files
-  'axelvc/template-string.nvim';                --       js: autoconvert quotes to backticks if you type ${} in the string (treesitter)
-  'rhysd/vim-gfm-syntax';                       -- markdown: syntax highlighting for Git-Flavored Markdown
-  'neo4j-contrib/cypher-vim-syntax';            --    query: cypher (graph databases)
+  -- Elixir
+  'mhanberg/elixir.nvim';            -- install elixirls and more
+  -- HTML
+  'windwp/nvim-ts-autotag';          -- auto-close tags (treesitter)
+  -- JavaScript
+  'vuki656/package-info.nvim';       -- version info for contents of `package.json` files
+  'axelvc/template-string.nvim';     -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
+  -- Liquid (templating)
+  'tpope/vim-liquid';                -- Jekyll posts (templating language within markdown)
+  -- LISP / Scheme / Racket / etc
+  'julienvincent/nvim-paredit';      -- s-expression editing facilitation
+  -- Markdown
+  'rhysd/vim-gfm-syntax';            -- syntax highlighting for Git-Flavored Markdown
+  -- query languages
+  'neo4j-contrib/cypher-vim-syntax'; -- cypher (Neo4j)
+
 
   -- eye candy
   'ribru17/bamboo.nvim';             -- colorscheme
@@ -432,5 +442,5 @@ require('nvim-treesitter.configs').setup {
 require('trouble').setup {}
 
 
--- -- ts-autotag config
+-- ts-autotag config
 require('nvim-ts-autotag').setup()

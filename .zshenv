@@ -22,7 +22,8 @@ alias c="curl"
 alias e="nvim"
 alias gr="grep"
 alias l="ls -AFlno" # OMZ? is overriding this...
-alias ll="ls -aFl" # OMZ? is overriding this...
+alias la="ls -A"
+alias ll="ls -AFl" # OMZ? is overriding this...
 alias ln="ln -v"
       lsd() {
         if [[ -n "$1" ]]; then
@@ -190,7 +191,10 @@ alias niS="npm install --loglevel warn --save"
       }
 alias nr="npm run --silent"
 alias nt="npm test"
+alias o="ocaml"
       report() { $@ && say "done" || say "error" }
+alias rk="raku"
+alias rt="racket"
 alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias us="bundle exec unicorn -c tmp/unicorn.rb"

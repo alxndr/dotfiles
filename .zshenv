@@ -142,6 +142,7 @@ alias dmenv="eval \"\$(docker-machine env default)\""
 alias a="asdf"
 alias b="brew"
 alias bl="bundle"
+alias bx="bundle exec"
       decode_jwt() {
         if [[ -n "$1" ]]; then
           JWT=$1

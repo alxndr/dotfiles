@@ -2,7 +2,9 @@
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
 require 'paq' {
+
   'savq/paq-nvim'; -- paq-nvim manages itself
+
 
   -- features
   'goolord/alpha-nvim';               -- startup screen
@@ -21,12 +23,12 @@ require 'paq' {
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
   'svban/YankAssassin.vim';            -- control cursor behavior while yanking
 
+
   -- files / buffers / navigation
   'famiu/bufdelete.nvim';     -- delete buffer but don't modify window splits
   'ghillb/cybu.nvim';         -- buffers navigation
   'axkirillov/easypick.nvim'; -- helper for creating custom Telescope pickers
   'ibhagwan/fzf-lua';         -- fuzzy file finder functions -- \\ -- \g -- <C-p> -- <C-s>
-  'ggandor/leap.nvim';        -- fancy cursor navigation -- s -- S
   'gaborvecsei/memento.nvim'; -- recent file navigator   -- ,b
   'airblade/vim-rooter';      -- keep vim working directory set to project root (nextreport confuses this...)
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
@@ -219,10 +221,6 @@ require('gitlinker').setup {
 
 -- gitsigns config
 require('gitsigns').setup {}
-
-
--- leap config
-require('leap').set_default_keymaps()
 
 
 -- lexima config

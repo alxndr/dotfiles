@@ -122,6 +122,8 @@ mapVisual(',l', '', {callback = function() require'gitlinker'.get_buf_range_url(
 mapVisual('L', '<cmd>lua require("syntax-tree-surfer").surf("next", "visual", true)<cr>')
 mapVisual('H', '<cmd>lua require("syntax-tree-surfer").surf("prev", "visual", true)<cr>')
 mapVisual('Y', '"+y', {desc = 'copy selection to system clipboard'})
+mapVisual('<C-c>s', ':Scn<CR>', {desc = 'convert Chinese characters to simplified version'})
+mapVisual('<C-c>t', ':Tcn<CR>', {desc = 'convert Chinese characters to traditional version'})
 mapVisual('<C-s>', '<CMD>lua require"fzf-lua".grep_visual()<CR>', {desc = 'grep for selection; h/t https://robots.thoughtbot.com/faster-grepping-in-vim'})
 mapVisual('<S-Up>', [[<CMD>move '<-2<CR>]], {desc = 'shift current line up'})
 mapVisual('<S-Down>', [[<CMD>move '>+1<CR>]], {desc = 'shift current line down'})

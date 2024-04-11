@@ -19,3 +19,6 @@
 [submodule "toki-pona-vim-spellcheck"]
 	path = toki-pona-vim-spellcheck
 	url = https://gitlab.com/dev_urandom/toki-pona-vim-spellcheck.git
+[submodule "vim-jianfan"]
+	path = nvim/plugin/jianfan
+	url = git@github.com:alxndr/vim-jianfan.git

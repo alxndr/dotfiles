@@ -18,6 +18,11 @@ require 'paq' {
     end};
   'folke/trouble.nvim';               -- lists of stuff...
 
+
+  -- LSP server / linter / formatter / etc
+  'williamboman/mason.nvim'; -- manager
+
+
   -- behavior tweaks
   'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
@@ -330,6 +335,10 @@ require'lualine'.setup{
     lualine_z = {'progress', 'location'}
   },
 }
+
+
+-- mason config
+require('mason').setup()
 
 
 -- package-info config

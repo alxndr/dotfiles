@@ -78,7 +78,6 @@ require 'paq' {
 
   -- meta / dependencies
   'm00qek/baleia.nvim';                        -- dependency for chafa
-  'Iron-E/nvim-cartographer';                  -- simpler API for mappings
   'hrsh7th/cmp-buffer';                        -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';                      -- "LSP source for nvim-cmp"
   'junegunn/fzf';                              -- fuzzy file finder core

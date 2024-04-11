@@ -1,6 +1,9 @@
 setopt DVORAK
 setopt IGNOREEOF
 
+MINUTE=60 # seconds
+HOUR=$((60 * MINUTE))
+DAY=$((24 * HOUR))
 
 echo -n …vi-mode ''
 bindkey -v
@@ -14,9 +17,6 @@ if [[ -x "/opt/homebrew/bin/brew" ]]; then
   if [[ -x "$(which brew)" ]]; then
     echo -n …brew ''
     UPDATEFILE=/tmp/zshrc-brew-update
-    MINUTE=60 # seconds
-    HOUR=$((60 * MINUTE))
-    DAY=$((24 * HOUR))
     if [[
       (! (-e $UPDATEFILE))
       || ($(($(date -r $UPDATEFILE '+%s') + (2 * $DAY))) -lt $(date '+%s'))

@@ -41,7 +41,6 @@ mapNormal('<Leader>2', '/TODO<CR><CMD>nohl<CR>')
 mapNormal('<Space>', ':') -- note that this means using <CMD> over : in other mappings, or using noremap
 mapNormal('<CR>', [[:put=nr2char(10)|'[-1<CR>]])
 mapNormal('<Tab>', '<C-w><C-w>')
-mapNormal('!', '@@') -- \o/
 mapNormal(',b', '<CMD>lua require("memento").toggle()<CR>')
 mapNormal(',c', '<CMD>Easypick conflicts<CR>', {silent = true})
 mapNormal(',d', '<CMD>lua vim.diagnostic.open_float()<CR>')
@@ -64,6 +63,7 @@ mapNormal(',s', '<CMD>silent w<CR>')
 mapNormal(',t', 'za')
 mapNormal(',w', '10<C-w>>')
 mapNormal(',W', '5<C-w>+')
+mapNormal('!', '@@') -- \o/
       --[[ | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
 mapNormal('-', '<C-x>')
 mapNormal('+', '<C-a>')
@@ -90,6 +90,7 @@ mapNormal('<C-w>/', '<C-w>|<C-w>_')
 mapNormal('<S-Down>', 'ddp', {desc = 'shift current line down'})
 mapNormal('<S-Up>', 'ddkP', {desc = 'shift current line up'})
 
+-- insert mode
 mapInsert('<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
 mapInsert('<Leader>,', '<Esc>mmA,<Esc>`ma', {desc = 'append comma to line and return to position'})
 mapInsert('<Leader>;', '<Esc>mmA;<Esc>`ma', {desc = 'append semicolon to line and return to position'})
@@ -101,6 +102,7 @@ mapInsert('<C-y>', '<Esc><C-y>a', {desc = 'preserve `<C-y>` scroll behavior in i
 mapInsert('<S-Down>', '<Esc>mmddp`ma', {desc = 'shift current line down and return to position'})
 mapInsert('<S-Up>', '<Esc>mmddkP`ma', {desc = 'shift current line up and return to position'})
 
+-- term mode
 mapTerminal('<Leader>[', [[<C-\><C-n><CMD>FloatermPrev<CR>]])
 mapTerminal('<Leader>)', [[<C-\><C-n><CMD>FloatermNext<CR>]])
 mapTerminal('<Leader>n', [[<C-\><C-n><CMD>FloatermNew<CR>]])
@@ -110,6 +112,7 @@ mapTerminal('<C-[>', [[<C-\><C-n><CMD>FloatermPrev<CR>]])
 mapTerminal('<C-)>', [[<C-\><C-n><CMD>FloatermNext<CR>]])
 mapTerminal('<C-t>', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
 
+-- visual mode
 mapVisual('<Leader>a', ':Tab /', {desc = '_a_lign'})
 mapVisual('<Space>', ':')
 mapVisual('<Tab>', 'd<CMD>vnew<CR>PGddgg', {desc = 'extract selection from current file & paste into new buffer'})

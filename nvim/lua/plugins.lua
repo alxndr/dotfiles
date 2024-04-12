@@ -193,12 +193,6 @@ easypick.setup({
       previewer = easypick.previewers.file_diff(),
       -- previewer = easypick.previewers.default(),
     },
-    {
-      name = 'deprank',
-      command = 'deprank ./src | grep src | awk \'{print $2}\'',
-      previewer = easypick.previewers.file_diff(),
-      -- previewer = easypick.previewers.default(),
-    },
   }
 })
 

@@ -1,3 +1,6 @@
+local function telescopeBuild()
+  require('telescope').load_extension('import')
+end
 -- Paq: package manager
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
@@ -7,20 +10,14 @@ require 'paq' {
 
 
   -- features
-  'goolord/alpha-nvim';               -- startup screen
-  'princejoogie/chafa.nvim';          -- viewing images within neovim
-  'gpanders/editorconfig.nvim';       -- integrate with `.editorconfig` files
-  'hrsh7th/nvim-cmp';                 -- completion
-  'godlygeek/tabular';                -- align columns of text
-  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
-    build = function()
-      require('telescope').load_extension('import')
-    end};
-  'folke/trouble.nvim';               -- lists of stuff...
-
-
-  -- LSP server / linter / formatter / etc
-  'williamboman/mason.nvim'; -- manager
+  'goolord/alpha-nvim';                 -- startup screen
+  'princejoogie/chafa.nvim';            -- viewing images within neovim
+  'gpanders/editorconfig.nvim';         -- integrate with `.editorconfig` files
+  'godlygeek/tabular';                  -- align columns of text
+  'olacin/telescope-cc.nvim';           -- Conventional Commit integration
+ {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
+    build = telescopeBuild};
+  'folke/trouble.nvim';                 -- lists of stuff...
 
 
   -- behavior tweaks
@@ -39,6 +36,7 @@ require 'paq' {
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
   'kyazdani42/nvim-tree.lua'; -- file browser            -- \<Tab>
 
+
   -- git stuff
   'APZelos/blamer.nvim';       -- show contributor info in virtualtext
   'rhysd/conflict-marker.vim'; -- merge conflict eye candy
@@ -46,12 +44,14 @@ require 'paq' {
   'ruifm/gitlinker.nvim';      -- copy link to current line of code
   'lewis6991/gitsigns.nvim';   -- status sigils in the sign column, and next/prev hunk nav functions
 
+
   -- text manipulation
   'nicwest/vim-camelsnek';                        -- camelcase / snake_case conversion functions
   'numToStr/Comment.nvim';                        -- commenting shortcuts
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
   'cohama/lexima.vim';                            -- matched-pair character closing
   'tpope/vim-surround';                           -- mappings for converting matched-pair characters
+
 
   -- language-specific features...
   -- Elixir
@@ -81,14 +81,19 @@ require 'paq' {
   'anuvyklack/pretty-fold.nvim';     -- eye candy for folds
   'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
 
+
+  -- LSP server / linter / formatter / etc
+  'hrsh7th/nvim-cmp';                -- completion
+  'hrsh7th/cmp-buffer';              -- something for nvim-cmp
+  'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
+  'neovim/nvim-lspconfig';           -- LSP config
+  'jose-elias-alvarez/null-ls.nvim'; -- customizable language server for LSP
+
+
   -- meta / dependencies
   'm00qek/baleia.nvim';                        -- dependency for chafa
-  'hrsh7th/cmp-buffer';                        -- something for nvim-cmp
-  'hrsh7th/cmp-nvim-lsp';                      -- "LSP source for nvim-cmp"
   'junegunn/fzf';                              -- fuzzy file finder core
-  'neovim/nvim-lspconfig';                     -- LSP config
   'MunifTanjim/nui.nvim';                      -- UI toolkit; prereq for: package-info
-  'jose-elias-alvarez/null-ls.nvim';           -- customizable language server for LSP
   'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
   {'nvim-treesitter/nvim-treesitter',          -- file content parser

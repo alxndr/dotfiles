@@ -23,6 +23,11 @@ vim.wo.cursorline = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
+vim.diagnostic.config({
+  virtual_text = false, -- don't show in-line, require user interaction to show
+  underline = true,
+})
+
 
 -- colorscheme tweaks
 vim.api.nvim_create_autocmd(

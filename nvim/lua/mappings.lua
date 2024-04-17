@@ -1,3 +1,5 @@
+-- TODO use which-key and therefore move all mappings to either plugins or options...
+
 vim.g.mapleader = [[\]] -- 💪
 
 -- opts: nowait=false, silent=false, script=false, expr=false, unique=false, noremap, desc, callback, replace_keycodes
@@ -46,34 +48,32 @@ mapNormal(',c', '<CMD>Easypick conflicts<CR>', {silent = true})
 mapNormal(',d', '<CMD>lua vim.diagnostic.open_float()<CR>')
 mapNormal(',f', [[zcj0/{\n<CR><CMD>nohl<CR>zz]])
 mapNormal(',F', '<CMD>set foldlevel=0<CR>zozz')
-mapNormal(',g', '<CMD>silent Git<CR>') -- TODO pick new mapping...
 mapNormal(',gg', '<CMD>silent Git<CR>')
 mapNormal(',ga', ':Git commit --amend')
 mapNormal(',gb', '<CMD>BlamerToggle<CR>')
 mapNormal(',gc', '<CMD>Git commit<CR>')
 mapNormal(',gl', '<CMD>Git lg<CR>', {silent = true})
-mapNormal(',gp', ':silent Git push')
-mapNormal(',gP', ':silent Git push --force')
-mapNormal(',l', '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {silent = true})
+mapNormal(',gp', ':Git push', {silent = true })
+mapNormal(',gP', ':Git push --force')
+mapNormal(',l', '<CMD>lua require"gitlinker".get_buf_range_url("n")<CR>', {silent = true})
 mapNormal(',m', [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]])
 mapNormal(',n', '<CMD>nohl<CR>')
-mapNormal(',r', '<CMD>lua vim.diagnostic.goto_next()<CR>')
-mapNormal(',R', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
 mapNormal(',s', '<CMD>silent w<CR>')
 mapNormal(',t', 'za')
 mapNormal(',w', '10<C-w>>')
 mapNormal(',W', '5<C-w>+')
-mapNormal('!', '@@') -- \o/
-      --[[ | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
+mapNormal('!', '@@')
+--[[      '|' uses expr ==>]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
 mapNormal('-', '<C-x>')
 mapNormal('+', '<C-a>')
 --         gb   = numToStr/Comment.nvim blockwise comment action/toggle
 --         gc   = numToStr/Comment.nvim linewise comment action/toggle
-mapNormal('gj', '<CMD>lua require("gitsigns.actions").next_hunk()<CR>')
-mapNormal('gk', '<CMD>lua require("gitsigns.actions").prev_hunk()<CR>')
+mapNormal('gj', '<CMD>lua require("gitsigns.actions").next_hunk()<CR>', {silent = true})
+mapNormal('gk', '<CMD>lua require("gitsigns.actions").prev_hunk()<CR>', {silent = true})
 mapNormal('gu', '<CMD>lua require"gitsigns".reset_hunk()<CR>')
       --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
       --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
+mapNormal('r', '<CMD>lua vim.diagnostic.goto_next()<CR>')
 mapNormal('H', 'zh')
 mapNormal('L', 'zl')
 mapNormal('Q', '<CMD>Bdelete<CR>')
@@ -84,6 +84,7 @@ mapNormal('<C-k>', '<C-w>k')
 mapNormal('<C-l>', '<C-w>l')
 mapNormal('<C-n>', '<CMD>cn<CR>', {desc = 'next quickfix entry'})
 mapNormal('<C-p>', '<CMD>lua require("fzf-lua").files()<CR>')
+mapNormal('<C-r>', '<CMD>lua vim.diagnostic.goto_prev()<CR>') -- pair with `r` to move through diagnostics
 mapNormal('<C-s>', '<CMD>lua require("fzf-lua").grep_cword()<CR>', {desc = 'grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim'})
 mapNormal('<C-u>',  vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap = true, expr = true, desc = 'jump-up a third of the window-height'} )
 mapNormal('<C-w>/', '<C-w>|<C-w>_')
@@ -119,8 +120,8 @@ mapVisual('<Tab>', 'd<CMD>vnew<CR>PGddgg', {desc = 'extract selection from curre
 mapVisual(',l', '', {callback = function() require'gitlinker'.get_buf_range_url('v') end})
 --         gb  = numToStr/Comment blockwise comment toggle
 --         gc  = numToStr/Comment linewise comment toggle
-mapVisual('L', '<cmd>lua require("syntax-tree-surfer").surf("next", "visual", true)<cr>')
-mapVisual('H', '<cmd>lua require("syntax-tree-surfer").surf("prev", "visual", true)<cr>')
+mapVisual('L', '<CMD>lua require("syntax-tree-surfer").surf("next", "visual", true)<CR>')
+mapVisual('H', '<CMD>lua require("syntax-tree-surfer").surf("prev", "visual", true)<CR>')
 mapVisual('Y', '"+y', {desc = 'copy selection to system clipboard'})
 mapVisual('<C-c>s', ':Scn<CR>', {desc = 'convert Chinese characters to simplified version'})
 mapVisual('<C-c>t', ':Tcn<CR>', {desc = 'convert Chinese characters to traditional version'})

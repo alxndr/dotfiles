@@ -17,8 +17,6 @@ require 'paq' {
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
     build = telescopeBuild};
-  'folke/trouble.nvim';                 -- lists of stuff...
-
 
   -- behavior tweaks
   'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
@@ -441,10 +439,6 @@ require('nvim-treesitter.configs').setup {
     max_file_lines = 9999, -- Do not enable for files with more than n lines, int
   }
 }
-
-
--- trouble config
-require('trouble').setup {}
 
 
 -- ts-autotag config

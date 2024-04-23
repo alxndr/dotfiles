@@ -76,6 +76,7 @@ require 'paq' {
   'WilsonOh/emoji_picker-nvim';      -- emoji UX
   'voldikss/vim-floaterm';           -- terminal eyecandy
   'nvim-lualine/lualine.nvim';       -- status line
+  'arkav/lualine-lsp-progress';      -- show LSP server status in lualine
   'anuvyklack/pretty-fold.nvim';     -- eye candy for folds
   'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
 
@@ -301,15 +302,15 @@ local function show_macro_recording()
   if recording_register == "" then
     return ""
   else
-    return "Recording @" .. recording_register
+    return " 🔴  Recording @" .. recording_register
   end
 end
 require'lualine'.setup{
   options = {
     component_separators = {'…', '…'},
-    globalstatus = true, -- global status line
+    globalstatus = true, -- one-line "global status line"
     icons_enabled = true,
-    section_separators = '',
+    -- section_separators = '',
     theme = 'bamboo',
   },
   extensions = {
@@ -317,10 +318,10 @@ require'lualine'.setup{
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {'filename', {'macro-recording', fmt=show_macro_recording}},
-    lualine_x = {'searchcount', 'diagnostics'},
-    lualine_y = {'filetype'},
+    lualine_b = {'filename', {'macro-recording', fmt=show_macro_recording}, 'lsp_progress'},
+    lualine_c = {'searchcount'},
+    lualine_x = {'diagnostics'},
+    lualine_y = {'branch', 'filetype'},
     lualine_z = {'location', 'progress'}
   },
   inactive_sections = {
@@ -414,11 +415,10 @@ require('nvim-treesitter.configs').setup {
     'css',
     'dockerfile',
     'elixir',
-    -- 'eslint',
     'graphql',
     'html',
     'javascript',
-    -- 'json',
+    'json',
     'lua',
     'markdown',
     'ruby',
@@ -429,14 +429,14 @@ require('nvim-treesitter.configs').setup {
   },
   highlight = {
     enable = true,
-    disable = function(lang, bufnr) -- Disable in large buffers
+    disable = function(_lang, bufnr) -- Disable in large buffers
       return vim.api.nvim_buf_line_count(bufnr) > 999999
     end,
   },
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 9999, -- Do not enable for files with more than n lines, int
+    max_file_lines = 999, -- Do not enable for files with more than n lines, int
   }
 }
 

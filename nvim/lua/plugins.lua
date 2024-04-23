@@ -86,6 +86,7 @@ require 'paq' {
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
   'neovim/nvim-lspconfig';           -- LSP config
+  'williamboman/mason.nvim';         -- manager
   'jose-elias-alvarez/null-ls.nvim'; -- customizable language server for LSP
 
 

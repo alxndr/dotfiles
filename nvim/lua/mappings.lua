@@ -84,7 +84,6 @@ mapNormal('<C-k>', '<C-w>k')
 mapNormal('<C-l>', '<C-w>l')
 mapNormal('<C-n>', '<CMD>cn<CR>', {desc = 'next quickfix entry'})
 mapNormal('<C-p>', '<CMD>lua require("fzf-lua").files()<CR>')
-mapNormal('<C-r>', '<CMD>lua vim.diagnostic.goto_prev()<CR>') -- pair with `r` to move through diagnostics
 mapNormal('<C-s>', '<CMD>lua require("fzf-lua").grep_cword()<CR>', {desc = 'grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim'})
 mapNormal('<C-u>',  vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap = true, expr = true, desc = 'jump-up a third of the window-height'} )
 mapNormal('<C-w>/', '<C-w>|<C-w>_')

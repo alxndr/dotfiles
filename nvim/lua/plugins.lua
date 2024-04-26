@@ -228,11 +228,13 @@ require('gitsigns').setup {}
 
 -- lexima config
 vim.cmd [[
-  call lexima#add_rule({ 'char': '=', 'at': ')\%#', 'input': ' => ', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '{', 'at': ')\%#', 'input': ' => {', 'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '%', 'at': '{\%#}', 'input': '%',    'input_after': '%', 'filetype': 'html' })
-  call lexima#add_rule({ 'char': '-', 'at': '{%\%#%}', 'input': '-',    'input_after': ' -', 'filetype': 'html' })
+  " javascript
+  call lexima#add_rule({ 'char': '=', 'at': ')\%#'   , 'input': ' => ',                                            'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '{', 'at': ')\%#'   , 'input': ' => {',                       'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#'  , 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
+  " lisps
+  call lexima#add_rule({ 'char': "'", 'filetype': ['lisp', 'scheme', 'racket']})
+  call lexima#add_rule({ 'char': '`', 'filetype': ['lisp', 'scheme', 'racket']})
 ]]
 
 
@@ -243,7 +245,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabiliti
 lspc.bashls.setup{}
 lspc.cssls.setup{}
 lspc.cucumber_language_server.setup{}
-lspc.eslint.setup{}
+lspc.eslint.setup{} -- ni -g vscode-langservers-extracted
 lspc.graphql.setup{}
 lspc.html.setup{}
 lspc.jsonls.setup{}

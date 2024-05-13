@@ -1,5 +1,5 @@
-vim.opt.cursorcolumn = false
 vim.opt.cmdheight = 0 -- neovim 0.8.x
+vim.opt.cursorcolumn = false
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
 vim.opt.fillchars = 'fold: '
@@ -21,8 +21,8 @@ vim.opt.updatetime = 333
 vim.opt.wrap = false
 
 vim.wo.cursorline = false
-vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = 'expr'
 
 vim.diagnostic.config({
   virtual_text = false, -- don't show in-line, require user interaction to show

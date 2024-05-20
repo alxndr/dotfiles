@@ -138,6 +138,9 @@ vim.cmd [[
   let g:blamer_prefix = '    '
   let g:blamer_show_in_insert_modes = 0
 ]]
+mappings.register({
+  b = { '<CMD>BlamerToggle<CR>', },
+}, {prefix=',g'})
 
 
 -- chafa
@@ -201,10 +204,10 @@ easypick.setup({
       name = 'conflicts',
       command = 'git conflicting',
       previewer = easypick.previewers.file_diff(),
-      -- previewer = easypick.previewers.default(),
     },
   }
 })
+mappings.register{[',c'] = {'<CMD>Easypick conflicts<CR>', 'git merge conflict resolver UX'}}
 
 
 -- vim-emoji-ab config
@@ -222,6 +225,20 @@ vim.cmd 'au VimEnter * highlight FloatermNC guibg=gray'
 mappings.register({
   t = { '<CMD>FloatermToggle<CR>', 'open/close floating terminal window'},
 }, { prefix = '<Leader>' })
+
+
+-- fugitive (Git) config
+mappings.register({
+  g = {
+    name = 'git',
+    a = { ':Git commit --amend', 'amend git commit' },
+    c = { '<CMD>Git commit<CR>', 'git commit' },
+    g = { '<CMD>silent Git<CR>', 'show status window' },
+    l = { '<CMD>Git lg<CR>', 'show git log' },
+    p = { ':Git push', 'git push' },
+    P = { ':Git push --force', 'git force push' },
+  },
+}, {prefix=','})
 
 
 -- fzf-lua config
@@ -242,6 +259,12 @@ mappings.register({
 require('gitlinker').setup {
   mappings = nil,
 }
+mappings.register({
+  l = { function () require'gitlinker'.get_buf_range_url('n') end, 'github permalink to current line' },
+}, {prefix=','})
+mappings.register({
+  l = { function () require'gitlinker'.get_buf_range_url('v') end, 'github permalink to selection' },
+}, {prefix=',', mode='v'})
 
 
 -- gitsigns config
@@ -367,6 +390,10 @@ require'lualine'.setup{
 
 -- mason config
 require('mason').setup()
+
+
+-- memento config
+mappings.register{[',b'] = {function() require("memento").toggle() end, 'toggle recent buffers'}}
 
 
 -- package-info config

@@ -20,3 +20,15 @@ mappings.register({
   y = { '<CMD>only<CR>', 'clear all other splits' },
   ['2'] = { '/TODO<CR><CMD>nohl<CR>', 'jump to next TODO' },
 }, {prefix = '<Leader>'})
+
+mappings.register({
+  d = { function() vim.diagnostic.open_float() end, 'open diagnostics' },
+  f = { [[zcj0/{\n<CR><CMD>nohl<CR>zz]], 'fold braces and jump to next' },
+  m = { [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]], 'jump to next git merge conflict marker' },
+  n = { '<CMD>nohl<CR>', 'no highlight search text' },
+  s = { '<CMD>w<CR>', 'save current file' },
+  S = { '<CMD>wa<CR>', 'save all files' },
+  t = { 'za', 'toggle fold' },
+  w = { '10<C-w>>', 'widen split' },
+  W = {  '5<C-w>+', 'tallify split' },
+}, {prefix=','})

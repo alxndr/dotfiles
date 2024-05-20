@@ -430,6 +430,9 @@ require'nvim-tree'.setup {
     update_cwd  = false,
   },
 }
+mappings.register({
+  ['<Tab>'] = { '<CMD>NvimTreeToggle<CR>', 'toggle NvimTree' },
+}, { prefix = '<Leader>' })
 
 
 -- treesitter config

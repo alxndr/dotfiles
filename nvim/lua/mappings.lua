@@ -22,7 +22,6 @@ end
 -- custom order: Leader, nonprinting chars, punctuation, alnum, modifiers (alphabetic where possible)
 
 -- normal mode
-mapNormal('<Leader><Tab>', '<CMD>NvimTreeToggle<CR>')
 mapNormal('<Leader>,', 'mmA,<Esc>`mj', {desc = 'append comma to line and move down'})
 mapNormal('<Leader>;', 'mmA;<Esc>`mj', {desc = 'append semicolon to line and move down'})
 mapNormal('<Leader>j', "<CMD>call VerticalSpaceJumpDown()<CR>")

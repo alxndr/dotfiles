@@ -27,7 +27,6 @@ mappings.register({
   m = { [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]], 'jump to next git merge conflict marker' },
   n = { '<CMD>nohl<CR>', 'no highlight search text' },
   s = { '<CMD>w<CR>', 'save current file' },
-  S = { '<CMD>wa<CR>', 'save all files' },
   t = { 'za', 'toggle fold' },
   w = { '10<C-w>>', 'widen split' },
   W = {  '5<C-w>+', 'tallify split' },

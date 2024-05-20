@@ -219,6 +219,9 @@ require("emoji_picker").setup()
 
 -- floaterm config
 vim.cmd 'au VimEnter * highlight FloatermNC guibg=gray'
+mappings.register({
+  t = { '<CMD>FloatermToggle<CR>', 'open/close floating terminal window'},
+}, { prefix = '<Leader>' })
 
 
 -- fzf-lua config

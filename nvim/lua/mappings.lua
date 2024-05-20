@@ -22,16 +22,6 @@ end
 -- custom order: Leader, nonprinting chars, punctuation, alnum, modifiers (alphabetic where possible)
 
 -- normal mode
-mapNormal('<Leader>,', 'mmA,<Esc>`mj', {desc = 'append comma to line and move down'})
-mapNormal('<Leader>;', 'mmA;<Esc>`mj', {desc = 'append semicolon to line and move down'})
-mapNormal('<Leader>j', "<CMD>call VerticalSpaceJumpDown()<CR>")
-mapNormal('<Leader>k', "<CMD>call VerticalSpaceJumpUp()<CR>")
-mapNormal('<Leader>t', '<CMD>FloatermToggle<CR>')
-mapNormal('<Leader>v', '<CMD>edit $MYVIMRC<CR>') -- h/t roryokane https://lobste.rs/s/6qp0vo#c_fu9psh
-mapNormal('<Leader>vf', '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>')
-mapNormal('<Leader>vm', '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>')
-mapNormal('<Leader>vo', '<CMD>edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>')
-mapNormal('<Leader>vp', '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>')
 mapNormal('<Leader>w', '<CMD>set list!<CR>')
 mapNormal('<Leader>y', '<CMD>only<CR>')
 mapNormal('<Leader>2', '/TODO<CR><CMD>nohl<CR>')

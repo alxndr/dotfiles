@@ -2,3 +2,17 @@ require 'options'
 require 'plugins'
 require 'functions'
 require 'mappings'
+
+local mappings = require'which-key'
+mappings.register({
+  [','] = { 'mmA,<Esc>`mj', 'append comma to line and move down'},
+  [';'] = { 'mmA;<Esc>`mj', 'append semicolon to line and move down'},
+  v = { -- h/t roryokane for this idea https://lobste.rs/s/6qp0vo#c_fu9psh
+    name = 'vim',
+    f = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>', 'edit vim functions file' },
+    m = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>', 'edit vim mappings file' },
+    o = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>', 'edit vim options file' },
+    p = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>', 'edit vim plugins file' },
+    v = { '<CMD>edit $MYVIMRC<CR>', 'edit vim config file' },
+  },
+}, {prefix = '<Leader>'})

@@ -1,6 +1,4 @@
--- TODO use which-key and therefore move all mappings to either plugins or options...
-
-vim.g.mapleader = [[\]] -- 💪
+vim.g.mapleader = [[\]]
 
 -- opts: nowait=false, silent=false, script=false, expr=false, unique=false, noremap, desc, callback, replace_keycodes
 local function mapInsert (sequence, mapping, opts)
@@ -24,11 +22,9 @@ end
 -- custom order: Leader, nonprinting chars, punctuation, alnum, modifiers (alphabetic where possible)
 
 -- normal mode
-mapNormal('<Leader><Leader>', '<CMD>lua require"fzf-lua".buffers()<CR>')
 mapNormal('<Leader><Tab>', '<CMD>NvimTreeToggle<CR>')
 mapNormal('<Leader>,', 'mmA,<Esc>`mj', {desc = 'append comma to line and move down'})
 mapNormal('<Leader>;', 'mmA;<Esc>`mj', {desc = 'append semicolon to line and move down'})
-mapNormal('<Leader>g', '<CMD>lua require "fzf-lua".live_grep_native()<CR>')
 mapNormal('<Leader>j', "<CMD>call VerticalSpaceJumpDown()<CR>")
 mapNormal('<Leader>k', "<CMD>call VerticalSpaceJumpUp()<CR>")
 mapNormal('<Leader>t', '<CMD>FloatermToggle<CR>')
@@ -68,9 +64,6 @@ mapNormal('-', '<C-x>')
 mapNormal('+', '<C-a>')
 --         gb   = numToStr/Comment.nvim blockwise comment action/toggle
 --         gc   = numToStr/Comment.nvim linewise comment action/toggle
-mapNormal('gj', '<CMD>lua require("gitsigns.actions").next_hunk()<CR>', {silent = true})
-mapNormal('gk', '<CMD>lua require("gitsigns.actions").prev_hunk()<CR>', {silent = true})
-mapNormal('gu', '<CMD>lua require"gitsigns".reset_hunk()<CR>')
       --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
       --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
 mapNormal('r', '<CMD>lua vim.diagnostic.goto_next()<CR>')
@@ -83,8 +76,6 @@ mapNormal('<C-j>', '<C-w>j')
 mapNormal('<C-k>', '<C-w>k')
 mapNormal('<C-l>', '<C-w>l')
 mapNormal('<C-n>', '<CMD>cn<CR>', {desc = 'next quickfix entry'})
-mapNormal('<C-p>', '<CMD>lua require("fzf-lua").files()<CR>')
-mapNormal('<C-s>', '<CMD>lua require("fzf-lua").grep_cword()<CR>', {desc = 'grep for word under cursor; h/t https://robots.thoughtbot.com/faster-grepping-in-vim'})
 mapNormal('<C-u>',  vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap = true, expr = true, desc = 'jump-up a third of the window-height'} )
 mapNormal('<C-w>/', '<C-w>|<C-w>_')
 mapNormal('<S-Down>', 'ddp', {desc = 'shift current line down'})
@@ -124,6 +115,5 @@ mapVisual('H', '<CMD>lua require("syntax-tree-surfer").surf("prev", "visual", tr
 mapVisual('Y', '"+y', {desc = 'copy selection to system clipboard'})
 mapVisual('<C-c>s', ':Scn<CR>', {desc = 'convert Chinese characters to simplified version'})
 mapVisual('<C-c>t', ':Tcn<CR>', {desc = 'convert Chinese characters to traditional version'})
-mapVisual('<C-s>', '<CMD>lua require"fzf-lua".grep_visual()<CR>', {desc = 'grep for selection; h/t https://robots.thoughtbot.com/faster-grepping-in-vim'})
 mapVisual('<S-Up>', [[<CMD>move '<-2<CR>]], {desc = 'shift current line up'})
 mapVisual('<S-Down>', [[<CMD>move '>+1<CR>]], {desc = 'shift current line down'})

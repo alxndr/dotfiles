@@ -17,6 +17,7 @@ require 'paq' {
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
     build = telescopeBuild};
+  'folke/which-key.nvim';               -- manage keyboard shortcuts...
 
   -- behavior tweaks
   'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
@@ -103,6 +104,10 @@ require 'paq' {
   'nvim-treesitter/nvim-treesitter-refactor';  -- refactor modules
   'nvim-tree/nvim-web-devicons';               -- icon characters; prereq for: alpha-nvim, lualine, nvim-tree
 }
+
+
+-- requring which-key here will allow registration of mappings alongside each plugin's config…
+local mappings = require("which-key")
 
 
 -- alpha config
@@ -216,6 +221,20 @@ require("emoji_picker").setup()
 vim.cmd 'au VimEnter * highlight FloatermNC guibg=gray'
 
 
+-- fzf-lua config
+mappings.register({
+  ['\\'] = { function () require"fzf-lua".buffers() end, 'fuzzy-search all open buffers' },
+  g      = { function () require"fzf-lua".live_grep_native() end, 'fuzzy-search all file contents in project' },
+}, { prefix = '<Leader>' })
+mappings.register({
+  ['<C-p>'] = { function () require"fzf-lua".files() end, 'fuzzy-search all filenames in project' },
+  ['<C-s>'] = { function () require"fzf-lua".grep_cword() end, 'fuzzy-grep within buffer for word under cursor' }, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+})
+mappings.register({
+  ['<C-s>'] = { function () require"fzf-lua".grep_visual() end, 'fuzzy-grep within buffer for selection' } -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+}, { mode = 'v' })
+
+
 -- gitlinker config
 require('gitlinker').setup {
   mappings = nil,
@@ -224,6 +243,11 @@ require('gitlinker').setup {
 
 -- gitsigns config
 require('gitsigns').setup {}
+mappings.register({
+  j = { function () require"gitsigns.actions".next_hunk() end, 'jump to modified hunk below cursor position' },
+  k = { function () require"gitsigns.actions".prev_hunk() end, 'jump to modified hunk above cursor position' },
+  u = { function () require"gitsigns".reset_hunk() end, 'undo hunk modification at cursor position' },
+}, { prefix = 'g' })
 
 
 -- lexima config

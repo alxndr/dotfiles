@@ -4,6 +4,7 @@ require 'functions'
 require 'mappings'
 
 local mappings = require'which-key'
+
 mappings.register({
   [','] = { 'mmA,<Esc>`mj', 'append comma to line and move down'},
   [';'] = { 'mmA;<Esc>`mj', 'append semicolon to line and move down'},
@@ -15,4 +16,7 @@ mappings.register({
     p = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>', 'edit vim plugins file' },
     v = { '<CMD>edit $MYVIMRC<CR>', 'edit vim config file' },
   },
+  w = { '<CMD>set list!<CR>', 'toggle non-printing chars' },
+  y = { '<CMD>only<CR>', 'clear all other splits' },
+  ['2'] = { '/TODO<CR><CMD>nohl<CR>', 'jump to next TODO' },
 }, {prefix = '<Leader>'})

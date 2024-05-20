@@ -22,9 +22,6 @@ end
 -- custom order: Leader, nonprinting chars, punctuation, alnum, modifiers (alphabetic where possible)
 
 -- normal mode
-mapNormal('<Leader>w', '<CMD>set list!<CR>')
-mapNormal('<Leader>y', '<CMD>only<CR>')
-mapNormal('<Leader>2', '/TODO<CR><CMD>nohl<CR>')
 mapNormal('<Space>', ':') -- note that this means using <CMD> over : in other mappings, or using noremap
 mapNormal('<CR>', [[:put=nr2char(10)|'[-1<CR>]])
 mapNormal('<Tab>', '<C-w><C-w>')

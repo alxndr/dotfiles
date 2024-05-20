@@ -13,7 +13,7 @@ mappings.register{
   ['<TAB>'] = { '<C-w><C-w>', 'move to next split window' },
   H = { 'zh', 'shift window to the left' },
   L = { 'zl', 'shift window to the right' },
-  r = { function() vim.diagnostic.goto_next() end, 'move to next error / diagnostic issue' },
+  r = { vim.diagnostic.goto_next, 'move to next error / diagnostic issue' },
   Q = { '<CMD>Bdelete<CR>', 'close buffer' },
   ['-'] = { '<C-x>', 'decrement numerical value under cursor' },
   ['+'] = { '<C-a>', 'increment numerical value under cursor' },
@@ -37,7 +37,7 @@ mappings.register({
 }, {prefix = '<Leader>'})
 
 mappings.register({
-  d = { function() vim.diagnostic.open_float() end, 'open diagnostics' },
+  d = { vim.diagnostic.open_float, 'open diagnostics' },
   f = { [[zcj0/{\n<CR><CMD>nohl<CR>zz]], 'fold braces and jump to next' },
   m = { [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]], 'jump to next git merge conflict marker' },
   n = { '<CMD>nohl<CR>', 'no highlight search text' },

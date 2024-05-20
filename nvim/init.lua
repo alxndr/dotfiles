@@ -6,6 +6,21 @@ require 'mappings'
 local mappings = require'which-key'
 
 mappings.register({
+  [' '] = { ':', 'start a vim command' },
+}, {silent=false})
+mappings.register{
+  ['<CR>'] = { [[:put=nr2char(10)|'[-1<CR>]], 'insert newline below current line' },
+  ['<TAB>'] = { '<C-w><C-w>', 'move to next split window' },
+  H = { 'zh', 'shift window to the left' },
+  L = { 'zl', 'shift window to the right' },
+  r = { function() vim.diagnostic.goto_next() end, 'move to next error / diagnostic issue' },
+  Q = { '<CMD>Bdelete<CR>', 'close buffer' },
+  ['-'] = { '<C-x>', 'decrement numerical value under cursor' },
+  ['+'] = { '<C-a>', 'increment numerical value under cursor' },
+  ['!'] = { '@@', 'repeat last-executed macro' },
+}
+
+mappings.register({
   [','] = { 'mmA,<Esc>`mj', 'append comma to line and move down'},
   [';'] = { 'mmA;<Esc>`mj', 'append semicolon to line and move down'},
   v = { -- h/t roryokane for this idea https://lobste.rs/s/6qp0vo#c_fu9psh

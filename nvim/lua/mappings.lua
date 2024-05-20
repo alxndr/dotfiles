@@ -18,25 +18,9 @@ local function mapVisual (sequence, mapping, opts)
   vim.api.nvim_set_keymap('v', sequence, mapping, opts)
 end
 
-
--- custom order: Leader, nonprinting chars, punctuation, alnum, modifiers (alphabetic where possible)
-
--- normal mode
-mapNormal('<Space>', ':') -- note that this means using <CMD> over : in other mappings, or using noremap
-mapNormal('<CR>', [[:put=nr2char(10)|'[-1<CR>]])
-mapNormal('<Tab>', '<C-w><C-w>')
-mapNormal('!', '@@')
---[[      '|' uses expr ==>]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
-mapNormal('-', '<C-x>')
-mapNormal('+', '<C-a>')
---         gb   = numToStr/Comment.nvim blockwise comment action/toggle
---         gc   = numToStr/Comment.nvim linewise comment action/toggle
+--[[       | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
       --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
       --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
-mapNormal('r', '<CMD>lua vim.diagnostic.goto_next()<CR>')
-mapNormal('H', 'zh')
-mapNormal('L', 'zl')
-mapNormal('Q', '<CMD>Bdelete<CR>')
 mapNormal('<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap = true, expr = true, desc = 'jump-down a third of the window-height'})
 mapNormal('<C-h>', '<C-w>h')
 mapNormal('<C-j>', '<C-w>j')
@@ -74,8 +58,6 @@ mapTerminal('<C-t>', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
 mapVisual('<Leader>a', ':Tab /', {desc = '_a_lign'})
 mapVisual('<Space>', ':')
 mapVisual('<Tab>', 'd<CMD>vnew<CR>PGddgg', {desc = 'extract selection from current file & paste into new buffer'})
---         gb  = numToStr/Comment blockwise comment toggle
---         gc  = numToStr/Comment linewise comment toggle
 mapVisual('L', '<CMD>lua require("syntax-tree-surfer").surf("next", "visual", true)<CR>')
 mapVisual('H', '<CMD>lua require("syntax-tree-surfer").surf("prev", "visual", true)<CR>')
 mapVisual('Y', '"+y', {desc = 'copy selection to system clipboard'})

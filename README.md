@@ -105,6 +105,11 @@ Might then complain about "Node JS not found: `node` is not executable!" if you 
 ## OS/version-specific notes
 
 
+### macOS 14 (Sonoma)
+
+Oooh shiny... upgraded the 2021 MBP and it kept the settings...
+
+
 ### macOS 13 (Ventura)
 
 2021 MBP

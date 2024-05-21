@@ -5,6 +5,10 @@ require 'mappings'
 
 local mappings = require'which-key'
 
+----------------
+-- normal mode
+
+-- unprefixed...
 mappings.register({
   [' '] = { ':', 'start a vim command' },
 }, {silent=false})
@@ -20,6 +24,7 @@ mappings.register{
   ['!'] = { '@@', 'repeat last-executed macro' },
 }
 
+-- Leader prefix...
 mappings.register({
   [','] = { 'mmA,<Esc>`mj', 'append comma to line and move down'},
   [';'] = { 'mmA;<Esc>`mj', 'append semicolon to line and move down'},

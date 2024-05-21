@@ -2,8 +2,8 @@ vim.g.mapleader = [[\]]
 
 vim.cmd [[
   noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>'
-  noremap <expr>  j v:count ?  'j' : 'g<Down>'
-  noremap <expr>  k v:count ?  'k' : 'g<Up>'
+  noremap <expr>  j v:count ?  'j' : 'g<DOWN>'
+  noremap <expr>  k v:count ?  'k' : 'g<UP>'
 ]]
 vim.api.nvim_set_keymap('n', '<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap=true, expr=true, desc='jump-down a third of the window-height'})
 vim.api.nvim_set_keymap('n', '<C-u>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap=true, expr=true, desc='jump-up a third of the window-height'})
@@ -35,8 +35,8 @@ mappings.register{
   ['<C-n>'] = { '<CMD>cn<CR>', 'next quickfix entry' },
   ['<C-r>'] = { vim.diagnostic.goto_next, 'move to next error / diagnostic issue (use `U` for redo)' },
   ['<C-w>/'] = { '<C-w>|<C-w>_', 'maximize current split window' },
-  ['<S-Down>'] = { 'ddp', 'shift current line down'},
-  ['<S-Up>'] = { 'ddkP', 'shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
+  ['<S-DOWN>'] = { 'ddp', 'shift current line down'},
+  ['<S-UP>'] = { 'ddkP', 'shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
 }
 -- mappings.register({
 --   -- ['|'] = { function() vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline end, 'toggle cursorline/cursorcolumn visibility' },
@@ -45,8 +45,8 @@ mappings.register{
 
 -- Leader prefix...
 mappings.register({
-  [','] = { 'mmA,<Esc>`mj', 'append comma to line and move down'},
-  [';'] = { 'mmA;<Esc>`mj', 'append semicolon to line and move down'},
+  [','] = { 'mmA,<ESC>`mj', 'append comma to line and move down'},
+  [';'] = { 'mmA;<ESC>`mj', 'append semicolon to line and move down'},
   v = { -- h/t roryokane for this idea https://lobste.rs/s/6qp0vo#c_fu9psh
     name = 'vim',
     f = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>', 'edit vim functions file' },
@@ -58,7 +58,7 @@ mappings.register({
   w = { '<CMD>set list!<CR>', 'toggle non-printing chars' },
   y = { '<CMD>only<CR>', 'clear all other splits' },
   ['2'] = { '/TODO<CR><CMD>nohl<CR>', 'jump to next TODO' },
-}, {prefix = '<Leader>'})
+}, {prefix = '<LEADER>'})
 
 -- Comma prefix...
 mappings.register({
@@ -78,15 +78,15 @@ mappings.register({
 
 mappings.register({
   ['qq']        = { function() print('use <C-r> now...') end, 'reminder to use `<C-r>` now' },
-  ['<LEADER>,'] = { '<Esc>mmA,<Esc>`ma', 'append COMMA to line' },
-  ['<LEADER>;'] = { '<Esc>mmA;<Esc>`ma', 'append SEMICOLON to line' },
-  ['<C-a>']     = { '<Esc>A', 'move cursor to end of line (i.e. Append)' },
-  ['<C-e>']     = { '<Esc><C-e>a', 'shift window up (i.e. normal mode `<C-e>`)' },
+  ['<LEADER>,'] = { '<ESC>mmA,<ESC>`ma', 'append COMMA to line' },
+  ['<LEADER>;'] = { '<ESC>mmA;<ESC>`ma', 'append SEMICOLON to line' },
+  ['<C-a>']     = { '<ESC>A', 'move cursor to end of line (i.e. Append)' },
+  ['<C-e>']     = { '<ESC><C-e>a', 'shift window up (i.e. normal mode `<C-e>`)' },
   ['<C-l>']     = { 'λ', 'shorthand to insert a Lambda [^k:l*]' },
-  ['<C-r>']     = { '<Esc>gqqa', 'Reformat current line' },
-  ['<C-y>']     = { '<Esc><C-y>a', 'shift window up (i.e. normal mode `<C-y>`)' },
-  ['<S-Down>']  = { '<Esc>mmddp`ma', 'shift current line down' },
-  ['<S-Up>']    = { '<Esc>mmddkP`ma', 'shift current line up' },
+  ['<C-r>']     = { '<ESC>gqqa', 'Reformat current line' },
+  ['<C-y>']     = { '<ESC><C-y>a', 'shift window up (i.e. normal mode `<C-y>`)' },
+  ['<S-Down>']  = { '<ESC>mmddp`ma', 'shift current line down' },
+  ['<S-Up>']    = { '<ESC>mmddkP`ma', 'shift current line up' },
 }, {mode='i'})
 
 

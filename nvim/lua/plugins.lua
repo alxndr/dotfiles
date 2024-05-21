@@ -1,6 +1,3 @@
-local function telescopeBuild()
-  require('telescope').load_extension('import')
-end
 -- Paq: package manager
 -- installation instructions:
 -- https://github.com/savq/paq-nvim/blob/cdde12dfbe/README.md#installation
@@ -16,7 +13,7 @@ require 'paq' {
   'godlygeek/tabular';                  -- align columns of text
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
-    build = telescopeBuild};
+    build = function() require('telescope').load_extension('import') end};
   'folke/which-key.nvim';               -- manage keyboard shortcuts...
 
   -- behavior tweaks
@@ -107,7 +104,7 @@ require 'paq' {
 
 
 -- requring which-key here will allow registration of mappings alongside each plugin's config…
-local mappings = require("which-key")
+local mappings = require'which-key'
 
 
 -- alpha config

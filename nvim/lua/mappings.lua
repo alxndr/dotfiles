@@ -27,8 +27,8 @@ mappings.register{
   ['<TAB>'] = { '<C-w><C-w>', 'move to next split window' },
   H = { 'zh', 'shift window to the left' },
   L = { 'zl', 'shift window to the right' },
-  r = { vim.diagnostic.goto_next, 'move to next error / diagnostic issue' },
   Q = { '<CMD>Bdelete<CR>', 'close buffer' },
+  U = { '<CMD>redo<CR>', 'Un-undo (i.e. redo, normally `<C-r>`)' },
   ['-'] = { '<C-x>', 'decrement numerical value under cursor' },
   ['+'] = { '<C-a>', 'increment numerical value under cursor' },
   ['!'] = { '@@', 'repeat last-executed macro' },
@@ -37,6 +37,7 @@ mappings.register{
   ['<C-k>'] = { '<C-w>k', 'move up to split window' },
   ['<C-l>'] = { '<C-w>l', 'move right to split window' },
   ['<C-n>'] = { '<CMD>cn<CR>', 'next quickfix entry' },
+  ['<C-r>'] = { vim.diagnostic.goto_next, 'move to next error / diagnostic issue (use `U` for redo)' },
   ['<C-w>/'] = { '<C-w>|<C-w>_', 'maximize current split window' },
   ['<S-Down>'] = { 'ddp', 'shift current line down'},
   ['<S-Up>'] = { 'ddkP', 'shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines

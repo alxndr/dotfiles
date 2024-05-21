@@ -238,14 +238,18 @@ mappings.register({
 mappings.register({
   g = {
     name = 'git',
-    a = { ':Git commit --amend', 'amend git commit' },
     c = { '<CMD>Git commit<CR>', 'git commit' },
     g = { '<CMD>silent Git<CR>', 'show status window' },
     l = { '<CMD>Git lg<CR>', 'show git log' },
+  },
+}, {prefix=','})
+mappings.register({
+  g = {
+    a = { ':Git commit --amend', 'amend git commit' },
     p = { ':Git push', 'git push' },
     P = { ':Git push --force', 'git force push' },
   },
-}, {prefix=','})
+}, {prefix=',', silent=false})
 
 
 -- fzf-lua config

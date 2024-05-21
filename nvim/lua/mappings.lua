@@ -14,15 +14,7 @@ end
       --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
       --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
 mapNormal('<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap = true, expr = true, desc = 'jump-down a third of the window-height'})
-mapNormal('<C-h>', '<C-w>h')
-mapNormal('<C-j>', '<C-w>j')
-mapNormal('<C-k>', '<C-w>k')
-mapNormal('<C-l>', '<C-w>l')
-mapNormal('<C-n>', '<CMD>cn<CR>', {desc = 'next quickfix entry'})
 mapNormal('<C-u>',  vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap = true, expr = true, desc = 'jump-up a third of the window-height'} )
-mapNormal('<C-w>/', '<C-w>|<C-w>_')
-mapNormal('<S-Down>', 'ddp', {desc = 'shift current line down'})
-mapNormal('<S-Up>', 'ddkP', {desc = 'shift current line up'})
 
 -- insert mode
 mapInsert('<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
@@ -56,6 +48,14 @@ mappings.register{
   ['-'] = { '<C-x>', 'decrement numerical value under cursor' },
   ['+'] = { '<C-a>', 'increment numerical value under cursor' },
   ['!'] = { '@@', 'repeat last-executed macro' },
+  ['<C-h>'] = { '<C-w>h', 'move left to split window' },
+  ['<C-j>'] = { '<C-w>j', 'move down to split window' },
+  ['<C-k>'] = { '<C-w>k', 'move up to split window' },
+  ['<C-l>'] = { '<C-w>l', 'move right to split window' },
+  ['<C-n>'] = { '<CMD>cn<CR>', 'next quickfix entry' },
+  ['<C-w>/'] = { '<C-w>|<C-w>_', 'maximize current split window' },
+  ['<S-Down>'] = { 'ddp', 'shift current line down'},
+  ['<S-Up>'] = { 'ddkP', 'shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
 }
 
 -- Leader prefix...

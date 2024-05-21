@@ -1,16 +1,12 @@
 vim.g.mapleader = [[\]]
 
--- opts: nowait=false, silent=false, script=false, expr=false, unique=false, noremap, desc, callback, replace_keycodes
-local function mapNormal (sequence, mapping, opts)
-  if opts == nil then opts = {} end
-  vim.api.nvim_set_keymap('n', sequence, mapping, opts)
-end
-
---[[       | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
-      --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
-      --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
-mapNormal('<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap = true, expr = true, desc = 'jump-down a third of the window-height'})
-mapNormal('<C-u>',  vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap = true, expr = true, desc = 'jump-up a third of the window-height'} )
+vim.cmd [[
+  noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>'
+  noremap <expr>  j v:count ?  'j' : 'g<Down>'
+  noremap <expr>  k v:count ?  'k' : 'g<Up>'
+]]
+vim.api.nvim_set_keymap('n', '<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap=true, expr=true, desc='jump-down a third of the window-height'})
+vim.api.nvim_set_keymap('n', '<C-u>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap=true, expr=true, desc='jump-up a third of the window-height'})
 
 
 local mappings = require'which-key'
@@ -42,6 +38,10 @@ mappings.register{
   ['<S-Down>'] = { 'ddp', 'shift current line down'},
   ['<S-Up>'] = { 'ddkP', 'shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
 }
+-- mappings.register({
+--   -- ['|'] = { function() vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline end, 'toggle cursorline/cursorcolumn visibility' },
+--   -- ['<C-d>'] = { function() vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false) end, 'jump-Down by 1/3 of window-height' }
+-- }, {})
 
 -- Leader prefix...
 mappings.register({

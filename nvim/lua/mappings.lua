@@ -13,10 +13,6 @@ local function mapTerminal (sequence, mapping, opts)
   if opts == nil then opts = {} end
   vim.api.nvim_set_keymap('t', sequence, mapping, opts)
 end
-local function mapVisual (sequence, mapping, opts)
-  if opts == nil then opts = {} end
-  vim.api.nvim_set_keymap('v', sequence, mapping, opts)
-end
 
 --[[       | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
       --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
@@ -53,10 +49,3 @@ mapTerminal('<C-Space>', [[<C-\><C-n>]])
 mapTerminal('<C-[>', [[<C-\><C-n><CMD>FloatermPrev<CR>]])
 mapTerminal('<C-)>', [[<C-\><C-n><CMD>FloatermNext<CR>]])
 mapTerminal('<C-t>', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
-
--- visual mode
-mapVisual('<Space>', ':')
-mapVisual('<Tab>', 'd<CMD>vnew<CR>PGddgg', {desc = 'extract selection from current file & paste into new buffer'})
-mapVisual('Y', '"+y', {desc = 'copy selection to system clipboard'})
-mapVisual('<C-c>s', ':Scn<CR>', {desc = 'convert Chinese characters to simplified version'})
-mapVisual('<C-c>t', ':Tcn<CR>', {desc = 'convert Chinese characters to traditional version'})

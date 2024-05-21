@@ -224,7 +224,14 @@ require("emoji_picker").setup()
 vim.cmd 'au VimEnter * highlight FloatermNC guibg=gray'
 mappings.register({
   t = { '<CMD>FloatermToggle<CR>', 'open/close floating terminal window'},
-}, { prefix = '<Leader>' })
+}, { prefix='<Leader>' })
+mappings.register({
+  ['<Leader>t'] = { '<CMD>FloatermToggle<CR>', 'open/close floating terminal window'},
+  ['<C-Space>'] = { [[<C-\><C-n>]], 'exit terminal-insert mode' },
+  ['<C-n>']     = { [[<C-\><C-n><CMD>FloatermNew<CR>]], 'new terminal' },
+  ['<C-[>']     = { [[<C-\><C-n><CMD>FloatermPrev<CR>]], 'previous terminal' },
+  ['<C-]>']     = { [[<C-\><C-n><CMD>FloatermNext<CR>]], 'next terminal' },
+}, { mode='t' })
 
 
 -- fugitive (Git) config

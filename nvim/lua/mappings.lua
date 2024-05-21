@@ -9,10 +9,6 @@ local function mapNormal (sequence, mapping, opts)
   if opts == nil then opts = {} end
   vim.api.nvim_set_keymap('n', sequence, mapping, opts)
 end
-local function mapTerminal (sequence, mapping, opts)
-  if opts == nil then opts = {} end
-  vim.api.nvim_set_keymap('t', sequence, mapping, opts)
-end
 
 --[[       | ]] vim.cmd [[noremap <expr> \| v:count ? '\|' : '<CMD>lua vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline<CR>']]
       --[[ j ]] vim.cmd [[noremap <expr> j v:count ? 'j' : 'g<Down>']] -- using `g<Down>` so as to not conflict with mapping `gj`
@@ -40,15 +36,6 @@ mapInsert('<C-y>', '<Esc><C-y>a', {desc = 'preserve `<C-y>` scroll behavior in i
 mapInsert('<S-Down>', '<Esc>mmddp`ma', {desc = 'shift current line down and return to position'})
 mapInsert('<S-Up>', '<Esc>mmddkP`ma', {desc = 'shift current line up and return to position'})
 
--- term mode
-mapTerminal('<Leader>[', [[<C-\><C-n><CMD>FloatermPrev<CR>]])
-mapTerminal('<Leader>)', [[<C-\><C-n><CMD>FloatermNext<CR>]])
-mapTerminal('<Leader>n', [[<C-\><C-n><CMD>FloatermNew<CR>]])
-mapTerminal('<Leader>t', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
-mapTerminal('<C-Space>', [[<C-\><C-n>]])
-mapTerminal('<C-[>', [[<C-\><C-n><CMD>FloatermPrev<CR>]])
-mapTerminal('<C-)>', [[<C-\><C-n><CMD>FloatermNext<CR>]])
-mapTerminal('<C-t>', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
 
 local mappings = require'which-key'
 

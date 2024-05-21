@@ -216,8 +216,11 @@ vim.cmd [[
 ]]
 
 
--- emoji setup
-require("emoji_picker").setup()
+-- emoji_picker setup
+require('emoji_picker').setup()
+mappings.register({
+  ['<LEADER>e'] = { '<CMD>EmojiPicker<CR>', 'open Emoji picker' },
+}, {mode='i'})
 
 
 -- floaterm config

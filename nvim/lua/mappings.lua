@@ -1,10 +1,6 @@
 vim.g.mapleader = [[\]]
 
 -- opts: nowait=false, silent=false, script=false, expr=false, unique=false, noremap, desc, callback, replace_keycodes
-local function mapInsert (sequence, mapping, opts)
-  if opts == nil then opts = {} end
-  vim.api.nvim_set_keymap('i', sequence, mapping, opts)
-end
 local function mapNormal (sequence, mapping, opts)
   if opts == nil then opts = {} end
   vim.api.nvim_set_keymap('n', sequence, mapping, opts)
@@ -15,18 +11,6 @@ end
       --[[ k ]] vim.cmd [[noremap <expr> k v:count ? 'k' : 'g<Up>']]   -- using `g<Up>` so as to not conflict with mapping `gk`
 mapNormal('<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap = true, expr = true, desc = 'jump-down a third of the window-height'})
 mapNormal('<C-u>',  vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap = true, expr = true, desc = 'jump-up a third of the window-height'} )
-
--- insert mode
-mapInsert('<Leader>e', '<CMD>EmojiPicker<CR>', {silent=true})
-mapInsert('<Leader>,', '<Esc>mmA,<Esc>`ma', {desc = 'append comma to line and return to position'})
-mapInsert('<Leader>;', '<Esc>mmA;<Esc>`ma', {desc = 'append semicolon to line and return to position'})
-mapInsert('qq', '<Esc>mmgqq`ma', {desc = 'wrap current line and return to position'})
-mapInsert('<C-a>', [[<Esc>A]], {desc = 'append (e.g. to hop over autocompleted characters)'})
-mapInsert('<C-e>', '<Esc><C-e>a', {desc = 'preserve `<C-e>` scroll behavior in insert mode'})
-mapInsert('<C-l>', 'λ', {desc = 'shorthand to insert a lambda [^k:l*]'})
-mapInsert('<C-y>', '<Esc><C-y>a', {desc = 'preserve `<C-y>` scroll behavior in insert mode'})
-mapInsert('<S-Down>', '<Esc>mmddp`ma', {desc = 'shift current line down and return to position'})
-mapInsert('<S-Up>', '<Esc>mmddkP`ma', {desc = 'shift current line up and return to position'})
 
 
 local mappings = require'which-key'
@@ -86,6 +70,23 @@ mappings.register({
   w = { '10<C-w>>', 'widen split' },
   W = {  '5<C-w>+', 'tallify split' },
 }, {prefix=','})
+
+
+----------------
+-- insert mode
+
+mappings.register({
+  ['qq']        = { function() print('use <C-r> now...') end, 'reminder to use `<C-r>` now' },
+  ['<LEADER>,'] = { '<Esc>mmA,<Esc>`ma', 'append COMMA to line' },
+  ['<LEADER>;'] = { '<Esc>mmA;<Esc>`ma', 'append SEMICOLON to line' },
+  ['<C-a>']     = { '<Esc>A', 'move cursor to end of line (i.e. Append)' },
+  ['<C-e>']     = { '<Esc><C-e>a', 'shift window up (i.e. normal mode `<C-e>`)' },
+  ['<C-l>']     = { 'λ', 'shorthand to insert a Lambda [^k:l*]' },
+  ['<C-r>']     = { '<Esc>gqqa', 'Reformat current line' },
+  ['<C-y>']     = { '<Esc><C-y>a', 'shift window up (i.e. normal mode `<C-y>`)' },
+  ['<S-Down>']  = { '<Esc>mmddp`ma', 'shift current line down' },
+  ['<S-Up>']    = { '<Esc>mmddkP`ma', 'shift current line up' },
+}, {mode='i'})
 
 
 ----------------

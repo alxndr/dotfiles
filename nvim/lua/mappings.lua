@@ -55,13 +55,8 @@ mapTerminal('<C-)>', [[<C-\><C-n><CMD>FloatermNext<CR>]])
 mapTerminal('<C-t>', [[<C-\><C-n><CMD>FloatermToggle<CR>]])
 
 -- visual mode
-mapVisual('<Leader>a', ':Tab /', {desc = '_a_lign'})
 mapVisual('<Space>', ':')
 mapVisual('<Tab>', 'd<CMD>vnew<CR>PGddgg', {desc = 'extract selection from current file & paste into new buffer'})
-mapVisual('L', '<CMD>lua require("syntax-tree-surfer").surf("next", "visual", true)<CR>')
-mapVisual('H', '<CMD>lua require("syntax-tree-surfer").surf("prev", "visual", true)<CR>')
 mapVisual('Y', '"+y', {desc = 'copy selection to system clipboard'})
 mapVisual('<C-c>s', ':Scn<CR>', {desc = 'convert Chinese characters to simplified version'})
 mapVisual('<C-c>t', ':Tcn<CR>', {desc = 'convert Chinese characters to traditional version'})
-mapVisual('<S-Up>', [[<CMD>move '<-2<CR>]], {desc = 'shift current line up'})
-mapVisual('<S-Down>', [[<CMD>move '>+1<CR>]], {desc = 'shift current line down'})

@@ -78,7 +78,6 @@ require 'paq' {
   'shellRaining/hlchunk.nvim';       -- indent decoration
   'nvim-lualine/lualine.nvim';       -- status line
   'arkav/lualine-lsp-progress';      -- show LSP server status in lualine
-  'anuvyklack/pretty-fold.nvim';     -- eye candy for folds
   'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
 
 
@@ -433,17 +432,6 @@ require('package-info').setup{
     style = {
       outdated = ' // new version: ',
     },
-  },
-}
-
-
--- pretty-fold config
-require('pretty-fold').setup {
-  default_keybindings = false,
-  fill_char = '․',
-  sections = {
-    left = { 'content' },
-    right = { ' ', 'number_of_folded_lines', ' ' },
   },
 }
 

@@ -16,6 +16,7 @@ require 'paq' {
     build = function() require('telescope').load_extension('import') end};
   'folke/which-key.nvim';               -- manage keyboard shortcuts...
 
+
   -- behavior tweaks
   'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
@@ -71,8 +72,10 @@ require 'paq' {
   'ribru17/bamboo.nvim';             -- colorscheme
   'norcalli/nvim-colorizer.lua';     -- color eye-candy
   'sindrets/diffview.nvim';          -- make diffs prettier
+  'NStefan002/donut.nvim';           -- screensaver
   'WilsonOh/emoji_picker-nvim';      -- emoji UX
   'voldikss/vim-floaterm';           -- terminal eyecandy
+  'shellRaining/hlchunk.nvim';       -- indent decoration
   'nvim-lualine/lualine.nvim';       -- status line
   'arkav/lualine-lsp-progress';      -- show LSP server status in lualine
   'anuvyklack/pretty-fold.nvim';     -- eye candy for folds
@@ -285,6 +288,17 @@ mappings.register({
   k = { function () require"gitsigns.actions".prev_hunk() end, 'jump to modified hunk above cursor position' },
   u = { function () require"gitsigns".reset_hunk() end, 'undo hunk modification at cursor position' },
 }, { prefix = 'g' })
+
+
+-- hlchunk
+require'hlchunk'.setup {
+  chunk = {
+    enable = true,
+  },
+  indent = {
+    enable = false,
+  },
+}
 
 
 -- lexima config

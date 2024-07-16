@@ -14,7 +14,9 @@ require 'paq' {
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
     build = function() require('telescope').load_extension('import') end};
+  'folke/trouble.nvim';                 -- diagnostics stuff
   'folke/which-key.nvim';               -- manage keyboard shortcuts...
+  'rachartier/tiny-inline-diagnostic.nvim'; -- diagnostic message tweaks
 
 
   -- behavior tweaks
@@ -435,7 +437,18 @@ require("telescope").setup({
 
 
 -- template-string config
-require('template-string').setup()
+require('template-string').setup {
+  -- don't enable for python, bc it is a little overeager with f''
+  filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte', },
+}
+
+
+-- tiny-inline-diagnostic config
+require('tiny-inline-diagnostic').setup {
+  blend = {
+    factor = 0.1,
+  },
+}
 
 
 

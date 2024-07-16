@@ -66,16 +66,16 @@ require 'paq' {
   'rhysd/vim-gfm-syntax';            -- syntax highlighting for Git-Flavored Markdown
   -- query languages
   'neo4j-contrib/cypher-vim-syntax'; -- cypher (Neo4j)
+  -- Raku (aka Perl 6)
+  'Raku/vim-raku';
 
 
   -- eye candy
   'ribru17/bamboo.nvim';             -- colorscheme
   'norcalli/nvim-colorizer.lua';     -- color eye-candy
   'sindrets/diffview.nvim';          -- make diffs prettier
-  'NStefan002/donut.nvim';           -- screensaver
   'WilsonOh/emoji_picker-nvim';      -- emoji UX
   'voldikss/vim-floaterm';           -- terminal eyecandy
-  'shellRaining/hlchunk.nvim';       -- indent decoration
   'nvim-lualine/lualine.nvim';       -- status line
   'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
 

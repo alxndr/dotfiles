@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export PAGER="most" # TODO use more if most isn't found
+export PAGER="nvim"
 export MANPAGER="nvim +Man!"
 export LESS="-F -R -S -W"
 
@@ -192,7 +192,9 @@ alias niS="npm install --loglevel warn --save"
       }
 alias nr="npm run --silent"
 alias nt="npm test"
+alias nx="npx"
 alias o="ocaml"
+alias py="python"
       report() { $@ && say "done" || say "error" }
 alias rk="raku"
 alias rt="racket"

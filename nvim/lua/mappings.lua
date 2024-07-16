@@ -13,95 +13,77 @@ local mappings = require'which-key'
 
 ----------------
 -- normal mode
-
--- unprefixed...
-mappings.register({
-  [' '] = { ':', 'start a vim command' },
-}, {silent=false})
-mappings.register{
-  ['<CR>'] = { [[:put=nr2char(10)|'[-1<CR>]], 'insert newline below current line' },
-  ['<TAB>'] = { '<C-w><C-w>', 'move to next split window' },
-  H = { 'zh', 'shift window to the left' },
-  L = { 'zl', 'shift window to the right' },
-  Q = { '<CMD>Bdelete<CR>', 'close buffer' },
-  U = { '<CMD>redo<CR>', 'Un-undo (i.e. redo, normally `<C-r>`)' },
-  ['-'] = { '<C-x>', 'decrement numerical value under cursor' },
-  ['+'] = { '<C-a>', 'increment numerical value under cursor' },
-  ['!'] = { '@@', 'repeat last-executed macro' },
-  ['<C-h>'] = { '<C-w>h', 'move left to split window' },
-  ['<C-j>'] = { '<C-w>j', 'move down to split window' },
-  ['<C-k>'] = { '<C-w>k', 'move up to split window' },
-  ['<C-l>'] = { '<C-w>l', 'move right to split window' },
-  ['<C-n>'] = { '<CMD>cn<CR>', 'next quickfix entry' },
-  ['<C-r>'] = { vim.diagnostic.goto_next, 'move to next error / diagnostic issue (use `U` for redo)' },
-  ['<C-w>/'] = { '<C-w>|<C-w>_', 'maximize current split window' },
-  ['<S-DOWN>'] = { 'ddp', 'shift current line down'},
-  ['<S-UP>'] = { 'ddkP', 'shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
-}
--- mappings.register({
---   -- ['|'] = { function() vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline end, 'toggle cursorline/cursorcolumn visibility' },
---   -- ['<C-d>'] = { function() vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false) end, 'jump-Down by 1/3 of window-height' }
--- }, {})
-
--- Leader prefix...
-mappings.register({
-  [','] = { 'mmA,<ESC>`mj', 'append comma to line and move down'},
-  [';'] = { 'mmA;<ESC>`mj', 'append semicolon to line and move down'},
-  v = { -- h/t roryokane for this idea https://lobste.rs/s/6qp0vo#c_fu9psh
-    name = 'vim',
-    f = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>', 'edit vim functions file' },
-    m = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>', 'edit vim mappings file' },
-    o = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>', 'edit vim options file' },
-    p = { '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>', 'edit vim plugins file' },
-    v = { '<CMD>edit $MYVIMRC<CR>', 'edit vim config file' },
-  },
-  w = { '<CMD>set list!<CR>', 'toggle non-printing chars' },
-  y = { '<CMD>only<CR>', 'clear all other splits' },
-  ['2'] = { '/TODO<CR><CMD>nohl<CR>', 'jump to next TODO' },
-}, {prefix = '<LEADER>'})
-
--- Comma prefix...
-mappings.register({
-  d = { vim.diagnostic.open_float, 'open diagnostics' },
-  f = { [[zcj0/{\n<CR><CMD>nohl<CR>zz]], 'fold braces and jump to next' },
-  m = { [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]], 'jump to next git merge conflict marker' },
-  n = { '<CMD>nohl<CR>', 'no highlight search text' },
-  s = { '<CMD>w<CR><CR>', 'save current file' },
-  t = { 'za', 'toggle fold' },
-  w = { '10<C-w>>', 'widen split' },
-  W = {  '5<C-w>+', 'tallify split' },
-}, {prefix=','})
+mappings.add({
+  {' ', ':', desc='start a vim command', silent=false},
+  {'<CR>', [[:put=nr2char(10)|'[-1<CR>]], desc='insert newline below current line' },
+  {'<TAB>', '<C-w><C-w>', desc='move to next split window' },
+  {'H', 'zh', desc='shift window to the left' },
+  {'L', 'zl', desc='shift window to the right' },
+  {'Q', '<CMD>Bdelete<CR>', desc='close buffer' },
+  {'U', '<CMD>redo<CR>',    desc='Un-undo (i.e. redo, normally `<C-r>`)' },
+  {'-', '<C-x>', desc='decrement numerical value under cursor' },
+  {'+', '<C-a>', desc='increment numerical value under cursor' },
+  {'!', '@@',    desc='repeat last-executed macro' },
+  {'<C-h>', '<C-w>h', desc='move left to split window' },
+  {'<C-j>', '<C-w>j', desc='move down to split window' },
+  {'<C-k>', '<C-w>k', desc='move up to split window' },
+  {'<C-l>', '<C-w>l', desc='move right to split window' },
+  {'<C-n>', '<CMD>cn<CR>', desc='next quickfix entry' },
+  {'<C-r>', vim.diagnostic.goto_next, desc='move to next error / diagnostic issue (use `U` for redo)' },
+  {'<C-w>/', '<C-w>|<C-w>_', desc='maximize current split window' },
+  {'<S-DOWN>', 'ddp', desc='shift current line down'},
+  {'<S-UP>', 'ddkP',  desc='shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
+  -- {'|', function() vim.wo.cursorline, vim.wo.cursorcolumn = not vim.wo.cursorline, not vim.wo.cursorline end, desc='toggle cursorline/cursorcolumn visibility' },
+  -- {'<C-d>', function() vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false) end,  desc='jump-Down by 1/3 of window-height' }
+  {'<LEADER>,', 'mmA,<ESC>`mj', desc='append comma to line and move down'},
+  {'<LEADER>;', 'mmA;<ESC>`mj', desc='append semicolon to line and move down'},
+  {'<LEADER>2', '/TODO<CR><CMD>nohl<CR>', desc='jump to next TODO' },
+  {'<LEADER>v', group='vim'}, -- h/t roryokane for this idea https://lobste.rs/s/6qp0vo#c_fu9psh
+  {'<LEADER>vf', '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>', desc='edit vim functions file' },
+  {'<LEADER>vm', '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>',  desc='edit vim mappings file' },
+  {'<LEADER>vo', '<CMD>edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>',   desc='edit vim options file' },
+  {'<LEADER>vp', '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>',   desc='edit vim plugins file' },
+  {'<LEADER>vv', '<CMD>edit $MYVIMRC<CR>', desc='edit vim config file' },
+  {'<LEADER>w', '<CMD>set list!<CR>', desc='toggle non-printing chars' },
+  {'<LEADER>y', '<CMD>only<CR>', desc='clear all other splits' },
+  {',d', vim.diagnostic.open_float, desc='open diagnostics' },
+  {',f', [[zcj0/{\n<CR><CMD>nohl<CR>zz]], desc='fold braces and jump to next' },
+  {',m', [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]], desc='jump to next git merge conflict marker' },
+  {',n', '<CMD>nohl<CR>', desc='no highlight search text' },
+  {',s', '<CMD>w<CR><CR>', desc='save current file' },
+  {',t', 'za', desc='toggle fold'},
+  {',w', '10<C-w>>', desc='widen split'},
+  {',W',  '5<C-w>+', desc='tallify split'},
+})
 
 
 ----------------
 -- insert mode
-
-mappings.register({
-  ['qq']        = { function() print('use <C-r> now...') end, 'reminder to use `<C-r>` now' },
-  ['<LEADER>,'] = { '<ESC>mmA,<ESC>`ma', 'append COMMA to line' },
-  ['<LEADER>;'] = { '<ESC>mmA;<ESC>`ma', 'append SEMICOLON to line' },
-  ['<C-a>']     = { '<ESC>A', 'move cursor to end of line (i.e. Append)' },
-  ['<C-e>']     = { '<ESC><C-e>a', 'shift window up (i.e. normal mode `<C-e>`)' },
-  ['<C-l>']     = { 'λ', 'shorthand to insert a Lambda [^k:l*]' },
-  ['<C-r>']     = { '<ESC>gqqa', 'Reformat current line' },
-  ['<C-y>']     = { '<ESC><C-y>a', 'shift window up (i.e. normal mode `<C-y>`)' },
-  ['<S-Down>']  = { '<ESC>mmddp`ma', 'shift current line down' },
-  ['<S-Up>']    = { '<ESC>mmddkP`ma', 'shift current line up' },
-}, {mode='i'})
+mappings.add({
+  { mode='i',
+    {'qq', function() print('use <C-r> now...') end, desc='reminder to use `<C-r>` now'},
+    {'<LEADER>,', '<ESC>mmA,<ESC>`ma', desc='append COMMA to line'},
+    {'<LEADER>;', '<ESC>mmA;<ESC>`ma', desc='append SEMICOLON to line'},
+    {'<C-a>', '<ESC>A', desc='move cursor to end of line (i.e. Append)'},
+    {'<C-e>', '<ESC><C-e>a', desc='shift window up (i.e. normal mode `<C-e>`)'},
+    {'<C-l>', 'λ', desc='shorthand to insert a Lambda [^k:l*]'},
+    {'<C-r>', '<ESC>gqqa', desc='Reformat current line'},
+    {'<C-y>', '<ESC><C-y>a', desc='shift window up (i.e. normal mode `<C-y>`)'},
+    {'<S-Down>', '<ESC>mmddp`ma', desc='shift current line down'},
+    {'<S-Up>', '<ESC>mmddkP`ma', desc='shift current line up'},
+  },
+})
 
 
 ----------------
 -- visual mode
-
-mappings.register({
-  [' '] = { ':', 'start command for selected range' },
-}, {mode='v', silent=false})
-mappings.register({
-  ['<TAB>'] = { 'd<CMD>vnew<CR>PGddgg', 'extract selection from current file & paste into new buffer' },
-  Y = { '"+y', 'copy selection to system clipboard' },
-}, {mode='v'})
-mappings.register({
-  name = 'Chinese character conversion (via plugin: jianfan)',
-  s = { ':Scn<CR>', 'convert Chinese characters to simplified version' },
-  t = { ':Tcn<CR>', 'convert Chinese characters to traditional version' },
-}, {mode='v', prefix='<C-c>'})
+mappings.add({
+  { mode='v',
+    {' ', ':', desc='start command for selected range', silent=false},
+    {'<TAB>', 'd<CMD>vnew<CR>PGddgg', desc='extract selection from current file & paste into new buffer'},
+    {'Y', '"+y', desc='copy selection to system clipboard'},
+    {'<C-c>', group='Chinese character conversion (via plugin: jianfan)'},
+    {'<C-c>s', ':Scn<CR>', desc='convert Chinese characters to simplified version'},
+    {'<C-c>t', ':Tcn<CR>', desc='convert Chinese characters to traditional version'},
+  },
+})

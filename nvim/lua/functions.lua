@@ -8,7 +8,7 @@ vim.cmd [[
     call search('\%' . virtcol('.') . 'v\S', 'W')
   endfunction
 ]]
-require'which-key'.register({
-  j = {'<CMD>call VerticalSpaceJumpDown()<CR>', 'move up to next printable character'},
-  k = {'<CMD>call VerticalSpaceJumpUp()<CR>', 'move down to next printable character'},
-}, {prefix='<Leader>'})
+require'which-key'.add({
+  {'<Leader>j', '<CMD>call VerticalSpaceJumpDown()<CR>', desc='move up to next printable character'},
+  {'<Leader>k', '<CMD>call VerticalSpaceJumpUp()<CR>',   desc='move down to next printable character'},
+})

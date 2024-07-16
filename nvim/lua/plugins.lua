@@ -137,9 +137,9 @@ vim.cmd [[
   let g:blamer_prefix = '    '
   let g:blamer_show_in_insert_modes = 0
 ]]
-mappings.register({
-  b = { '<CMD>BlamerToggle<CR>', },
-}, {prefix=',g'})
+mappings.add({
+  {',gb', '<CMD>BlamerToggle<CR>'},
+})
 
 
 -- chafa
@@ -206,7 +206,9 @@ easypick.setup({
     },
   }
 })
-mappings.register{[',c'] = {'<CMD>Easypick conflicts<CR>', 'git merge conflict resolver UX'}}
+mappings.add({
+  {',c', '<CMD>Easypick conflicts<CR>', desc='git merge conflict resolver UX'},
+})
 
 
 -- vim-emoji-ab config
@@ -217,87 +219,64 @@ vim.cmd [[
 
 -- emoji_picker setup
 require('emoji_picker').setup()
-mappings.register({
-  ['<LEADER>e'] = { '<CMD>EmojiPicker<CR>', 'open Emoji picker' },
-}, {mode='i'})
+mappings.add({
+  {'<LEADER>e', '<CMD>EmojiPicker<CR>', desc='open Emoji picker', mode='i'},
+})
 
 
 -- floaterm config
 vim.cmd 'au VimEnter * highlight FloatermNC guibg=gray'
-mappings.register({
-  t = { '<CMD>FloatermToggle<CR>', 'open/close floating terminal window'},
-}, { prefix='<Leader>' })
-mappings.register({
-  ['<Leader>t'] = { '<CMD>FloatermToggle<CR>', 'open/close floating terminal window'},
-  ['<C-Space>'] = { [[<C-\><C-n>]], 'exit terminal-insert mode' },
-  ['<C-n>']     = { [[<C-\><C-n><CMD>FloatermNew<CR>]], 'new terminal' },
-  ['<C-[>']     = { [[<C-\><C-n><CMD>FloatermPrev<CR>]], 'previous terminal' },
-  ['<C-]>']     = { [[<C-\><C-n><CMD>FloatermNext<CR>]], 'next terminal' },
-}, { mode='t' })
+mappings.add({
+  {'<LEADER>t', '<CMD>FloatermToggle<CR>', desc='open/close floating terminal window'},
+  { mode='t',
+    {'<LEADER>t', '<CMD>FloatermToggle<CR>',           desc='open/close floating terminal window'},
+    {'<C-Space>', [[<C-\><C-n>]],                      desc='exit terminal-insert mode' },
+    {'<C-n>',     [[<C-\><C-n><CMD>FloatermNew<CR>]],  desc='new terminal' },
+    {'<C-[>',     [[<C-\><C-n><CMD>FloatermPrev<CR>]], desc='previous terminal' },
+    {'<C-]>',     [[<C-\><C-n><CMD>FloatermNext<CR>]], desc='next terminal' },
+  }
+})
 
 
 -- fugitive (Git) config
-mappings.register({
-  g = {
-    name = 'git',
-    c = { '<CMD>Git commit<CR>', 'git commit' },
-    g = { '<CMD>silent Git<CR>', 'show status window' },
-    l = { '<CMD>Git lg<CR>', 'show git log' },
-  },
-}, {prefix=','})
-mappings.register({
-  g = {
-    a = { ':Git commit --amend', 'amend git commit' },
-    p = { ':Git push', 'git push' },
-    P = { ':Git push --force', 'git force push' },
-  },
-}, {prefix=',', silent=false})
+mappings.add({
+  {',g', group='git'},
+  {',ga', ':Git commit --amend', desc='amend git commit', prefix=',', silent=false},
+  {',gc', '<CMD>Git commit<CR>', desc='git commit'},
+  {',gg', '<CMD>silent Git<CR>', desc='show status window'},
+  {',gl', '<CMD>Git lg<CR>',     desc='show git log'},
+  {',gp', ':Git push',           desc='git push',         prefix=',', silent=false},
+  {',gP', ':Git push --force',   desc='git force push',   prefix=',', silent=false},
+})
 
 
 -- fzf-lua config
-mappings.register({
-  ['\\'] = { function () require"fzf-lua".buffers() end, 'fuzzy-search all open buffers' },
-  g      = { function () require"fzf-lua".live_grep_native() end, 'fuzzy-search all file contents in project' },
-}, { prefix = '<Leader>' })
-mappings.register({
-  ['<C-p>'] = { function () require"fzf-lua".files() end, 'fuzzy-search all filenames in project' },
-  ['<C-s>'] = { function () require"fzf-lua".grep_cword() end, 'fuzzy-grep within buffer for word under cursor' }, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+mappings.add({
+  {'<Leader>\\', function () require"fzf-lua".buffers() end,          desc='fuzzy-search all open buffers'},
+  {'<Leader>g',  function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
+  {'<C-p>',      function () require"fzf-lua".files() end,            desc='fuzzy-search all filenames in project'},
+  {'<C-s>',      function () require"fzf-lua".grep_cword() end,       desc='fuzzy-grep within buffer for word under cursor'}, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+  {'<C-s>',      function () require"fzf-lua".grep_visual() end,      desc='fuzzy-grep within buffer for selection', mode='v'} -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
 })
-mappings.register({
-  ['<C-s>'] = { function () require"fzf-lua".grep_visual() end, 'fuzzy-grep within buffer for selection' } -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
-}, { mode = 'v' })
 
 
 -- gitlinker config
 require('gitlinker').setup {
   mappings = nil,
 }
-mappings.register({
-  l = { function () require'gitlinker'.get_buf_range_url('n') end, 'github permalink to current line' },
-}, {prefix=','})
-mappings.register({
-  l = { function () require'gitlinker'.get_buf_range_url('v') end, 'github permalink to selection' },
-}, {prefix=',', mode='v'})
+mappings.add({
+  {',l', function () require'gitlinker'.get_buf_range_url('n') end, desc='github permalink to current line'},
+  {',l', function () require'gitlinker'.get_buf_range_url('v') end, desc='github permalink to selection', mode='v'},
+})
 
 
 -- gitsigns config
 require('gitsigns').setup {}
-mappings.register({
-  j = { function () require"gitsigns.actions".next_hunk() end, 'jump to modified hunk below cursor position' },
-  k = { function () require"gitsigns.actions".prev_hunk() end, 'jump to modified hunk above cursor position' },
-  u = { function () require"gitsigns".reset_hunk() end, 'undo hunk modification at cursor position' },
-}, { prefix = 'g' })
-
-
--- hlchunk
-require'hlchunk'.setup {
-  chunk = {
-    enable = true,
-  },
-  indent = {
-    enable = false,
-  },
-}
+mappings.add({
+  {'gj', function () require"gitsigns.actions".next_hunk() end, desc='jump to modified hunk below cursor position'},
+  {'gk', function () require"gitsigns.actions".prev_hunk() end, desc='jump to modified hunk above cursor position'},
+  {'gu', function () require"gitsigns".reset_hunk() end,        desc='undo hunk modification at cursor position'},
+})
 
 
 -- lexima config
@@ -417,7 +396,9 @@ require('mason').setup()
 
 
 -- memento config
-mappings.register{[',b'] = {function() require("memento").toggle() end, 'toggle recent buffers'}}
+mappings.add({
+  {',b', function() require('memento').toggle() end, desc='toggle recent buffers'}
+})
 
 
 -- package-info config
@@ -473,9 +454,9 @@ require'nvim-tree'.setup {
     update_cwd  = false,
   },
 }
-mappings.register({
-  ['<Tab>'] = { '<CMD>NvimTreeToggle<CR>', 'toggle NvimTree' },
-}, { prefix = '<Leader>' })
+mappings.add({
+  {'<Leader><Tab>', '<CMD>NvimTreeToggle<CR>', desc='toggle NvimTree' },
+})
 
 
 -- treesitter config

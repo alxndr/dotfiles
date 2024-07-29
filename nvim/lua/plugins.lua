@@ -50,25 +50,37 @@ require 'paq' {
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
   'cohama/lexima.vim';                            -- matched-pair character closing
   'tpope/vim-surround';                           -- mappings for converting matched-pair characters
+  -- 'guilherme-puida/tesoura.nvim';                 -- snippets
 
 
   -- language-specific features...
-  -- Elixir
+  ---- CSV
+  'VidocqH/data-viewer.nvim';        -- table view
+  -- 'emmanueltouzery/decisive.nvim';   -- align columns
+
+  ---- Elixir
   'mhanberg/elixir.nvim';            -- install elixirls and more
-  -- HTML
+
+  ---- HTML
   'windwp/nvim-ts-autotag';          -- auto-close tags (treesitter)
-  -- JavaScript
+
+  ---- JavaScript
   'vuki656/package-info.nvim';       -- version info for contents of `package.json` files
   'axelvc/template-string.nvim';     -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
-  -- Liquid (templating)
+
+  ---- Liquid (templating)
   'tpope/vim-liquid';                -- Jekyll posts (templating language within markdown)
-  -- LISP / Scheme / Racket / etc
+
+  ---- LISP / Scheme / Racket / etc
   'julienvincent/nvim-paredit';      -- s-expression editing facilitation
-  -- Markdown
+
+  ---- Markdown
   'rhysd/vim-gfm-syntax';            -- syntax highlighting for Git-Flavored Markdown
-  -- query languages
+
+  ---- query languages
   'neo4j-contrib/cypher-vim-syntax'; -- cypher (Neo4j)
-  -- Raku (aka Perl 6)
+
+  ---- Raku (aka Perl 6)
   'Raku/vim-raku';
 
 
@@ -96,7 +108,7 @@ require 'paq' {
   'm00qek/baleia.nvim';                        -- dependency for chafa
   'junegunn/fzf';                              -- fuzzy file finder core
   'MunifTanjim/nui.nvim';                      -- UI toolkit; prereq for: package-info
-  'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup
+  'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup, data-viewer…
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
   {'nvim-treesitter/nvim-treesitter',          -- file content parser
     build = function()
@@ -195,6 +207,14 @@ cmp.setup {
     return not(context.in_treesitter_capture('comment') == true or context.in_syntax_group('Comment'))
   end,
 }
+
+
+-- data-viewer config
+require('data-viewer').setup({
+  view = {
+    float = false,
+  },
+})
 
 
 -- easypick config

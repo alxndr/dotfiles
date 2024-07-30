@@ -334,9 +334,16 @@ lspc.lua_ls.setup{
   }
 }
 lspc.tsserver.setup {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "svelte" },
   cmd = { "typescript-language-server", "--stdio" }
 }
+-- Svelte tweaks, h/t @TGlide https://github.com/TGlide/nvim-config/blob/39eaf5706c8d/lua/thomasgen/lazy/lsp.lua#L105-L110
+local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+lsp_capabilities.workspace.didChangeWatchedFiles = false
+lspc.svelte.setup {
+  capabilities = lsp_capabilities
+}
+
 
 local null_ls = require("null-ls")
 local markdownlint = { -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/db09b6c691def00/README.md#parsing-cli-program-output
@@ -511,6 +518,7 @@ require('nvim-treesitter.configs').setup {
     'ruby',
     'rust',
     'scss',
+    'svelte',
     'typescript',
     'yaml',
   },

@@ -7,6 +7,7 @@ vim.cmd [[
 ]]
 vim.api.nvim_set_keymap('n', '<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap=true, expr=true, desc='jump-down a third of the window-height'})
 vim.api.nvim_set_keymap('n', '<C-u>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap=true, expr=true, desc='jump-up a third of the window-height'})
+vim.api.nvim_set_keymap('v', '<LEADER>p', 'S]%a()<ESC>"+P', {}) -- TODO sort out why using `S` here (from vim-surround) doesn't work via which-key
 
 
 local mappings = require'which-key'

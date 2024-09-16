@@ -333,7 +333,7 @@ lspc.lua_ls.setup{
     }
   }
 }
-lspc.tsserver.setup {
+lspc.ts_ls.setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "svelte" },
   cmd = { "typescript-language-server", "--stdio" }
 }

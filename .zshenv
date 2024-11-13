@@ -78,6 +78,15 @@ alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant"
 
 alias bad="git bisect bad"
 alias good="git bisect good"
+      sha-filepath() {
+        # given a filepath, print the filename appending the most recent SHA to edit the file
+        FILEPATH=${1?:specify a file}
+        SHA=$(git log -1 --format=%h $FILEPATH)
+        FILENAME=$(basename $FILEPATH)
+        FILE_WITHOUT_EXTENSION=${FILENAME%.*}
+        FILE_EXTENSION=${FILENAME##*.}
+        echo "${FILE_WITHOUT_EXTENSION}.${SHA}.${FILE_EXTENSION}"
+      }
 
 alias g="git"
 alias ga="git add"

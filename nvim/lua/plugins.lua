@@ -243,6 +243,7 @@ vim.cmd [[
 -- emoji_picker setup
 require('emoji_picker').setup()
 mappings.add({
+  {'<LEADER>e', [[<CMD>s/:\([^:]\+\):/\=gh_emoji#for(submatch(1), submatch(0))/g<CR>]], desc='replace comma-delimited emoji names in current line with the eponymous emoji character', mode='n'},
   {'<LEADER>e', '<CMD>EmojiPicker<CR>', desc='open Emoji picker', mode='i'},
 })
 
@@ -254,7 +255,7 @@ mappings.add({
   { mode='t',
     {'<LEADER>t', '<CMD>FloatermToggle<CR>',           desc='open/close floating terminal window'},
     {'<C-Space>', [[<C-\><C-n>]],                      desc='exit terminal-insert mode' },
-    {'<C-n>',     [[<C-\><C-n><CMD>FloatermNew<CR>]],  desc='new terminal' },
+    {'<C-t>',     [[<C-\><C-n><CMD>FloatermNew<CR>]],  desc='new terminal' },
     {'<C-[>',     [[<C-\><C-n><CMD>FloatermPrev<CR>]], desc='previous terminal' },
     {'<C-]>',     [[<C-\><C-n><CMD>FloatermNext<CR>]], desc='next terminal' },
   }
@@ -305,13 +306,26 @@ mappings.add({
 -- lexima config
 vim.cmd [[
   " javascript
-  call lexima#add_rule({ 'char': '=', 'at': ')\%#'   , 'input': ' => ',                                            'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '{', 'at': ')\%#'   , 'input': ' => {',                       'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#'  , 'input': '<BS><BS>global.console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '=', 'at': ')\%#'   , 'input': ' => ',                                     'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '{', 'at': ')\%#'   , 'input': ' => {',                'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#'  , 'input': '<BS><BS>console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
   " lisps
   call lexima#add_rule({ 'char': "'", 'filetype': ['lisp', 'scheme', 'racket']})
   call lexima#add_rule({ 'char': '`', 'filetype': ['lisp', 'scheme', 'racket']})
 ]]
+
+
+--[[ -- tesoura config
+require'tesoura'.setup {
+  setup_autocmd = true,
+  snippets = {
+    ['*'] = {
+      { prefix = ')=',  body = ') => $1' },
+      { prefix = '){',  body = ') => { $1 }' },
+      { prefix = 'cl(', body = 'console.log($1)' },
+    },
+  }
+} ]]
 
 
 -- lsp config

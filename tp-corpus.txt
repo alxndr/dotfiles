@@ -1,0 +1,47 @@
+
+o kama pona lon lipu pi lipu tenpo!
+mi mute li pali e lipu tenpo nanpa wan pi toki pona.
+
+lipu sin li lon a! kin la ona li lon selo sin! ni li nanpa sin. o kama jo e ona kepeken https://liputenpo.org/lipu-tenpo-nanpa-sin/
+toki mute li lon lipu ni. nanpa wan la “tawa pi poki monsi pi ma Asija nanpa luka luka luka: ma Nijon” (tan jan Polo). nanpa tu la lipu “toki Olapi li seme” (tan jan Imi). nanpa tu wan la “enko li seme” (tan jan Lapate). toki mute ante kin li lon. o lukin e ona ale.
+kin la musi li lon. tawa pona.
+
+jan pali li seme, nanpa tu: jan Sonatan a
+
+Q: toki a! sina seme?
+A: toki! mi jan Sonatan
+Q: ma sina li seme?
+A: mi jan tan ma Tosi. mi tawa ma mute tan ni: ma mute li pona tawa mi a
+Q: nimi seme li nimi nanpa wan tan sina?
+A: nimi majuna en nimi sin mute li pona tawa mi. mi pana e sona tawa jan pona mi la ona li sona e ni taso: "pona" en "moku" a a a
+Q: nasin sitelen seme li pona: sitelen pona anu sitelen sitelen?
+A: sitelen pona li pona. mi sona e ona
+Q: lipu seme pi lipu tenpo li pona tawa sina?
+A: lipu tenpo la "seme li mi?" li pona suwi tawa mi!
+Q: tenpo seme la sina pali lon lipu tenpo?
+A: mi open e lipu tenpo lon tenpo sike pini tu
+
+-------
+
+tenpo pini mute la, jan Ken Tansan (Ken Thompson) en jan Teni Wisi (Dennis Ritchie) en jan ante mute li pali e ilo kon lawa Juni (Unix) tawa ilo sona. ona li pali e ilo sin tan ni: ilo kon lawa ante li suli, li jo e ijo ike, li pali ike lon ilo sona pi wawa lili. ona li wile e ni: jan li ken pali e ilo kon sin tawa ona kepeken pali lili.
+
+tawa ni la, ona li pali e ilo kon lili mute. ilo wan li ken pali e pali wan lili. taso, jan li ken pana pona e pali ilo tawa ilo ante. jan anu sona awen anu ilo ante li pana e sitelen tawa ilo kon. ilo kon li pali, li pana e sitelen sin.
+
+sona pi ijo lon la, ilo wan pi ilo kon lili mute li ilo kon pi nimi “sort”, li ante e sitelen lon nasin ni: linja sitelen ale li ante nasin tan nasin sitelen toki ( a -> e -> i -> j -> … ). ilo kon pi nimi “nl” li pana e nanpa tawa linja sitelen ale. ilo kon pi nimi “wc” li toki e ni: sitelen li jo e mute sitelen seme, e mute nimi seme, e mute linja seme? ilo ante li ken lukin, li ken ante e sitelen lon nasin ante mute.
+
+ilo lili ni li pona tan ni: ilo li lili la, mute pakala ona li lili. jan li ken pali e ona lon tenpo lili. jan li ken linja e ilo lili mute.
+
+jan Taka Mikilo (Doug McIlroy) li jan pali suli pi ilo kon Juni. ona li toki e ni:
+
+ilo sina li wile pali e ijo wan, li wile pali pona. sina wile pali e pali sin la, o pali e ilo kon sin, o suli ala e ilo ante.
+
+ilo li pana e sitelen la, o sona e ni: ken la, ilo ante li kama jo e sitelen ni. o pana ala e ijo ike. o sitelen e ijo kepeken nasin pona.
+
+o pali e ilo kepeken nasin ni: tenpo kama lili la, jan li ken lukin e pali ona. ijo lili pi ilo ni li ike la, o weka e ona, o pali sin e ona.
+
+sina ken lili e pali jan la, o pali e ilo. o toki insa ala e ni: pali ni li pini la, ilo ni li pona ala pona lon tenpo kama mute? ni li lili. o pali e ilo.
+
+nasin Juni en nasin pi toki pona li sama lili. toki pona li jo e nimi pi mute lili. toki ante la, jan li ken toki e ijo kepeken nimi suli wan. toki pona la, toki sama li kepeken e nimi lili mute.
+
+tenpo ni la, ilo kon lawa mute li kama tan ilo Juni, li pali lon nasin sama. ilo Peli (Berkeley Software Distribution, BSD) li kama tan ilo Juni. ilo kon lawa Makinto (Mac OS) pi tenpo ni li jo e insa lawa wan, e ilo lili mute pi ilo Peli. ilo Nu (GNU) en ilo Linu (Linux) li kama ala tan ilo Juni. taso, ona li jo e ilo kon lili mute pi pali sama, pi nasin sama.
+

@@ -181,6 +181,7 @@ require 'colorizer'.setup({
 
 
 -- Comment config
+require('Comment.ft').racket = { '#;%s', '#| %s |#' }
 require('Comment').setup()
 
 
@@ -332,6 +333,10 @@ lspc.lua_ls.setup{
       }
     }
   }
+}
+-- lspc.raku_navigator.setup{}
+lspc.superhtml.setup {
+  filetypes = { 'html' }
 }
 lspc.ts_ls.setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "svelte" },

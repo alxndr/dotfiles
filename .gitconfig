@@ -32,7 +32,7 @@
   find-untracked-files = !git ls-files -v $(git get-root-dir) | grep -e "^[a-z]"
   first-commit = rev-list --max-parents=0 HEAD
   get-root-dir = !git rev-parse --show-toplevel
-  gol = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message-branch
+  gl = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message-branch
   l = log --no-merges --abbrev-commit --abbrev=8 --pretty=sha-date-message-author-branch
   lg = log --graph --abbrev-commit --abbrev=8 --pretty=sha-branch-message-author-date
   reset-origin = !git fetch origin && git checkout master && git reset --hard origin/master
@@ -40,7 +40,7 @@
   set-upstream = !git branch --set-upstream-to=origin/$(git branch-name) $(git branch-name)
   show-unchanged = !git ls-files -v | grep "^[a-z]"
   st = status
-  tagv = tag --message=$2 $2 $1 # create tag: $ git tg SHA vX.X.X
+  tagv = tag --message=$2 $2 $1 # create tag: $ git tagv SHA vX.X.X
 
 [pretty]
   sha-branch-message-author-date = format:%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(blue)%an %C(green)%cr%C(reset)

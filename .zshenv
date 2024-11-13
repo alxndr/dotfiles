@@ -115,16 +115,10 @@ alias glu="git log --patch"
 alias gmd="git co develop && git pull && git co - && git merge develop"
 alias gp="git pull"
       gri() { git rebase --interactive "HEAD~$1" --verbose }
+alias gs="git show" # ...not stash...
 alias gsl="git stash list"
-      gsp() {
-        git stash pop stash@{${1:-0}}
-      }
-      gss() {
-        git stash show --patch stash@{${1:-0}}
-      }
-      resolve() {
-        $EDITOR -O $(git conflicting)
-      }
+      gsp() { git stash pop stash@{${1:-0}} }
+      gss() { git stash show --patch stash@{${1:-0}} }
 alias s="git status --short"
 
 ##########
@@ -209,6 +203,7 @@ alias rk="raku"
 alias rt="racket"
 alias sactl="sudo apachectl"
 alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias tsn="ts-node"
 alias us="bundle exec unicorn -c tmp/unicorn.rb"
       upyet() {
         URL=$1

@@ -238,3 +238,25 @@ back_up_media_unison() {
 }
 
 [[ -f ~/.br-env.zsh ]] && source ~/.br-env.zsh
+
+aoc() {
+  # Advent Of Code — https://adventofcode.com
+  # create dir and download first part of the puzzle
+  if [[ "$1" == "today" ]]; then
+    YEAR=$(date +%Y)
+    DAY=$(date +%d)
+  else
+    YEAR=$1
+    DAY=$(printf '%02d' "$2")
+  fi
+  DIR=~/workspace/adventofcode/${YEAR}/${DAY}
+  mkdir -p $DIR
+  cd $DIR
+  URL=https://adventofcode.com/${YEAR}/day/${2}
+  echo "\`\`\`" >README.md
+  links -dump $URL \
+  | awk '/--- Day/{P=1} /identify/{P=0} {if (P) print}' \
+  >> README.md
+  echo "\`\`\`" >>README.md
+  cat README.md
+}

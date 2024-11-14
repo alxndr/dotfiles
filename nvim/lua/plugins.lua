@@ -10,6 +10,7 @@ require 'paq' {
   'goolord/alpha-nvim';                 -- startup screen
   'princejoogie/chafa.nvim';            -- viewing images within neovim
   'gpanders/editorconfig.nvim';         -- integrate with `.editorconfig` files
+  'Robitx/gp.nvim';                     -- new robot overlords 🤖
   'godlygeek/tabular';                  -- align columns of text
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
@@ -301,6 +302,12 @@ mappings.add({
   {'gk', function () require"gitsigns.actions".prev_hunk() end, desc='jump to modified hunk above cursor position'},
   {'gu', function () require"gitsigns".reset_hunk() end,        desc='undo hunk modification at cursor position'},
 })
+
+
+-- gp config
+require('gp').setup {
+  openai_api_key = os.getenv('OPENAI_API_KEY'), -- TODO error if not found...
+}
 
 
 -- lexima config

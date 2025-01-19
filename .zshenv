@@ -223,19 +223,25 @@ alias webfiles="rg --type web --files"
 alias y="yarn" # runs `yarn install` with no args...
 alias z="zola"
 
-back_up_media_unison() {
+back_up_drive() {
+  FROM=${1:?specify volume names: first from, then to}
+  TO=${2:?specify volume names: first from, then to}
   START=$(date)
   echo "Started: $START"
   unison \
     -fastcheck true \
-    -copythreshold 999 \
-    -ignore 'Name .*' \
-    /Volumes/MEDIA \
-    /Volumes/Media2
+    -copythreshold 10000 \
+    -ignore 'Name {.fseventsd,.Trashes}' \
+    "/Volumes/${FROM}" \
+    "/Volumes/${TO}"
   END=$(date)
   echo
   echo "Started: $START"
   echo "Ended @: $END"
+}
+
+back_up_media_unison() {
+  back_up_drive MEDIA Media2
 }
 
 [[ -f ~/.br-env.zsh ]] && source ~/.br-env.zsh

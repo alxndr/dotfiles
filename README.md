@@ -71,12 +71,9 @@ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git \
 
 ### neovim setup
 
-It'll start off saying "module 'paq' not found" because you gotta [install it separately](https://github.com/savq/paq-nvim/blob/295fbf1/README.md#installation) first...
+`mkdir ~/.config/nvim && cd ~/.config/nvim && ln -s ~/workspace/dotfiles/nvim/* .`
 
-```shell
-git clone --depth=1 https://github.com/savq/paq-nvim.git \
-    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
-```
+It'll start off saying "module 'paq' not found" because you gotta [install it separately](https://github.com/savq/paq-nvim) first.
 
 Then install the other modules...
 
@@ -87,6 +84,7 @@ nvim -c 'PaqInstall|TSUpdate'
 Might then complain about "Node JS not found: `node` is not executable!" if you haven't done something like `asdf install nodejs latest`...
 
 ...or `Vim(lua):E5108: Error executing lua .../start/nvim-treesitter/lua/nvim-treesitter/highlight.lua:14: attempt to index local 'hlmap' (a nil value)`
+
 
 ### [Unison] backup tool
 

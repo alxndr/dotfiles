@@ -2,18 +2,26 @@ Nothin' to see here but some invisible files.
 
 ## prereqs
 
-[iTerm][iterm2]
-
 Set up SSH...
 [generate new keypair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
 add GitHub stuff to `~/.ssh/config` if it's not there already
 `ssh-add` the privkey...
 finally [let GitHub know about the pubkey](https://github.com/settings/keys)
 
-Clone the repo
+Clone this repo
 
 
 ## setup
+
+### [iTerm][iterm2]
+
+Install it, then...
+
+* Font: install [Inconsolata][inconsolata], then set it as the default font
+  * Settings > Profiles > Default > Text — Font dropdown, select "Inconsolata for Powerline" Medium 16
+* don't use macOS fullscreen weirdness
+  * Settings > General > Window — uncheck "Native full screen windows"
+
 
 ### zsh
 
@@ -39,8 +47,10 @@ brew install \
 
 ### install these dotfiles
 
+...but not before you install [oh-my-zsh]...
+
 ```shell
-ln -s .zshrc   ~
+ln -s .zshrc   ~  # might need to remove ~/.zshrc first
 ln -s .zshenv  ~
 ln -s alxndr.zsh-theme  ~/.oh-my-zsh/themes
 mkdir -p ~/.config
@@ -103,6 +113,23 @@ Might then complain about "Node JS not found: `node` is not executable!" if you 
 
 
 ## OS/version-specific notes
+
+### macOS 15 (Sequoia)
+
+* change Caps Lock to Control
+  * Settings > Keyboard > Keyboard Shortcuts (button) > Modifier Keys (left panel) — set Caps Lock to Control
+* disable Control-Space to change keyboard input
+  * Settings > Keyboard > Input Sources — uncheck "Select next" & "Select previous"
+* change Globe key to show Emoji
+  * Settings > Keyboard — "Press 🌐 key to": "Show Emoji & Symbols" 🎉
+* enable Tab/Shift-Tab to navigate input
+  * Settings > Keyboard — "Keyboard navigation" slider on
+* tap-to-click
+  * Settings > Trackpad — turn on "Tap to click" slider
+* drag with three-finger tap
+  * Settings > search for "drag" — "Dragging style" (left panel under search)
+* reduce motion
+  * Settings > Accessibility > Display — "Reduce motion" slider on
 
 
 ### macOS 14 (Sonoma)

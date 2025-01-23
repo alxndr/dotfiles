@@ -17,11 +17,14 @@ Clone this repo
 
 Install it, then...
 
-* Font: install [Inconsolata][inconsolata], then set it as the default font
+* Font: install [Inconsolata Nerd Font], then set it as the default font
   * Settings > Profiles > Default > Text — Font dropdown, select "Inconsolata for Powerline" Medium 16
 * don't use macOS fullscreen weirdness
   * Settings > General > Window — uncheck "Native full screen windows"
-
+* open new session in current session's directory
+  * Settings > Profiles — Working Directory: "Reuse previous session's directory"
+* blinking cursor
+* unlimited scrollback
 
 ### zsh
 
@@ -96,16 +99,9 @@ Might then complain about "Node JS not found: `node` is not executable!" if you 
 ## other things
 
 * [Inconsolata for Powerline][inconsolata] or other [patched fonts](https://www.nerdfonts.com/font-downloads)
-* [iTerm 2][iterm2]
-  * Settings > General
-    * in Window tab, uncheck "Native full screen windows"
-      * in earlier versions, this was labeled "Use Lion-style fullscreen windows"
-  * Settings > Profile
-    * newer versions have "Use built-in Powerline glyphs": Prefs > Profiles > Text > Text Rendering
-      * older: use [Inconsolata for Powerline][inconsolata] as the font
-    * `/bin/zsh` as the login shell
-    * blinking cursor
-    * unlimited scrollback
+* [QLMarkdown](https://github.com/sbarex/QLMarkdown) to preview Markdown files using QuickLook (i.e. pressing space bar on a file in Finder)
+  * un-quarantine it: `xattr -r -d com.apple.quarantine /Applications/QLMarkdown.app`
+  * then run it as standalone app once so it registers itself in QuickLook
 * [LittleSnitch][little-snitch]
 * [SizeUp][sizeup]
 
@@ -222,4 +218,5 @@ Oooh shiny... upgraded the 2021 MBP and it kept the settings...
 [oh-my-zsh]: https://ohmyz.sh
 [sizeup]: http://www.irradiatedsoftware.com/sizeup/
 [Homebrew]: https://brew.sh/
+[Inconsolata Nerd Font]: https://www.nerdfonts.com/font-downloads
 [Karabiner]: https://karabiner-elements.pqrs.org/

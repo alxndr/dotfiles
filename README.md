@@ -1,12 +1,14 @@
 Nothin' to see here but some invisible files.
 
-## prereqs
+## SSH/git
 
-Set up SSH...
 [generate new keypair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
 add GitHub stuff to `~/.ssh/config` if it's not there already
+
 `ssh-add` the privkey...
 finally [let GitHub know about the pubkey](https://github.com/settings/keys)
+
+If two git logins are required, [configure `~/.ssh/config` to use different keys based on `Host`](https://stackoverflow.com/a/58550269/303896)
 
 Clone this repo
 
@@ -124,6 +126,8 @@ Might then complain about "Node JS not found: `node` is not executable!" if you 
   * Settings > search for "drag" — "Dragging style" (left panel under search)
 * reduce motion
   * Settings > Accessibility > Display — "Reduce motion" slider on
+* restore the status bar in Finder
+  * View menu — "Show Status Bar" or press `⌘/`
 
 
 ### macOS 14 (Sonoma)

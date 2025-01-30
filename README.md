@@ -19,14 +19,18 @@ Clone this repo
 
 Install it, then...
 
-* Font: install [Inconsolata Nerd Font], then set it as the default font
-  * Settings > Profiles > Default > Text — Font dropdown, select "Inconsolata for Powerline" Medium 16
 * don't use macOS fullscreen weirdness
   * Settings > General > Window — uncheck "Native full screen windows"
+* Font: install [Inconsolata Nerd Font], then set it as the default font
+  * Settings > Profiles > Default > Text — Font dropdown, select "Inconsolata for Powerline" Medium 16
 * open new session in current session's directory
-  * Settings > Profiles — Working Directory: "Reuse previous session's directory"
-* blinking cursor
+  * Settings > Profiles > General — Working Directory: "Reuse previous session's directory"
+* cursor: blinking box
+  * Settings > Profiles > Text — Cursor, radio button for "Box", checkbox for "Blinking cursor"
 * unlimited scrollback
+  * Settings > Profiles > Terminal — Scrollback Buffer: checkbox for "Unlimited scrollback"
+* command timestamps
+  * Settings > Profiles > Session — Show timestamps "When mouse hovers over scroll bar"
 
 ### zsh
 
@@ -58,9 +62,9 @@ brew install \
 ln -s .zshrc   ~  # might need to remove ~/.zshrc first
 ln -s .zshenv  ~
 ln -s alxndr.zsh-theme  ~/.oh-my-zsh/themes
+ln -s .gitconfig  ~
 mkdir -p ~/.config
 ln -s nvim        ~/.config/
-ln -s .gitconfig  ~/.config/
 ```
 
 
@@ -128,6 +132,8 @@ Might then complain about "Node JS not found: `node` is not executable!" if you 
   * Settings > Accessibility > Display — "Reduce motion" slider on
 * restore the status bar in Finder
   * View menu — "Show Status Bar" or press `⌘/`
+* install [Karabiner]
+  * set up Return to be Control when held... [TBD](https://ke-complex-modifications.pqrs.org/?q=return%20control%20tap)
 
 
 ### macOS 14 (Sonoma)

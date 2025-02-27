@@ -277,7 +277,7 @@ mappings.add({
 
 -- fzf-lua config
 mappings.add({
-  {'<Leader>\\', function () require"fzf-lua".buffers() end,          desc='fuzzy-search all open buffers'},
+  {'<Leader>\\', function () require"fzf-lua".buffers({formatter="path.filename_first"}) end, desc='fuzzy-search all open buffers'},
   {'<Leader>g',  function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
   {'<C-p>',      function () require"fzf-lua".files() end,            desc='fuzzy-search all filenames in project'},
   {'<C-s>',      function () require"fzf-lua".grep_cword() end,       desc='fuzzy-grep within buffer for word under cursor'}, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
@@ -290,8 +290,8 @@ require('gitlinker').setup {
   mappings = nil,
 }
 mappings.add({
-  {',l', function () require'gitlinker'.get_buf_range_url('n') end, desc='github permalink to current line'},
-  {',l', function () require'gitlinker'.get_buf_range_url('v') end, desc='github permalink to selection', mode='v'},
+  {',g', function () require'gitlinker'.get_buf_range_url('n') end, desc='github permalink to current line'},
+  {',g', function () require'gitlinker'.get_buf_range_url('v') end, desc='github permalink to selection', mode='v'},
 })
 
 

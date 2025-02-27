@@ -95,7 +95,7 @@ alias gap="git add --patch"
 alias gb="git branch --color"
 alias gco="git checkout"
 alias gcv="git commit --verbose"
-alias gd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
+alias gd="git diff --patch --ignore-all-space --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
       gdiff() {
         $FIRST=$1
         $SECOND=$2
@@ -198,6 +198,7 @@ alias nt="npm test"
 alias nx="npx"
 alias o="ocaml"
 alias py="python"
+alias python="python3"
       report() { $@ && say "done" || say "error" }
 alias rk="raku"
 alias rt="racket"

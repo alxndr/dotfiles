@@ -30,6 +30,29 @@ vim.diagnostic.config({
 })
 
 
+-- foldtext
+-- h/t https://vi.stackexchange.com/a/31741/67
+vim.cmd [[
+  function! MyFoldText()
+      let nucolwidth = &fdc + &number*&numberwidth
+      let winwd = winwidth(0) - nucolwidth
+      let foldlinecount = foldclosedend(v:foldstart) - foldclosed(v:foldstart) + 1
+      let foldcharcount = -1
+      let lineCounter = 1
+      while lineCounter < foldlinecount
+        " Increment the count for characters in the range along with newline character
+        let foldcharcount += strchars(getline(v:foldstart + lineCounter)) + 1
+        let lineCounter += 1
+      endwhile
+      let prefix = " … ".foldcharcount." chars / ".foldlinecount." lines"
+      let line =  strpart(getline(v:foldstart), 0 , winwd - len(prefix))
+      let fillcharcount = winwd - len(line) - len(prefix)
+      return line . repeat(" ",fillcharcount) . prefix
+  endfunction
+  set foldtext=MyFoldText()
+]]
+
+
 -- colorscheme tweaks
 vim.api.nvim_create_autocmd(
   { 'BufEnter', },

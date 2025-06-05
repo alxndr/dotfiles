@@ -267,3 +267,5 @@ aoc() {
   echo "\`\`\`" >>README.md
   cat README.md
 }
+
+yt-rip-stream() { yt-dlp --extract-audio --live-from-start https://www.youtube.com/watch\?v\=${${${${1:?pass a YouTube ID/url}#*=}%&*}:?could not determine YouTube ID; exiting...} }

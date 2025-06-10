@@ -16,9 +16,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="curl"
-      digbr() {
-        dig ${1?:specify a subdomain to look up}.bleacherreport.com
-      }
 alias e="nvim"
 alias gr="grep"
 alias l="ls -AFlno" # OMZ? is overriding this...
@@ -146,6 +143,7 @@ alias a="asdf"
 alias b="brew"
 alias bl="bundle"
 alias bx="bundle exec"
+alias cci="circleci"
       decode_jwt() {
         if [[ -n "$1" ]]; then
           JWT=$1
@@ -179,7 +177,6 @@ alias bx="bundle exec"
           $1 \
         | awk '/^ *[0-9]/ {print $2}'
       }
-      f="echo Start getting used to asdf... aliased to 'a' at least"
 alias n="npm"
 alias nd="node"
 alias ndd="nodemon"
@@ -197,6 +194,7 @@ alias nr="npm run --silent"
 alias nt="npm test"
 alias nx="npx"
 alias o="ocaml"
+alias pip="pip3"
 alias py="python"
 alias python="python3"
       report() { $@ && say "done" || say "error" }

@@ -230,3 +230,4 @@ Oooh shiny... upgraded the 2021 MBP and it kept the settings...
 [Homebrew]: https://brew.sh/
 [Inconsolata Nerd Font]: https://www.nerdfonts.com/font-downloads
 [Karabiner]: https://karabiner-elements.pqrs.org/
+[Unison]: https://www.cis.upenn.edu/~bcpierce/unison/

@@ -242,8 +242,6 @@ back_up_media_unison() {
   back_up_drive MEDIA Media2
 }
 
-[[ -f ~/.br-env.zsh ]] && source ~/.br-env.zsh
-
 aoc() {
   # Advent Of Code — https://adventofcode.com
   # create dir and download first part of the puzzle

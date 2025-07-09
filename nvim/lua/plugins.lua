@@ -10,19 +10,23 @@ require 'paq' {
   'goolord/alpha-nvim';                 -- startup screen
   'princejoogie/chafa.nvim';            -- viewing images within neovim
   'gpanders/editorconfig.nvim';         -- integrate with `.editorconfig` files
+  'mhartington/formatter.nvim';         -- reformat code
   'Robitx/gp.nvim';                     -- new robot overlords 🤖
   'godlygeek/tabular';                  -- align columns of text
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
     build = function() require('telescope').load_extension('import') end};
-  'folke/trouble.nvim';                 -- diagnostics stuff
+  -- 'folke/trouble.nvim';                 -- diagnostics stuff
   'folke/which-key.nvim';               -- manage keyboard shortcuts...
   'rachartier/tiny-inline-diagnostic.nvim'; -- diagnostic message tweaks
 
 
   -- behavior tweaks
   'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
+  'RRethy/vim-illuminate';             -- highlight/underline all occurrences of word under cursor
+  'echasnovski/mini.nvim';             -- more text objects
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
+  'stevearc/quicker.nvim';             -- quickfix window workflow improvements + eye candy
   'svban/YankAssassin.vim';            -- control cursor behavior while yanking
 
 
@@ -31,7 +35,6 @@ require 'paq' {
   'ghillb/cybu.nvim';         -- buffers navigation
   'axkirillov/easypick.nvim'; -- helper for creating custom Telescope pickers
   'ibhagwan/fzf-lua';         -- fuzzy file finder functions -- \\ -- \g -- <C-p> -- <C-s>
-  'gaborvecsei/memento.nvim'; -- recent file navigator   -- ,b
   'airblade/vim-rooter';      -- keep vim working directory set to project root (nextreport confuses this...)
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
   'kyazdani42/nvim-tree.lua'; -- file browser            -- \<Tab>
@@ -51,7 +54,6 @@ require 'paq' {
   {url='https://gitlab.com/gi1242/vim-emoji-ab'}; -- helpers for inserting emoji characters 😜
   'cohama/lexima.vim';                            -- matched-pair character closing
   'tpope/vim-surround';                           -- mappings for converting matched-pair characters
-  -- 'guilherme-puida/tesoura.nvim';                 -- snippets
 
 
   -- language-specific features...
@@ -99,10 +101,11 @@ require 'paq' {
   'hrsh7th/nvim-cmp';                -- completion
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
+  'mfussenegger/nvim-lint';          -- linter
   'neovim/nvim-lspconfig';           -- LSP config
   'arkav/lualine-lsp-progress';      -- show LSP server status in lualine
-  'williamboman/mason.nvim';         -- manager
-  'jose-elias-alvarez/null-ls.nvim'; -- customizable language server for LSP
+  'williamboman/mason.nvim';         -- LSP plugins manager
+  'nvimtools/none-ls.nvim';          -- customizable language server for LSP … require'null-ls'
 
 
   -- meta / dependencies
@@ -175,9 +178,10 @@ require 'colorizer'.setup({
   'html';
   'javascript';
   'rust';
+  'typescript';
 }, {
-  RRGGBBAA = true;
-  rgb_fn   = true;
+  css    = true;
+  css_fn = true;
 })
 
 
@@ -231,7 +235,7 @@ easypick.setup({
   }
 })
 mappings.add({
-  {',c', '<CMD>Easypick conflicts<CR>', desc='git merge conflict resolver UX'},
+  {',cc', '<CMD>Easypick conflicts<CR>', desc='git merge conflict resolver UX'},
 })
 
 
@@ -243,15 +247,18 @@ vim.cmd [[
 
 -- emoji_picker setup
 require('emoji_picker').setup()
-mappings.add({
+mappings.add{
   {'<LEADER>e', [[<CMD>s/:\([^:]\+\):/\=gh_emoji#for(submatch(1), submatch(0))/g<CR>]], desc='replace comma-delimited emoji names in current line with the eponymous emoji character', mode='n'},
   {'<LEADER>e', '<CMD>EmojiPicker<CR>', desc='open Emoji picker', mode='i'},
-})
+}
 
 
 -- floaterm config
-vim.cmd 'au VimEnter * highlight FloatermNC guibg=gray'
-mappings.add({
+vim.api.nvim_create_autocmd(
+  { 'VimEnter', },
+  { command = 'highlight FloatermNC guibg=gray', }
+)
+mappings.add{
   {'<LEADER>t', '<CMD>FloatermToggle<CR>', desc='open/close floating terminal window'},
   { mode='t',
     {'<LEADER>t', '<CMD>FloatermToggle<CR>',           desc='open/close floating terminal window'},
@@ -260,47 +267,121 @@ mappings.add({
     {'<C-[>',     [[<C-\><C-n><CMD>FloatermPrev<CR>]], desc='previous terminal' },
     {'<C-]>',     [[<C-\><C-n><CMD>FloatermNext<CR>]], desc='next terminal' },
   }
-})
+}
+
+
+-- formatter config
+local formatter_util = require 'formatter.util' -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+local linter_biome = function()
+  return {
+    exe = 'biome',
+    stdin = true,
+    args = {
+      'check',
+      '--fix',
+      '--config-path',
+      './biome.json',
+      '--stdin-file-path',
+      formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+    },
+    -- TODO show error when biome can't parse the input...
+  }
+end
+local linter_black = function()
+  return {
+    exe = 'black',
+    stdin = true,
+    args = {
+      '-', -- explicitly tell it to read from stdin
+      '--stdin-filename',
+      formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+    },
+  }
+end
+require('formatter').setup {
+  logging = true, -- Enable or disable logging
+  log_level = vim.log.levels.WARN, -- Set the log level
+  filetype = { -- All formatter configurations are opt-in
+    javascript = { linter_biome },
+    javascriptreact = { linter_biome },
+    python = { linter_black },
+    typescript = { linter_biome },
+    ['*'] = {
+      require('formatter.filetypes.any').remove_trailing_whitespace,
+    },
+  }
+}
+mappings.add{
+  -- TODO would be nice if this also ran diagnostics???
+  {',f', 'mm<CMD>Format<CR>`m', desc='reformat current buffer (using formatter.nvim)'},
+}
 
 
 -- fugitive (Git) config
-mappings.add({
+mappings.add{
   {',g', group='git'},
-  {',ga', ':Git commit --amend', desc='amend git commit', prefix=',', silent=false},
-  {',gc', '<CMD>Git commit<CR>', desc='git commit'},
-  {',gg', '<CMD>silent Git<CR>', desc='show status window'},
-  {',gl', '<CMD>Git lg<CR>',     desc='show git log'},
-  {',gp', ':Git push',           desc='git push',         prefix=',', silent=false},
-  {',gP', ':Git push --force',   desc='git force push',   prefix=',', silent=false},
-})
+  {',ga', ':Git commit --amend', desc='amend git commit',  prefix=',g', silent=false},
+  {',gc', '<CMD>Git commit<CR>', desc='git commit',        prefix=',g'},
+  {',gg', '<CMD>silent Git<CR>', desc='show status window',prefix=',g'},
+  {',gl', '<CMD>Git lg<CR>',     desc='show git log',      prefix=',g'},
+  {',gp', ':Git push',           desc='git push',          prefix=',g', silent=false},
+  {',gP', ':Git push --force',   desc='git force push',    prefix=',g', silent=false},
+}
+
+
+-- illuminate config
+require('illuminate').configure{
+  delay = 1313,
+  disable_keymaps = true,
+  large_file_overrides = true,
+  min_count_to_highlight = 1,
+  under_cursor = false,
+} -- still doesn't highlight table key(??)s in Lua...
+mappings.add{
+  {',h', function() require'illuminate'.toggle() end, desc='toggle the Highlighting of all instances (or pair) of hovered word'}
+}
 
 
 -- fzf-lua config
-mappings.add({
-  {'<Leader>\\', function () require"fzf-lua".buffers({formatter="path.filename_first"}) end, desc='fuzzy-search all open buffers'},
-  {'<Leader>g',  function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
-  {'<C-p>',      function () require"fzf-lua".files() end,            desc='fuzzy-search all filenames in project'},
-  {'<C-s>',      function () require"fzf-lua".grep_cword() end,       desc='fuzzy-grep within buffer for word under cursor'}, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
-  {'<C-s>',      function () require"fzf-lua".grep_visual() end,      desc='fuzzy-grep within buffer for selection', mode='v'} -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
-})
+require('fzf-lua').setup{
+  defaults = {
+    formatter = 'path.filename_first', -- doesn't work for live_grep_native 😞
+    2, -- https://github.com/ibhagwan/fzf-lua/issues/1585#issuecomment-2550882405 ??
+  },
+  live_grep_native = {
+    formatter = 'path.dirname_first', -- https://github.com/ibhagwan/fzf-lua/issues/1362#issuecomment-2256360989
+  },
+}
+mappings.add{
+  {'<LEADER>\\',      function() require'fzf-lua'.buffers() end,          desc='fuzzy-find filepath, of all open buffers'},
+  {',r',              function() require'fzf-lua'.live_grep_native() end, desc='fuzzy-find string (i.e. gRep), within files in project'},
+  {',R',              function() require'fzf-lua'.resume() end,           desc='Resume the last fuzzy-find'},
+  {'<C-p>',           function() require'fzf-lua'.files() end,            desc='fuzzy-find all Paths-with-filenames, within files in project'},
+  {'<C-s>',           function() require'fzf-lua'.grep_cword() end,       desc='fuzzy-find word under curSor, within files in project'}, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+  {'<C-s>', mode='v', function() require'fzf-lua'.grep_visual() end,      desc='fuzzy-find visual Selection, within files in project'},  -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+  {'<C-x><C-f>', mode={'n','i','v'}, function() require'fzf-lua'.complete_path() end, desc='fuzzy complete-path to file in project'}, -- TODO this is always relative to project root, can it be relative to current buffer's file??
+}
 
 
 -- gitlinker config
 require('gitlinker').setup {
   mappings = nil,
 }
-mappings.add({
-  {',g', function () require'gitlinker'.get_buf_range_url('n') end, desc='github permalink to current line'},
-  {',g', function () require'gitlinker'.get_buf_range_url('v') end, desc='github permalink to selection', mode='v'},
-})
+mappings.add{
+  {',gu',           function () require'gitlinker'.get_buf_range_url('n') end, desc='Github permalink Url to current line'},
+  {',gu', mode='v', function () require'gitlinker'.get_buf_range_url('v') end, desc='Github permalink Url to selection'},
+}
 
 
 -- gitsigns config
-require('gitsigns').setup {}
+require('gitsigns').setup{
+  word_diff = true,
+}
 mappings.add({
-  {'gj', function () require"gitsigns.actions".next_hunk() end, desc='jump to modified hunk below cursor position'},
-  {'gk', function () require"gitsigns.actions".prev_hunk() end, desc='jump to modified hunk above cursor position'},
-  {'gu', function () require"gitsigns".reset_hunk() end,        desc='undo hunk modification at cursor position'},
+  {'<LEADER>i', function() require"gitsigns".toggle_word_diff() end,  desc='toggle git Diff to show in-line edits'},
+  {'gj',        function() require"gitsigns.actions".next_hunk() end, desc='jump to modified hunk below cursor position'},
+  {'gk',        function() require"gitsigns.actions".prev_hunk() end, desc='jump to modified hunk above cursor position'},
+  {'gu',        function() require"gitsigns".reset_hunk() end,        desc='undo hunk modification at cursor position'},
 })
 
 
@@ -313,26 +394,27 @@ require('gp').setup {
 -- lexima config
 vim.cmd [[
   " javascript
-  call lexima#add_rule({ 'char': '=', 'at': ')\%#'   , 'input': ' => ',                                     'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '{', 'at': ')\%#'   , 'input': ' => {',                'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#'  , 'input': '<BS><BS>console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '=', 'at': ')\%#'   , 'input': ' => ',                                     'filetype': ['javascript', 'javascriptreact', 'svelte', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '{', 'at': ')\%#'   , 'input': ' => {',                'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'svelte', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#'  , 'input': '<BS><BS>console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'svelte', 'typescript', 'typescriptreact'] })
   " lisps
   call lexima#add_rule({ 'char': "'", 'filetype': ['lisp', 'scheme', 'racket']})
   call lexima#add_rule({ 'char': '`', 'filetype': ['lisp', 'scheme', 'racket']})
 ]]
 
 
---[[ -- tesoura config
-require'tesoura'.setup {
-  setup_autocmd = true,
-  snippets = {
-    ['*'] = {
-      { prefix = ')=',  body = ') => $1' },
-      { prefix = '){',  body = ') => { $1 }' },
-      { prefix = 'cl(', body = 'console.log($1)' },
-    },
-  }
-} ]]
+-- mini.ai setup
+require('mini.ai').setup()
+
+
+-- lint config
+require('lint').linters_by_ft = {
+  javascript = {'biomejs'},
+  javascriptreact = {'biomejs'},
+}
+mappings.add({
+  {',l', function () require('lint').try_lint() end, desc='run Linter'},
+})
 
 
 -- lsp config
@@ -450,12 +532,6 @@ require'lualine'.setup{
 require('mason').setup()
 
 
--- memento config
-mappings.add({
-  {',b', function() require('memento').toggle() end, desc='toggle recent buffers'}
-})
-
-
 -- package-info config
 require('package-info').setup{
   colors = {
@@ -468,6 +544,17 @@ require('package-info').setup{
     style = {
       outdated = ' // new version: ',
     },
+  },
+}
+
+
+-- quicker config
+local q = require'quicker'
+local expand_opts = { before = 2, after = 2, add_to_existing = true }
+q.setup{
+  keys = {
+    { '>', function() q.expand(expand_opts) end, desc = 'expand quickfix context', },
+    { '<', function() q.collapse() end,          desc = 'collapse quickfix context', },
   },
 }
 
@@ -487,19 +574,55 @@ require("telescope").setup({
     },
   },
 })
+local git_hunks = function() -- h/t Peter Gundel https://www.petergundel.de/git/neovim/telescope/2023/03/22/git-jump-in-neovim-with-telescope.html
+  require("telescope.pickers").new({
+    finder = require("telescope.finders").new_oneshot_job({ "git", "jump", "--stdout", "diff" }, {
+      entry_maker = function(line)
+        local filename, lnum_string = line:match("([^:]+):(%d+).*")
+        if filename:match("^/dev/null") then -- I couldn't find a way to use grep in new_oneshot_job so we have to filter here.
+          return nil                         -- return nil if filename is /dev/null because this means the file was deleted.
+        end
+        return {
+          value = filename,
+          display = line,
+          ordinal = line,
+          filename = filename,
+          lnum = tonumber(lnum_string),
+        }
+      end,
+    }),
+    sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
+    previewer = require("telescope.config").values.grep_previewer({}),
+    results_title = "Git hunks",
+    prompt_title = "Git hunks",
+    layout_strategy = "flex",
+  }, {}):find()
+end
+-- TODO add one for git conflicts...
+mappings.add{
+  {'<LEADER>gh', git_hunks, {}}
+}
 
 
 -- template-string config
 require('template-string').setup {
-  -- don't enable for python, bc it is a little overeager with f''
-  filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte', },
+  filetypes = {
+    'html',
+    'javascript',
+    'javascriptreact',
+    'python',
+    'svelte',
+    'typescript',
+    'typescriptreact',
+    'vue',
+  },
 }
 
 
 -- tiny-inline-diagnostic config
 require('tiny-inline-diagnostic').setup {
   blend = {
-    factor = 0.1,
+    factor = 0.4,
   },
 }
 
@@ -521,7 +644,7 @@ require'nvim-tree'.setup {
   },
 }
 mappings.add({
-  {'<Leader><Tab>', '<CMD>NvimTreeToggle<CR>', desc='toggle NvimTree' },
+  {'<LEADER><TAB>', '<CMD>NvimTreeToggle<CR>', desc='toggle NvimTree' },
 })
 
 
@@ -530,23 +653,37 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'awk',
     'bash',
+    'clojure',
     'comment',
     'commonlisp',
     'css',
+    'csv',
     'dockerfile',
     'elixir',
+    'erlang',
+    'go',
     'graphql',
     'html',
+    'java',
     'javascript',
+    'jsdoc',
     'json',
     'lua',
-    'markdown',
+    'markdown_inline',
+    'perl',
+    'php',
+    'python',
     'ruby',
     'rust',
+    'scheme',
     'scss',
     'svelte',
+    'tsx',
     'typescript',
+    'vim',
+    'xml',
     'yaml',
+    'zig',
   },
   highlight = {
     enable = true,

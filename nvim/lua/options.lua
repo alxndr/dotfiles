@@ -8,7 +8,7 @@ vim.opt.ignorecase = true
 vim.opt.joinspaces = false
 vim.opt.laststatus = 3 -- global status line
 vim.opt.list = true
-vim.opt.listchars = "tab:␉\\ ,trail:␠,nbsp:⎵,extends:⋯"
+vim.opt.listchars = "tab:⎸\\ ,trail:␠,nbsp:⎵,extends:⋯"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.shiftwidth = 2
@@ -21,13 +21,37 @@ vim.opt.updatetime = 333
 vim.opt.wrap = false
 
 vim.wo.cursorline = false
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.wo.foldmethod = 'expr'
 
 vim.diagnostic.config({
-  virtual_text = false, -- don't show in-line, require user interaction to show
+  -- virtual_text = false, -- don't show in-line, require user interaction to show
   underline = true,
 })
+
+-- cursor
+-- ...blink for insert isn't working?
+vim.cmd [[
+  set guicursor=n-v-c-sm:block,i-ci-ve:ver25-blinkon500-blinkoff500,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor
+]]
+
+-- cursorline/column follows focused window split
+vim.api.nvim_create_autocmd(
+  { 'WinEnter', },
+  { command = 'setlocal cursorline', }
+)
+vim.api.nvim_create_autocmd(
+  { 'WinEnter', },
+  { command = 'setlocal cursorcolumn', }
+)
+vim.api.nvim_create_autocmd(
+  { 'WinLeave', },
+  { command = 'setlocal nocursorline', }
+)
+vim.api.nvim_create_autocmd(
+  { 'WinLeave', },
+  { command = 'setlocal nocursorcolumn', }
+)
 
 
 -- foldtext
@@ -39,15 +63,10 @@ vim.cmd [[
       let foldlinecount = foldclosedend(v:foldstart) - foldclosed(v:foldstart) + 1
       let foldcharcount = -1
       let lineCounter = 1
-      while lineCounter < foldlinecount
-        " Increment the count for characters in the range along with newline character
-        let foldcharcount += strchars(getline(v:foldstart + lineCounter)) + 1
-        let lineCounter += 1
-      endwhile
-      let prefix = " … ".foldcharcount." chars / ".foldlinecount." lines"
-      let line =  strpart(getline(v:foldstart), 0 , winwd - len(prefix))
-      let fillcharcount = winwd - len(line) - len(prefix)
-      return line . repeat(" ",fillcharcount) . prefix
+      let rhs = " … ".foldlinecount."Ⱡ"
+      let line = trim(strpart(getline(v:foldstart), 0, winwd - len(rhs)))
+      let fillcharcount = winwd - indent(v:foldstart) - len(line) - len(rhs)
+      return repeat("…", indent(v:foldstart)) . line . repeat(" ",fillcharcount) . rhs
   endfunction
   set foldtext=MyFoldText()
 ]]
@@ -109,10 +128,22 @@ vim.api.nvim_create_autocmd(
   { command = 'if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | let b:minicursorword_disable=v:true | endif' }
 )
 
--- don't need python integration...?
+
+-- disable some integrations
 vim.cmd [[
-  let g:loaded_node_provider = 0
   let g:loaded_perl_provider = 0
-  let g:loaded_python3_provider = 0
   let g:loaded_ruby_provider = 0
 ]]
+
+
+-- Set indentation based on directory
+vim.api.nvim_create_autocmd('BufRead', {
+  pattern = '*',
+  callback = function()
+    if vim.fn.system('git remote get-url origin', true):match('planted%-solar/power_plants%.git.-$') then
+      vim.opt.expandtab = false
+      vim.opt_local.shiftwidth = 2
+      vim.opt_local.tabstop = 2
+    end
+  end
+})

@@ -85,6 +85,10 @@ vim.api.nvim_create_autocmd(
     end
   }
 )
+vim.cmd [[
+  highlight Search    guibg='NONE' guifg='NONE' gui=underline
+  highlight IncSearch guibg='NONE' guifg='NONE' gui=underline
+]]
 
 
 -- markdown tweaks

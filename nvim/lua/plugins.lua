@@ -8,7 +8,6 @@ require 'paq' {
 
   -- features
   'goolord/alpha-nvim';                 -- startup screen
-  'princejoogie/chafa.nvim';            -- viewing images within neovim
   'gpanders/editorconfig.nvim';         -- integrate with `.editorconfig` files
   'mhartington/formatter.nvim';         -- reformat code
   'Robitx/gp.nvim';                     -- new robot overlords 🤖
@@ -109,10 +108,9 @@ require 'paq' {
 
 
   -- meta / dependencies
-  'm00qek/baleia.nvim';                        -- dependency for chafa
   'junegunn/fzf';                              -- fuzzy file finder core
   'MunifTanjim/nui.nvim';                      -- UI toolkit; prereq for: package-info
-  'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, chafa, startup, data-viewer…
+  'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, startup, data-viewer…
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
   {'nvim-treesitter/nvim-treesitter',          -- file content parser
     build = function()
@@ -160,16 +158,6 @@ mappings.add({
 })
 
 
--- chafa
-require('chafa').setup({
-  render = {
-    min_padding = 5,
-    show_label = true,
-  },
-  events = {
-    update_on_nvim_resize = true,
-  },
-})
 
 
 -- colorizer config

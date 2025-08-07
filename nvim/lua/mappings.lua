@@ -7,7 +7,7 @@ vim.cmd [[
 ]]
 vim.api.nvim_set_keymap('n', '<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap=true, expr=true, desc='jump-down a third of the window-height'})
 vim.api.nvim_set_keymap('n', '<C-u>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap=true, expr=true, desc='jump-up a third of the window-height'})
-vim.api.nvim_set_keymap('v', '<LEADER>p', 'S]%a()<ESC>"+P', {}) -- TODO sort out why using `S` here (from vim-surround) doesn't work via which-key
+vim.api.nvim_set_keymap('v', '<LEADER>p', 'S]%a()<ESC>"+P', {desc='wrap selection in markdown link with Pasted url'})
 
 
 local mappings = require'which-key'
@@ -78,7 +78,7 @@ mappings.add({
     {'<LEADER>,', '<ESC>mmA,<ESC>`ma', desc='append COMMA to line'},
     {'<LEADER>;', '<ESC>mmA;<ESC>`ma', desc='append SEMICOLON to line'},
     {'<C-a>', '<ESC>A', desc='move cursor to end of line (i.e. Append)'},
-    {'<C-c>', 'g', desc='Count characters/words/lines'},
+    {'<C-g>', 'g', desc='count characters/words/lines'},
     {'<C-e>', '<ESC><C-e>a', desc='shift window up (i.e. normal mode `<C-e>`)'},
     {'<C-l>', 'λ', desc='shorthand to insert a Lambda [^k:l*]'},
     {'<C-r>', '<ESC>gqqa', desc='Reformat current line'},

@@ -89,7 +89,7 @@ require 'paq' {
   -- eye candy
   'ribru17/bamboo.nvim';             -- colorscheme
   'norcalli/nvim-colorizer.lua';     -- color eye-candy
-  'sindrets/diffview.nvim';          -- make diffs prettier
+  'rhysd/conflict-marker.vim';       -- highlight Git Merge Conflict markers/contents
   'WilsonOh/emoji_picker-nvim';      -- emoji UX
   'voldikss/vim-floaterm';           -- terminal eyecandy
   'nvim-lualine/lualine.nvim';       -- status line
@@ -171,6 +171,20 @@ require 'colorizer'.setup({
   css    = true;
   css_fn = true;
 })
+
+
+-- conflict-marker config
+vim.cmd [[
+  " Include text after begin and end markers
+  let g:conflict_marker_begin = '^<<<<<<<\+ .*$'
+  let g:conflict_marker_common_ancestors = '^|||||||\+ .*$'
+  let g:conflict_marker_end   = '^>>>>>>>\+ .*$'
+  highlight ConflictMarkerBegin guibg=#2f7366
+  highlight ConflictMarkerOurs guibg=#2e5049
+  highlight ConflictMarkerTheirs guibg=#344f69
+  highlight ConflictMarkerEnd guibg=#2f628e
+  highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
+]]
 
 
 -- Comment config

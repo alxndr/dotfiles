@@ -34,24 +34,28 @@ alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
       until_fail() {
-        tries=1
+        SLEEP_INTERVAL_SEC=${UNTIL_INTERVAL_SEC:-1}
+        TRIES=1
         eval "$@"
         while [ "$?" -eq "0" ]; do
-          ((tries+=1))
-          sleep 1
+          ((TRIES+=1))
+          echo "\n\nsleeping $SLEEP_INTERVAL_SEC sec…"
+          sleep $SLEEP_INTERVAL_SEC
           eval "$@"
         done
-        echo "tries: ${tries}"
+        echo "tries: ${TRIES}"
       }
       until_success() {
-        tries=1
+        SLEEP_INTERVAL_SEC=${UNTIL_INTERVAL_SEC:-1}
+        TRIES=1
         eval "$@"
         while [ "$?" -ne "0" ]; do
-          sleep 1
-          ((tries+=1))
+          ((TRIES+=1))
+          echo "\n\nsleeping $SLEEP_INTERVAL_SEC sec…"
+          sleep $SLEEP_INTERVAL_SEC
           eval "$@"
         done
-        echo "tries: ${tries}"
+        echo "tries: ${TRIES}"
       }
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 alias wh="which"

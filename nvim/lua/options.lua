@@ -63,10 +63,19 @@ vim.cmd [[
       let foldlinecount = foldclosedend(v:foldstart) - foldclosed(v:foldstart) + 1
       let foldcharcount = -1
       let lineCounter = 1
-      let rhs = " … ".foldlinecount."Ⱡ"
-      let line = trim(strpart(getline(v:foldstart), 0, winwd - len(rhs)))
-      let fillcharcount = winwd - indent(v:foldstart) - len(line) - len(rhs)
-      return repeat("…", indent(v:foldstart)) . line . repeat(" ",fillcharcount) . rhs
+      "let rhs = " … ".foldlinecount."Ⱡ"
+      "let line = trim(strpart(getline(v:foldstart), 0, winwd - len(rhs)))
+      "let fillcharcount = winwd - indent(v:foldstart) - len(line) - len(rhs)
+      "return repeat("…", indent(v:foldstart)) . line . repeat(" ",fillcharcount) . rhs
+      while lineCounter < foldlinecount
+        " Increment the count for characters in the range along with newline character
+        let foldcharcount += strchars(getline(v:foldstart + lineCounter)) + 1
+        let lineCounter += 1
+      endwhile
+      let prefix = " … ".foldlinecount." Ⱡ"
+      let line =  strpart(getline(v:foldstart), 0 , winwd - len(prefix))
+      let fillcharcount = winwd - len(line) - len(prefix)
+      return line . repeat(" ",fillcharcount) . prefix
   endfunction
   set foldtext=MyFoldText()
 ]]
@@ -75,7 +84,7 @@ vim.cmd [[
 -- colorscheme tweaks
 vim.api.nvim_create_autocmd(
   { 'BufEnter', },
-  { command = 'highlight Folded guibg=NONE', }
+  { command = 'highlight Folded guifg=gray guibg=NONE', }
 )
 vim.api.nvim_create_autocmd(
   { 'TextYankPost', },

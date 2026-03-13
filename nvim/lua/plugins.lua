@@ -9,20 +9,16 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim';                 -- startup screen
   'gpanders/editorconfig.nvim';         -- integrate with `.editorconfig` files
-  'mhartington/formatter.nvim';         -- reformat code
   'Robitx/gp.nvim';                     -- new robot overlords 🤖
   'godlygeek/tabular';                  -- align columns of text
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
     build = function() require('telescope').load_extension('import') end};
-  -- 'folke/trouble.nvim';                 -- diagnostics stuff
   'folke/which-key.nvim';               -- manage keyboard shortcuts...
-  'rachartier/tiny-inline-diagnostic.nvim'; -- diagnostic message tweaks
 
 
   -- behavior tweaks
   'jdhao/better-escape.vim';           -- sidestep `timeoutlen` when using insert-mode shortcuts to exit insert-mode
-  'RRethy/vim-illuminate';             -- highlight/underline all occurrences of word under cursor
   'echasnovski/mini.nvim';             -- more text objects
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
   'stevearc/quicker.nvim';             -- quickfix window workflow improvements + eye candy
@@ -36,7 +32,7 @@ require 'paq' {
   'ibhagwan/fzf-lua';         -- fuzzy file finder functions -- \\ -- \g -- <C-p> -- <C-s>
   'airblade/vim-rooter';      -- keep vim working directory set to project root (nextreport confuses this...)
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
-  'kyazdani42/nvim-tree.lua'; -- file browser            -- \<Tab>
+  'kyazdani42/nvim-tree.lua'; -- file browser                -- \<Tab>
 
 
   -- git stuff
@@ -55,34 +51,27 @@ require 'paq' {
   'tpope/vim-surround';                           -- mappings for converting matched-pair characters
 
 
-  -- language-specific features...
-  ---- CSV
-  'VidocqH/data-viewer.nvim';        -- table view
-  -- 'emmanueltouzery/decisive.nvim';   -- align columns
-
-  ---- Elixir
+  -- language-specific features…
+  ---- …CSV
+  'hat0uma/csvview.nvim';            -- text objects; colors
+  ---- …Elixir
   'mhanberg/elixir.nvim';            -- install elixirls and more
-
-  ---- HTML
+  ---- …HTML
   'windwp/nvim-ts-autotag';          -- auto-close tags (treesitter)
-
-  ---- JavaScript
+  ---- …JavaScript
   'vuki656/package-info.nvim';       -- version info for contents of `package.json` files
   'axelvc/template-string.nvim';     -- autoconvert quotes to backticks if you type ${} in the string (treesitter)
-
-  ---- Liquid (templating)
+  ---- …Liquid (templating used by Jekyll)
   'tpope/vim-liquid';                -- Jekyll posts (templating language within markdown)
-
-  ---- LISP / Scheme / Racket / etc
+  ---- …LISP / Scheme / Racket / etc
   'julienvincent/nvim-paredit';      -- s-expression editing facilitation
-
-  ---- Markdown
+  ---- …Markdown
   'rhysd/vim-gfm-syntax';            -- syntax highlighting for Git-Flavored Markdown
-
-  ---- query languages
+  ---- …OCaml
+  'Halbaroth/ocp-indent.nvim';
+  ---- …query languages
   'neo4j-contrib/cypher-vim-syntax'; -- cypher (Neo4j)
-
-  ---- Raku (aka Perl 6)
+  ---- …Raku (aka Perl 6)
   'Raku/vim-raku';
 
 
@@ -93,7 +82,6 @@ require 'paq' {
   'WilsonOh/emoji_picker-nvim';      -- emoji UX
   'voldikss/vim-floaterm';           -- terminal eyecandy
   'nvim-lualine/lualine.nvim';       -- status line
-  'hiphish/rainbow-delimiters.nvim'; -- rainbow parens
 
 
   -- LSP server / linter / formatter / etc
@@ -217,12 +205,8 @@ cmp.setup {
 }
 
 
--- data-viewer config
-require('data-viewer').setup({
-  view = {
-    float = false,
-  },
-})
+-- csvview config
+require('csvview').setup()
 
 
 -- easypick config
@@ -272,53 +256,6 @@ mappings.add{
 }
 
 
--- formatter config
-local formatter_util = require 'formatter.util' -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-local linter_biome = function()
-  return {
-    exe = 'biome',
-    stdin = true,
-    args = {
-      'check',
-      '--fix',
-      '--config-path',
-      './biome.json',
-      '--stdin-file-path',
-      formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-    },
-    -- TODO show error when biome can't parse the input...
-  }
-end
-local linter_black = function()
-  return {
-    exe = 'black',
-    stdin = true,
-    args = {
-      '-', -- explicitly tell it to read from stdin
-      '--stdin-filename',
-      formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-    },
-  }
-end
-require('formatter').setup {
-  logging = true, -- Enable or disable logging
-  log_level = vim.log.levels.WARN, -- Set the log level
-  filetype = { -- All formatter configurations are opt-in
-    javascript = { linter_biome },
-    javascriptreact = { linter_biome },
-    python = { linter_black },
-    typescript = { linter_biome },
-    ['*'] = {
-      require('formatter.filetypes.any').remove_trailing_whitespace,
-    },
-  }
-}
-mappings.add{
-  -- TODO would be nice if this also ran diagnostics???
-  {',f', 'mm<CMD>Format<CR>`m', desc='reformat current buffer (using formatter.nvim)'},
-}
-
-
 -- fugitive (Git) config
 mappings.add{
   {',g', group='git'},
@@ -328,19 +265,6 @@ mappings.add{
   {',gl', '<CMD>Git lg<CR>',     desc='show git log',      prefix=',g'},
   {',gp', ':Git push',           desc='git push',          prefix=',g', silent=false},
   {',gP', ':Git push --force',   desc='git force push',    prefix=',g', silent=false},
-}
-
-
--- illuminate config
-require('illuminate').configure{
-  delay = 1313,
-  disable_keymaps = true,
-  large_file_overrides = true,
-  min_count_to_highlight = 1,
-  under_cursor = false,
-} -- still doesn't highlight table key(??)s in Lua...
-mappings.add{
-  {',h', function() require'illuminate'.toggle() end, desc='toggle the Highlighting of all instances (or pair) of hovered word'}
 }
 
 
@@ -354,15 +278,15 @@ require('fzf-lua').setup{
     formatter = 'path.dirname_first', -- https://github.com/ibhagwan/fzf-lua/issues/1362#issuecomment-2256360989
   },
 }
-mappings.add{
-  {'<LEADER>\\',      function() require'fzf-lua'.buffers() end,          desc='fuzzy-find filepath, of all open buffers'},
-  {',r',              function() require'fzf-lua'.live_grep_native() end, desc='fuzzy-find string (i.e. gRep), within files in project'},
-  {',R',              function() require'fzf-lua'.resume() end,           desc='Resume the last fuzzy-find'},
-  {'<C-p>',           function() require'fzf-lua'.files() end,            desc='fuzzy-find all Paths-with-filenames, within files in project'},
-  {'<C-s>',           function() require'fzf-lua'.grep_cword() end,       desc='fuzzy-find word under curSor, within files in project'}, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
-  {'<C-s>', mode='v', function() require'fzf-lua'.grep_visual() end,      desc='fuzzy-find visual Selection, within files in project'},  -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
-  {'<C-x><C-f>', mode={'n','i','v'}, function() require'fzf-lua'.complete_path() end, desc='fuzzy complete-path to file in project'}, -- TODO this is always relative to project root, can it be relative to current buffer's file??
-}
+-- ...if these stop working with no error message, try upgrading fzf: `brew upgrade fzf`
+mappings.add({
+  {'<Leader>\\', function () require"fzf-lua".buffers({formatter="path.filename_first"}) end, desc='fuzzy-search all open buffers'},
+  {'<Leader>g',  function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
+  {',r',  function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
+  {'<C-p>',      function () require"fzf-lua".files() end,            desc='fuzzy-search all filenames in project'},
+  {'<C-s>',      function () require"fzf-lua".grep_cword() end,       desc='fuzzy-grep within buffer for word under cursor'}, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+  {'<C-s>',      function () require"fzf-lua".grep_visual() end,      desc='fuzzy-grep within buffer for selection', mode='v'} -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
+})
 
 
 -- gitlinker config
@@ -394,14 +318,16 @@ require('gp').setup {
 
 
 -- lexima config
+-- \%# represents the cursor position
 vim.cmd [[
   " javascript
-  call lexima#add_rule({ 'char': '=', 'at': ')\%#'   , 'input': ' => ',                                     'filetype': ['javascript', 'javascriptreact', 'svelte', 'typescript', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '{', 'at': ')\%#'   , 'input': ' => {',                'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'svelte', 'typescript', 'typescriptreact'] })
-  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#'  , 'input': '<BS><BS>console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'svelte', 'typescript', 'typescriptreact'] })
+  call lexima#add_rule({ 'char': '=', 'at':  ')\%#', 'input': ' => ',                                            'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte'] })
+  call lexima#add_rule({ 'char': '{', 'at':  ')\%#', 'input': ' => {',                'input_after': '}', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte'] })
+  call lexima#add_rule({ 'char': '(', 'at': 'cl\%#', 'input': '<BS><BS>console.log(', 'input_after': ')', 'filetype': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte'] })
   " lisps
-  call lexima#add_rule({ 'char': "'", 'filetype': ['lisp', 'scheme', 'racket']})
-  call lexima#add_rule({ 'char': '`', 'filetype': ['lisp', 'scheme', 'racket']})
+  call lexima#add_rule({ 'char': "'",                                                    'filetype': ['lisp', 'scheme', 'racket']})
+  call lexima#add_rule({ 'char': '`',                                                    'filetype': ['lisp', 'scheme', 'racket']})
+  call lexima#add_rule({ 'char': ' ', 'at': '(λ\%#)', 'input': ' [', 'input_after': ']   ', 'filetype': ['lisp', 'scheme', 'racket'] })
 ]]
 
 
@@ -409,28 +335,8 @@ vim.cmd [[
 require('mini.ai').setup()
 
 
--- lint config
-require('lint').linters_by_ft = {
-  javascript = {'biomejs'},
-  javascriptreact = {'biomejs'},
-}
-mappings.add({
-  {',l', function () require('lint').try_lint() end, desc='run Linter'},
-})
-
-
 -- lsp config
-local lspc = require'lspconfig'
-local lsp_defaults = lspc.util.default_config
-lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
-lspc.bashls.setup{}
-lspc.cssls.setup{}
-lspc.cucumber_language_server.setup{}
-lspc.eslint.setup{} -- ni -g vscode-langservers-extracted
-lspc.graphql.setup{}
-lspc.html.setup{}
-lspc.jsonls.setup{}
-lspc.lua_ls.setup{
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
@@ -438,57 +344,70 @@ lspc.lua_ls.setup{
       }
     }
   }
-}
--- lspc.raku_navigator.setup{}
-lspc.superhtml.setup {
+})
+vim.lsp.config('superhtml', {
   filetypes = { 'html' }
-}
-lspc.ts_ls.setup {
+})
+vim.lsp.config('ts_ls', {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "svelte" },
   cmd = { "typescript-language-server", "--stdio" }
-}
+})
 -- Svelte tweaks, h/t @TGlide https://github.com/TGlide/nvim-config/blob/39eaf5706c8d/lua/thomasgen/lazy/lsp.lua#L105-L110
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp_capabilities.workspace.didChangeWatchedFiles = false
-lspc.svelte.setup {
+vim.lsp.config('svelte', {
   capabilities = lsp_capabilities
-}
+})
+vim.lsp.enable({
+  'bashls',
+  'cssls',
+  'cucumber_language_server',
+  'eslint', -- ni -g vscode-langservers-extracted
+  'graphql',
+  'html',
+  'jsonls',
+  'lua_ls',
+  -- 'raku_navigator',
+  'superhtml',
+  'ts_ls',
+  'svelte',
+})
 
 
-local null_ls = require("null-ls")
-local markdownlint = { -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/db09b6c691def00/README.md#parsing-cli-program-output
-  method = null_ls.methods.DIAGNOSTICS,
-  filetypes = { "markdown" },
-  -- null_ls.generator creates an async source that spawns the command with the given arguments and options
-  generator = null_ls.generator({
-    command = "markdownlint",
-    args = { "--stdin" },
-    to_stdin = true,
-    from_stderr = true,
-    -- choose an output format (raw, json, or line)
-    format = "line",
-    check_exit_code = function(code, stderr)
-      local success = code <= 1
-      if not success then
-        -- can be noisy for things that run often (e.g. diagnostics), but can be useful for things that run on demand (e.g. formatting)
-        print(stderr)
-      end
-      return success
-    end,
-    -- use helpers to parse the output from string matchers, or parse it manually with a function
-    on_output = require("null-ls.helpers").diagnostics.from_patterns({
-      {
-        pattern = [[:(%d+):(%d+) [%w-/]+ (.*)]],
-        groups = { "row", "col", "message" },
-      },
-      {
-        pattern = [[:(%d+) [%w-/]+ (.*)]],
-        groups = { "row", "message" },
-      },
-    }),
-  }),
-}
-null_ls.register(markdownlint)
+-- local null_ls = require("null-ls")
+-- local markdownlint = { -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/db09b6c691def00/README.md#parsing-cli-program-output
+--   method = null_ls.methods.DIAGNOSTICS,
+--   filetypes = { "markdown" },
+--   -- null_ls.generator creates an async source that spawns the command with the given arguments and options
+--   generator = null_ls.generator({
+--     command = "markdownlint",
+--     args = { "--stdin" },
+--     to_stdin = true,
+--     from_stderr = true,
+--     -- choose an output format (raw, json, or line)
+--     format = "line",
+--     check_exit_code = function(code, stderr)
+--       local success = code <= 1
+--       if not success then
+--         -- can be noisy for things that run often (e.g. diagnostics), but can be useful for things that run on demand (e.g. formatting)
+--         print(stderr)
+--       end
+--       return success
+--     end,
+--     -- use helpers to parse the output from string matchers, or parse it manually with a function
+--     on_output = require("null-ls.helpers").diagnostics.from_patterns({
+--       {
+--         pattern = [[:(%d+):(%d+) [%w-/]+ (.*)]],
+--         groups = { "row", "col", "message" },
+--       },
+--       {
+--         pattern = [[:(%d+) [%w-/]+ (.*)]],
+--         groups = { "row", "message" },
+--       },
+--     }),
+--   }),
+-- }
+-- null_ls.register(markdownlint)
 
 
 -- lualine config
@@ -513,7 +432,11 @@ require'lualine'.setup{
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'filename', {'macro-recording', fmt=show_macro_recording}, 'lsp_progress'},
+    lualine_b = {
+      {'filename', path=3},
+      {'macro-recording', fmt=show_macro_recording},
+      'lsp_progress'
+    },
     lualine_c = {'searchcount'},
     lualine_x = {'diagnostics'},
     lualine_y = {'branch', 'filetype'},
@@ -536,15 +459,17 @@ require('mason').setup()
 
 -- package-info config
 require('package-info').setup{
-  colors = {
-    outdated = '#11aaee',
-    up_to_date = '#000000',
+  highlights = {
+    up_to_date = {fg='#333333'},
+    outdated = {fg='#11aaee'},
+    invalid = {fg='#dd4220'},
   },
   hide_unstable_versions = true,
   hide_up_to_date = true,
   icons = {
     style = {
       outdated = ' // new version: ',
+      invalid = ' // INVALID! '
     },
   },
 }
@@ -621,12 +546,12 @@ require('template-string').setup {
 }
 
 
--- tiny-inline-diagnostic config
+--[[ -- tiny-inline-diagnostic config
 require('tiny-inline-diagnostic').setup {
   blend = {
     factor = 0.4,
   },
-}
+} ]]
 
 
 
@@ -671,12 +596,10 @@ require('nvim-treesitter.configs').setup {
     'jsdoc',
     'json',
     'lua',
-    'markdown_inline',
-    'perl',
+    'markdown',
     'php',
-    'python',
+    'racket',
     'ruby',
-    'rust',
     'scheme',
     'scss',
     'svelte',
@@ -690,13 +613,13 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     disable = function(_lang, bufnr) -- Disable in large buffers
-      return vim.api.nvim_buf_line_count(bufnr) > 999999
+      return vim.api.nvim_buf_line_count(bufnr) > 9999
     end,
   },
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 999, -- Do not enable for files with more than n lines, int
+    max_file_lines = 9999, -- Do not enable for files with more than n lines, int
   }
 }
 

@@ -3,7 +3,10 @@ vim.opt.cursorcolumn = false
 vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
 vim.opt.fillchars = 'fold: '
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+vim.opt.foldmethod = 'expr'
 vim.opt.ignorecase = true
 vim.opt.joinspaces = false
 vim.opt.laststatus = 3 -- global status line
@@ -21,8 +24,6 @@ vim.opt.updatetime = 333
 vim.opt.wrap = false
 
 vim.wo.cursorline = false
-vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.wo.foldmethod = 'expr'
 
 vim.diagnostic.config({
   -- virtual_text = false, -- don't show in-line, require user interaction to show

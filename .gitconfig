@@ -33,6 +33,7 @@
   gl = log --reverse --abbrev-commit --abbrev=8 --pretty=sha-date-author-message-branch
   l = log --no-merges --abbrev-commit --abbrev=8 --pretty=sha-date-message-author-branch
   lg = log --graph --abbrev-commit --abbrev=8 --pretty=sha-branch-message-author-date
+  new = !git init && git commit --allow-empty --message='initial commit'
   set-upstream = !git branch --set-upstream-to=origin/$(git branch-name) $(git branch-name)
   show-unchanged = !git ls-files -v | grep "^[a-z]"
   st = status

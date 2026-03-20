@@ -82,6 +82,18 @@ vim.cmd [[
 ]]
 
 
+-- save/restore fold state per file
+vim.opt.viewoptions = 'folds'
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  pattern = '*',
+  command = 'silent! mkview',
+})
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  pattern = '*',
+  command = 'silent! loadview',
+})
+
+
 -- colorscheme tweaks
 vim.api.nvim_create_autocmd(
   { 'BufEnter', },

@@ -69,8 +69,8 @@ mappings.add({
   {',s', '<CMD>write<CR><CR>', desc='Save current buffer' },
   {',S', '<CMD>wall<CR><CR>', desc='Save all open buffers/files' },
   {',t', 'za', desc='toggle fold'},
-  {',w', '10<C-w>>', desc='Widen split more'},
-  {',W',  '5<C-w>+', desc='tallify split more (Widen but upWards)'},
+  {',w', '10<C-w>>', desc='expand Window Wider'},
+  {',W',  '5<C-w>+', desc='expand Window upWards'},
 })
 
 

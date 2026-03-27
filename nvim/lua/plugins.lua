@@ -356,11 +356,49 @@ vim.lsp.config('ts_ls', {
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp_capabilities.workspace.didChangeWatchedFiles = false
 vim.lsp.config('svelte', {
-  capabilities = lsp_capabilities
+  capabilities = lsp_capabilities,
+  settings = {
+    typescript = {
+      tsdk = vim.fn.getcwd() .. '/node_modules/typescript/lib',
+    },
+  },
 })
+
+-- require('lspconfig').tailwindcss.setup({
+--   filetypes = {
+--     'css', 'scss',
+--     'html', 'svelte',
+--     'typescript', 'javascript',
+--   },
+--   settings = {
+--     tailwindCSS = {
+--       includeLanguages = {
+--         svelte = 'html',  -- treat Svelte templates like HTML for class completions
+--       },
+--     },
+--   },
+-- })
+
+
+vim.lsp.config('tailwindcss', {
+  filetypes = {'css', 'scss', 'html', 'svelte', 'typescript', 'javascript'},
+  settings = {
+    tailwindCSS = {
+      includeLanguages = { svelte = 'html' },
+    },
+  },
+})
+vim.lsp.enable('tailwindcss')
+
+vim.lsp.config('cssls', {
+  settings = {
+    css = { lint = { unknownAtRules = 'ignore' } },
+  },
+})
+vim.lsp.enable('cssls')
+
 vim.lsp.enable({
   'bashls',
-  'cssls',
   'cucumber_language_server',
   'eslint', -- ni -g vscode-langservers-extracted
   'graphql',

@@ -282,7 +282,7 @@ require('fzf-lua').setup{
 mappings.add({
   {'<Leader>\\', function () require"fzf-lua".buffers({formatter="path.filename_first"}) end, desc='fuzzy-search all open buffers'},
   {'<Leader>g',  function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
-  {',r',  function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
+  {',r',         function () require"fzf-lua".live_grep_native() end, desc='fuzzy-search all file contents in project'},
   {'<C-p>',      function () require"fzf-lua".files() end,            desc='fuzzy-search all filenames in project'},
   {'<C-s>',      function () require"fzf-lua".grep_cword() end,       desc='fuzzy-grep within buffer for word under cursor'}, -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim
   {'<C-s>',      function () require"fzf-lua".grep_visual() end,      desc='fuzzy-grep within buffer for selection', mode='v'} -- h/t https://robots.thoughtbot.com/faster-grepping-in-vim

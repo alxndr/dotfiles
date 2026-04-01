@@ -272,7 +272,12 @@ mappings.add{
 require('fzf-lua').setup{
   defaults = {
     formatter = 'path.filename_first', -- doesn't work for live_grep_native 😞
-    2, -- https://github.com/ibhagwan/fzf-lua/issues/1585#issuecomment-2550882405 ??
+  },
+  files = {
+    -- dirname_first (path before filename) matches the natural typing order for fuzzy queries
+    -- that mix path components with filename (e.g. "componentstsx" finds src/components/Button.tsx)
+    -- filename_first reverses this: the fuzzy match would fail because "tsx" appears before "components"
+    formatter = 'path.dirname_first',
   },
   live_grep_native = {
     formatter = 'path.dirname_first', -- https://github.com/ibhagwan/fzf-lua/issues/1362#issuecomment-2256360989

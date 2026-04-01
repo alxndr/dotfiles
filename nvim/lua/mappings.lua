@@ -23,15 +23,17 @@ mappings.add({
   {'-', '<C-x>', desc='decrement numerical value under cursor' },
   {'+', '<C-a>', desc='increment numerical value under cursor' },
   {'!', '@@',    desc='repeat last-executed macro' },
-  {'|', function()
+  {'|',          desc='toggle cursorline/cursorcolumn or jump to column', function()
     if vim.v.count > 0 then -- standard behavior: move to specified column
       vim.cmd('normal! ' .. vim.v.count .. '|')
     else -- custom behavior: toggle cursorline/column
       local new_val = not vim.wo.cursorline
-      vim.wo.cursorline = new_val
-      vim.wo.cursorcolumn = new_val
+      vim.g.cursorline_enabled = new_val
+      vim.g.cursorcolumn_enabled = new_val
+      vim.opt_local.cursorline = new_val
+      vim.opt_local.cursorcolumn = new_val
     end
-  end, desc='toggle cursorline/cursorcolumn or jump to column'},
+  end},
   -- {'<C-d>', function() vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false) end,  desc='jump-Down by 1/3 of window-height' }
   {'<C-h>', '<C-w>h', desc='move left to split window' },
   {'<C-f>', 'zaw/{$<CR>:noh<CR>', desc='Fold and jump to next open-brace'},
@@ -50,6 +52,7 @@ mappings.add({
   {'<LEADER>m', 'g<', desc='show last page of vim Messages'},
   {'<LEADER>p', '<CMD>let @" = expand("%")<CR>', desc='copy filePath to unnamed register'},
   {'<LEADER>P', '<CMD>let @+ = expand("%:p")<CR>', desc='copy filePath to system clipboard'},
+  {'<LEADER>u', '<CMD>UpdateAll<CR>', desc='Update all plugins and tools (Paq, Mason, Treesitter)' },
   {'<LEADER>v', group='vim'}, -- h/t roryokane for this idea https://lobste.rs/s/6qp0vo#c_fu9psh
   {'<LEADER>vf', '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>', desc='edit vim functions file' },
   {'<LEADER>vm', '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>',  desc='edit vim mappings file' },

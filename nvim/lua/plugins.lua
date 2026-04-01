@@ -411,6 +411,12 @@ vim.lsp.enable({
   'svelte',
 })
 
+vim.api.nvim_create_user_command('UpdateAll', function()
+  vim.cmd('PaqSync')
+  vim.cmd('MasonUpdate')
+  vim.cmd('TSUpdate')
+end, { desc = 'Update Paq plugins, Mason tools, and Treesitter parsers' })
+
 
 -- local null_ls = require("null-ls")
 -- local markdownlint = { -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/db09b6c691def00/README.md#parsing-cli-program-output

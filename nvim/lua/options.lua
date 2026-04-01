@@ -36,22 +36,18 @@ vim.cmd [[
   set guicursor=n-v-c-sm:block,i-ci-ve:ver25-blinkon500-blinkoff500,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor
 ]]
 
--- cursorline/column follows focused window split
+-- cursorline/column follows focused window split, unless user has toggled it off
 vim.api.nvim_create_autocmd(
   { 'WinEnter', },
-  { command = 'setlocal cursorline', }
-)
-vim.api.nvim_create_autocmd(
-  { 'WinEnter', },
-  { command = 'setlocal cursorcolumn', }
+  { callback = function()
+      if vim.g.cursorline_enabled ~= false then
+        vim.cmd('setlocal cursorline cursorcolumn')
+      end
+    end }
 )
 vim.api.nvim_create_autocmd(
   { 'WinLeave', },
-  { command = 'setlocal nocursorline', }
-)
-vim.api.nvim_create_autocmd(
-  { 'WinLeave', },
-  { command = 'setlocal nocursorcolumn', }
+  { command = 'setlocal nocursorline nocursorcolumn', }
 )
 
 
@@ -64,10 +60,6 @@ vim.cmd [[
       let foldlinecount = foldclosedend(v:foldstart) - foldclosed(v:foldstart) + 1
       let foldcharcount = -1
       let lineCounter = 1
-      "let rhs = " … ".foldlinecount."Ⱡ"
-      "let line = trim(strpart(getline(v:foldstart), 0, winwd - len(rhs)))
-      "let fillcharcount = winwd - indent(v:foldstart) - len(line) - len(rhs)
-      "return repeat("…", indent(v:foldstart)) . line . repeat(" ",fillcharcount) . rhs
       while lineCounter < foldlinecount
         " Increment the count for characters in the range along with newline character
         let foldcharcount += strchars(getline(v:foldstart + lineCounter)) + 1

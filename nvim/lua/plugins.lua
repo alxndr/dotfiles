@@ -402,6 +402,12 @@ vim.lsp.config('cssls', {
 })
 vim.lsp.enable('cssls')
 
+vim.lsp.config('syntaqlite', {
+  cmd = { 'syntaqlite', 'lsp' },
+  filetypes = { 'sql' },
+  root_markers = { 'syntaqlite.toml', '.git' },
+})
+
 vim.lsp.enable({
   'bashls',
   'cucumber_language_server',
@@ -412,6 +418,7 @@ vim.lsp.enable({
   'lua_ls',
   -- 'raku_navigator',
   'superhtml',
+  'syntaqlite',
   'ts_ls',
   'svelte',
 })

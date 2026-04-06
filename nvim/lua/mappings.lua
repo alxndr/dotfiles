@@ -61,6 +61,11 @@ mappings.add({
   {'<LEADER>vv', '<CMD>edit $MYVIMRC<CR>', desc='edit vim config file' },
   {'<LEADER>w', '<CMD>set wrap!<CR>', desc='toggle Wrap setting' },
   {'<LEADER>y', '<CMD>only<CR>', desc='clear all other splits' },
+  {'zZ', function() -- analogue of `zz`: center window horizontally around cursor column
+    local view = vim.fn.winsaveview()
+    view.leftcol = math.max(0, vim.fn.virtcol('.') - math.floor(vim.api.nvim_win_get_width(0) / 2))
+    vim.fn.winrestview(view)
+  end, desc='center window horiZontally on cursor column (perpendicular analogue of `zz`)'},
   {',,', 'zM', desc='collapse all folds'},
   {',c', '<CMD>%y+<CR><CR>', desc='copy entire file to system clipboard'},
   {',cn', '<CMD>cnext<CR>', desc='Next quiCkfix item'},

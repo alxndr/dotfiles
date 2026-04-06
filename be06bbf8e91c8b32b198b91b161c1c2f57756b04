@@ -1,0 +1,23 @@
+nvim/lua/mappings.lua
+  49dbebf8c05685d1 65-67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "be06bbf8e91c8b32b198b91b161c1c2f57756b04",
+  "prompts": {
+    "49dbebf8c05685d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f52615e2-a11e-4ed4-a295-a3e39a021a74",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Alexander",
+      "messages": [],
+      "total_additions": 21,
+      "total_deletions": 0,
+      "accepted_lines": 19,
+      "overriden_lines": 2
+    }
+  }
+}

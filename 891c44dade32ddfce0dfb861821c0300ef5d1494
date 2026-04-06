@@ -1,0 +1,23 @@
+nvim/lua/plugins.lua
+  49dbebf8c05685d1 405-407
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "891c44dade32ddfce0dfb861821c0300ef5d1494",
+  "prompts": {
+    "49dbebf8c05685d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f52615e2-a11e-4ed4-a295-a3e39a021a74",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Alexander",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 16,
+      "overriden_lines": 0
+    }
+  }
+}

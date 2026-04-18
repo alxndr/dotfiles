@@ -9,7 +9,6 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim';                 -- startup screen
   'gpanders/editorconfig.nvim';         -- integrate with `.editorconfig` files
-  'Robitx/gp.nvim';                     -- new robot overlords 🤖
   'godlygeek/tabular';                  -- align columns of text
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
@@ -330,10 +329,6 @@ mappings.add({
 })
 
 
--- gp config
-require('gp').setup {
-  openai_api_key = os.getenv('OPENAI_API_KEY'), -- TODO error if not found...
-}
 
 
 -- lexima config

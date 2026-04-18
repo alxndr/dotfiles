@@ -53,27 +53,31 @@ mappings.add({
   {'<LEADER>p', '<CMD>let @" = expand("%")<CR>', desc='copy filePath to unnamed register'},
   {'<LEADER>P', '<CMD>let @+ = expand("%:p")<CR>', desc='copy filePath to system clipboard'},
   {'<LEADER>u', '<CMD>UpdateAll<CR>', desc='Update all plugins and tools (Paq, Mason, Treesitter)' },
+  {'<LEADER>ve', '<CMD>set virtualedit=insert<CR>', desc='toggle VirtualEdit option' },
+
   {'<LEADER>v', group='vim'}, -- h/t roryokane for this idea https://lobste.rs/s/6qp0vo#c_fu9psh
-  {'<LEADER>vf', '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>', desc='edit vim functions file' },
-  {'<LEADER>vm', '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>',  desc='edit vim mappings file' },
-  {'<LEADER>vo', '<CMD>edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>',   desc='edit vim options file' },
-  {'<LEADER>vp', '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>',   desc='edit vim plugins file' },
-  {'<LEADER>vv', '<CMD>edit $MYVIMRC<CR>', desc='edit vim config file' },
-  {'<LEADER>w', '<CMD>set wrap!<CR>', desc='toggle Wrap setting' },
-  {'<LEADER>y', '<CMD>only<CR>', desc='clear all other splits' },
+  {'<LEADER>vf', '<CMD>edit ~/workspace/dotfiles/nvim/lua/functions.lua<CR>', desc='edit neoVim Functions file' },
+  {'<LEADER>vm', '<CMD>edit ~/workspace/dotfiles/nvim/lua/mappings.lua<CR>',  desc='edit neoVim Mappings file' },
+  {'<LEADER>vo', '<CMD>edit ~/workspace/dotfiles/nvim/lua/options.lua<CR>',   desc='edit neoVim Options file' },
+  {'<LEADER>vp', '<CMD>edit ~/workspace/dotfiles/nvim/lua/plugins.lua<CR>',   desc='edit neoVim Plugins file' },
+  {'<LEADER>vv', '<CMD>edit $MYVIMRC<CR>', desc='edit neoVim config file' },
+
+  {'<LEADER>w', '<CMD>set wrap!<CR><CR>', desc='toggle Wrap setting' },
+  {'<LEADER>y', '<CMD>only<CR><CR>', desc='clear all other splits' },
   {'zZ', function() -- analogue of `zz`: center window horizontally around cursor column
     local view = vim.fn.winsaveview()
     view.leftcol = math.max(0, vim.fn.virtcol('.') - math.floor(vim.api.nvim_win_get_width(0) / 2))
     vim.fn.winrestview(view)
   end, desc='center window horiZontally on cursor column (perpendicular analogue of `zz`)'},
   {',,', 'zM', desc='collapse all folds'},
-  {',c', '<CMD>%y+<CR><CR>', desc='copy entire file to system clipboard'},
+  {',c', '<CMD>%y+<CR><CR>', desc='Copy entire file to system clipboard'},
+  {',cf', '<CMD>%y+<CR><CR>', desc='Copy entire File to system clipboard'},
   {',cn', '<CMD>cnext<CR>', desc='Next quiCkfix item'},
   {',cp', '<CMD>cprev<CR>', desc='Previous quiCkfix item'},
   {',d', vim.diagnostic.open_float, desc='open Diagnostics' },
   -- {',f', [[zcj0/{\n<CR><CMD>nohl<CR>zz]], desc='fold braces and jump to next' },
   {',l', '<CMD>set list!<CR>', desc='toggle non-printing characters (show only Letters)' },
-  {',L', '<CMD>w|luafile %<CR>', desc='save and load with Luafile' },
+  {',L', '<CMD>w|luafile %<CR><CR>', desc='save and load with Luafile' },
   {',m', [[/\v^(\<|\||\=|\>){7}(.+)?$<CR><CMD>nohl<CR>zz]], desc='jump to next git merge conflict marker' },
   {',n', '<CMD>nohl<CR>', desc='do Not highlight search text' },
   {',s', '<CMD>write<CR><CR>', desc='Save current buffer' },

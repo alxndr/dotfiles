@@ -130,6 +130,14 @@ require('bamboo').setup({
 })
 require('bamboo').load()
 
+-- soften diff highlights after bamboo resets them
+-- DiffText is the character-level highlight (most jarring): underline only, no background
+-- DiffAdd/Change/Delete are line-level: very dark tints instead of saturated colors
+vim.api.nvim_set_hl(0, 'DiffText',   { underline = true })
+vim.api.nvim_set_hl(0, 'DiffAdd',    { bg = '#1a2e10' })
+vim.api.nvim_set_hl(0, 'DiffChange', { bg = '#0e1a28' })
+vim.api.nvim_set_hl(0, 'DiffDelete', { bg = '#281010' })
+
 
 -- better-escape config
 vim.g.better_escape_interval = 100
@@ -308,6 +316,12 @@ mappings.add{
 require('gitsigns').setup{
   word_diff = true,
 }
+-- gitsigns word-diff inline highlights default to `reverse=true` which inverts
+-- whatever syntax color happens to be under the text (causing random peach/white/orange).
+-- Replace with consistent, muted tint backgrounds instead.
+vim.api.nvim_set_hl(0, 'GitSignsAddInline',    { bg = '#1a2e10' })
+vim.api.nvim_set_hl(0, 'GitSignsChangeInline', { bg = '#28220e' })
+vim.api.nvim_set_hl(0, 'GitSignsDeleteInline', { bg = '#281010' })
 mappings.add({
   {'<LEADER>i', function() require"gitsigns".toggle_word_diff() end,  desc='toggle git Diff to show in-line edits'},
   {'gj',        function() require"gitsigns.actions".next_hunk() end, desc='jump to modified hunk below cursor position'},

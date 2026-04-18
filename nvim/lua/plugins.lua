@@ -421,6 +421,10 @@ vim.lsp.config('syntaqlite', {
   root_markers = { 'syntaqlite.toml', '.git' },
 })
 
+vim.lsp.config('volar', {
+  filetypes = { 'vue' },
+})
+
 vim.lsp.enable({
   'bashls',
   'cucumber_language_server',
@@ -434,6 +438,7 @@ vim.lsp.enable({
   'syntaqlite',
   'ts_ls',
   'svelte',
+  'volar',
 })
 
 vim.api.nvim_create_user_command('UpdateAll', function()

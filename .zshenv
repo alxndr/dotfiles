@@ -35,12 +35,15 @@ alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
       until_fail() {
         SLEEP_INTERVAL_SEC=${UNTIL_INTERVAL_SEC:-1}
+        MAX_TRIES=${UNTIL_MAX_TRIES:-10}
         TRIES=1
+        echo "\ngonna run this until it fails (…up to ${MAX_TRIES} times):\n> ${@}\n\n"
         eval "$@"
-        while [ "$?" -eq "0" ]; do
-          ((TRIES+=1))
-          echo "\n\nsleeping $SLEEP_INTERVAL_SEC sec…"
+        while [[ "$?" -eq "0" && $TRIES -le $MAX_TRIES ]]; do
+          echo -n "\n\nsleeping $SLEEP_INTERVAL_SEC sec…"
           sleep $SLEEP_INTERVAL_SEC
+          ((TRIES+=1))
+          echo " …now try #${TRIES}…\n"
           eval "$@"
         done
         echo "tries: ${TRIES}"

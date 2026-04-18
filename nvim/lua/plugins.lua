@@ -9,6 +9,7 @@ require 'paq' {
   -- features
   'goolord/alpha-nvim';                 -- startup screen
   'gpanders/editorconfig.nvim';         -- integrate with `.editorconfig` files
+ {url='https://codeberg.org/andyg/leap.nvim'}; -- character-based cursor navigation
   'godlygeek/tabular';                  -- align columns of text
   'olacin/telescope-cc.nvim';           -- Conventional Commit integration
  {'piersolenski/telescope-import.nvim', -- autocomplete import statements (depends on ripgrep?)
@@ -329,6 +330,9 @@ mappings.add({
 })
 
 
+-- leap config
+vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
+vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
 
 
 -- lexima config

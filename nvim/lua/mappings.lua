@@ -1,7 +1,7 @@
 vim.g.mapleader = [[\]]
 
-vim.api.nvim_set_keymap('n', '<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-d>']], true, false, false), {noremap=true, expr=true, desc='jump-down a third of the window-height'})
-vim.api.nvim_set_keymap('n', '<C-u>', vim.api.nvim_replace_termcodes([[(winheight(0)/3).'<C-u>']], true, false, false), {noremap=true, expr=true, desc='jump-up a third of the window-height'})
+vim.api.nvim_set_keymap('n', '<C-d>', vim.api.nvim_replace_termcodes([[(winheight(0)/5).'<C-d>']], true, false, false), {noremap=true, expr=true, desc='jump-down a fifth of the window-height'})
+vim.api.nvim_set_keymap('n', '<C-u>', vim.api.nvim_replace_termcodes([[(winheight(0)/5).'<C-u>']], true, false, false), {noremap=true, expr=true, desc='jump-up a fifth of the window-height'})
 vim.api.nvim_set_keymap('v', '<LEADER>p', 'S]%a()<ESC>"+P', {desc='wrap selection in markdown link with Pasted url'})
 
 
@@ -88,7 +88,6 @@ mappings.add({
 -- insert mode
 mappings.add({
   { mode='i',
-    {'qq', function() print('use <C-r> now...') end, desc='reminder to use `<C-r>` now'},
     {'<LEADER>,', '<ESC>mmA,<ESC>`ma', desc='append COMMA to line'},
     {'<LEADER>;', '<ESC>mmA;<ESC>`ma', desc='append SEMICOLON to line'},
     {'<C-a>', '<ESC>A', desc='move cursor to end of line (i.e. Append)'},

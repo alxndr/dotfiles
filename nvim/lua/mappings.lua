@@ -94,6 +94,7 @@ mappings.add({
     {'<C-g>', 'g', desc='count characters/words/lines'},
     {'<C-e>', '<ESC><C-e>a', desc='shift window up (i.e. normal mode `<C-e>`)'},
     {'<C-l>', 'λ', desc='shorthand to insert a Lambda [^k:l*]'},
+    {'<C-o>', '<ESC>o', desc='add newline below cursor and move cursor to it (by analogy with <C-a>)'},
     {'<C-r>', '<ESC>gqqa', desc='Reformat current line'},
     {'<C-y>', '<ESC><C-y>a', desc='shift window up (i.e. normal mode `<C-y>`)'},
     {'<S-Down>', '<ESC>mmddp`ma', desc='shift current line down'},

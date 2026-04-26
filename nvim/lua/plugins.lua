@@ -29,10 +29,11 @@ require 'paq' {
   'famiu/bufdelete.nvim';     -- delete buffer but don't modify window splits
   'ghillb/cybu.nvim';         -- buffers navigation
   'axkirillov/easypick.nvim'; -- helper for creating custom Telescope pickers
-  'ibhagwan/fzf-lua';         -- fuzzy file finder functions -- \\ -- \g -- <C-p> -- <C-s>
+  'ibhagwan/fzf-lua';         -- fuzzy file finder functions                   -- \\ -- \g -- <C-p> -- <C-s>
   'airblade/vim-rooter';      -- keep vim working directory set to project root (nextreport confuses this...)
   'chrisbra/Recover.vim';     -- add Compare to swapfile actions
-  'kyazdani42/nvim-tree.lua'; -- file browser                -- \<Tab>
+  'nanozuki/tabby.nvim';      -- tabline niceties
+  'kyazdani42/nvim-tree.lua'; -- file browser                                  -- \<Tab>
 
 
   -- git stuff
@@ -564,6 +565,53 @@ q.setup{
 vim.cmd [[
   let g:rooter_patterns = ['.git', '.editorconfig']
 ]]
+
+
+-- tabby config
+local theme_tabby = {
+  fill = 'TabLineFill', -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+  head = 'TabLine',
+  current_tab = 'TabLineSel',
+  tab = 'TabLine',
+  win = 'TabLine',
+  tail = 'TabLine',
+}
+require('tabby').setup({
+  line = function(line)
+    return {
+      line.tabs().foreach(function(tab)
+        local hl = tab.is_current() and theme_tabby.current_tab or theme_tabby.tab
+        return {
+          line.sep('', hl, theme_tabby.fill),
+          tab.is_current() and ' ' or ' ',
+          tab.number(),
+          tab.name(),
+          tab.close_btn(''),
+          line.sep('', hl, theme_tabby.fill),
+          hl = hl,
+          margin = ' ',
+        }
+      end),
+      line.spacer(),
+      line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+        return {
+          line.sep('', theme_tabby.win, theme_tabby.fill),
+          win.is_current() and '' or '', -- ...what's this do?
+          win.buf_name(),
+          line.sep('', theme_tabby.win, theme_tabby.fill),
+          hl = theme_tabby.win,
+          margin = ' ',
+        }
+      end),
+      {
+        line.sep('', theme_tabby.tail, theme_tabby.fill),
+        { '  ', hl = theme_tabby.tail },
+      },
+      hl = theme_tabby.fill,
+    }
+  end,
+  -- option = {}, -- setup modules' option,
+})
 
 
 -- telescope-import

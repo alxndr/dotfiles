@@ -45,7 +45,9 @@ mappings.add({
   {'<C-m>', '<C-w>>', desc='widen split (More space)'},
   {'<C-S-M>', '<C-w>+', desc='tallify split (More space)'},
   {'<S-DOWN>', 'ddp', desc='shift current line down'},
-  {'<S-UP>', 'ddkP',  desc='shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
+  {'<S-UP>',   'ddkP',desc='shift current line up' }, -- TODO bug: when on last line of file, will shift current line up by two lines
+  {'<S-LEFT>',  '<CMD>silent tabp<CR>', desc='use previous tab'},
+  {'<S-RIGHT>', '<CMD>silent tabn<CR>', desc='use next tab'},
   {'<LEADER>,', 'mmA,<ESC>`mj', desc='append comma to line and move down'},
   {'<LEADER>;', 'mmA;<ESC>`mj', desc='append semicolon to line and move down'},
   {'<LEADER>2', '/TODO<CR><CMD>nohl<CR>', desc='jump to next TODO' },

@@ -34,31 +34,46 @@ alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
       until_fail() {
-        SLEEP_INTERVAL_SEC=${UNTIL_INTERVAL_SEC:-1}
-        MAX_TRIES=${UNTIL_MAX_TRIES:-10}
-        TRIES=1
-        echo "\ngonna run this until it fails (…up to ${MAX_TRIES} times):\n> ${@}\n\n"
+        if [[ $# -eq 0 || ("$1" == "-h" || "$1" == "--help") ]]; then
+          echo "\n"
+          echo "Usage: until_fail command_to_run\n"
+          echo "Configure behavior with environment flags:\n"
+          echo "SLEEP_INTERVAL_SEC (default: 1) => how long to wait between tries\n"
+          echo "MAX_TRIES (default: 10) => how long to wait between tries\n"
+          return 1
+        fi
+        _SLEEP_INTERVAL_SEC=${SLEEP_INTERVAL_SEC:-1}
+        _MAX_TRIES=${MAX_TRIES:-10}
+        _TRIES=1
         eval "$@"
-        while [[ "$?" -eq "0" && $TRIES -le $MAX_TRIES ]]; do
-          echo -n "\n\nsleeping $SLEEP_INTERVAL_SEC sec…"
-          sleep $SLEEP_INTERVAL_SEC
-          ((TRIES+=1))
-          echo " …now try #${TRIES}…\n"
+        while [[ "$?" -eq "0" && $_TRIES -lt $_MAX_TRIES ]]; do
+          ((_TRIES+=1))
+          echo -n "\n\nsleeping $_SLEEP_INTERVAL_SEC sec…"
+          sleep $_SLEEP_INTERVAL_SEC
+          echo " … now try #${_TRIES}…\n"
           eval "$@"
         done
-        echo "tries: ${TRIES}"
       }
       until_success() {
-        SLEEP_INTERVAL_SEC=${UNTIL_INTERVAL_SEC:-1}
-        TRIES=1
+        if [[ $# -eq 0 || ("$1" == "-h" || "$1" == "--help") ]]; then
+          echo "\n"
+          echo "Usage: until_success command_to_run\n"
+          echo "Configure behavior with environment flags:\n"
+          echo "SLEEP_INTERVAL_SEC (default: 1) => how long to wait between tries\n"
+          echo "MAX_TRIES (default: 10) => how long to wait between tries\n"
+          return 1
+        fi
+        _SLEEP_INTERVAL_SEC=${SLEEP_INTERVAL_SEC:-1}
+        _MAX_TRIES=${MAX_TRIES:-10}
+        _TRIES=1
         eval "$@"
-        while [ "$?" -ne "0" ]; do
-          ((TRIES+=1))
-          echo "\n\nsleeping $SLEEP_INTERVAL_SEC sec…"
-          sleep $SLEEP_INTERVAL_SEC
+        while [[ "$?" -ne "0" && $_TRIES -lt $_MAX_TRIES ]]; do
+          ((_TRIES+=1))
+          echo -n "\n\nsleeping $_SLEEP_INTERVAL_SEC sec…"
+          sleep $_SLEEP_INTERVAL_SEC
+          echo " … now try #${_TRIES}…\n"
           eval "$@"
         done
-        echo "tries: ${TRIES}"
       }
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 alias wh="which"

@@ -22,6 +22,7 @@ require 'paq' {
   'echasnovski/mini.nvim';             -- more text objects
   'jeffkreeftmeijer/vim-numbertoggle'; -- tweak line numbers in non-active windows
   'stevearc/quicker.nvim';             -- quickfix window workflow improvements + eye candy
+  'nvim-treesitter/nvim-treesitter-context'; -- show nesting context when it's scrolled offscreen
   'svban/YankAssassin.vim';            -- control cursor behavior while yanking
 
 

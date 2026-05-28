@@ -122,3 +122,12 @@ mappings.add({
     {'<C-c>t', ':Tcn<CR>', desc='convert Chinese characters to traditional version'},
   },
 })
+
+------------------
+-- terminal mode
+mappings.add({
+  { mode='t',
+    {'<S-LEFT>',  '<CMD>silent tabp<CR>', desc='use previous tab'},
+    {'<S-RIGHT>', '<CMD>silent tabn<CR>', desc='use next tab'},
+  },
+})

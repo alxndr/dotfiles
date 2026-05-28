@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # largely written by Claude 🤖
 
@@ -45,17 +45,19 @@ function pct_with_color() {
 }
 
 function format_date() {
-  TZ=America/Los_Angeles date -r "$1" '+%-m/%-d @ %-H:%M'
+  TZ=America/Los_Angeles date -r "$1" '+%-m/%-d %-H:%M'
 }
 
-output=$(printf "₸:%s ⬇︎%s ⬆︎%s —— 5hr %s [%s], 7d %s [%s]" \
+output=$(printf "%s₸ %s⬇︎ %s⬆︎ … 5hr %s [%s], 7d %s [%s] … TUI %s, %s " \
   "$(pct_with_color "$(j '.context_window.used_percentage')")" \
   "$(jNum '.context_window.current_usage.input_tokens')" \
   "$(jNum '.context_window.current_usage.output_tokens')" \
   "$(pct_with_color "$(j '.rate_limits.five_hour.used_percentage')")" \
   "$(format_date "$(j '.rate_limits.five_hour.resets_at')")" \
   "$(pct_with_color "$(j '.rate_limits.seven_day.used_percentage')")" \
-  "$(format_date "$(j '.rate_limits.seven_day.resets_at')")")
-# " —— $(j '.model.display_name'), TUI $(j '.version')"
+  "$(format_date "$(j '.rate_limits.seven_day.resets_at')")" \
+  "$(j '.version')" \
+  "$(j '.model.display_name')" \
+)
 
 printf "%b" "$output"

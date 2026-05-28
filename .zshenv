@@ -124,7 +124,6 @@ alias gd="git diff --patch --ignore-all-space --color-words='[^[:space:]]|([[:al
 alias gdp="git co develop && git pull"
 alias gds="gd --staged"
 alias gf="git fetch"
-alias gh="giturl | xargs open"
       ghb() { open $(giturl)/compare/develop...$(git branch-name) }
 alias giturl="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//'"
 alias gl="git l"
@@ -166,6 +165,7 @@ alias b="brew"
 alias bl="bundle"
 alias bx="bundle exec"
 alias cci="circleci"
+      clod() { claude --resume ${PWD:t} } # resume Claude with the name of the current directory
       decode_jwt() {
         if [[ -n "$1" ]]; then
           JWT=$1

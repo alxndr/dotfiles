@@ -1,9 +1,6 @@
 export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
 export LESS="-F -R -S -W"
-
-export GREP_OPTIONS="-I --exclude=\*.svn\* --exclude=\*.min.\*js"
-
 export RIPGREP_CONFIG_PATH=~/workspace/dotfiles/ripgrep.cfg
 
 
@@ -29,7 +26,6 @@ alias ln="ln -v"
           ls -G -d -- *(D/)
         fi
       }
-alias tlf="tail -f"
 alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
       until_fail() {
@@ -111,25 +107,14 @@ alias ga="git add"
 alias gA="git add --all"
 alias gap="git add --patch"
 alias gb="git branch --color"
-alias gco="git checkout"
 alias gcv="git commit --verbose"
 alias gd="git diff --patch --ignore-all-space --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'."
-      gdiff() {
-        $FIRST=$1
-        $SECOND=$2
-        $FILE=$3
-        diff <(git show :$FIRST:$FILE) <(git show :$SECOND:$FILE)
-      }
 alias gdp="git co develop && git pull"
 alias gds="gd --staged"
-alias gf="git fetch"
-      ghb() { open $(giturl)/compare/develop...$(git branch-name) }
 alias giturl="git config --get remote.origin.url | sed -e 's/\/\///' -e 's/git.//' -e 's/:/\//' -e 's/\.git//' -e 's/^/http:\/\//'"
 alias gl="git l"
 alias glg="git lg"
-alias glh="git l --since yesterday"
 alias glu="git log --patch"
-alias gmd="git co develop && git pull && git co - && git merge develop"
 alias gp="git pull"
       gri() { git rebase --interactive "HEAD~$1" --verbose }
 alias gs="git show" # ...not stash...

@@ -1,5 +1,4 @@
 export EDITOR="nvim"
-export PAGER="nvim"
 export MANPAGER="nvim +Man!"
 export LESS="-F -R -S -W"
 

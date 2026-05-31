@@ -3,6 +3,12 @@ export MANPAGER="nvim +Man!"
 export LESS="-F -R -S -W"
 export RIPGREP_CONFIG_PATH=~/workspace/dotfiles/ripgrep.cfg
 
+export APOLLO_TELEMETRY_DISABLED=1
+
+export PATH="/Users/alxndr/.local/bin/:$PATH"
+
+
+
 # these aliases are defined intentionally so subshell wrappers e.g. `entr` can use them
 
 #########

@@ -3,6 +3,7 @@ export MANPAGER="nvim +Man!"
 export LESS="-F -R -S -W"
 export RIPGREP_CONFIG_PATH=~/workspace/dotfiles/ripgrep.cfg
 
+# these aliases are defined intentionally so subshell wrappers e.g. `entr` can use them
 
 #########
 # unixy #
@@ -11,7 +12,7 @@ export RIPGREP_CONFIG_PATH=~/workspace/dotfiles/ripgrep.cfg
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias c="curl"
+alias c="cat"
 alias e="nvim"
 alias gr="grep"
 alias l="ls -AFlno" # OMZ? is overriding this...
@@ -146,23 +147,9 @@ alias dmenv="eval \"\$(docker-machine env default)\""
 
 alias a="asdf"
 alias b="brew"
-alias bl="bundle"
+alias bi="bundle install"
 alias bx="bundle exec"
-alias cci="circleci"
       clod() { claude --resume ${PWD:t} } # resume Claude with the name of the current directory
-      decode_jwt() {
-        if [[ -n "$1" ]]; then
-          JWT=$1
-        else
-          read JWT
-        fi
-        JWT_SPLIT=(${(s:.:)JWT}) # split on periods
-        for JWT_PIECE in $JWT_SPLIT; do
-          echo
-          echo $JWT_PIECE | base64 -D
-          echo
-        done
-      }
       dotenv() {
         # Usage: `dotenv command [args...]`
         # If there's an .env file in the current directory, it will run the
@@ -185,10 +172,7 @@ alias cci="circleci"
       }
 alias n="npm"
 alias nd="node"
-alias ndd="nodemon"
 alias ni="npm install --loglevel warn"
-alias niD="npm install --loglevel warn --save-dev"
-alias niS="npm install --loglevel warn --save"
       node-watcher() {
         if [[ -z "$1" ]]; then
           echo "need a command to run whenever a webfile changes..."
@@ -199,26 +183,11 @@ alias niS="npm install --loglevel warn --save"
 alias nr="npm run --silent"
 alias nt="npm test"
 alias nx="npx"
-alias o="ocaml"
 alias pip="pip3"
 alias py="python"
 alias python="python3"
       report() { $@ && say "done" || say "error" }
-alias rk="raku"
 alias rt="racket"
-alias sactl="sudo apachectl"
-alias start_postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-alias tsn="ts-node"
-alias us="bundle exec unicorn -c tmp/unicorn.rb"
-      upyet() {
-        URL=$1
-        until [[ $(curl -Is $URL | grep "HTTP\S* 200 OK") ]]; do
-          echo -n .
-          sleep 5
-        done
-        echo $URL
-        date
-      }
 alias waitfor="wait-on --interval 999 --timeout ${TIMEOUT:-99999}"
 alias webfiles="rg --type web --files"
       webm2mp3() {
@@ -247,27 +216,3 @@ back_up_drive() {
 back_up_media_unison() {
   back_up_drive MEDIA Media2
 }
-
-aoc() {
-  # Advent Of Code — https://adventofcode.com
-  # create dir and download first part of the puzzle
-  if [[ "$1" == "today" ]]; then
-    YEAR=$(date +%Y)
-    DAY=$(date +%d)
-  else
-    YEAR=$1
-    DAY=$(printf '%02d' "$2")
-  fi
-  DIR=~/workspace/adventofcode/${YEAR}/${DAY}
-  mkdir -p $DIR
-  cd $DIR
-  URL=https://adventofcode.com/${YEAR}/day/${2}
-  echo "\`\`\`" >README.md
-  links -dump $URL \
-  | awk '/--- Day/{P=1} /identify/{P=0} {if (P) print}' \
-  >> README.md
-  echo "\`\`\`" >>README.md
-  cat README.md
-}
-
-yt-rip-stream() { yt-dlp --extract-audio --live-from-start https://www.youtube.com/watch\?v\=${${${${1:?pass a YouTube ID/url}#*=}%&*}:?could not determine YouTube ID; exiting...} }

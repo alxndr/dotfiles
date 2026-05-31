@@ -35,10 +35,13 @@ fi
 
 if [[ -x "$(which asdf)" ]]; then
   echo -n 'asdf… '
-  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-  # completions...
-  mkdir -p "${ASDF_DATA_DIR:-$HOME/.asdf}/completions"
-  asdf completion zsh > "${ASDF_DATA_DIR:-$HOME/.asdf}/completions/_asdf"
+  ASDF_DATA="${ASDF_DATA_DIR:-$HOME/.asdf}"
+  export PATH="${ASDF_DATA}/shims:$PATH"
+  ASDF_COMP_FILE="${ASDF_DATA}/completions/_asdf"
+  mkdir -p "${ASDF_DATA}/completions"
+  if [[ ! -f "$ASDF_COMP_FILE" || "$(which asdf)" -nt "$ASDF_COMP_FILE" ]]; then
+    asdf completion zsh > "$ASDF_COMP_FILE"
+  fi
 fi
 
 

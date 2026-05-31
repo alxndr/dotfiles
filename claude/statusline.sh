@@ -32,11 +32,11 @@ function pct_with_color() {
   # Returns a colorful "XX%" string based on thresholds
   local num=$(printf "%d" "$1")
   local color=""
-  if [ "$num" -ge 79 ]; then
+  if [ "$num" -ge 80 ]; then
     color="$ANSI_BRIGHT_RED"
-  elif [ "$num" -ge 69 ]; then
+  elif [ "$num" -ge 70 ]; then
     color="$ANSI_ORANGE"
-  elif [ "$num" -gt 50 ]; then
+  elif [ "$num" -ge 60 ]; then
     color="$ANSI_YELLOW"
   else
     color="$ANSI_DARK_GREEN"
@@ -48,14 +48,14 @@ function format_date() {
   TZ=America/Los_Angeles date -r "$1" '+%-m/%-d %-H:%M'
 }
 
-output=$(printf "%s₸ … 5hr %s [%s], 7d %s [%s] … TUI %s, %s " \
+output=$(printf "𝒕%s • 5hr %s [%s] • 7d %s [%s] • %s • TUI %s" \
   "$(pct_with_color "$(j '.context_window.used_percentage')")" \
   "$(pct_with_color "$(j '.rate_limits.five_hour.used_percentage')")" \
   "$(format_date "$(j '.rate_limits.five_hour.resets_at')")" \
   "$(pct_with_color "$(j '.rate_limits.seven_day.used_percentage')")" \
   "$(format_date "$(j '.rate_limits.seven_day.resets_at')")" \
-  "$(j '.version')" \
   "$(j '.model.display_name')" \
+  "$(j '.version')" \
 )
 
 printf "%b" "$output"

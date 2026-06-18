@@ -103,6 +103,7 @@ require 'paq' {
   'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, startup, data-viewer…
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
   {'nvim-treesitter/nvim-treesitter',          -- file content parser
+    branch = 'master',
     build = function()
       require('nvim-treesitter.install').update({ with_sync = true })()
     end};

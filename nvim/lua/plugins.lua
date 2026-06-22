@@ -544,10 +544,10 @@ require('mason-lspconfig').setup({
     'html',
     'jsonls',
     'lua_ls',
+    'superhtml',
     'svelte',
     'tailwindcss',
     'ts_ls',
-    'superhtml',           -- uncomment if Mason carries it; if mason-lspconfig warns about it on startup, it doesn't
     -- 'syntaqlite' omitted on purpose — it's a local/custom server, not in the Mason registry (installed separately).
   },
 })

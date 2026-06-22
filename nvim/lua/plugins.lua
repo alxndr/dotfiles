@@ -93,7 +93,8 @@ require 'paq' {
   'mfussenegger/nvim-lint';          -- linter
   'neovim/nvim-lspconfig';           -- LSP config
   'arkav/lualine-lsp-progress';      -- show LSP server status in lualine
-  'williamboman/mason.nvim';         -- LSP plugins manager
+  'mason-org/mason.nvim';            -- LSP plugins manager
+  'mason-org/mason-lspconfig.nvim';  -- auto-installs (via Mason) the LSP servers enabled below
   'nvimtools/none-ls.nvim';          -- customizable language server for LSP … require'null-ls'
 
 
@@ -424,13 +425,8 @@ vim.lsp.config('syntaqlite', {
   root_markers = { 'syntaqlite.toml', '.git' },
 })
 
-vim.lsp.config('volar', {
-  filetypes = { 'vue' },
-})
-
 vim.lsp.enable({
   'bashls',
-  'cucumber_language_server',
   'eslint', -- ni -g vscode-langservers-extracted
   'graphql',
   'html',
@@ -441,7 +437,6 @@ vim.lsp.enable({
   'syntaqlite',
   'ts_ls',
   'svelte',
-  'volar',
 })
 
 vim.api.nvim_create_user_command('UpdateAll', function()
@@ -532,6 +527,30 @@ require'lualine'.setup{
 
 -- mason config
 require('mason').setup()
+
+-- mason-lspconfig: make sure the servers enabled via `vim.lsp.enable` are actually installed,
+-- so a fresh checkout self-provisions instead of erroring with "language server … not installed".
+-- `automatic_enable = false` keeps install and enable separate: this block ONLY installs;
+-- the explicit `vim.lsp.enable({...})` calls above remain the single source of truth for what's on.
+-- ensure_installed uses lspconfig server names (mason-lspconfig maps them to Mason package names).
+require('mason-lspconfig').setup({
+  automatic_enable = false,
+  ensure_installed = {
+    'bashls',
+    'cssls',
+    'cucumber_language_server',
+    'eslint',                 -- these four (eslint/html/jsonls/cssls) all come from vscode-langservers-extracted
+    'graphql',
+    'html',
+    'jsonls',
+    'lua_ls',
+    'svelte',
+    'tailwindcss',
+    'ts_ls',
+    'superhtml',           -- uncomment if Mason carries it; if mason-lspconfig warns about it on startup, it doesn't
+    -- 'syntaqlite' omitted on purpose — it's a local/custom server, not in the Mason registry (installed separately).
+  },
+})
 
 
 -- package-info config

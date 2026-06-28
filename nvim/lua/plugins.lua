@@ -79,7 +79,7 @@ require 'paq' {
 
   -- eye candy
   'ribru17/bamboo.nvim';             -- colorscheme
-  'norcalli/nvim-colorizer.lua';     -- color eye-candy
+  'catgoose/nvim-colorizer.lua';     -- color eye-candy (maintained fork; norcalli's is abandoned & uses deprecated vim.tbl_flatten)
   'rhysd/conflict-marker.vim';       -- highlight Git Merge Conflict markers/contents
   'WilsonOh/emoji_picker-nvim';      -- emoji UX
   'voldikss/vim-floaterm';           -- terminal eyecandy
@@ -161,15 +161,14 @@ mappings.add({
 
 
 -- colorizer config
+-- catgoose fork uses a single config table (norcalli's old two-arg `setup({fts}, {opts})` is gone).
+-- `user_default_options` is the fork's supported compat format — a 1:1 translation of the old options.
 require 'colorizer'.setup({
-  'css';
-  'html';
-  'javascript';
-  'rust';
-  'typescript';
-}, {
-  css    = true;
-  css_fn = true;
+  filetypes = { 'css', 'html', 'javascript', 'rust', 'typescript' },
+  user_default_options = {
+    css    = true,  -- shorthand: enables names + all hex/rgb/hsl parsers
+    css_fn = true,  -- shorthand: enables rgb()/hsl() function parsing
+  },
 })
 
 
@@ -769,3 +768,32 @@ require('nvim-treesitter.configs').setup {
 
 -- ts-autotag config
 require('nvim-ts-autotag').setup()
+
+
+-- treesitter-context config
+--
+-- Markdown is disabled here as a workaround for a nvim 0.12 bug:
+--   nvim/neovim#39032 — "not planned" to fix in nvim core
+--   nvim-treesitter/nvim-treesitter#8618 — closed (and that repo was archived Apr 2026)
+--
+-- Root cause: nvim 0.12's bundled markdown highlight queries use `(#set! conceal_lines "")`
+-- on fenced-code-block delimiter nodes. When treesitter-context calls
+-- `root_tree:parse(range, callback)` on a markdown buffer, the async injection
+-- parse hits a nil node and crashes with:
+--   "attempt to call method 'range' (a nil value)" at languagetree.lua:215
+--
+-- Markdown doesn't benefit from scope-context lines (no deeply nested scopes),
+-- so skipping it is no real loss.
+--
+-- FUTURE: nvim-treesitter was archived April 2026. nvim 0.12 now bundles parsers
+-- for c, lua, markdown, markdown_inline, query, vim, vimdoc. The long-term fix is
+-- to migrate away from nvim-treesitter entirely and use nvim's native treesitter +
+-- a lightweight parser installer for additional languages:
+--   https://samuellawrentz.com/blog/nvim-treesitter-archived-neovim-0-12-migration/
+--   https://github.com/romus204/tree-sitter-manager.nvim
+--   https://neovim.io/doc/user/news-0.12/
+require('treesitter-context').setup({
+  on_attach = function(buf)
+    return vim.bo[buf].filetype ~= 'markdown'
+  end,
+})

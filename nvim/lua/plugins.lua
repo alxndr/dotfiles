@@ -67,8 +67,9 @@ require 'paq' {
   'tpope/vim-liquid';                -- Jekyll posts (templating language within markdown)
   ---- …LISP / Scheme / Racket / etc
   'julienvincent/nvim-paredit';      -- s-expression editing facilitation
-  ---- …Markdown
+  ---- …Markdown / MDX
   'rhysd/vim-gfm-syntax';            -- syntax highlighting for Git-Flavored Markdown
+  'davidmh/mdx.nvim';                -- MDX syntax highlighting (markdown + embedded JSX/TSX via treesitter)
   ---- …OCaml
   'Halbaroth/ocp-indent.nvim';
   ---- …query languages
@@ -768,6 +769,32 @@ require('nvim-treesitter.configs').setup {
 
 -- ts-autotag config
 require('nvim-ts-autotag').setup()
+
+
+-- vim-liquid config
+--
+-- vim-liquid auto-detects any .md file with `---` frontmatter as `liquid.markdown`,
+-- but most frontmatter today is Astro/Hugo/etc. — not Liquid templates. This resets
+-- .md files back to plain `markdown` after vim-liquid's ftdetect fires, and provides
+-- a `:Liquid` command to explicitly opt in for files that actually are Liquid templates.
+--
+-- The language.register call is still needed: when `:Liquid` sets ft=liquid.markdown,
+-- nvim's treesitter would split the compound filetype on `.`, take "liquid", and fail
+-- to find a parser. Registering it here maps liquid.markdown → markdown treesitter.
+vim.treesitter.language.register('markdown', 'liquid.markdown')
+
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '*.md',
+  callback = function()
+    if vim.bo.filetype == 'liquid.markdown' then
+      vim.bo.filetype = 'markdown'
+    end
+  end,
+})
+
+vim.api.nvim_create_user_command('Liquid', function()
+  vim.bo.filetype = 'liquid.markdown'
+end, { desc = 'Enable Liquid template syntax for this buffer' })
 
 
 -- treesitter-context config

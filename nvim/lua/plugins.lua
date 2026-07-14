@@ -92,7 +92,7 @@ require 'paq' {
   'hrsh7th/cmp-buffer';              -- something for nvim-cmp
   'hrsh7th/cmp-nvim-lsp';            -- "LSP source for nvim-cmp"
   'mfussenegger/nvim-lint';          -- linter
-  'neovim/nvim-lspconfig';           -- LSP config
+  -- 'neovim/nvim-lspconfig';           -- LSP config
   'arkav/lualine-lsp-progress';      -- show LSP server status in lualine
   'mason-org/mason.nvim';            -- LSP plugins manager
   'mason-org/mason-lspconfig.nvim';  -- auto-installs (via Mason) the LSP servers enabled below
@@ -425,7 +425,12 @@ vim.lsp.config('syntaqlite', {
   root_markers = { 'syntaqlite.toml', '.git' },
 })
 
+vim.lsp.config('astro', {
+  filetypes = { 'astro', 'markdown' },
+})
+
 vim.lsp.enable({
+  'astro',
   'bashls',
   'eslint', -- ni -g vscode-langservers-extracted
   'graphql',
@@ -536,6 +541,7 @@ require('mason').setup()
 require('mason-lspconfig').setup({
   automatic_enable = false,
   ensure_installed = {
+    'astro',
     'bashls',
     'cssls',
     'cucumber_language_server',

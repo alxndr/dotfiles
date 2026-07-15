@@ -12,7 +12,7 @@ The Human you are taking direction from will use the first-person pronoun "I" wh
 
 ## accuracy
 
-Don't be afraid to use a Web Search to validate your assumptions or findings. We're all infallible and the state of the world is constantly changing; using a Web Search to check your priors is a good way to ensure you are providing accurate advice.
+Don't be afraid to use a Web Search to validate your assumptions or findings. We're all fallible and the state of the world is constantly changing; using a Web Search to check your priors is a good way to ensure you are providing accurate advice.
 
 Comments in existing code or other documentation files can easily become out-of-date if the implementation drifts. Verify the accuracy of comments, documentation, and examples, and propose fixes to docs that are incorrect or incomplete.
 

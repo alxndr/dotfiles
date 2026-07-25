@@ -5,7 +5,7 @@ export RIPGREP_CONFIG_PATH=~/workspace/dotfiles/ripgrep.cfg
 
 export APOLLO_TELEMETRY_DISABLED=1
 
-export PATH="/Users/alxndr/.local/bin/:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 
 

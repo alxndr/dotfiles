@@ -1,6 +1,8 @@
-echo -n '… '
+echo -n 'zsh… '
 setopt DVORAK
 setopt IGNOREEOF
+setopt AUTO_CD
+autoload -Uz compinit && compinit
 
 # n.b. this does not account for leap seconds/days...
 MIN=60

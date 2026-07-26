@@ -16,6 +16,21 @@ bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
 
+if [[ -x "$(which mise)" ]]; then
+  echo -n 'mise… '
+  eval "$(mise activate zsh)"
+elif [[ -x "$(which asdf)" ]]; then
+  echo -n 'asdf… '
+  ASDF_DATA="${ASDF_DATA_DIR:-$HOME/.asdf}"
+  export PATH="${ASDF_DATA}/shims:$PATH"
+  ASDF_COMP_FILE="${ASDF_DATA}/completions/_asdf"
+  mkdir -p "${ASDF_DATA}/completions"
+  if [[ ! -f "$ASDF_COMP_FILE" || "$(which asdf)" -nt "$ASDF_COMP_FILE" ]]; then
+    asdf completion zsh > "$ASDF_COMP_FILE"
+  fi
+fi
+
+
 if [[ -x "/opt/homebrew/bin/brew" ]]; then
   echo -n 'homebrew… '
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -27,22 +42,10 @@ if [[ -x "/opt/homebrew/bin/brew" ]]; then
       [Yy])
         brew update
         ;;
-      *);
+      *)
         echo '\n…skipping brew update'
         ;;
     esac
-  fi
-fi
-
-
-if [[ -x "$(which asdf)" ]]; then
-  echo -n 'asdf… '
-  ASDF_DATA="${ASDF_DATA_DIR:-$HOME/.asdf}"
-  export PATH="${ASDF_DATA}/shims:$PATH"
-  ASDF_COMP_FILE="${ASDF_DATA}/completions/_asdf"
-  mkdir -p "${ASDF_DATA}/completions"
-  if [[ ! -f "$ASDF_COMP_FILE" || "$(which asdf)" -nt "$ASDF_COMP_FILE" ]]; then
-    asdf completion zsh > "$ASDF_COMP_FILE"
   fi
 fi
 

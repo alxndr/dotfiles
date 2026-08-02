@@ -9,6 +9,12 @@ vim.cmd [[
   endfunction
 ]]
 require'which-key'.add({
-  {'<Leader>j', '<CMD>call VerticalSpaceJumpDown()<CR>', desc='move up to next printable character'},
-  {'<Leader>k', '<CMD>call VerticalSpaceJumpUp()<CR>',   desc='move down to next printable character'},
+  {'<Leader>j', '<CMD>call VerticalSpaceJumpDown()<CR>', desc='move down to next printable character in column'},
+  {'<Leader>k', '<CMD>call VerticalSpaceJumpUp()<CR>',   desc='move up to next printable character in column'},
+})
+require'which-key'.add({
+  { mode='v',
+    {'<Leader>j', '<CMD>call VerticalSpaceJumpDown()<CR>', desc='extend selection down to next printable character in column'},
+    {'<Leader>k', '<CMD>call VerticalSpaceJumpUp()<CR>',   desc='extend selection up to next printable character in column'},
+  },
 })

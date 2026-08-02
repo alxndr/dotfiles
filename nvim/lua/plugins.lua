@@ -558,6 +558,17 @@ require('mason-lspconfig').setup({
   },
 })
 
+-- Clod requested this be "somewhere after the mason setup" to get ESLint errors to show inline in almost-dead-dot-net:
+require('lint').linters_by_ft = {
+  javascript = { 'eslint' },
+  javascriptreact = { 'eslint' },
+  typescript = { 'eslint' },
+  typescriptreact = { 'eslint' },
+  svelte = { 'eslint' },
+}
+vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave', 'BufEnter' }, {
+  callback = function() require('lint').try_lint() end,
+})
 
 -- package-info config
 require('package-info').setup{

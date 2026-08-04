@@ -9,11 +9,15 @@ MIN=60
 ((HOUR = 60 * $MIN))
 ((DAY = 24 * $HOUR))
 
-
 bindkey -v
 export KEYTIMEOUT=10 # cut timeout when switching modes; h/t https://dougblack.io/words/zsh-vi-mode.html
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
+
+
+echo -n 'aliases… '
+start_ollama() { OLLAMA_FLASH_ATTENTION="1" OLLAMA_KV_CACHE_TYPE="q8_0" /usr/local/opt/ollama/bin/ollama serve }
+alias t="tmux"
 
 
 if [[ -x "$(which mise)" ]]; then

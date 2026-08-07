@@ -86,6 +86,16 @@ alias yr="ncal $(date -j +'%Y')"
 #########
 
       battery() { ioreg -n AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT="%.0f%%"; max=c["\"MaxCapacity\""]; print (max>0? 100*c["\"CurrentCapacity\""]/max: "?")}' }
+      battery_icon() { # for tmux status-right: 🔌 no battery (desktop, always on AC), 🔋 charge >25%, 🪫 charge <=25%
+        local charge=$(battery)
+        if [[ "$charge" == "?" ]]; then
+          echo "🔌"
+        elif (( charge > 25 )); then
+          echo "🔋"
+        else
+          echo "🪫"
+        fi
+      }
 alias fixcamera="sudo killall AppleCameraAssistant && sudo killall VDCAssistant" # h/t @GregMefford
       notify() { osascript -e "display notification \"$2\" with title \"$1\"" }
       yt() { youtube-dl --format best $1 }

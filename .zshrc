@@ -16,6 +16,7 @@ bindkey -M vicmd '^r' history-incremental-search-backward
 
 
 echo -n 'aliases… '
+      screenshot_to_mm() { scp "$(ls -1t | head -1)" abq@mm:~/Desktop/ }
 start_ollama() { OLLAMA_FLASH_ATTENTION="1" OLLAMA_KV_CACHE_TYPE="q8_0" /usr/local/opt/ollama/bin/ollama serve }
 alias t="tmux"
 

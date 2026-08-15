@@ -569,7 +569,15 @@ require('lint').linters_by_ft = {
   svelte = { 'eslint' },
 }
 vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave', 'BufEnter' }, {
-  callback = function() require('lint').try_lint() end,
+  callback = function()
+    local eslint_config = vim.fs.find(
+      { '.eslintrc', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', 'eslint.config.js', 'eslint.config.mjs' },
+      { upward = true, path = vim.fn.expand('%:p:h') }
+    )
+    if #eslint_config > 0 then
+      require('lint').try_lint()
+    end
+  end,
 })
 
 -- package-info config

@@ -350,6 +350,8 @@ vim.cmd [[
   call lexima#add_rule({ 'char': "'",                                                    'filetype': ['lisp', 'scheme', 'racket']})
   call lexima#add_rule({ 'char': '`',                                                    'filetype': ['lisp', 'scheme', 'racket']})
   call lexima#add_rule({ 'char': ' ', 'at': '(λ\%#)', 'input': ' [', 'input_after': ']   ', 'filetype': ['lisp', 'scheme', 'racket'] })
+  " markdown: suppress the default [ ] -> [  ] space-padding expansion so checkbox list items work cleanly
+  call lexima#add_rule({ 'char': '<Space>', 'at': '\[\%#]', 'filetype': 'markdown' })
 ]]
 
 

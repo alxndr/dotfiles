@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git push *)"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/alxndr/.claude/statusline.sh",
+    "padding": 0
+  },
+  "extraKnownMarketplaces": {
+    "typesafe-ai": {
+      "source": {
+        "source": "github",
+        "repo": "typesafe-ai/skills"
+      },
+      "autoUpdate": true
+    }
+  },
+  "theme": "dark",
+  "editorMode": "vim",
+  "preferredNotifChannel": "terminal_bell",
+  "enabledPlugins": {
+    "typesafe@typesafe-ai": true
+  }
+}

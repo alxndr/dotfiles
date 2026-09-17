@@ -13,11 +13,16 @@ local jev_blog_posts_dir = vim.fn.expand('~/workspace/blog/src/data/blog-posts')
 local jev_api_url = 'https://api.typesafe.ai/v1/systemone'
 local jev_model = 'jev-latest'
 
--- Raw tag strings listed under a `tags:\n  - foo\n  - bar` YAML block
--- anywhere in `lines` (single-level list items only - that's all this
--- blog's frontmatter ever uses). Requires whitespace between the `-` and
--- the item text so the frontmatter's closing `---` delimiter (itself
--- dash-prefixed) doesn't get mistaken for a one-character tag "--".
+-- Raw tag strings from a post's `tags:` frontmatter field, in either style
+-- this blog's posts actually use: a YAML block list (`tags:` alone on its
+-- line, followed by `  - foo` / `  - bar` lines) or a flow-style list on
+-- the same line (`tags: [foo, bar]`). Requires whitespace between a block
+-- item's `-` and its text so the frontmatter's closing `---` delimiter
+-- (itself dash-prefixed) doesn't get mistaken for a one-character tag "--".
+local function jev_unquote(s)
+  return (s:gsub("^['\"]", ''):gsub("['\"]$", ''))
+end
+
 local function jev_parse_tag_list(lines)
   local tags = {}
   local in_tags = false
@@ -25,12 +30,21 @@ local function jev_parse_tag_list(lines)
     if in_tags then
       local tag = line:match('^%s*-%s+(.-)%s*$')
       if tag and tag ~= '' then
-        table.insert(tags, (tag:gsub("^['\"]", ''):gsub("['\"]$", '')))
+        table.insert(tags, jev_unquote(tag))
       else
         in_tags = false
       end
     end
-    if line == 'tags:' then
+
+    local flow = line:match('^tags:%s*%[(.-)%]%s*$')
+    if flow then
+      for item in flow:gmatch('[^,]+') do
+        item = item:match('^%s*(.-)%s*$')
+        if item ~= '' then
+          table.insert(tags, jev_unquote(item))
+        end
+      end
+    elseif line == 'tags:' then
       in_tags = true
     end
   end
@@ -96,7 +110,7 @@ local function jev_parse_current_buffer()
   for _, line in ipairs(frontmatter) do
     local match = line:match('^title:%s*(.-)%s*$')
     if match then
-      title = match:gsub("^['\"]", ''):gsub("['\"]$", '')
+      title = jev_unquote(match)
       break
     end
   end

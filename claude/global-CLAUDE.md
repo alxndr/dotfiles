@@ -41,6 +41,10 @@ Every commit Clod makes must follow this format exactly:
 - Write for a general audience: no assumed expertise in trading, markets, statistics, or math
 - Explain *why*, not just *what*
 
+**Trailers:**
+- If the session's own attribution instructions call for a `Co-Authored-By:` trailer whose address is exactly `noreply@anthropic.com` (whatever name is attached to it — e.g. a specific Claude model), include it, separated from the body by a blank line like any other trailer.
+- Don't add a `Co-Authored-By:` trailer for any other email address/identity unless explicitly asked.
+
 
 ## planning for short-term and long-term
 

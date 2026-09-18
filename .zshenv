@@ -35,6 +35,7 @@ alias ln="ln -v"
       }
 alias top="top -o cpu -O vsize"
 alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head -n30" # https://coderwall.com/p/o5qijw
+alias tm="tmux"
       until_fail() {
         if [[ $# -eq 0 || ("$1" == "-h" || "$1" == "--help") ]]; then
           echo "\n"
@@ -80,6 +81,8 @@ alias tophistory="history | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}'
 alias uq="cat -n | sort -uk2 | sort -nk1 | cut -f2-" # h/t https://stackoverflow.com/a/20639730/303896
 alias wh="which"
 alias yr="ncal $(date -j +'%Y')"
+
+
 
 #########
 # mac-y #
@@ -140,6 +143,8 @@ alias gsl="git stash list"
       gss() { git stash show --patch stash@{${1:-0}} }
 alias s="git status --short"
 
+
+
 ##########
 # docker #
 ##########
@@ -156,6 +161,7 @@ alias dmenv="eval \"\$(docker-machine env default)\""
         docker container prune
         docker volume prune
       }
+
 
 ###########
 # general #

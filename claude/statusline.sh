@@ -48,14 +48,14 @@ function format_date() {
   TZ=America/Los_Angeles date -r "$1" '+%-m/%-d %-H:%M'
 }
 
-output=$(printf "𝒕%s • 5hr %s [%s] • 7d %s [%s] • %s • TUI %s" \
+output=$(printf "TUI %s • %s ••• %s 🪙 • %s ⏰ %s • %s 📅 %s" \
+  "$(j '.version')" \
+  "$(j '.model.display_name')" \
   "$(pct_with_color "$(j '.context_window.used_percentage')")" \
   "$(pct_with_color "$(j '.rate_limits.five_hour.used_percentage')")" \
   "$(format_date "$(j '.rate_limits.five_hour.resets_at')")" \
   "$(pct_with_color "$(j '.rate_limits.seven_day.used_percentage')")" \
   "$(format_date "$(j '.rate_limits.seven_day.resets_at')")" \
-  "$(j '.model.display_name')" \
-  "$(j '.version')" \
 )
 
 printf "%b" "$output"

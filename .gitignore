@@ -11,6 +11,7 @@
 .netrwhist
 .tern-port
 .vim/autoload/plug.vim
+.zshrc.local
 UserInterfaceState.xcuserstate
 config/database.yml.readonly
 coverage

@@ -89,6 +89,9 @@ if [[ -d "$HOME/.bun" ]]; then
   [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun" # bun completions
 fi
 
+if [[ -f "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi
 
 echo
 uptime

@@ -21,6 +21,12 @@ if [[ -f "$HOME/.aliases" ]]; then
 fi
 
 
+if [[ -d "$HOME/Library/Python/3.9/bin" ]]; then
+  echo -n 'python… '
+  export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+fi
+
+
 if [[ -x "$(which mise)" ]]; then
   echo -n 'mise… '
   eval "$(mise activate zsh)"

@@ -15,10 +15,10 @@ bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
 
-echo -n 'aliases… '
-      screenshot_to_mm() { scp "$(ls -1t | head -1)" abq@mm:~/Desktop/ }
-start_ollama() { OLLAMA_FLASH_ATTENTION="1" OLLAMA_KV_CACHE_TYPE="q8_0" /usr/local/opt/ollama/bin/ollama serve }
-alias t="tmux"
+if [[ -f "$HOME/.aliases" ]]; then
+  echo -n 'aliases… '
+  source "$HOME/.aliases"
+fi
 
 
 if [[ -x "$(which mise)" ]]; then
@@ -72,7 +72,7 @@ if [[ -x $(which fzf) ]]; then
     export FZF_DEFAULT_COMMAND="rg"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   fi
-  test -f ~/.fzf.zsh && source ~/.fzf.zsh
+  test -f "$HOME/.fzf.zsh" && source "$HOME/.fzf.zsh"
 fi
 
 
@@ -89,9 +89,17 @@ if [[ -d "$HOME/.bun" ]]; then
   [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun" # bun completions
 fi
 
+
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
+
+
+if [[ -x $(which opencode) ]]; then
+  echo -n 'opencode… '
+  export PATH="$HOME/.opencode/bin:$PATH"
+fi
+
 
 echo
 uptime

@@ -757,6 +757,7 @@ require('nvim-treesitter.configs').setup {
     'csv',
     'dockerfile',
     'elixir',
+    'elm',
     'erlang',
     'go',
     'graphql',

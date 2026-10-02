@@ -127,11 +127,8 @@ vim.api.nvim_create_autocmd('FileType', {
 -- * turn off syntax highlighting, expr-folding, undo, etc
 -- h/t `/u/Narizocracia` https://www.reddit.com/r/neovim/comments/pz3wyc/comment/heyy4qf
 vim.cmd [[
+  " (treesitter highlighting starts from a FileType autocmd, so `filetype off` disables it too)
   function! DisableSyntaxTreesitter()
-    if exists(':TSBufDisable')
-      exec 'TSBufDisable autotag'
-      exec 'TSBufDisable highlight'
-    endif
     syntax off
     filetype off
     set   foldmethod=manual

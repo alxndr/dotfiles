@@ -104,12 +104,10 @@ require 'paq' {
   'MunifTanjim/nui.nvim';                      -- UI toolkit; prereq for: package-info
   'nvim-lua/plenary.nvim';                     -- helper functions; prereq for: diffview, gitsigns, memento, startup, data-viewer…
   'nvim-telescope/telescope.nvim';             -- list searcher; prereq for: startup, telescope-import, …
-  {'nvim-treesitter/nvim-treesitter',          -- file content parser
-    branch = 'master',
-    build = function()
-      require('nvim-treesitter.install').update({ with_sync = true })()
-    end};
-  'nvim-treesitter/nvim-treesitter-refactor';  -- refactor modules
+  {'nvim-treesitter/nvim-treesitter',          -- parser installer + queries (needs `brew install tree-sitter-cli`)
+    branch = 'main',
+    -- parsers must match the plugin's pinned versions, so update them whenever the plugin updates
+    build = function() vim.cmd('TSUpdate') end};
   'nvim-tree/nvim-web-devicons';               -- icon characters; prereq for: alpha-nvim, lualine, nvim-tree
 }
 
@@ -746,53 +744,54 @@ mappings.add({
 
 
 -- treesitter config
-require('nvim-treesitter.configs').setup {
-  ensure_installed = {
-    'awk',
-    'bash',
-    'clojure',
-    'comment',
-    'commonlisp',
-    'css',
-    'csv',
-    'dockerfile',
-    'elixir',
-    'elm',
-    'erlang',
-    'go',
-    'graphql',
-    'html',
-    'java',
-    'javascript',
-    'jsdoc',
-    'json',
-    'lua',
-    'markdown',
-    'php',
-    'racket',
-    'ruby',
-    'scheme',
-    'scss',
-    'svelte',
-    'tsx',
-    'typescript',
-    'vim',
-    'xml',
-    'yaml',
-    'zig',
-  },
-  highlight = {
-    enable = true,
-    disable = function(_lang, bufnr) -- Disable in large buffers
-      return vim.api.nvim_buf_line_count(bufnr) > 9999
-    end,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 9999, -- Do not enable for files with more than n lines, int
-  }
+--
+-- nvim-treesitter's `main` branch only installs parsers + queries; enabling
+-- features is left to nvim's built-in treesitter. Folding is already enabled
+-- globally in options.lua via `vim.treesitter.foldexpr()`.
+require('nvim-treesitter').install {
+  'awk',
+  'bash',
+  'clojure',
+  'comment',
+  'commonlisp',
+  'css',
+  'csv',
+  'dockerfile',
+  'elixir',
+  'elm',
+  'erlang',
+  'go',
+  'graphql',
+  'html',
+  'java',
+  'javascript',
+  'jsdoc',
+  'json',
+  'lua',
+  'markdown',
+  'php',
+  'racket',
+  'ruby',
+  'scheme',
+  'scss',
+  'svelte',
+  'tsx',
+  'typescript',
+  'vim',
+  'xml',
+  'yaml',
+  'zig',
 }
+
+-- Highlighting: start treesitter for any filetype with an available parser.
+-- (pcall because `vim.treesitter.start()` errors when there's no parser.)
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    -- Skip large buffers, where treesitter highlighting gets sluggish
+    if vim.api.nvim_buf_line_count(args.buf) > 9999 then return end
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
 
 
 -- ts-autotag config
@@ -829,7 +828,7 @@ end, { desc = 'Enable Liquid template syntax for this buffer' })
 --
 -- Markdown is disabled here as a workaround for a nvim 0.12 bug:
 --   nvim/neovim#39032 — "not planned" to fix in nvim core
---   nvim-treesitter/nvim-treesitter#8618 — closed (and that repo was archived Apr 2026)
+--   nvim-treesitter/nvim-treesitter#8618 — closed
 --
 -- Root cause: nvim 0.12's bundled markdown highlight queries use `(#set! conceal_lines "")`
 -- on fenced-code-block delimiter nodes. When treesitter-context calls
@@ -840,13 +839,8 @@ end, { desc = 'Enable Liquid template syntax for this buffer' })
 -- Markdown doesn't benefit from scope-context lines (no deeply nested scopes),
 -- so skipping it is no real loss.
 --
--- FUTURE: nvim-treesitter was archived April 2026. nvim 0.12 now bundles parsers
--- for c, lua, markdown, markdown_inline, query, vim, vimdoc. The long-term fix is
--- to migrate away from nvim-treesitter entirely and use nvim's native treesitter +
--- a lightweight parser installer for additional languages:
---   https://samuellawrentz.com/blog/nvim-treesitter-archived-neovim-0-12-migration/
---   https://github.com/romus204/tree-sitter-manager.nvim
---   https://neovim.io/doc/user/news-0.12/
+-- (nvim-treesitter was archived around April 2026, but has since been unarchived
+-- and is maintained again on its `main` branch, which this config now uses.)
 require('treesitter-context').setup({
   on_attach = function(buf)
     return vim.bo[buf].filetype ~= 'markdown'

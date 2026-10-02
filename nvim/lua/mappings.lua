@@ -27,9 +27,9 @@ mappings.add({
     if vim.v.count > 0 then -- standard behavior: move to specified column
       vim.cmd('normal! ' .. vim.v.count .. '|')
     else -- custom behavior: toggle cursorline/column
-      local new_val = not vim.wo.cursorline
+      -- flip the global flag (not this window's state), so the setting persists across splits
+      local new_val = not vim.g.cursorline_enabled
       vim.g.cursorline_enabled = new_val
-      vim.g.cursorcolumn_enabled = new_val
       vim.opt_local.cursorline = new_val
       vim.opt_local.cursorcolumn = new_val
     end

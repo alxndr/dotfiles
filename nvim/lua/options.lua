@@ -35,11 +35,17 @@ vim.cmd [[
   set guicursor=n-v-c-sm:block,i-ci-ve:ver25-blinkon500-blinkoff500,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor
 ]]
 
--- cursorline/column follows focused window split, unless user has toggled it off
+-- cursorline/column: off by default; once toggled on (via `|` in mappings.lua) it
+-- follows the focused window split, for the rest of this nvim instance.
+-- `vim.g.cursorline_enabled` is the single source of truth for on/off; it's set
+-- explicitly here so that "unset" can't be misread as "on".
+vim.g.cursorline_enabled = false
 vim.api.nvim_create_autocmd(
   { 'WinEnter', },
   { callback = function()
-      if vim.g.cursorline_enabled ~= false then
+      -- skip floating windows (pickers, popups, hovers): they shouldn't get the crosshair
+      local is_floating = vim.api.nvim_win_get_config(0).relative ~= ''
+      if vim.g.cursorline_enabled == true and not is_floating then
         vim.cmd('setlocal cursorline cursorcolumn')
       end
     end }
